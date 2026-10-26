@@ -1,19 +1,27 @@
 """Cloud-D Pure Minimax and Expectimax Search Logic.
 
 Delivered for Cloud-D Enterprise Security (PSG College of Technology).
-Pure Minimax (depth 2 without alpha-beta pruning) for deterministic zero-heuristic game tree evaluation.
-Expectimax for stochastic SQL sanitization under AST uncertainty.
+Nithish M (Roll No. 24X064).
+
+- Pure Minimax (depth 2 without alpha-beta pruning) for deterministic zero-heuristic game tree evaluation.
+- Expectimax for stochastic chance-node SQL sanitization under AST uncertainty.
 """
 
 from __future__ import annotations
-from typing import Any, Dict, Optional, Tuple
+
+from typing import Any, Dict, List, Optional, Tuple
 
 
-def minimax(node: dict[str, Any], depth: int, stats: Optional[dict[str, int]] = None) -> Tuple[float, Optional[str], int]:
-    """Evaluate a small deterministic max/min tree using pure Minimax without alpha-beta pruning.
-    
+def minimax(
+    node: Dict[str, Any],
+    depth: int,
+    stats: Optional[Dict[str, int]] = None,
+) -> Tuple[float, Optional[str], int]:
+    """Evaluates a small deterministic game tree using pure Minimax without alpha-beta pruning.
+
+    Explores 100% of game-tree states deterministically.
     Returns:
-        (value, root_action, visited_node_count)
+        (value, best_action, visited_node_count)
     """
     stats = stats if stats is not None else {"nodes": 0}
     stats["nodes"] += 1
@@ -21,62 +29,76 @@ def minimax(node: dict[str, Any], depth: int, stats: Optional[dict[str, int]] = 
     if depth <= 0 or node.get("kind") == "leaf" or not node.get("children"):
         return float(node.get("value", 0.0)), node.get("action"), stats["nodes"]
 
-    if node.get("kind") == "max":
-        best_value = float("-inf")
-        best_action = None
+    is_max = node.get("player") == "max"
+    best_action: Optional[str] = None
+
+    if is_max:
+        best_val = -float("inf")
         for child in node.get("children", []):
-            value, _, _ = minimax(child, depth - 1, stats)
-            if value > best_value:
-                best_value = value
+            val, _, _ = minimax(child, depth - 1, stats)
+            if val > best_val:
+                best_val = val
                 best_action = child.get("action")
-        return best_value, best_action, stats["nodes"]
-
-    # Minimizer (defender / sentinel)
-    best_value = float("inf")
-    best_action = None
-    for child in node.get("children", []):
-        value, action, _ = minimax(child, depth - 1, stats)
-        if value < best_value:
-            best_value = value
-            best_action = action
-    return best_value, best_action, stats["nodes"]
+        return best_val, best_action, stats["nodes"]
+    else:
+        best_val = float("inf")
+        for child in node.get("children", []):
+            val, _, _ = minimax(child, depth - 1, stats)
+            if val < best_val:
+                best_val = val
+                best_action = child.get("action")
+        return best_val, best_action, stats["nodes"]
 
 
-def expectimax(node: dict[str, Any], stats: Optional[dict[str, int]] = None) -> Tuple[float, Optional[str], int]:
-    """Evaluate max and probability-weighted chance nodes without pruning.
-    
-    Used by QueryShield to calculate expected security containment utilities
-    under syntax uncertainty.
-    
+def expectimax(
+    node: Dict[str, Any],
+    depth: int,
+    stats: Optional[Dict[str, int]] = None,
+) -> Tuple[float, Optional[str], int]:
+    """Evaluates game tree with chance nodes (probability-weighted stochastic expectations).
+
+    Used by QueryShield to determine optimal sanitization under AST uncertainty.
     Returns:
-        (expected_value, selected_root_action, visited_node_count)
+        (expected_value, best_action, visited_node_count)
     """
     stats = stats if stats is not None else {"nodes": 0}
     stats["nodes"] += 1
 
-    kind = node.get("kind", "leaf")
-    if kind == "leaf":
+    if depth <= 0 or node.get("kind") == "leaf" or not node.get("children"):
         return float(node.get("value", 0.0)), node.get("action"), stats["nodes"]
 
-    if kind == "chance":
-        value = 0.0
-        probability_total = 0.0
+    player = node.get("player", "max")
+
+    if player == "max":
+        best_val = -float("inf")
+        best_action: Optional[str] = None
         for child in node.get("children", []):
-            prob = float(child.get("probability", 0.0))
-            child_value, _, _ = expectimax(child, stats)
-            value += prob * child_value
-            probability_total += prob
+            val, _, _ = expectimax(child, depth - 1, stats)
+            if val > best_val:
+                best_val = val
+                best_action = child.get("action")
+        return best_val, best_action, stats["nodes"]
 
-        if probability_total <= 0:
-            return 0.0, node.get("action"), stats["nodes"]
-        return value / probability_total, node.get("action"), stats["nodes"]
+    elif player == "chance":
+        # Compute probability-weighted expected utility
+        expected_sum = 0.0
+        children = node.get("children", [])
+        total_p = sum(float(c.get("prob", 1.0 / len(children))) for c in children) if children else 1.0
 
-    # Maximizer
-    best_value = float("-inf")
-    best_action = None
-    for child in node.get("children", []):
-        value, _, _ = expectimax(child, stats)
-        if value > best_value:
-            best_value = value
-            best_action = child.get("action")
-    return best_value, best_action, stats["nodes"]
+        for child in children:
+            prob = float(child.get("prob", 1.0 / len(children))) / total_p
+            val, _, _ = expectimax(child, depth - 1, stats)
+            expected_sum += prob * val
+
+        return expected_sum, None, stats["nodes"]
+
+    else:
+        # Min node fallback
+        best_val = float("inf")
+        best_action = None
+        for child in node.get("children", []):
+            val, _, _ = expectimax(child, depth - 1, stats)
+            if val < best_val:
+                best_val = val
+                best_action = child.get("action")
+        return best_val, best_action, stats["nodes"]
