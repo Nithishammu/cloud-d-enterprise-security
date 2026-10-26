@@ -33,7 +33,7 @@ if hasattr(sys.stderr, "reconfigure"):
 REPO_OWNER = "Nithishammu"
 REPO_NAME = "cloud-d-enterprise-security"
 BRANCH = "main"
-COMMIT_MSG = "Deploy Cloud-D: Fix Render deployment with lean requirements, app.py root entrypoint, and strict login gating"
+COMMIT_MSG = "Deploy Cloud-D: Complete Production Release with Procfile, runtime.txt, lean requirements, strict login gating, and mobile app layer"
 AUTHOR_NAME = "Nithish M"
 AUTHOR_EMAIL = "nithish@psgtech.ac.in"
 
