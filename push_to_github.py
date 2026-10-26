@@ -33,7 +33,7 @@ if hasattr(sys.stderr, "reconfigure"):
 REPO_OWNER = "Nithishammu"
 REPO_NAME = "cloud-d-enterprise-security"
 BRANCH = "main"
-COMMIT_MSG = "Deploy Cloud-D: Interactive & Automated Threat Simulation Center with Editable Measures, Dynamic Game-Tree Telemetry, and Render Webhook Sync"
+COMMIT_MSG = "Deploy Cloud-D: Fully Functional iOS & Android Cross-Platform Mobile Application, Strict Authentication Gating, and PWA Layer"
 AUTHOR_NAME = "Nithish M"
 AUTHOR_EMAIL = "nithish@psgtech.ac.in"
 
@@ -66,7 +66,7 @@ def github_request(
 
 def collect_deployable_files(base_dir: str) -> List[str]:
     files_to_deploy = []
-    ignore_dirs = {".git", "__pycache__", ".pytest_cache", ".gemini", "venv", ".venv"}
+    ignore_dirs = {".git", "__pycache__", ".pytest_cache", ".gemini", "venv", ".venv", "node_modules"}
     ignore_files = {".DS_Store", "cloud_d_production.db", "cloud_d_test.db", "desktop.ini"}
 
     for root, dirs, files in os.walk(base_dir):

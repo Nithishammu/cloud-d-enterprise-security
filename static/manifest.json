@@ -1,37 +1,18 @@
 {
-  "name": "Cloud-D | Enterprise Cloud Storage & Defense",
+  "name": "Cloud-D Workspace",
   "short_name": "Cloud-D",
-  "description": "Enterprise cloud storage with multi-agent threat intelligence. Secure document vaults, AES-256-GCM integrity proof, and version control.",
-  "id": "/",
+  "description": "Cloud-D Autonomous Multi-Agent Threat Defense & Encrypted Cloud Storage",
   "start_url": "/",
-  "scope": "/",
   "display": "standalone",
-  "background_color": "#171612",
-  "theme_color": "#1b1915",
-  "orientation": "any",
+  "background_color": "#f8fafd",
+  "theme_color": "#1a73e8",
+  "orientation": "portrait-primary",
   "icons": [
     {
-      "src": "/favicon.ico",
-      "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
+      "src": "data:image/svg+xml;charset=utf-8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%231a73e8'/><path d='M30 70 L50 30 L70 70 Z' fill='%23ffffff'/></svg>",
+      "sizes": "192x192 512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
     }
-  ],
-  "shortcuts": [
-    {
-      "name": "Cloud Drive",
-      "url": "/#cloud",
-      "description": "Open your encrypted cloud storage"
-    },
-    {
-      "name": "Threat Simulation",
-      "url": "/#threats",
-      "description": "View active multi-agent defense simulation"
-    },
-    {
-      "name": "Continuous Red Team",
-      "url": "/#redteam",
-      "description": "Launch RL zero-day simulation"
-    }
-  ],
-  "categories": ["business", "productivity", "utilities"]
+  ]
 }
