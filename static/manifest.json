@@ -1,0 +1,37 @@
+{
+  "name": "Cloud-D | Enterprise Cloud Storage & Defense",
+  "short_name": "Cloud-D",
+  "description": "Enterprise cloud storage with multi-agent threat intelligence. Secure document vaults, AES-256-GCM integrity proof, and version control.",
+  "id": "/",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#171612",
+  "theme_color": "#1b1915",
+  "orientation": "any",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Cloud Drive",
+      "url": "/#cloud",
+      "description": "Open your encrypted cloud storage"
+    },
+    {
+      "name": "Threat Simulation",
+      "url": "/#threats",
+      "description": "View active multi-agent defense simulation"
+    },
+    {
+      "name": "Continuous Red Team",
+      "url": "/#redteam",
+      "description": "Launch RL zero-day simulation"
+    }
+  ],
+  "categories": ["business", "productivity", "utilities"]
+}

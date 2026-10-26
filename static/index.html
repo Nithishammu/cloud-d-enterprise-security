@@ -1,0 +1,1356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Cloud-D | Enterprise Cloud Storage</title>
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#13111c">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <style>
+    :root {
+      --sidebar-bg: #13111c;
+      --sidebar-hover: #1f1a30;
+      --main-bg: #ffffff;
+      --search-bg: #edf2f7;
+      --folder-card-bg: #f1f5f9;
+      --border: #e2e8f0;
+      --text-dark: #1e293b;
+      --text-muted: #64748b;
+      --purple-brand: #7c3aed;
+      --purple-hover: #6d28d9;
+      --purple-pill: #ede9fe;
+      --purple-pill-text: #6d28d9;
+      --gold-badge-bg: #fef3c7;
+      --gold-badge-text: #b45309;
+      --teal: #0d9488;
+      --danger: #dc2626;
+      --success: #16a34a;
+      --safe-bottom: env(safe-area-inset-bottom, 0px);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+    body {
+      background: var(--main-bg);
+      color: var(--text-dark);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+    }
+
+    /* ---------------------------------------------------------
+       Authentication Gate
+       --------------------------------------------------------- */
+    body:not(.is-authenticated) #app-layout,
+    body:not(.is-authenticated) #mobile-bottom-bar,
+    body:not(.is-authenticated) #mobile-fab {
+      display: none !important;
+    }
+    body.is-authenticated #auth-container {
+      display: none !important;
+    }
+
+    /* ---------------------------------------------------------
+       Login Screen (Clean & Matches Original)
+       --------------------------------------------------------- */
+    #auth-container {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px 16px;
+      background: radial-gradient(circle at 10% 20%, rgba(124, 58, 237, 0.15), transparent 45%),
+                  radial-gradient(circle at 90% 80%, rgba(13, 148, 136, 0.1), transparent 45%),
+                  #0f0d17;
+    }
+    .auth-card {
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      border-radius: 24px;
+      max-width: 440px;
+      width: 100%;
+      padding: 38px 32px;
+      box-shadow: 0 25px 60px rgba(0,0,0,0.5);
+      animation: fadeIn 0.3s ease;
+    }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    .auth-badge { display: flex; align-items: center; gap: 12px; margin-bottom: 24px; }
+    .auth-badge-icon {
+      width: 44px; height: 44px; border-radius: 12px;
+      background: linear-gradient(135deg, #7c3aed, #4c1d95);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px; color: #fff;
+    }
+    .auth-badge-title { font-size: 18px; font-weight: 800; color: #0f172a; }
+    .auth-badge-sub { font-size: 10px; font-weight: 700; color: #7c3aed; letter-spacing: 0.8px; text-transform: uppercase; }
+    .auth-title { font-size: 26px; font-weight: 800; color: #0f172a; margin-bottom: 6px; letter-spacing: -0.5px; }
+    .auth-subtitle { font-size: 13px; color: #64748b; line-height: 1.5; margin-bottom: 24px; }
+    .form-group { margin-bottom: 18px; text-align: left; }
+    .form-label { display: block; font-size: 13px; font-weight: 600; margin-bottom: 6px; color: #334155; }
+    .form-input {
+      width: 100%; padding: 13px 16px; background: #f8fafc;
+      border: 1px solid #cbd5e1; border-radius: 10px; color: #0f172a; font-size: 14px;
+      transition: all 0.2s;
+    }
+    .form-input:focus { border-color: var(--purple-brand); background: #ffffff; outline: none; box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.15); }
+    .form-hint { font-size: 12px; color: #64748b; margin-top: 6px; }
+    .auth-btn-primary {
+      width: 100%; padding: 14px; background: var(--purple-brand); color: #ffffff;
+      border: none; border-radius: 12px; font-size: 15px; font-weight: 700; cursor: pointer;
+      transition: all 0.2s; margin-top: 10px;
+    }
+    .auth-btn-primary:hover { background: var(--purple-hover); transform: translateY(-1px); }
+    .auth-error { color: var(--danger); font-size: 13px; margin-top: 12px; text-align: center; display: none; }
+    .auth-toggle { text-align: center; margin-top: 22px; font-size: 13px; color: #64748b; }
+    .auth-toggle a { color: var(--purple-brand); text-decoration: none; font-weight: 700; cursor: pointer; }
+
+    /* ---------------------------------------------------------
+       Workspace Layout (Exact Replica of User's Screenshot)
+       --------------------------------------------------------- */
+    #app-layout {
+      display: flex;
+      min-height: 100vh;
+      width: 100%;
+    }
+
+    /* Left Sidebar */
+    aside {
+      width: 250px;
+      background: var(--sidebar-bg);
+      color: #cbd5e1;
+      padding: 20px 16px;
+      display: flex;
+      flex-direction: column;
+      flex-shrink: 0;
+      height: 100vh;
+      position: sticky;
+      top: 0;
+      overflow-y: auto;
+    }
+    .sidebar-brand { display: flex; align-items: center; gap: 10px; margin-bottom: 24px; padding: 0 6px; }
+    .sidebar-brand-icon {
+      width: 32px; height: 32px; border-radius: 8px;
+      background: linear-gradient(135deg, #7c3aed, #4c1d95);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 16px; color: #fff;
+    }
+    .sidebar-brand-name { font-size: 17px; font-weight: 800; color: #ffffff; letter-spacing: -0.3px; }
+    .sidebar-brand-tag { font-size: 9px; font-weight: 700; color: #a78bfa; letter-spacing: 0.6px; text-transform: uppercase; }
+
+    /* + New Google Pill Button */
+    .new-btn-container { position: relative; margin-bottom: 24px; }
+    .btn-new-google {
+      background: #ffffff;
+      color: #1e293b;
+      border: 1px solid #e2e8f0;
+      padding: 12px 26px;
+      border-radius: 28px;
+      font-size: 14px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      cursor: pointer;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+      transition: all 0.2s;
+      width: fit-content;
+    }
+    .btn-new-google:hover { box-shadow: 0 4px 15px rgba(0,0,0,0.45); transform: translateY(-1px); }
+    .new-dropdown-menu {
+      position: absolute;
+      top: 54px; left: 0;
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      width: 240px;
+      padding: 8px 0;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+      display: none;
+      z-index: 500;
+    }
+    .new-dropdown-item {
+      padding: 10px 16px;
+      font-size: 13px;
+      font-weight: 600;
+      color: #1e293b;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .new-dropdown-item:hover { background: #f8fafc; color: var(--purple-brand); }
+    .new-dropdown-divider { height: 1px; background: #f1f5f9; margin: 6px 0; }
+
+    /* Sidebar Navigation Links */
+    .sidebar-link {
+      padding: 10px 16px;
+      border-radius: 22px;
+      color: #94a3b8;
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 3px;
+      transition: all 0.15s;
+    }
+    .sidebar-link:hover { background: var(--sidebar-hover); color: #ffffff; }
+    /* Home highlighted pill in white background with purple text */
+    .sidebar-link.active-home {
+      background: #ffffff !important;
+      color: var(--purple-brand) !important;
+      font-weight: 800 !important;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+    .sidebar-link.active-pill {
+      background: rgba(124, 58, 237, 0.2) !important;
+      color: #c4b5fd !important;
+      font-weight: 700 !important;
+    }
+
+    .sidebar-section-title {
+      font-size: 10px;
+      font-weight: 700;
+      color: #64748b;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      padding: 24px 14px 8px;
+    }
+
+    .defense-card-badge {
+      background: #1b172a;
+      border: 1px solid #2d2447;
+      border-radius: 12px;
+      padding: 12px;
+      margin-top: auto;
+      font-size: 11px;
+      color: #94a3b8;
+      line-height: 1.4;
+    }
+    .defense-card-title { font-weight: 700; color: #10b981; margin-bottom: 4px; display: flex; align-items: center; gap: 6px; }
+
+    /* ---------------------------------------------------------
+       Main Workspace
+       --------------------------------------------------------- */
+    .main-workspace {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      overflow-y: auto;
+      background: #ffffff;
+    }
+
+    /* Top Header Bar */
+    .top-header {
+      background: #ffffff;
+      border-bottom: 1px solid var(--border);
+      padding: 14px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .breadcrumbs { font-size: 14px; color: #0f172a; display: flex; align-items: center; gap: 6px; font-weight: 600; }
+    .header-actions { display: flex; align-items: center; gap: 12px; }
+    .header-btn {
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      color: #334155;
+      padding: 7px 14px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.15s;
+    }
+    .header-btn:hover { background: #f8fafc; border-color: #94a3b8; }
+    .shield-protected-badge {
+      background: var(--gold-badge-bg);
+      border: 1px solid #fde68a;
+      color: var(--gold-badge-text);
+      font-size: 11px;
+      font-weight: 800;
+      padding: 6px 12px;
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .user-pill {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      padding: 4px 12px 4px 6px;
+      border-radius: 20px;
+    }
+    .user-avatar-circle {
+      width: 26px; height: 26px; border-radius: 50%;
+      background: var(--purple-brand); color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 800; font-size: 12px;
+    }
+    .user-pill-text { font-size: 12px; font-weight: 700; color: #0f172a; }
+    .user-pill-sub { font-size: 10px; color: #64748b; font-weight: 500; }
+    .btn-signout {
+      background: #ffffff;
+      border: 1px solid #fecaca;
+      color: var(--danger);
+      padding: 7px 14px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .btn-signout:hover { background: #fef2f2; }
+
+    /* Content Body */
+    .content-body {
+      padding: 24px 36px 60px;
+      max-width: 1400px;
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    /* Google Drive Search Bar & Filter Chips */
+    .search-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 28px;
+    }
+    .drive-search-box {
+      width: 100%;
+      max-width: 720px;
+      background: var(--search-bg);
+      border-radius: 30px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      padding: 0 20px;
+      gap: 14px;
+      margin-bottom: 14px;
+      transition: all 0.2s;
+    }
+    .drive-search-box:focus-within {
+      background: #ffffff;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.12);
+      border: 1px solid #cbd5e1;
+    }
+    .search-icon { color: #64748b; font-size: 16px; }
+    .drive-search-input {
+      width: 100%;
+      border: none;
+      background: transparent;
+      outline: none;
+      font-size: 14px;
+      color: #0f172a;
+    }
+    .filter-chips-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .filter-chip {
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      padding: 6px 14px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 500;
+      color: #334155;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.15s;
+    }
+    .filter-chip:hover { background: #f8fafc; border-color: #94a3b8; }
+
+    /* Section Headers with Collapse Chevron */
+    .section-header-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin: 28px 0 14px;
+      font-size: 14px;
+      font-weight: 600;
+      color: #1e293b;
+    }
+    .section-title-with-chevron {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+    }
+    .view-switcher-pill {
+      background: #edf2f7;
+      border-radius: 20px;
+      display: inline-flex;
+      align-items: center;
+      padding: 3px;
+      gap: 2px;
+    }
+    .view-switcher-btn {
+      border: none;
+      background: transparent;
+      padding: 6px 10px;
+      border-radius: 16px;
+      cursor: pointer;
+      font-size: 13px;
+      color: #64748b;
+    }
+    .view-switcher-btn.active {
+      background: #c7d2fe;
+      color: #312e81;
+      font-weight: 700;
+    }
+
+    /* Suggested Folders Cards Grid */
+    .suggested-folders-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+      gap: 14px;
+      margin-bottom: 24px;
+    }
+    .folder-card-replica {
+      background: var(--folder-card-bg);
+      border-radius: 12px;
+      padding: 14px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .folder-card-replica:hover {
+      background: #e2e8f0;
+      transform: translateY(-1px);
+    }
+    .folder-card-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      overflow: hidden;
+    }
+    .folder-card-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: #1e293b;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .folder-card-sub {
+      font-size: 11px;
+      color: #64748b;
+      white-space: nowrap;
+    }
+    .folder-dots-menu {
+      color: #64748b;
+      font-size: 16px;
+      padding: 4px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .folder-dots-menu:hover { color: #0f172a; background: #cbd5e1; }
+
+    /* Suggested Files Table */
+    .files-table-container {
+      width: 100%;
+      overflow-x: auto;
+    }
+    .replica-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+    }
+    .replica-table th {
+      padding: 12px 14px;
+      font-size: 12px;
+      font-weight: 600;
+      color: #64748b;
+      border-bottom: 1px solid var(--border);
+    }
+    .replica-table td {
+      padding: 14px 14px;
+      font-size: 13px;
+      color: #1e293b;
+      border-bottom: 1px solid #f1f5f9;
+      vertical-align: middle;
+    }
+    .replica-row:hover td {
+      background: #f8fafc;
+    }
+    .file-name-container {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .file-name-container:hover {
+      color: var(--purple-brand);
+    }
+    .file-type-icon-box {
+      width: 24px;
+      height: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+    }
+    .reason-suggested-text {
+      color: #64748b;
+      font-size: 12px;
+    }
+    .owner-container {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      color: #334155;
+    }
+    .owner-circle-avatar {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: #475569;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      font-weight: 700;
+    }
+    .location-cell {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      color: #475569;
+    }
+    .row-dots-btn {
+      color: #94a3b8;
+      font-size: 18px;
+      cursor: pointer;
+      padding: 6px 8px;
+      border-radius: 6px;
+      border: none;
+      background: transparent;
+    }
+    .row-dots-btn:hover {
+      color: #0f172a;
+      background: #e2e8f0;
+    }
+
+    /* Popup Action Menu on 3 Dots */
+    .row-action-dropdown {
+      position: fixed;
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.18);
+      z-index: 1000;
+      min-width: 230px;
+      padding: 6px 0;
+      display: none;
+    }
+    .action-dropdown-item {
+      padding: 9px 16px;
+      font-size: 13px;
+      font-weight: 500;
+      color: #1e293b;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: background 0.15s;
+    }
+    .action-dropdown-item:hover {
+      background: #f1f5f9;
+      color: var(--purple-brand);
+    }
+
+    /* Table Grouping & Enhancements */
+    .group-header-row td {
+      padding: 22px 14px 8px 14px;
+      font-size: 13px;
+      font-weight: 700;
+      color: #1f1f1f;
+      border-bottom: 1px solid #f1f5f9;
+      background: #ffffff;
+    }
+    .version-badge-pill {
+      font-size: 10px;
+      font-weight: 700;
+      padding: 1px 6px;
+      border-radius: 8px;
+      background: #ede9fe;
+      color: #6d28d9;
+      margin-left: 6px;
+      display: inline-block;
+    }
+    .zk-badge-pill {
+      font-size: 10px;
+      font-weight: 700;
+      padding: 1px 6px;
+      border-radius: 8px;
+      background: #fef3c7;
+      color: #b45309;
+      margin-left: 6px;
+      display: inline-block;
+    }
+    .toast-popup {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: #1e1b2e;
+      color: #f8fafc;
+      padding: 12px 20px;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+      font-size: 13px;
+      font-weight: 600;
+      display: none;
+      align-items: center;
+      gap: 10px;
+      z-index: 2000;
+      animation: slideInToast 0.25s ease;
+      border: 1px solid #3b3258;
+    }
+    @keyframes slideInToast { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+    /* Modals */
+    .modal-overlay {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(15, 23, 42, 0.6);
+      backdrop-filter: blur(4px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      padding: 20px;
+    }
+    .modal-card {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      max-width: 600px;
+      width: 100%;
+      padding: 28px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+    .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+    .close-btn { background: none; border: none; color: #94a3b8; font-size: 20px; cursor: pointer; }
+
+    /* DUPLICATE HANDLING CHOICES */
+    .duplicate-choice-card {
+      border: 2px solid var(--border);
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 12px;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .duplicate-choice-card:hover { border-color: var(--purple-brand); background: #fdfcfe; }
+    .choice-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px; }
+    .choice-title { font-weight: 700; font-size: 14px; color: #0f172a; }
+    .choice-pill { font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 12px; background: #ede9fe; color: #6d28d9; }
+    .choice-desc { font-size: 12px; color: #64748b; line-height: 1.4; }
+
+    /* Mobile Responsive Hooks */
+    @media (max-width: 768px) {
+      aside { display: none; }
+      .top-header { padding: 12px 16px; }
+      .content-body { padding: 16px; padding-bottom: calc(85px + var(--safe-bottom)); }
+      .filter-chips-row { display: none; }
+      .suggested-folders-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
+      .replica-table th:nth-child(2), .replica-table td:nth-child(2),
+      .replica-table th:nth-child(4), .replica-table td:nth-child(4) { display: none; }
+
+      body.is-authenticated #mobile-bottom-bar {
+        position: fixed;
+        bottom: 0; left: 0; right: 0;
+        height: calc(60px + var(--safe-bottom));
+        padding-bottom: var(--safe-bottom);
+        background: #13111c;
+        border-top: 1px solid #282142;
+        display: flex !important;
+        justify-content: space-around;
+        align-items: center;
+        z-index: 200;
+      }
+      .mobile-nav-item {
+        display: flex; flex-direction: column; align-items: center; gap: 3px;
+        color: #94a3b8; font-size: 10px; font-weight: 600; cursor: pointer; padding: 6px;
+      }
+      .mobile-nav-item.active { color: #c4b5fd; font-weight: 800; }
+      .mobile-nav-item span:first-child { font-size: 18px; }
+
+      body.is-authenticated #mobile-fab {
+        position: fixed;
+        bottom: calc(75px + var(--safe-bottom));
+        right: 20px;
+        width: 54px; height: 54px;
+        background: var(--purple-brand);
+        color: #fff;
+        border-radius: 50%;
+        display: flex !important;
+        align-items: center; justify-content: center;
+        font-size: 28px; font-weight: 700;
+        box-shadow: 0 6px 20px rgba(124, 58, 237, 0.4);
+        cursor: pointer;
+        z-index: 210;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- =========================================================
+       1. Authentication Gate (Hidden when is-authenticated)
+       ========================================================= -->
+  <div id="auth-container">
+    <div class="auth-card">
+      <div class="auth-badge">
+        <div class="auth-badge-icon">🛡️</div>
+        <div>
+          <div class="auth-badge-title">Cloud-D</div>
+          <div class="auth-badge-sub">Secure Cloud Workspace</div>
+        </div>
+      </div>
+
+      <div id="login-view">
+        <h2 class="auth-title">Sign in to your cloud</h2>
+        <p class="auth-subtitle">Sign in using your username and password. Cloud-D finds your account type automatically.</p>
+
+        <form onsubmit="handleAuthSubmit(event, 'login')">
+          <div class="form-group">
+            <label class="form-label" for="auth-username">Username or Email</label>
+            <input type="text" id="auth-username" class="form-input" placeholder="e.g. nithish" required autofocus>
+            <div class="form-hint">Sign in with your username or registered email address.</div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="auth-password">Password</label>
+            <input type="password" id="auth-password" class="form-input" placeholder="Enter password" required>
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-top:8px;">
+              <label style="display:flex; align-items:center; gap:6px; font-size:12px; color:var(--text-muted); cursor:pointer;">
+                <input type="checkbox" onchange="togglePasswordVisibility('auth-password', this.checked)">
+                Show password
+              </label>
+              <span class="form-hint" style="margin:0;">Use at least 6 characters.</span>
+            </div>
+          </div>
+
+          <button type="submit" class="auth-btn-primary" id="btn-login-submit">Sign in</button>
+          <div id="auth-error-msg" class="auth-error">Username or password is incorrect.</div>
+        </form>
+
+        <div class="auth-toggle">
+          New to Cloud-D? <a onclick="switchAuthMode('register')">Create an account</a>
+        </div>
+      </div>
+
+      <div id="register-view" style="display:none;">
+        <h2 class="auth-title">Create your account</h2>
+        <p class="auth-subtitle">Register for zero-knowledge encrypted cloud storage and multi-agent defense.</p>
+
+        <form onsubmit="handleAuthSubmit(event, 'register')">
+          <div class="form-group">
+            <label class="form-label" for="reg-username">Choose Username</label>
+            <input type="text" id="reg-username" class="form-input" placeholder="e.g. nithish" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="reg-password">Create Password</label>
+            <input type="password" id="reg-password" class="form-input" placeholder="Min 6 characters" required>
+            <div style="margin-top:6px;">
+              <label style="display:flex; align-items:center; gap:6px; font-size:12px; color:var(--text-muted); cursor:pointer;">
+                <input type="checkbox" onchange="togglePasswordVisibility('reg-password', this.checked)">
+                Show password
+              </label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Account Partition</label>
+            <select id="reg-role" class="form-input">
+              <option value="staff">Staff & Engineer (Node 2 Primary Vault)</option>
+              <option value="customer" selected>Customer Private Partition (Node 3 Vault)</option>
+            </select>
+          </div>
+
+          <button type="submit" class="auth-btn-primary" id="btn-reg-submit">Create Account & Vault</button>
+          <div id="reg-error-msg" class="auth-error"></div>
+        </form>
+
+        <div class="auth-toggle">
+          Already have an account? <a onclick="switchAuthMode('login')">Sign in</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================
+       2. Authenticated App Layout (Matches User Screenshot Exactly)
+       ========================================================= -->
+  <div id="app-layout">
+    <!-- Left Sidebar -->
+    <aside>
+      <div class="sidebar-brand">
+        <div class="sidebar-brand-icon">🛡️</div>
+        <div>
+          <div class="sidebar-brand-name">Cloud D</div>
+          <div class="sidebar-brand-tag">Defense Intelligence</div>
+        </div>
+      </div>
+
+      <!-- + New Pill Button -->
+      <div class="new-btn-container">
+        <button class="btn-new-google" onclick="toggleNewDropdown(event)">
+          <span style="font-size:20px; font-weight:900; color:#1e293b;">+</span>
+          <span>New</span>
+        </button>
+        <div class="new-dropdown-menu" id="new-dropdown">
+          <div class="new-dropdown-item" onclick="promptCreateFolder()">
+            <span style="font-size:16px;">📁</span> New Folder
+          </div>
+          <div class="new-dropdown-divider"></div>
+          <div class="new-dropdown-item" onclick="triggerFileUploadPrompt(false)">
+            <span style="font-size:16px;">📄</span> File Upload
+          </div>
+          <div class="new-dropdown-item" onclick="triggerFileUploadPrompt(true)">
+            <span style="font-size:16px;">🔐</span> Zero-Knowledge WebCrypto Upload
+          </div>
+          <div class="new-dropdown-divider"></div>
+          <div class="new-dropdown-item" onclick="promptNewCRDTDoc()">
+            <span style="font-size:16px;">📝</span> New Collaborative Document
+          </div>
+        </div>
+      </div>
+
+      <!-- Main Navigation Items -->
+      <div class="sidebar-link active-home" onclick="switchSidebarTab('home')">
+        <span style="font-size:16px;">🏠</span> Home
+      </div>
+      <div class="sidebar-link" onclick="switchSidebarTab('shared')">
+        <span style="font-size:16px;">👥</span> Shared with me
+      </div>
+      <div class="sidebar-link" onclick="switchSidebarTab('recent')">
+        <span style="font-size:16px;">🕒</span> Recent
+      </div>
+      <div class="sidebar-link" onclick="switchSidebarTab('starred')">
+        <span style="font-size:16px;">⭐</span> Starred
+      </div>
+      <div class="sidebar-link" onclick="switchSidebarTab('trash')">
+        <span style="font-size:16px;">🗑️</span> Trash
+      </div>
+
+      <!-- Autonomous Threat Defense Section (Agent Background, Cloud Architecture, Security Report, Threat Simulation) -->
+      <div class="sidebar-section-title">Autonomous Threat Defense</div>
+      <div class="sidebar-link" onclick="switchTab('agent-background')">
+        <span>🤖</span> Agent Background
+      </div>
+      <div class="sidebar-link" onclick="switchTab('architecture')">
+        <span>🏛️</span> Cloud Architecture
+      </div>
+      <div class="sidebar-link" onclick="switchTab('security-report')">
+        <span>📄</span> Security Report
+      </div>
+      <div class="sidebar-link" onclick="switchTab('threats')">
+        <span>🛡️</span> Threat Simulation
+      </div>
+
+      <!-- Active Cloud Defense Card -->
+      <div class="defense-card-badge">
+        <div class="defense-card-title">● Active Cloud Defense</div>
+        AI Sentinels inspect inbound traffic, cloud storage nodes, and account data against active threats.
+      </div>
+    </aside>
+
+    <!-- Main Workspace -->
+    <div class="main-workspace">
+      <!-- Top Header Bar -->
+      <header class="top-header">
+        <div class="breadcrumbs">
+          <span style="cursor:pointer;" onclick="loadFiles('root')">Cloud D</span>
+          <span>/</span>
+          <span id="breadcrumb-current-folder" style="color:#0f172a; font-weight:700;">My Drive</span>
+        </div>
+        <div class="header-actions">
+          <button class="header-btn" onclick="openDocsModal()">📥 Download Docs</button>
+          <button class="header-btn" onclick="openQrModal()">📱 Mobile App</button>
+          <div class="shield-protected-badge">
+            <span>🛡️</span> CLOUD PROTECTED
+          </div>
+          <div class="user-pill">
+            <div class="user-avatar-circle" id="user-avatar-char">N</div>
+            <div>
+              <div class="user-pill-text" id="header-username">nithish</div>
+              <div class="user-pill-sub" id="header-user-role">Staff Member</div>
+            </div>
+          </div>
+          <button class="btn-signout" onclick="handleLogout()">Sign out</button>
+        </div>
+      </header>
+
+      <!-- Content Body -->
+      <main class="content-body">
+        <!-- TAB 1: GOOGLE DRIVE STRUCTURE (Exact Match to Screenshot) -->
+        <div id="tab-drive">
+          <!-- View Title Row (Recent / My Drive / Shared) -->
+          <div class="view-title-header" id="view-title-row" style="display:none; justify-content:space-between; align-items:center; margin-bottom:18px;">
+            <h1 id="view-title-text" style="font-size:24px; font-weight:700; color:#1f1f1f; letter-spacing:-0.4px;">Recent</h1>
+            <div class="view-switcher-pill">
+              <button class="view-switcher-btn active" title="List View">✓ ☰</button>
+              <button class="view-switcher-btn" title="Grid View">⊞</button>
+              <button class="view-switcher-btn" title="Details" onclick="showFolderDetails()">ⓘ</button>
+            </div>
+          </div>
+
+          <!-- Big Search Bar & Filter Chips -->
+          <div class="search-container" id="drive-search-section">
+            <div class="drive-search-box">
+              <span class="search-icon">🔍</span>
+              <input type="text" class="drive-search-input" id="search-files-input" placeholder="Search in Drive" oninput="handleSearchFilter(this.value)">
+            </div>
+            <div class="filter-chips-row">
+              <div class="filter-chip" onclick="handleFilterClick('type')">📄 Type ▾</div>
+              <div class="filter-chip" onclick="handleFilterClick('people')">👤 People ▾</div>
+              <div class="filter-chip" onclick="handleFilterClick('modified')">📅 Modified ▾</div>
+              <div class="filter-chip" id="filter-chip-loc" onclick="handleFilterClick('location')">📁 Location ▾</div>
+            </div>
+          </div>
+
+          <!-- Section 1: Suggested Folders -->
+          <div id="suggested-folders-section">
+            <div class="section-header-row">
+              <div class="section-title-with-chevron" onclick="toggleSection('suggested-folders-grid')">
+                <span>˅</span> <span id="folders-section-title">Suggested folders</span>
+              </div>
+            </div>
+            <div class="suggested-folders-grid" id="suggested-folders-grid"></div>
+          </div>
+
+          <!-- Section 2: Suggested Files -->
+          <div class="section-header-row" id="files-section-header">
+            <div class="section-title-with-chevron" onclick="toggleSection('files-table-container')">
+              <span>˅</span> <span id="files-section-title">Suggested files</span>
+            </div>
+            <div class="view-switcher-pill" id="home-view-switcher">
+              <button class="view-switcher-btn active" title="List View">✓ ☰</button>
+              <button class="view-switcher-btn" title="Grid View">⊞</button>
+              <button class="view-switcher-btn" title="Details" onclick="showFolderDetails()">ⓘ</button>
+            </div>
+          </div>
+
+          <!-- Files Table Container -->
+          <div class="files-table-container" id="files-table-container">
+            <table class="replica-table">
+              <thead>
+                <tr id="replica-table-headers">
+                  <th style="width:36%;">Name</th>
+                  <th style="width:20%;" id="th-activity">Reason suggested</th>
+                  <th style="width:14%;">Owner</th>
+                  <th style="width:14%;">File size</th>
+                  <th style="width:12%;">Location</th>
+                  <th style="width:4%; text-align:right;"></th>
+                </tr>
+              </thead>
+              <tbody id="files-table-body"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- 1. AGENT BACKGROUND VIEW -->
+        <div id="tab-agent-background" style="display:none;">
+          <div style="margin-bottom:24px;">
+            <h1 style="font-size:24px; font-weight:800; color:#0f172a; margin-bottom:6px;">Sentinel Autonomous Multi-Agent Defense Network</h1>
+            <p style="font-size:13px; color:#64748b;">Autonomous agent sentinels inspecting inbound traffic, cloud storage node shards, and database transactions in real-time.</p>
+          </div>
+          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr)); gap:18px; margin-bottom:24px;">
+            <div style="background:#ffffff; border:1px solid var(--border); border-radius:14px; padding:22px; box-shadow:0 2px 8px rgba(0,0,0,0.04);">
+              <div style="display:flex; align-items:center; gap:10px; margin-bottom:10px;">
+                <span style="font-size:24px;">🛡️</span>
+                <span style="font-size:16px; font-weight:700; color:#0f172a;">QueryShield (Expectimax)</span>
+              </div>
+              <p style="font-size:13px; color:#475569; line-height:1.5;">Evaluates stochastic chance nodes under syntax uncertainty to sanitize SQL injection vectors before they reach SQLite partitions.</p>
+              <div style="margin-top:12px; font-size:11px; font-weight:700; color:#10b981; display:flex; align-items:center; gap:6px;">● ACTIVE · PROBABILITY TREES ACTIVE</div>
+            </div>
+            <div style="background:#ffffff; border:1px solid var(--border); border-radius:14px; padding:22px; box-shadow:0 2px 8px rgba(0,0,0,0.04);">
+              <div style="display:flex; align-items:center; gap:10px; margin-bottom:10px;">
+                <span style="font-size:24px;">⚔️</span>
+                <span style="font-size:16px; font-weight:700; color:#0f172a;">ShardSentry (Pure Minimax)</span>
+              </div>
+              <p style="font-size:13px; color:#475569; line-height:1.5;">Executes exhaustive 2-ply Minimax game tree evaluations without alpha-beta pruning, inspecting 100% of adversarial child states.</p>
+              <div style="margin-top:12px; font-size:11px; font-weight:700; color:#10b981; display:flex; align-items:center; gap:6px;">● ACTIVE · 100% GAME TREE TRAVERSAL</div>
+            </div>
+            <div style="background:#ffffff; border:1px solid var(--border); border-radius:14px; padding:22px; box-shadow:0 2px 8px rgba(0,0,0,0.04);">
+              <div style="display:flex; align-items:center; gap:10px; margin-bottom:10px;">
+                <span style="font-size:24px;">🔐</span>
+                <span style="font-size:16px; font-weight:700; color:#0f172a;">AuthWall (PBKDF2 / WebAuthn)</span>
+              </div>
+              <p style="font-size:13px; color:#475569; line-height:1.5;">Enforces permanent PBKDF2 credential derivation, session isolation, and W3C WebAuthn hardware passkey verification.</p>
+              <div style="margin-top:12px; font-size:11px; font-weight:700; color:#10b981; display:flex; align-items:center; gap:6px;">● ACTIVE · HARDWARE CRYPTO LOCKED</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. CLOUD ARCHITECTURE VIEW -->
+        <div id="tab-architecture" style="display:none;">
+          <div style="margin-bottom:24px;">
+            <h1 style="font-size:24px; font-weight:800; color:#0f172a; margin-bottom:6px;">Cloud-D Distributed Shard Architecture</h1>
+            <p style="font-size:13px; color:#64748b;">Multi-node topological partitioning across physical and logical vaults with hardware AES-256-GCM AEAD sealing.</p>
+          </div>
+          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:16px; margin-bottom:24px;">
+            <div style="background:#ffffff; border:1px solid var(--border); border-radius:14px; padding:20px;">
+              <div style="font-size:12px; font-weight:800; color:var(--purple-brand); text-transform:uppercase; margin-bottom:4px;">Node 0</div>
+              <div style="font-size:16px; font-weight:700; color:#0f172a; margin-bottom:6px;">Authentication Shard</div>
+              <div style="font-size:12px; color:#64748b; line-height:1.5;">cloud_users table, permanent sessions, PBKDF2 password hashes, and WebAuthn challenges.</div>
+            </div>
+            <div style="background:#ffffff; border:1px solid var(--border); border-radius:14px; padding:20px;">
+              <div style="font-size:12px; font-weight:800; color:var(--purple-brand); text-transform:uppercase; margin-bottom:4px;">Node 1</div>
+              <div style="font-size:16px; font-weight:700; color:#0f172a; margin-bottom:6px;">API Gateway & Ingress</div>
+              <div style="font-size:12px; color:#64748b; line-height:1.5;">Rate limiting, AST duplicate detection, /api/version hot reload adaptation hooks.</div>
+            </div>
+            <div style="background:#ffffff; border:1px solid var(--border); border-radius:14px; padding:20px;">
+              <div style="font-size:12px; font-weight:800; color:var(--purple-brand); text-transform:uppercase; margin-bottom:4px;">Node 2</div>
+              <div style="font-size:16px; font-weight:700; color:#0f172a; margin-bottom:6px;">Primary Storage Vault</div>
+              <div style="font-size:12px; color:#64748b; line-height:1.5;">Staff files, AES-256-GCM AEAD Galois field sealing, CRDT collaborative session manager.</div>
+            </div>
+            <div style="background:#ffffff; border:1px solid var(--border); border-radius:14px; padding:20px;">
+              <div style="font-size:12px; font-weight:800; color:var(--purple-brand); text-transform:uppercase; margin-bottom:4px;">Node 3</div>
+              <div style="font-size:16px; font-weight:700; color:#0f172a; margin-bottom:6px;">Customer Storage Vault</div>
+              <div style="font-size:12px; color:#64748b; line-height:1.5;">Isolated tenant partition, customer folders, client-side WebCrypto zero-knowledge ciphertext.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. SECURITY REPORT VIEW -->
+        <div id="tab-security-report" style="display:none;">
+          <div style="margin-bottom:24px;">
+            <h1 style="font-size:24px; font-weight:800; color:#0f172a; margin-bottom:6px;">Security Audit & Executive Specification</h1>
+            <p style="font-size:13px; color:#64748b;">Cryptographic integrity audit, Galois tag verification counters, and comprehensive Word specification document.</p>
+          </div>
+          <div style="background:linear-gradient(135deg, #f8fafc, #ede9fe); border:1px solid #c4b5fd; border-radius:16px; padding:28px; margin-bottom:24px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;">
+            <div>
+              <div style="font-size:18px; font-weight:800; color:#1e1b4b; margin-bottom:4px;">📄 Complete Handover Specification (Word Document)</div>
+              <div style="font-size:13px; color:#475569; max-width:640px;">
+                Download the official Cloud-D specification covering completed deliverables, incomplete tasks roadmap, visual UI image representations, and system deployment manual.
+              </div>
+            </div>
+            <button class="header-btn" style="background:var(--purple-brand); color:#fff; border:none; padding:12px 24px; font-size:14px; font-weight:700;" onclick="openDocsModal()">
+              📥 Download Word Document (.docx)
+            </button>
+          </div>
+          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:14px;">
+            <div style="background:#ffffff; border:1px solid var(--border); border-radius:12px; padding:16px;">
+              <div style="font-size:11px; font-weight:700; color:#64748b; text-transform:uppercase;">AEAD Tag Integrity</div>
+              <div style="font-size:22px; font-weight:800; color:#16a34a; margin-top:4px;">100% VERIFIED</div>
+            </div>
+            <div style="background:#ffffff; border:1px solid var(--border); border-radius:12px; padding:16px;">
+              <div style="font-size:11px; font-weight:700; color:#64748b; text-transform:uppercase;">Minimax Search Depth</div>
+              <div style="font-size:22px; font-weight:800; color:#0f172a; margin-top:4px;">2-PLY (NO PRUNING)</div>
+            </div>
+            <div style="background:#ffffff; border:1px solid var(--border); border-radius:12px; padding:16px;">
+              <div style="font-size:11px; font-weight:700; color:#64748b; text-transform:uppercase;">Zero-Knowledge Vault</div>
+              <div style="font-size:22px; font-weight:800; color:var(--purple-brand); margin-top:4px;">PBKDF2 ACTIVE</div>
+            </div>
+            <div style="background:#ffffff; border:1px solid var(--border); border-radius:12px; padding:16px;">
+              <div style="font-size:11px; font-weight:700; color:#64748b; text-transform:uppercase;">CRDT Convergence</div>
+              <div style="font-size:22px; font-weight:800; color:#0f172a; margin-top:4px;">LAMPORT CLOCKS</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4. THREAT SIMULATION VIEW -->
+        <div id="tab-threats" style="display:none;">
+          <div style="margin-bottom:24px;">
+            <h1 style="font-size:24px; font-weight:800; color:#0f172a; margin-bottom:6px;">Sentinel Threat Simulation</h1>
+            <p style="font-size:13px; color:#64748b;">Adversarial game-tree simulation inspecting simulated SQL injection, shard tampering, and brute force attacks using Pure Minimax & Expectimax.</p>
+          </div>
+          <div style="background:#f8fafc; border:1px solid var(--border); border-radius:16px; padding:24px;">
+            <div style="display:flex; gap:12px; align-items:center; margin-bottom:18px; flex-wrap:wrap;">
+              <label style="font-size:13px; font-weight:600;">Attack Target Shard:
+                <select id="sim-node-select" class="form-input" style="width:auto; display:inline-block; margin-left:6px; padding:6px 12px;">
+                  <option value="2">Node 2 (Primary Vault)</option>
+                  <option value="3">Node 3 (Customer Vault)</option>
+                  <option value="1">Node 1 (API Ingress)</option>
+                </select>
+              </label>
+              <label style="font-size:13px; font-weight:600;">Evaluation Strategy:
+                <select id="sim-strategy-select" class="form-input" style="width:auto; display:inline-block; margin-left:6px; padding:6px 12px;">
+                  <option value="minimax">Pure Minimax (Depth 2, No Pruning)</option>
+                  <option value="expectimax">Expectimax (Stochastic AST Chance Nodes)</option>
+                </select>
+              </label>
+              <button class="header-btn" style="background:var(--purple-brand); color:#fff; border:none; padding:9px 18px;" onclick="runInteractiveThreatSim()">
+                🛡️ Run Adversarial Evaluation
+              </button>
+            </div>
+            <div id="sim-eval-log" style="background:#0f172a; color:#e2e8f0; border-radius:12px; padding:18px; font-size:13px; min-height:100px; font-family:monospace; line-height:1.6;">
+              Select shard and strategy, then click 'Run Adversarial Evaluation' to inspect game-tree traversal metrics.
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- =========================================================
+       3. Mobile Navigation & FAB
+       ========================================================= -->
+  <nav id="mobile-bottom-bar" class="mobile-bottom-bar">
+    <div class="mobile-nav-item active" onclick="switchTab('drive')">
+      <span>📁</span>
+      <span>Drive</span>
+    </div>
+    <div class="mobile-nav-item" onclick="switchTab('threats')">
+      <span>🛡️</span>
+      <span>Sentinel</span>
+    </div>
+    <div class="mobile-nav-item" onclick="switchTab('redteam')">
+      <span>⚔️</span>
+      <span>Red-Team</span>
+    </div>
+    <div class="mobile-nav-item" onclick="handleLogout()">
+      <span>🚪</span>
+      <span>Logout</span>
+    </div>
+  </nav>
+
+  <div id="mobile-fab" class="mobile-fab" onclick="openMobileActionSheet()">+</div>
+
+  <!-- =========================================================
+       4. DUPLICATE FILE DETECTED MODAL (Core Deliverable)
+       ========================================================= -->
+  <div class="modal-overlay" id="modal-duplicate">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 style="font-size:18px; font-weight:800; color:#0f172a; display:flex; align-items:center; gap:8px;">
+          <span>⚠️</span> Document Already Exists
+        </h3>
+        <button class="close-btn" onclick="closeModal('modal-duplicate')">✕</button>
+      </div>
+
+      <p style="font-size:13px; color:#475569; margin-bottom:16px;">
+        A document named <b id="dup-filename" style="color:#0f172a;"></b> already exists in this folder (Current: <span id="dup-current-ver" style="font-weight:700; color:var(--purple-brand);">v1</span>). How would you like to proceed?
+      </p>
+
+      <!-- Choice 1: Save as New Version (n+1) -->
+      <div class="duplicate-choice-card" onclick="resolveDuplicateChoice('new_version')">
+        <div class="choice-header">
+          <span class="choice-title">Option 1: Save as New Version</span>
+          <span class="choice-pill">Increment to v<span id="dup-next-ver">2</span></span>
+        </div>
+        <div class="choice-desc">
+          Preserves complete version history. Cloud-D attaches the new upload as revision <b>n+1</b>, enabling visual line diffs and rollback anytime.
+        </div>
+      </div>
+
+      <!-- Choice 2: Replace Existing File -->
+      <div class="duplicate-choice-card" onclick="resolveDuplicateChoice('replace')">
+        <div class="choice-header">
+          <span class="choice-title">Option 2: Replace Existing File</span>
+          <span class="choice-pill" style="background:#fee2e2; color:#b91c1c;">In-Place Overwrite</span>
+        </div>
+        <div class="choice-desc">
+          Replaces the existing file content in-place without incrementing the version count.
+        </div>
+      </div>
+
+      <!-- Choice 3: Keep Both (Upload as Copy) -->
+      <div class="duplicate-choice-card" onclick="resolveDuplicateChoice('keep_both')">
+        <div class="choice-header">
+          <span class="choice-title">Option 3: Keep Both (Upload as Copy)</span>
+          <span class="choice-pill" style="background:#f1f5f9; color:#475569;">Separate File</span>
+        </div>
+        <div class="choice-desc">
+          Appends a copy suffix to the filename and creates an independent document entry.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: In-Browser Preview -->
+  <div class="modal-overlay" id="modal-preview">
+    <div class="modal-card" style="max-width:720px;">
+      <div class="modal-header">
+        <h3 id="preview-filename" style="font-size:18px; font-weight:800; color:#0f172a;"></h3>
+        <button class="close-btn" onclick="closeModal('modal-preview')">✕</button>
+      </div>
+      <pre id="preview-text-box" style="background:#0f172a; color:#f8fafc; padding:16px; border-radius:12px; max-height:420px; overflow-y:auto; font-size:13px; font-family:monospace; white-space:pre-wrap;"></pre>
+    </div>
+  </div>
+
+  <!-- MODAL: Version History & Attach New Revision -->
+  <div class="modal-overlay" id="modal-history">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div>
+          <h3 style="font-size:18px; font-weight:800; color:#0f172a;">Version History & Rollback</h3>
+          <div style="font-size:12px; color:#64748b;" id="history-doc-title"></div>
+        </div>
+        <button class="close-btn" onclick="closeModal('modal-history')">✕</button>
+      </div>
+      <div style="margin-bottom:14px;">
+        <button class="header-btn" style="background:var(--purple-brand); color:#fff; border:none;" onclick="triggerAttachVersionPrompt()">
+          + Attach New Revision (v<span id="history-next-num">2</span>)
+        </button>
+      </div>
+      <div id="history-versions-list"></div>
+    </div>
+  </div>
+
+  <!-- MODAL: Visual Version Diff -->
+  <div class="modal-overlay" id="modal-diff">
+    <div class="modal-card" style="max-width:760px;">
+      <div class="modal-header">
+        <h3 style="font-size:18px; font-weight:800; color:#0f172a;">Visual Version Line Diff</h3>
+        <button class="close-btn" onclick="closeModal('modal-diff')">✕</button>
+      </div>
+      <div id="diff-content-box" style="background:#0f172a; border-radius:12px; padding:14px; max-height:420px; overflow-y:auto; font-family:monospace; font-size:13px; color:#f8fafc;"></div>
+    </div>
+  </div>
+
+  <!-- MODAL: Expiring Encrypted Share Links -->
+  <div class="modal-overlay" id="modal-share">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 style="font-size:18px; font-weight:800; color:#0f172a;">Generate Secure Expiring Share Link</h3>
+        <button class="close-btn" onclick="closeModal('modal-share')">✕</button>
+      </div>
+      <input type="hidden" id="share-target-id">
+      <p style="font-size:13px; color:#64748b; margin-bottom:16px;">Target Document: <b id="share-target-filename" style="color:#0f172a;"></b></p>
+      <div style="margin-bottom:14px;">
+        <label class="form-label">Time-To-Live (Expiry)</label>
+        <select id="share-ttl-select" class="form-input">
+          <option value="3600">1 Hour</option>
+          <option value="86400" selected>24 Hours</option>
+          <option value="604800">7 Days</option>
+        </select>
+      </div>
+      <div style="margin-bottom:14px;">
+        <label class="form-label">Max Downloads Quota (Optional)</label>
+        <input type="number" id="share-quota-input" class="form-input" placeholder="e.g. 5 (Leave empty for unlimited)">
+      </div>
+      <div style="margin-bottom:18px;">
+        <label class="form-label">Access Password (Optional PBKDF2 Protection)</label>
+        <input type="password" id="share-password-input" class="form-input" placeholder="Require password for download">
+      </div>
+      <button class="header-btn" style="width:100%; background:var(--purple-brand); color:#fff; border:none; padding:12px;" onclick="submitCreateShare()">Generate Cryptographic Link</button>
+      <div id="share-result-box" style="display:none; margin-top:16px; padding:14px; background:#f1f5f9; border-radius:10px;">
+        <input type="text" id="share-generated-url" readonly style="width:100%; background:transparent; border:none; color:var(--purple-brand); font-family:monospace; font-weight:700; margin-bottom:8px;">
+        <button class="header-btn" style="width:100%;" onclick="copyShareUrl()">📋 Copy Link</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: Cryptographic Proof -->
+  <div class="modal-overlay" id="modal-proof">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 style="font-size:18px; font-weight:800; color:#0f172a;">Hardware AES-256-GCM AEAD Proof</h3>
+        <button class="close-btn" onclick="closeModal('modal-proof')">✕</button>
+      </div>
+      <div style="font-size:13px; line-height:1.7;">
+        <div><b>File:</b> <span id="proof-filename"></span></div>
+        <div style="margin-top:6px;"><b>Payload SHA-256 Digest:</b> <div id="proof-sha256" style="font-family:monospace; color:var(--purple-brand); word-break:break-all; font-weight:700;"></div></div>
+        <div style="margin-top:6px;"><b>Hardware Nonce (96-bit):</b> <div id="proof-nonce" style="font-family:monospace; color:#64748b;"></div></div>
+        <div style="margin-top:8px;"><b>Integrity Status:</b> <span id="proof-status" style="color:var(--success); font-weight:800;"></span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: CRDT Collaborative Document Editor -->
+  <div class="modal-overlay" id="modal-collab">
+    <div class="modal-card" style="max-width:760px;">
+      <div class="modal-header">
+        <div>
+          <h3 style="font-size:18px; font-weight:800; color:#0f172a;">Collaborative Document Editor (CRDT)</h3>
+          <span id="collab-filename" style="font-size:12px; color:var(--purple-brand); font-weight:700;"></span>
+        </div>
+        <button class="close-btn" onclick="closeCollabEditor()">✕</button>
+      </div>
+      <textarea id="collab-textarea" oninput="handleCollabInput(event)" style="width:100%; height:320px; background:#f8fafc; border:1px solid var(--border); border-radius:12px; color:#0f172a; font-family:monospace; padding:14px; font-size:14px; resize:vertical;"></textarea>
+      <div style="margin-top:14px; display:flex; justify-content:space-between; align-items:center;">
+        <span style="font-size:12px; color:var(--success); font-weight:700;">● Real-Time CRDT Convergence Active</span>
+        <button class="header-btn" style="background:var(--purple-brand); color:#fff; border:none;" onclick="closeCollabEditor()">Save & Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: New Folder Dialog -->
+  <div class="modal-overlay" id="modal-new-folder">
+    <div class="modal-card" style="max-width:440px;">
+      <div class="modal-header">
+        <h3 style="font-size:18px; font-weight:800; color:#0f172a;">New folder</h3>
+        <button class="close-btn" onclick="closeModal('modal-new-folder')">✕</button>
+      </div>
+      <form onsubmit="handleCreateFolderSubmit(event)">
+        <div class="form-group" style="margin-bottom:20px;">
+          <input type="text" id="new-folder-input" class="form-input" value="Untitled folder" placeholder="Folder name" required autofocus>
+        </div>
+        <div style="display:flex; justify-content:flex-end; gap:10px;">
+          <button type="button" class="header-btn" onclick="closeModal('modal-new-folder')">Cancel</button>
+          <button type="submit" class="header-btn" style="background:var(--purple-brand); color:#fff; border:none; padding:8px 20px;">Create</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL: Move File Dialog -->
+  <div class="modal-overlay" id="modal-move-file">
+    <div class="modal-card" style="max-width:460px;">
+      <div class="modal-header">
+        <h3 style="font-size:18px; font-weight:800; color:#0f172a;">Move to folder</h3>
+        <button class="close-btn" onclick="closeModal('modal-move-file')">✕</button>
+      </div>
+      <p style="font-size:13px; color:#64748b; margin-bottom:14px;">Select destination folder for <b id="move-file-name" style="color:#0f172a;"></b>:</p>
+      <div id="move-folders-list" style="max-height:240px; overflow-y:auto; margin-bottom:20px; border:1px solid var(--border); border-radius:10px; padding:6px;"></div>
+      <div style="display:flex; justify-content:flex-end; gap:10px;">
+        <button type="button" class="header-btn" onclick="closeModal('modal-move-file')">Cancel</button>
+        <button type="button" class="header-btn" style="background:var(--purple-brand); color:#fff; border:none; padding:8px 20px;" onclick="submitMoveFile()">Move Here</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Row Action Dropdown Menu (Fixed Position) -->
+  <div class="row-action-dropdown" id="row-action-menu">
+    <div class="action-dropdown-item" onclick="triggerRowAction('preview')"><span>👁️</span> In-Browser Preview</div>
+    <div class="action-dropdown-item" onclick="triggerRowAction('collab')"><span>✏️</span> Collaborative Edit (CRDT)</div>
+    <div class="action-dropdown-item" onclick="triggerRowAction('share')"><span>🔗</span> Expiring Share Link</div>
+    <div class="action-dropdown-item" onclick="triggerRowAction('diff')"><span>⏱️</span> Visual Version Diff</div>
+    <div class="action-dropdown-item" onclick="triggerRowAction('history')"><span>🔄</span> Version History & Rollback</div>
+    <div class="action-dropdown-item" onclick="triggerRowAction('proof')"><span>🛡️</span> Hardware AEAD Proof</div>
+    <div class="action-dropdown-item" onclick="triggerRowAction('move')"><span>📁</span> Move to Folder</div>
+    <div class="new-dropdown-divider"></div>
+    <div class="action-dropdown-item" style="color:var(--danger);" onclick="triggerRowAction('delete')"><span>🗑️</span> Delete Document</div>
+  </div>
+
+  <!-- Toast Notification Popup -->
+  <div id="toast-notification" class="toast-popup"></div>
+
+  <!-- Hidden Native File Input -->
+  <input type="file" id="hidden-file-input" style="display:none;" onchange="handleFileSelected(event)">
+
+  <script src="/cloud-d.js"></script>
+</body>
+</html>
