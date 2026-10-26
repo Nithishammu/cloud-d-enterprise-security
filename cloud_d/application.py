@@ -228,7 +228,7 @@ class CloudDApp:
                     uploaded_by="nithish",
                     folder_id=fld,
                     node_id=2,
-                    is_post_quantum=is_pq,
+                    use_post_quantum=is_pq,
                 )
 
     def register_user(self, username: str, password: str, role: str = "customer") -> Dict[str, Any]:
@@ -446,8 +446,14 @@ class CloudDApp:
                     self._threat_subscribers.remove(q)
 
 
-def create_app(db_path: Optional[str] = None, static_folder: str = "static") -> Flask:
+def create_app(db_path: Optional[str] = None, static_folder: Optional[str] = None) -> Flask:
     """Flask Web Application Factory for Cloud-D."""
+    if static_folder is None:
+        project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+        root_static = os.path.join(project_root, "static")
+        pkg_static = os.path.join(os.path.dirname(__file__), "static")
+        static_folder = root_static if os.path.exists(root_static) else pkg_static
+
     app = Flask(__name__, static_folder=static_folder, static_url_path="")
     controller = CloudDApp(db_path=db_path)
 
@@ -541,6 +547,34 @@ def create_app(db_path: Optional[str] = None, static_folder: str = "static") -> 
         target_node = int(data.get("target_node", 2))
 
         threat_presets = {
+            "credential_bot": {
+                "name": "Credential-Bot Brute-Force & Stuffing Probe",
+                "tactic": "credential_stuffing",
+                "severity": "HIGH",
+                "attacker": "Credential-Bot",
+                "defender": "AuthSentinel (Velocity Lockout & IP Block)",
+            },
+            "query_bot": {
+                "name": "Query-Bot AST Grammar Injection",
+                "tactic": "sqli_ast_injection",
+                "severity": "CRITICAL",
+                "attacker": "Query-Bot",
+                "defender": "QueryShield (Expectimax AST Filter)",
+            },
+            "tamper_bot": {
+                "name": "Tamper-Bot Galois Bit-Flip & Nonce Perturbation",
+                "tactic": "galois_bit_flip",
+                "severity": "CRITICAL",
+                "attacker": "Tamper-Bot",
+                "defender": "ShardSentry (Minimax Game-Tree Search)",
+            },
+            "replay_bot": {
+                "name": "Replay-Bot Cross-Shard Tenant Incursion Attempt",
+                "tactic": "cross_tenant_replay",
+                "severity": "HIGH",
+                "attacker": "Replay-Bot",
+                "defender": "Regional Shard Router & Tenant Air-Gap",
+            },
             "sqli_llm": {
                 "name": "Adversarial SQLi AST Injection (LLM Mutated)",
                 "tactic": "adversarial_llm_sqli",
@@ -1029,14 +1063,27 @@ def create_app(db_path: Optional[str] = None, static_folder: str = "static") -> 
         history = controller.push_mgr.get_notification_history(user["user_id"])
         return jsonify({"history": history})
 
+    @app.route("/api/docs/executive-handover.docx", methods=["GET"])
+    def get_executive_handover_doc():
+        docx_filename = "Cloud_D_Executive_Handover_Specification.docx"
+        docx_path = os.path.join(app.static_folder, docx_filename)
+        if not os.path.exists(docx_path):
+            try:
+                import build_handover_doc
+                build_handover_doc.create_document()
+            except Exception as e:
+                logger.warning(f"Could not build handover doc on-demand: {e}")
+        return send_from_directory(app.static_folder, docx_filename, as_attachment=True)
+
     # -------------------------------------------------------------------------
     # Static Assets & Fallback SPA Route
     # -------------------------------------------------------------------------
     @app.route("/", defaults={"path": ""})
     @app.route("/<path:path>")
     def serve_frontend(path):
-        if path == "Cloud_D_Executive_Handover_Specification.docx":
-            docx_path = os.path.join(app.static_folder, path)
+        if path == "Cloud_D_Executive_Handover_Specification.docx" or path == "api/docs/executive-handover.docx" or path.endswith(".docx"):
+            docx_filename = "Cloud_D_Executive_Handover_Specification.docx"
+            docx_path = os.path.join(app.static_folder, docx_filename)
             if not os.path.exists(docx_path):
                 try:
                     import build_handover_doc
@@ -1044,7 +1091,7 @@ def create_app(db_path: Optional[str] = None, static_folder: str = "static") -> 
                 except Exception as e:
                     logger.warning(f"Could not build handover doc on-demand: {e}")
             if os.path.exists(docx_path):
-                return send_from_directory(app.static_folder, path, as_attachment=True)
+                return send_from_directory(app.static_folder, docx_filename, as_attachment=True)
 
         if path and os.path.exists(os.path.join(app.static_folder, path)):
             return send_from_directory(app.static_folder, path)

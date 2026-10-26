@@ -820,6 +820,118 @@
       line-height: 1.6;
     }
 
+    /* Reference Design: Modern Threat Simulation Center */
+    .sim-card-container {
+      background: #ffffff;
+      border: 1px solid #f1f5f9;
+      border-radius: 16px;
+      padding: 24px;
+      margin-bottom: 24px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+    }
+    .sim-badge-manual {
+      background: #fef3c7;
+      color: #d97706;
+      font-size: 10.5px;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 9999px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+    .sim-badge-auto {
+      background: #dcfce7;
+      color: #16a34a;
+      font-size: 10.5px;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 9999px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+    .sim-dark-select {
+      background-color: #0f172a;
+      color: #ffffff;
+      border: 1px solid #1e293b;
+      border-radius: 8px;
+      padding: 10px 14px;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      outline: none;
+      width: 100%;
+      -webkit-appearance: none;
+      appearance: none;
+      background-image: url('data:image/svg+xml;charset=US-ASCII,<svg%20xmlns=\"http://www.w3.org/2000/svg\"%20width=\"16\"%20height=\"16\"%20viewBox=\"0%200%2024%2024\"%20fill=\"none\"%20stroke=\"white\"%20stroke-width=\"2\"%20stroke-linecap=\"round\"%20stroke-linejoin=\"round\"><polyline%20points=\"6%209%2012%2015%2018%209\"></polyline></svg>');
+      background-repeat: no-repeat;
+      background-position: right 12px center;
+      background-size: 14px;
+      padding-right: 36px;
+      font-family: inherit;
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+    .sim-dark-select:focus {
+      border-color: #8b5cf6;
+      box-shadow: 0 0 0 2px rgba(139, 92, 246, 0.2);
+    }
+    .sim-vector-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #0f172a;
+      color: #e2e8f0;
+      border: 1px solid #1e293b;
+      border-radius: 8px;
+      padding: 9px 12px;
+      font-size: 12.5px;
+      font-weight: 500;
+      cursor: pointer;
+      user-select: none;
+      transition: all 0.15s ease;
+    }
+    .sim-vector-chip:hover {
+      background: #1e293b;
+      border-color: #334155;
+    }
+    .sim-vector-chip input[type="checkbox"] {
+      accent-color: #10b981;
+      width: 14px;
+      height: 14px;
+      cursor: pointer;
+    }
+    .custom-teal-slider {
+      -webkit-appearance: none;
+      appearance: none;
+      height: 6px;
+      border-radius: 4px;
+      background: #e2e8f0;
+      outline: none;
+      accent-color: #0d9488;
+    }
+    .custom-teal-slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: #0d9488;
+      cursor: pointer;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+      transition: transform 0.1s;
+    }
+    .custom-teal-slider::-webkit-slider-thumb:hover {
+      transform: scale(1.15);
+    }
+    .custom-teal-slider::-moz-range-thumb {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: #0d9488;
+      cursor: pointer;
+      border: none;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    }
+
     /* ---------------------------------------------------------
        MOBILE APP BOTTOM NAVIGATION (Strictly Gated)
        --------------------------------------------------------- */
@@ -1939,62 +2051,217 @@
 
           <!-- STAFF VIEW: INTERACTIVE SIMULATION ARENA -->
           <div id="sim-staff-arena-view">
-            <div class="sim-arena-card">
-              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; flex-wrap:wrap; gap:10px;">
-                <h2 class="sim-title-h2" style="margin-bottom:0;">⚡ Staff Autonomous Threat Simulation Arena</h2>
-                <button class="btn-gdrive-storage" onclick="runAllSimulationsSuite()" style="color:#7c3aed; border-color:#a78bfa; font-weight:600; padding:8px 18px;">
-                  🚀 Run Full Automated Security Audit
-                </button>
-              </div>
-              <p class="sim-subtitle-p">Trigger adversarial agent probes. All attacks are isolated on staff partitions and broadcast live to Customer peripheral monitors.</p>
 
-              <!-- Target Shard Selection -->
-              <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px; font-size: 13px; flex-wrap: wrap;">
-                <span style="font-weight: 600; color: #444746;">Target Shard:</span>
-                <label style="display:flex; align-items:center; gap:6px; cursor:pointer;">
-                  <input type="radio" name="sim-target-node" value="2" checked onchange="state.simTargetNode = 2">
-                  <span>Node 2: Primary Staff Vault (Frankfurt)</span>
-                </label>
-                <label style="display:flex; align-items:center; gap:6px; cursor:pointer; margin-left: 12px;">
-                  <input type="radio" name="sim-target-node" value="1" onchange="state.simTargetNode = 1">
-                  <span>Node 1: Ingress Gateway (Oregon)</span>
-                </label>
-              </div>
-
-              <!-- Quick 1-Click Preset Attack Buttons -->
-              <div class="sim-buttons-grid">
-                <div class="btn-attack-preset" id="btn-sim-sqli_llm" onclick="runQuickSimulation('sqli_llm')">
-                  <div class="preset-icon">⚔️</div>
-                  <div class="preset-name">SQLi AST Mutation</div>
-                  <div class="preset-desc">Adversarial LLM synthesizes obfuscated AST query bypass against QueryShield Expectimax.</div>
+            <!-- TOP HEADER WITH ACTIONS -->
+            <div style="margin-bottom: 24px;">
+              <div style="color: #0d9488; font-size: 11.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 4px;">THREAT CENTER • INTERACTIVE & AUTOMATED</div>
+              <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 16px;">
+                <div>
+                  <h1 style="font-size: 28px; font-weight: 700; color: #0f172a; margin: 0 0 6px 0; letter-spacing: -0.02em;">Threat Simulation</h1>
+                  <p style="font-size: 13.5px; color: #64748b; margin: 0;">Experience both manually induced attack/defense interactions and automated multi-round cloud security exercises.</p>
                 </div>
-
-                <div class="btn-attack-preset" id="btn-sim-galois_tamper" onclick="runQuickSimulation('galois_tamper')">
-                  <div class="preset-icon">🛡️</div>
-                  <div class="preset-name">Galois Nonce Bit-Flip</div>
-                  <div class="preset-desc">Probes Node 2 vault with bit-flipped nonce to trigger ShardSentry Minimax containment.</div>
+                <div style="display: flex; align-items: center; gap: 12px;">
+                  <button id="btn-step-round" onclick="stepOneRound()" style="background: #ffffff; border: 1px solid #cbd5e1; border-radius: 10px; padding: 9px 18px; font-size: 13px; font-weight: 600; color: #1e293b; cursor: pointer; display: flex; align-items: center; gap: 6px; box-shadow: 0 1px 2px rgba(0,0,0,0.05); transition: all 0.15s;">
+                    <span>+</span> Step one round
+                  </button>
+                  <button id="btn-run-automated" onclick="runAutomatedDefenseSuite()" style="background: #8b5cf6; border: none; border-radius: 10px; padding: 9px 20px; font-size: 13px; font-weight: 600; color: #ffffff; cursor: pointer; display: flex; align-items: center; gap: 8px; box-shadow: 0 2px 4px rgba(139,92,246,0.3); transition: all 0.15s;">
+                    Run Automated Defense
+                  </button>
                 </div>
-
-                <div class="btn-attack-preset" id="btn-sim-cross_shard" onclick="runQuickSimulation('cross_shard')">
-                  <div class="preset-icon">🧬</div>
-                  <div class="preset-name">Cross-Shard AAD Replay</div>
-                  <div class="preset-desc">Attempts to transplant ciphertext across shards without regional HMAC re-sealing.</div>
-                </div>
-
-                <div class="btn-attack-preset" id="btn-sim-token_burst" onclick="runQuickSimulation('token_burst')">
-                  <div class="preset-icon">🚀</div>
-                  <div class="preset-name">Ingress Burst Flood</div>
-                  <div class="preset-desc">Dispatches 1,200 req/s pipeline burst to stress-test Node 1 Token-Bucket limiter.</div>
-                </div>
-              </div>
-
-              <!-- Live Terminal Evaluation Stream -->
-              <div class="sim-console" id="sim-eval-log">
-                <div style="color: #38bdf8; font-weight: bold;">▶ [CLOUD-D AUTONOMOUS THREAT ARENA READY]</div>
-                <div style="color: #94a3b8; margin-top: 4px;">Click any preset card above to launch an adversarial agent attack.</div>
-                <div style="color: #94a3b8;">Staff simulations concurrently broadcast live alerts to customer sessions.</div>
               </div>
             </div>
+
+            <!-- SECTION 1: MANUALLY INDUCED ATTACK & DEFENSE -->
+            <div class="sim-card-container">
+              <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 18px; flex-wrap: wrap; gap: 10px;">
+                <div>
+                  <h2 style="font-size: 17px; font-weight: 700; color: #0f172a; margin: 0 0 4px 0;">Manually Induced Attack & Defense</h2>
+                  <p style="font-size: 12.5px; color: #64748b; margin: 0;">Select an adversarial agent, choose attack pressure, and manually trigger an attack to inspect the immediate defensive decision.</p>
+                </div>
+                <span class="sim-badge-manual">MANUAL INDUCTION</span>
+              </div>
+
+              <!-- Controls Row: Editable Measures & Triggers -->
+              <div style="display: grid; grid-template-columns: minmax(260px, 1.8fr) minmax(200px, 1.2fr) minmax(180px, 1fr) auto; gap: 16px; align-items: flex-end; margin-bottom: 20px;">
+                <div>
+                  <label style="display: block; font-size: 12px; font-weight: 600; color: #334155; margin-bottom: 6px;">Adversarial Agent & Target</label>
+                  <select id="sim-manual-agent" class="sim-dark-select" onchange="onManualAgentChange()">
+                    <option value="credential_bot" selected>Credential-Bot → Auth Server (Node 0)</option>
+                    <option value="query_bot">Query-Bot → Ingress Edge (Node 1)</option>
+                    <option value="tamper_bot">Tamper-Bot → Primary Vault (Node 2)</option>
+                    <option value="replay_bot">Replay-Bot → Customer Vault (Node 3)</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label style="display: block; font-size: 12px; font-weight: 600; color: #334155; margin-bottom: 6px;">Attack Pressure</label>
+                  <select id="sim-manual-pressure" class="sim-dark-select">
+                    <option value="normal" selected>Normal - Single Probe</option>
+                    <option value="elevated">Elevated - Burst Probing</option>
+                    <option value="maximum">Maximum - Continuous Incursion</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label style="display: block; font-size: 12px; font-weight: 600; color: #334155; margin-bottom: 6px;">Target Cloud Asset</label>
+                  <div id="sim-target-badge" style="background: #ecfdf5; border: 1px solid #a7f3d0; color: #059669; font-weight: 600; font-size: 13px; padding: 9px 14px; border-radius: 9999px; display: inline-flex; align-items: center; gap: 6px; width: 100%; box-sizing: border-box; justify-content: center;">
+                    <span>☁</span> <span id="sim-target-badge-text">Auth Server (Node 0)</span>
+                  </div>
+                </div>
+
+                <div>
+                  <button id="btn-launch-manual" onclick="launchManualAttack()" style="background: #8b5cf6; color: #ffffff; border: none; border-radius: 10px; padding: 10px 22px; font-size: 13.5px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 8px; box-shadow: 0 2px 4px rgba(139,92,246,0.3); transition: all 0.15s; white-space: nowrap;">
+                    <span>⚡</span> Launch Manual Attack
+                  </button>
+                </div>
+              </div>
+
+              <!-- Live Decision / Outcome Result Card -->
+              <div id="manual-outcome-card" style="border: 1px solid #e2e8f0; border-radius: 12px; padding: 20px; background: #ffffff;">
+                <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 16px; flex-wrap: wrap; gap: 8px;">
+                  <div style="display: flex; align-items: flex-start; gap: 10px;">
+                    <div style="width: 14px; height: 14px; border: 2px solid #10b981; border-radius: 3px; margin-top: 3px;"></div>
+                    <div>
+                      <div id="outcome-card-title" style="font-size: 16px; font-weight: 700; color: #0f172a;">Credential-Bot → Auth Server</div>
+                      <div id="outcome-card-subtitle" style="font-size: 12px; color: #64748b; margin-top: 2px;">credential stuffing • Round 1</div>
+                    </div>
+                  </div>
+                  <span id="outcome-status-badge" style="background: #dcfce7; color: #16a34a; font-size: 11px; font-weight: 700; padding: 4px 12px; border-radius: 9999px; letter-spacing: 0.04em;">BLOCKED • CONTAINED</span>
+                </div>
+
+                <!-- 4 Columns Metric Grid -->
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; margin-bottom: 18px; padding-bottom: 16px; border-bottom: 1px solid #f1f5f9;">
+                  <div>
+                    <div style="font-size: 10.5px; font-weight: 700; color: #94a3b8; letter-spacing: 0.06em; text-transform: uppercase;">ADVERSARIAL VECTOR</div>
+                    <div id="outcome-vector" style="font-size: 14px; font-weight: 600; color: #0f172a; margin-top: 4px;">Credential attacks</div>
+                  </div>
+                  <div>
+                    <div style="font-size: 10.5px; font-weight: 700; color: #94a3b8; letter-spacing: 0.06em; text-transform: uppercase;">DEFENDER SPECIALIST</div>
+                    <div id="outcome-defender" style="font-size: 14px; font-weight: 600; color: #0f172a; margin-top: 4px;">AuthSentinel</div>
+                  </div>
+                  <div>
+                    <div style="font-size: 10.5px; font-weight: 700; color: #94a3b8; letter-spacing: 0.06em; text-transform: uppercase;">DEFENSE ACTION</div>
+                    <div id="outcome-action" style="font-size: 14px; font-weight: 600; color: #0f172a; margin-top: 4px; font-family: monospace;">block_ip + lock account</div>
+                  </div>
+                  <div>
+                    <div style="font-size: 10.5px; font-weight: 700; color: #94a3b8; letter-spacing: 0.06em; text-transform: uppercase;">UTILITY SCORE</div>
+                    <div id="outcome-utility" style="font-size: 14px; font-weight: 600; color: #0f172a; margin-top: 4px;">
+                      <span id="outcome-utility-num" style="color: #0d9488; font-weight: 700;">0.70</span>
+                      <span style="color: #64748b; font-weight: 400; font-size: 12.5px;">(Threshold: <span id="outcome-thresh-display">0.40</span>)</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Minimax / Game-Tree Search Details -->
+                <div id="outcome-game-tree-box" style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 12px 16px; font-size: 13px; color: #334155; line-height: 1.5; margin-bottom: 16px;">
+                  Minimax Game-Tree Search (Depth 2): Credential-Bot calculated expected adversarial payoff across possible defender replies. AuthSentinel detected velocity anomalies and initiated progressive lockout.
+                </div>
+
+                <!-- Footer Note -->
+                <div style="border-top: 1px dashed #e2e8f0; padding-top: 12px; font-size: 12.5px; color: #64748b; display: flex; align-items: center; gap: 6px;">
+                  <span>☁</span> <span id="outcome-cloud-protection-status">Cloud Protection Status: Target node <strong>Auth Server</strong> protected. Persistent SQLite databases, user folders, and AES-256-GCM encrypted files remain secure.</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- SECTION 2: AUTOMATED ATTACK & DEFENSE SIMULATION -->
+            <div class="sim-card-container">
+              <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 18px; flex-wrap: wrap; gap: 10px;">
+                <div>
+                  <h2 style="font-size: 17px; font-weight: 700; color: #0f172a; margin: 0 0 4px 0;">Automated Attack & Defense Simulation</h2>
+                  <p style="font-size: 12.5px; color: #64748b; margin: 0;">Execute multi-round automated defense simulations with live telemetry, adaptive scoring, and containment statistics.</p>
+                </div>
+                <span class="sim-badge-auto">AUTOMATED ENGINE</span>
+              </div>
+
+              <!-- Controls Row: Editable Measures -->
+              <div style="display: grid; grid-template-columns: minmax(200px, 1.2fr) minmax(200px, 1.2fr) minmax(280px, 2fr); gap: 20px; align-items: flex-start;">
+                <div>
+                  <label style="display: block; font-size: 12px; font-weight: 600; color: #334155; margin-bottom: 6px;">Simulation rounds</label>
+                  <select id="sim-auto-rounds" class="sim-dark-select">
+                    <option value="5">5 rounds - quick</option>
+                    <option value="20" selected>20 rounds - full</option>
+                    <option value="50">50 rounds - stress</option>
+                    <option value="100">100 rounds - exhaustive</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label style="display: block; font-size: 12px; font-weight: 600; color: #334155; margin-bottom: 6px;">Threat intensity</label>
+                  <select id="sim-auto-intensity" class="sim-dark-select">
+                    <option value="normal" selected>Normal - baseline</option>
+                    <option value="high">High - aggressive</option>
+                    <option value="extreme">Extreme - adversarial LLM</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label style="display: block; font-size: 12px; font-weight: 600; color: #334155; margin-bottom: 6px;">Active attack vectors</label>
+                  <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                    <label class="sim-vector-chip"><input type="checkbox" id="vec-credential" checked> <span>Credential</span></label>
+                    <label class="sim-vector-chip"><input type="checkbox" id="vec-ddos" checked> <span>DDoS</span></label>
+                    <label class="sim-vector-chip"><input type="checkbox" id="vec-sqli" checked> <span>SQLi</span></label>
+                    <label class="sim-vector-chip"><input type="checkbox" id="vec-galois" checked> <span>Galois</span></label>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- SECTION 3: DECISION ENGINE THRESHOLD -->
+            <div>
+              <h2 style="font-size: 17px; font-weight: 700; color: #0f172a; margin: 28px 0 12px 0;">Decision Engine Threshold</h2>
+              <div class="sim-card-container" style="display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap;">
+                <div style="min-width: 260px;">
+                  <div style="font-size: 14px; font-weight: 700; color: #0f172a;">Minimum Utility to Execute</div>
+                  <div style="font-size: 12px; color: #64748b; margin-top: 2px;">The Decision Engine ranks proposals and approves actions above this threshold.</div>
+                </div>
+
+                <div style="flex: 1; min-width: 240px; max-width: 520px;">
+                  <input type="range" id="decision-utility-slider" min="0.10" max="0.90" step="0.05" value="0.40" oninput="onUtilitySliderChange(this.value)" class="custom-teal-slider" style="width: 100%;">
+                  <div style="display: flex; justify-content: space-between; margin-top: 6px; font-size: 11px; color: #64748b;">
+                    <span>More responsive • 0.10</span>
+                    <span>More selective • 0.90</span>
+                  </div>
+                </div>
+
+                <div id="decision-utility-display" style="font-size: 24px; font-weight: 700; color: #0d9488; min-width: 60px; text-align: right;">0.40</div>
+              </div>
+            </div>
+
+            <!-- SECTION 4: RECENT THREAT DEFENSE DECISIONS -->
+            <div>
+              <h2 style="font-size: 17px; font-weight: 700; color: #0f172a; margin: 28px 0 12px 0;">Recent Threat Defense Decisions</h2>
+              <div style="border-radius: 12px; overflow: hidden; border: 1px solid #e2e8f0; background: #ffffff; box-shadow: 0 1px 3px rgba(0,0,0,0.02); margin-bottom: 24px;">
+                <table style="width: 100%; border-collapse: collapse; text-align: left;">
+                  <thead>
+                    <tr style="background: #0f172a; color: #94a3b8; font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;">
+                      <th style="padding: 12px 16px;">ROUND</th>
+                      <th style="padding: 12px 16px;">ATTACKER</th>
+                      <th style="padding: 12px 16px;">TARGET CLOUD NODE</th>
+                      <th style="padding: 12px 16px;">UTILITY</th>
+                      <th style="padding: 12px 16px;">DEFENDER ACTION</th>
+                      <th style="padding: 12px 16px;">OUTCOME</th>
+                    </tr>
+                  </thead>
+                  <tbody id="recent-threat-decisions-tbody">
+                    <tr style="border-top: 1px solid #f1f5f9;">
+                      <td style="padding: 14px 16px; font-size: 13px; font-weight: 600; color: #1e293b;">01</td>
+                      <td style="padding: 14px 16px;">
+                        <div style="font-size: 13.5px; font-weight: 700; color: #0f172a;">Credential-Bot</div>
+                        <div style="font-size: 11px; color: #64748b;">credential stuffing</div>
+                      </td>
+                      <td style="padding: 14px 16px; font-size: 13px; color: #334155; font-weight: 500;">Auth Server</td>
+                      <td style="padding: 14px 16px; font-size: 13px; color: #0f172a; font-weight: 600;">0.70</td>
+                      <td style="padding: 14px 16px; font-size: 13px; color: #334155; font-family: monospace;">block_ip + lock account</td>
+                      <td style="padding: 14px 16px;">
+                        <span style="background: #dcfce7; color: #16a34a; font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 9999px;">BLOCKED</span>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
           </div>
 
           <!-- CUSTOMER VIEW: AUTONOMOUS PERIPHERAL SHIELD MONITOR (NO CONTROLS) -->

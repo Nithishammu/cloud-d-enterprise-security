@@ -33,7 +33,7 @@ if hasattr(sys.stderr, "reconfigure"):
 REPO_OWNER = "Nithishammu"
 REPO_NAME = "cloud-d-enterprise-security"
 BRANCH = "main"
-COMMIT_MSG = "Deploy Cloud-D: Consolidated Security Architecture Center, Operable Simulation Arena, and Gated Mobile Navigation"
+COMMIT_MSG = "Deploy Cloud-D: Interactive & Automated Threat Simulation Center with Editable Measures, Dynamic Game-Tree Telemetry, and Render Webhook Sync"
 AUTHOR_NAME = "Nithish M"
 AUTHOR_EMAIL = "nithish@psgtech.ac.in"
 
