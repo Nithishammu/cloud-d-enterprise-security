@@ -2,3 +2,6 @@ __pycache__/
 *.pyc
 test_*.db
 .DS_Store
+data/
+*.sqlite3
+*.db
