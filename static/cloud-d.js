@@ -970,6 +970,12 @@ async function loadFiles(folderId = 'root') {
       const data = await filesRes.json();
       state.files = data.files || [];
       state.filteredFiles = [...state.files];
+      const countEl = document.getElementById('stat-files-count');
+      if (countEl) countEl.innerText = state.files.length;
+      const recEl = document.getElementById('stat-records-count');
+      if (recEl) recEl.innerText = state.files.length;
+      const syncEl = document.getElementById('sync-timestamp');
+      if (syncEl) syncEl.innerText = `Last synced ${new Date().toLocaleTimeString()}`;
     }
     if (foldersRes.ok) {
       const data = await foldersRes.json();
