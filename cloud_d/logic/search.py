@@ -14,10 +14,10 @@ from typing import Any, Dict, List, Optional, Tuple
 
 def minimax(
     node: Dict[str, Any],
-    depth: int,
+    depth: int = 2,
     stats: Optional[Dict[str, int]] = None,
 ) -> Tuple[float, Optional[str], int]:
-    """Evaluates a small deterministic game tree using pure Minimax without alpha-beta pruning.
+    """Evaluates a deterministic game tree using pure Minimax without alpha-beta pruning.
 
     Explores 100% of game-tree states deterministically.
     Returns:
@@ -29,7 +29,8 @@ def minimax(
     if depth <= 0 or node.get("kind") == "leaf" or not node.get("children"):
         return float(node.get("value", 0.0)), node.get("action"), stats["nodes"]
 
-    is_max = node.get("player") == "max"
+    player_type = node.get("kind") or node.get("player") or "max"
+    is_max = player_type == "max"
     best_action: Optional[str] = None
 
     if is_max:
@@ -52,7 +53,7 @@ def minimax(
 
 def expectimax(
     node: Dict[str, Any],
-    depth: int,
+    depth: int = 10,
     stats: Optional[Dict[str, int]] = None,
 ) -> Tuple[float, Optional[str], int]:
     """Evaluates game tree with chance nodes (probability-weighted stochastic expectations).
@@ -67,9 +68,9 @@ def expectimax(
     if depth <= 0 or node.get("kind") == "leaf" or not node.get("children"):
         return float(node.get("value", 0.0)), node.get("action"), stats["nodes"]
 
-    player = node.get("player", "max")
+    node_type = node.get("kind") or node.get("player") or "max"
 
-    if player == "max":
+    if node_type == "max":
         best_val = -float("inf")
         best_action: Optional[str] = None
         for child in node.get("children", []):
@@ -79,14 +80,23 @@ def expectimax(
                 best_action = child.get("action")
         return best_val, best_action, stats["nodes"]
 
-    elif player == "chance":
-        # Compute probability-weighted expected utility
+    elif node_type == "chance":
         expected_sum = 0.0
         children = node.get("children", [])
-        total_p = sum(float(c.get("prob", 1.0 / len(children))) for c in children) if children else 1.0
+        total_p = 0.0
+        for c in children:
+            p_val = c.get("probability")
+            if p_val is None:
+                p_val = c.get("prob", 1.0 / len(children))
+            total_p += float(p_val)
+        if total_p <= 0.0:
+            total_p = 1.0
 
         for child in children:
-            prob = float(child.get("prob", 1.0 / len(children))) / total_p
+            p_val = child.get("probability")
+            if p_val is None:
+                p_val = child.get("prob", 1.0 / len(children))
+            prob = float(p_val) / total_p
             val, _, _ = expectimax(child, depth - 1, stats)
             expected_sum += prob * val
 

@@ -474,6 +474,8 @@ def create_app(db_path: Optional[str] = None, static_folder: Optional[str] = Non
             "version": BUILD_VERSION,
             "build_hash": BUILD_HASH,
             "cache_id": CACHE_VERSION_ID,
+            "cache_name": CACHE_VERSION_ID,
+            "hot_reload_enabled": True,
             "timestamp": time.time(),
             "status": "synchronized",
         })
@@ -494,7 +496,7 @@ def create_app(db_path: Optional[str] = None, static_folder: Optional[str] = Non
         if not session:
             return jsonify({"error": "Invalid username or password"}), 401
 
-        resp = jsonify({"status": "success", "user": session})
+        resp = jsonify({"status": "authenticated", "ok": True, "user": session})
         resp.set_cookie("cloud_d_session", session["token"], max_age=315360000, httponly=True)
         return resp
 
@@ -506,9 +508,9 @@ def create_app(db_path: Optional[str] = None, static_folder: Optional[str] = Non
         role = data.get("role", "customer")
         try:
             session = controller.register_user(username, password, role=role)
-            resp = jsonify({"status": "success", "user": session})
+            resp = jsonify({"status": "registered", "ok": True, "user": session})
             resp.set_cookie("cloud_d_session", session["token"], max_age=315360000, httponly=True)
-            return resp
+            return resp, 201
         except ValueError as e:
             return jsonify({"error": str(e)}), 400
 

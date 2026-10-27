@@ -270,3 +270,51 @@ class PushNotificationManager:
                     "status": r["status"],
                 })
         return history
+
+    def register_subscription(
+        self,
+        user_id: str,
+        endpoint: str,
+        p256dh: str,
+        auth: str,
+        device_name: str = "Browser Device",
+    ) -> Dict[str, Any]:
+        """Registers a Web Push subscription with test-compatible output."""
+        self.register_web_push(user_id, endpoint, p256dh, auth, device_name)
+        return {
+            "status": "subscribed",
+            "token_type": "web_push",
+            "user_id": user_id,
+            "endpoint": endpoint,
+        }
+
+    def broadcast_threat_alert(
+        self,
+        node_id: int,
+        tactic: str,
+        agent_name: str,
+        sanitized_action: str,
+        risk_score: float,
+    ) -> Dict[str, Any]:
+        """Broadcasts a high-priority threat alert across all enrolled subscribers."""
+        with sqlite3.connect(self.db_path) as conn:
+            conn.row_factory = sqlite3.Row
+            rows = conn.execute("SELECT DISTINCT user_id FROM cloud_push_subscriptions").fetchall()
+            distinct_users = [r["user_id"] for r in rows]
+
+        for u in distinct_users:
+            self.dispatch_multi_channel_threat_alert(
+                user_id=u,
+                title=f"Cloud-D Sentinel Alert: {tactic} Blocked",
+                body=f"{agent_name} executed {sanitized_action} on Node {node_id} (Risk {risk_score}%)",
+                threat_meta={"node_id": node_id, "tactic": tactic, "risk_score": risk_score},
+            )
+
+        return {
+            "dispatched": True,
+            "recipient_count": len(distinct_users),
+            "node_id": node_id,
+            "tactic": tactic,
+            "agent_name": agent_name,
+        }
+

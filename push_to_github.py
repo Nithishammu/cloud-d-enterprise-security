@@ -176,8 +176,19 @@ def deploy_to_github(token: str) -> str:
 
 def main():
     token = sys.argv[1] if len(sys.argv) > 1 else os.environ.get("GITHUB_TOKEN")
+    pat_file = r"C:\Users\nithi\.cloud-d\github_token"
+    if not token and os.path.exists(pat_file):
+        try:
+            with open(pat_file, "r", encoding="utf-8") as fp:
+                token = fp.read().strip()
+        except Exception:
+            pass
+
     if not token:
-        token = input("Enter your GitHub Personal Access Token (PAT): ").strip()
+        try:
+            token = input("Enter your GitHub Personal Access Token (PAT): ").strip()
+        except Exception:
+            pass
 
     if not token:
         print("Error: A GitHub Personal Access Token is required to deploy.")

@@ -467,16 +467,21 @@ def create_document(output_paths: list[str]) -> str:
     # Save to all requested paths
     primary_path = output_paths[0]
     for p_out in output_paths:
-        os.makedirs(os.path.dirname(os.path.abspath(p_out)), exist_ok=True)
-        doc.save(p_out)
-        print(f"Successfully generated document at: {p_out}")
+        try:
+            os.makedirs(os.path.dirname(os.path.abspath(p_out)), exist_ok=True)
+            doc.save(p_out)
+            print(f"Successfully generated document at: {p_out}")
+        except Exception as e:
+            print(f"Warning: could not save to {p_out}: {e}")
 
     return primary_path
 
 
 if __name__ == "__main__":
+    base = os.path.dirname(os.path.abspath(__file__))
     paths = [
-        os.path.join(os.path.dirname(os.path.abspath(__file__)), "static", "Cloud_D_Executive_Handover_Specification.docx"),
-        r"C:\Users\TEMP.WINSERVER.013\.gemini\antigravity\brain\7b294137-6f14-4e65-82e5-c960c4f8bfcd\Cloud_D_Complete_Master_Specification.docx",
+        os.path.join(base, "static", "Cloud_D_Executive_Handover_Specification.docx"),
+        os.path.join(base, "Cloud_D_Executive_Handover_Specification.docx"),
+        r"C:\Users\nithi\.gemini\antigravity\brain\07348a2f-8b4f-4fab-9bc0-343497cf30d3\Cloud_D_Executive_Handover_Specification.docx",
     ]
     create_document(paths)

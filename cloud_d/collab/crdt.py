@@ -469,3 +469,42 @@ class CRDTSessionManager:
                     "last_seen": r["last_seen"],
                 })
         return active
+
+    def initialize_from_text(self, file_id: str, text: str, author: str = "Alice") -> CRDTDocument:
+        """Seeds initial document text state with deterministic fractional positions."""
+        import secrets
+        doc = CRDTDocument(file_id)
+        self._docs[file_id] = doc
+        with sqlite3.connect(self.db_path) as conn:
+            conn.execute("DELETE FROM cloud_crdt_ops WHERE file_id = ?", (file_id,))
+            conn.execute("DELETE FROM cloud_crdt_cursors WHERE file_id = ?", (file_id,))
+
+        for i, ch in enumerate(text):
+            pos = (i + 1) * 10.0
+            op = CRDTOperation(
+                op_id=f"init-{i}-{secrets.token_hex(4)}",
+                file_id=file_id,
+                client_id="init-client",
+                clock=i + 1,
+                op_type="insert",
+                pos=pos,
+                char=ch,
+                author=author,
+            )
+            self.append_operation(op)
+        return doc
+
+    def apply_operation(self, op: CRDTOperation) -> None:
+        """Applies an operation to session and database."""
+        self.append_operation(op)
+
+    def compute_converged_document(self, file_id: str) -> Dict[str, Any]:
+        """Returns the converged plaintext and rich HTML document representation."""
+        doc = self.get_or_load_doc(file_id)
+        return {
+            "file_id": file_id,
+            "text": doc.render_plain_text(),
+            "html": doc.render_rich_html(),
+            "character_count": len(doc.characters),
+        }
+

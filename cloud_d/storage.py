@@ -1,19 +1,22 @@
-"""Cloud-D Storage Engine & Cryptographic Vault.
+"""Cloud-D Distributed AES-256-GCM AEAD Storage Vault & Hybrid Post-Quantum Subsystem.
 
-Includes:
-- Task A: Persistent Cloud Disk Attachment on Render (/var/data & RENDER_DISK_PATH)
-- Task C: Physically Distributed Cross-Region Sharding (Nodes 0-3) with Regional Re-Sealing
-- Task D: Hybrid Post-Quantum Cryptography (ML-KEM / Kyber-768 + AES-256-GCM AEAD)
-- Hardware AES-256-GCM Authenticated Encryption (AEAD) with 96-bit Nonce and AAD
-- Google Drive Duplicate Upload Versioning (n+1 revision lineage vs in-place overwrite vs copy)
-- Multi-File Drag & Drop Reorganization (batch_move_files) with Galois AAD recalculation
-- Cryptographic Proof Verification (GHASH tag, SHA-256 digest, 96-bit nonce extraction)
+Delivered for Cloud-D Enterprise Security (PSG College of Technology).
+Nithish M (Roll No. 24X064).
+Dept. of Applied Mathematics & Computational Sciences, PSG College of Technology.
+
+Architectural Scope:
+- Task A: Persistent Cloud Disk Attachment on Render (/var/data) with startup auto-recovery
+- Task C: Cross-Region Shard Partitioning (Nodes 0-3) and regional AAD Galois re-sealing
+- Task D: Hybrid Post-Quantum Key Encapsulation (Kyber-768 / ML-KEM)
+- Task 5: Multi-File Batch Drag & Drop Reorganization
+- Duplicate Document In-Place Overwrite vs. n+1 Lineage Versioning
 """
 
 from __future__ import annotations
 
 import base64
 import hashlib
+import hmac
 import json
 import logging
 import os
@@ -33,119 +36,79 @@ logger = logging.getLogger("cloud_d.storage")
 
 
 class StorageIntegrityError(Exception):
-    """Raised when Galois field authentication tag verification fails."""
+    """Raised when Galois field AEAD tag verification fails or tampering is detected."""
     pass
 
 
-def resolve_persistent_storage_path(default_filename: str = "cloud_d_production.db") -> Tuple[str, str, bool]:
-    """Resolves data directory supporting Render Persistent Disks (/var/data).
-
-    Returns:
-        Tuple[db_path, data_directory, is_persistent_disk]
-    """
-    candidates = [
-        os.environ.get("RENDER_DISK_PATH"),
-        os.environ.get("DATA_DIR"),
-        "/var/data" if os.path.isdir("/var/data") and os.access("/var/data", os.W_OK) else None,
-    ]
-
-    for cand in candidates:
-        if cand and os.path.exists(cand):
-            db_path = os.path.join(cand, default_filename)
-            return db_path, cand, True
-
-    # Fallback to local project directory
-    local_dir = os.path.dirname(os.path.abspath(__file__))
-    project_root = os.path.dirname(local_dir)
-    return os.path.join(project_root, default_filename), project_root, False
-
-
 class ShardNodeDescriptor:
-    """Metadata descriptor for a physical/regional storage node."""
+    """Represents a distributed cloud node partition in the cross-region topology."""
 
-    def __init__(
-        self,
-        node_id: int,
-        name: str,
-        role: str,
-        region_code: str,
-        location: str,
-        endpoint_url: str,
-        is_active: bool = True,
-    ) -> None:
+    def __init__(self, node_id: int, name: str, region_code: str, role: str, status: str = "ONLINE") -> None:
         self.node_id = node_id
         self.name = name
-        self.role = role
         self.region_code = region_code
-        self.location = location
-        self.endpoint_url = endpoint_url
-        self.is_active = is_active
-        self.last_ping_ms = round(12.0 + (node_id * 8.5), 1)
+        self.role = role
+        self.status = status
 
     def to_dict(self) -> Dict[str, Any]:
         return {
             "node_id": self.node_id,
             "name": self.name,
-            "role": self.role,
             "region_code": self.region_code,
-            "location": self.location,
-            "endpoint_url": self.endpoint_url,
-            "is_active": self.is_active,
-            "latency_ms": self.last_ping_ms,
+            "role": self.role,
+            "status": self.status,
         }
 
 
 class CrossRegionShardRouter:
-    """Manages 4-Tier Distributed Cross-Region Topology (Task C)."""
+    """Task C: Simulates physically distributed cross-region sharding across Nodes 0-3."""
 
     def __init__(self) -> None:
         self.nodes: Dict[int, ShardNodeDescriptor] = {
-            0: ShardNodeDescriptor(
-                node_id=0,
-                name="Node 0: Auth & Identity Shard",
-                role="Authentication & WebAuthn Credentials",
-                region_code="us-east-1",
-                location="N. Virginia, USA",
-                endpoint_url="https://auth-node0.internal.cloud-d.io",
-            ),
-            1: ShardNodeDescriptor(
-                node_id=1,
-                name="Node 1: API Ingress & Gateway",
-                role="Rate Limiting & Duplicate Detection Layer",
-                region_code="us-west-2",
-                location="Oregon, USA",
-                endpoint_url="https://ingress-node1.internal.cloud-d.io",
-            ),
-            2: ShardNodeDescriptor(
-                node_id=2,
-                name="Node 2: Primary Vault Shard",
-                role="Staff Dedicated Vault & AEAD Sealing",
-                region_code="eu-central-1",
-                location="Frankfurt, Germany",
-                endpoint_url="https://vault-node2.internal.cloud-d.io",
-            ),
-            3: ShardNodeDescriptor(
-                node_id=3,
-                name="Node 3: Customer Tenant Shard",
-                role="Customer Multi-Tenant Isolated Vault",
-                region_code="ap-southeast-1",
-                location="Singapore",
-                endpoint_url="https://tenant-node3.internal.cloud-d.io",
-            ),
+            0: ShardNodeDescriptor(0, "Auth Server & Key Vault", "us-east-1", "Identity Provider & Session Authority"),
+            1: ShardNodeDescriptor(1, "API Gateway & Ingress Layer", "us-east-2", "Traffic Routing & Duplicate Interceptor"),
+            2: ShardNodeDescriptor(2, "Primary Storage Vault", "eu-central-1", "Staff Partition & AEAD Master Vault"),
+            3: ShardNodeDescriptor(3, "Customer Storage Vault", "ap-south-1", "Customer Zero-Knowledge Partition"),
         }
 
     def get_topology_map(self) -> List[Dict[str, Any]]:
         return [node.to_dict() for node in self.nodes.values()]
 
     def compute_regional_aad(self, node_id: int, file_id: str) -> bytes:
-        """Binds AEAD associated data cryptographically to region and node."""
-        node = self.nodes.get(node_id)
-        region = node.region_code if node else f"node-{node_id}"
-        return f"cloud-d|v2|node-{node_id}|{file_id}|{region}".encode("utf-8")
+        node = self.nodes.get(node_id, self.nodes[2])
+        return f"cloud-d|v1|node_{node_id}|region_{node.region_code}|file_{file_id}".encode("utf-8")
+
+
+def resolve_persistent_storage_path() -> Tuple[str, str, bool]:
+    """Task A: Resolves Render Persistent Disk mount path (/var/data) or local fallback."""
+    candidate_paths = [
+        os.environ.get("RENDER_DISK_PATH"),
+        "/var/data",
+        os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "data"),
+        os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+    ]
+
+    for p in candidate_paths:
+        if p and (os.path.exists(p) or os.access(os.path.dirname(os.path.abspath(p)), os.W_OK)):
+            try:
+                os.makedirs(p, exist_ok=True)
+                test_file = os.path.join(p, ".disk_test")
+                with open(test_file, "w") as fp:
+                    fp.write("ok")
+                os.remove(test_file)
+                is_persistent = "/var/data" in p or "RENDER_DISK_PATH" in os.environ
+                db_path = os.path.join(p, "cloud_d_production.db")
+                logger.info("Storage bound to directory: %s (Persistent=%s)", p, is_persistent)
+                return db_path, p, is_persistent
+            except Exception:
+                continue
+
+    fallback_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    return os.path.join(fallback_dir, "cloud_d_production.db"), fallback_dir, False
 
 
 class CloudStorageVault:
-    """Enterprise AES-256-GCM Encrypted Storage Vault with Multi-Node Sharding."""
+    """Core Encrypted Cloud Storage Vault utilizing hardware AES-256-GCM AEAD & Hybrid PQ."""
 
     def __init__(
         self,
@@ -300,7 +263,6 @@ class CloudStorageVault:
     ) -> Dict[str, Any]:
         """Encrypts with AES-256-GCM AEAD (or Hybrid PQ) and stores record."""
         now = time.time()
-        file_id = f"f-{secrets.token_hex(8)}"
 
         with self._lock:
             conn = self._get_connection()
@@ -315,6 +277,8 @@ class CloudStorageVault:
                         raise ValueError(f"File {replace_file_id} not found for replacement")
                     logical_id = existing["logical_id"]
                     version_number = existing["version_number"]
+                    file_id = replace_file_id
+                    mode = "replaced"
                     conn.execute("DELETE FROM cloud_files WHERE file_id = ?", (replace_file_id,))
                 elif target_logical_id:
                     # n+1 Revision Lineage
@@ -324,7 +288,8 @@ class CloudStorageVault:
                     ).fetchone()
                     version_number = (max_v_row[0] or 0) + 1
                     logical_id = target_logical_id
-                    # Demote previous active version
+                    file_id = f"f-{secrets.token_hex(6)}-v{version_number}"
+                    mode = "version_incremented"
                     conn.execute(
                         "UPDATE cloud_files SET is_current = 0, updated_at = ? WHERE logical_id = ?",
                         (now, logical_id),
@@ -333,18 +298,18 @@ class CloudStorageVault:
                     # Fresh document
                     logical_id = f"doc-{secrets.token_hex(8)}"
                     version_number = 1
+                    file_id = f"f-{secrets.token_hex(6)}-v1"
+                    mode = "created"
 
                 # Construct AEAD Associated Authenticated Data
                 aad = self.shard_router.compute_regional_aad(node_id, file_id)
 
                 if use_post_quantum:
-                    # Hybrid Post-Quantum Sealing
                     pq_packet = self.pq_vault.hybrid_seal(plaintext, aad)
                     nonce = bytes.fromhex(pq_packet["nonce_hex"])
                     ciphertext = bytes.fromhex(pq_packet["ciphertext_hex"])
                     is_pq_flag = 1
                 else:
-                    # Hardware AES-256-GCM AEAD
                     nonce = secrets.token_bytes(12)  # 96-bit nonce
                     ciphertext = self._cipher.encrypt(nonce, plaintext, aad)
                     is_pq_flag = 0
@@ -382,12 +347,46 @@ class CloudStorageVault:
             "file_id": file_id,
             "logical_id": logical_id,
             "filename": filename,
+            "version": version_number,
             "version_number": version_number,
+            "mode": mode,
             "node_id": node_id,
             "size_bytes": len(plaintext),
             "is_post_quantum": bool(is_pq_flag),
             "created_at": now,
         }
+
+    def save_file(
+        self,
+        filename: str,
+        content_bytes: Optional[bytes] = None,
+        user: Optional[Any] = None,
+        is_client_encrypted: bool = False,
+        client_salt: Optional[str] = None,
+        target_logical_id: Optional[str] = None,
+        replace_file_id: Optional[str] = None,
+        folder_id: str = "root",
+        node_id: int = 2,
+        mime_type: str = "application/octet-stream",
+        use_post_quantum: bool = False,
+        plaintext: Optional[bytes] = None,
+    ) -> Dict[str, Any]:
+        """Convenience method matching save_file test signatures."""
+        data = content_bytes if content_bytes is not None else (plaintext or b"")
+        uploader = user.get("username", "staff") if isinstance(user, dict) else (user or "staff")
+        return self.store_file(
+            filename=filename,
+            plaintext=data,
+            uploaded_by=uploader,
+            folder_id=folder_id,
+            node_id=node_id,
+            mime_type=mime_type,
+            target_logical_id=target_logical_id,
+            replace_file_id=replace_file_id,
+            is_client_encrypted=is_client_encrypted,
+            client_salt=client_salt,
+            use_post_quantum=use_post_quantum,
+        )
 
     def retrieve_file(self, file_id: str) -> Tuple[str, bytes, str]:
         """Decrypts and returns (filename, plaintext_bytes, mime_type)."""
@@ -409,7 +408,6 @@ class CloudStorageVault:
 
             try:
                 if row["is_post_quantum"]:
-                    # Reconstruct seal packet for hybrid unseal
                     salt = ciphertext[:16]
                     seal_packet = {
                         "kyber_ciphertext_hex": secrets.token_bytes(1088).hex(),
@@ -441,14 +439,12 @@ class CloudStorageVault:
             if source_node == target_node:
                 return {"status": "noop", "message": "File is already on target node"}
 
-            # Decrypt under source node AAD
             source_aad = self.shard_router.compute_regional_aad(source_node, file_id)
             try:
                 plaintext = self._cipher.decrypt(row["nonce"], row["ciphertext"], source_aad)
             except InvalidTag:
                 raise StorageIntegrityError("Source shard authentication tag mismatch")
 
-            # Re-seal under target node AAD with fresh 96-bit nonce
             target_aad = self.shard_router.compute_regional_aad(target_node, file_id)
             new_nonce = secrets.token_bytes(12)
             new_ciphertext = self._cipher.encrypt(new_nonce, plaintext, target_aad)
@@ -459,7 +455,6 @@ class CloudStorageVault:
             source_region = self.shard_router.nodes[source_node].region_code
             target_region = self.shard_router.nodes[target_node].region_code
 
-            # Compute HMAC-SHA256 signature for the transfer receipt
             hmac_sig = hmac.new(
                 self._master_key,
                 f"{receipt_id}|{file_id}|{source_node}->{target_node}|{sha256_digest}".encode(),
@@ -496,6 +491,39 @@ class CloudStorageVault:
             "transferred_at": now,
         }
 
+    def verify_file_integrity(self, file_id: str, user: Optional[Any] = None) -> Dict[str, Any]:
+        """Verifies cryptographic AEAD proof and tamper status."""
+        with self._lock:
+            conn = self._get_connection()
+            row = conn.execute("SELECT * FROM cloud_files WHERE file_id = ?", (file_id,)).fetchone()
+            if not row:
+                raise FileNotFoundError(f"File {file_id} not found")
+
+            nonce = row["nonce"]
+            ciphertext = row["ciphertext"]
+            is_client_encrypted = bool(row["is_client_encrypted"])
+            aad = self.shard_router.compute_regional_aad(row["node_id"], file_id)
+
+            auth_tag_verified = True
+            try:
+                plaintext = self._cipher.decrypt(nonce, ciphertext, aad)
+                sha256_val = hashlib.sha256(plaintext).hexdigest()
+            except Exception:
+                auth_tag_verified = False
+                sha256_val = hashlib.sha256(ciphertext).hexdigest()
+
+            return {
+                "file_id": file_id,
+                "filename": row["filename"],
+                "node_id": row["node_id"],
+                "version": row["version_number"],
+                "auth_tag_verified": auth_tag_verified,
+                "tamper_status": "INTACT · VERIFIED" if auth_tag_verified else "TAMPERED · FAILED",
+                "is_client_encrypted": is_client_encrypted,
+                "sha256": sha256_val,
+                "nonce_hex": nonce.hex(),
+            }
+
     def verify_hardware_proof(self, file_id: str) -> Dict[str, Any]:
         """Extracts cryptographic proof: 96-bit nonce, GHASH tag, SHA-256 digest."""
         with self._lock:
@@ -510,9 +538,8 @@ class CloudStorageVault:
             nonce = row["nonce"]
             ciphertext = row["ciphertext"]
             tag = ciphertext[-16:] if len(ciphertext) >= 16 else b""
-            raw_cipher = ciphertext[:-16] if len(ciphertext) >= 16 else ciphertext
-
             aad = self.shard_router.compute_regional_aad(row["node_id"], file_id)
+
             is_valid = True
             try:
                 plaintext = self._cipher.decrypt(nonce, ciphertext, aad)
@@ -537,7 +564,12 @@ class CloudStorageVault:
                 "verified_at": time.time(),
             }
 
-    def batch_move_files(self, file_ids: List[str], target_folder_id: str) -> Dict[str, Any]:
+    def batch_move_files(
+        self,
+        file_ids: List[str],
+        target_folder_id: str,
+        user: Optional[Any] = None,
+    ) -> Dict[str, Any]:
         """Task 5: Multi-File Drag & Drop Reorganization with AAD recalculation."""
         now = time.time()
         moved = []
@@ -552,4 +584,94 @@ class CloudStorageVault:
                             (target_folder_id, now, row["logical_id"]),
                         )
                         moved.append(fid)
-        return {"status": "success", "moved_count": len(moved), "target_folder_id": target_folder_id}
+        return {
+            "status": "success",
+            "count": len(moved),
+            "moved_count": len(moved),
+            "target_folder_id": target_folder_id,
+        }
+
+    def list_files(
+        self,
+        user: Optional[Any] = None,
+        folder_id: Optional[str] = None,
+    ) -> List[Dict[str, Any]]:
+        """Lists active files in folder."""
+        with self._lock:
+            conn = self._get_connection()
+            query = "SELECT * FROM cloud_files WHERE is_current = 1"
+            params: List[Any] = []
+            if folder_id:
+                query += " AND folder_id = ?"
+                params.append(folder_id)
+            query += " ORDER BY created_at DESC"
+            rows = conn.execute(query, params).fetchall()
+            return [dict(r) for r in rows]
+
+    def find_file_by_name(
+        self,
+        filename: str,
+        folder_id: str = "root",
+        user: Optional[Any] = None,
+    ) -> Optional[Dict[str, Any]]:
+        """Finds current active file by filename and folder_id."""
+        with self._lock:
+            conn = self._get_connection()
+            row = conn.execute(
+                "SELECT * FROM cloud_files WHERE filename = ? AND folder_id = ? AND is_current = 1 LIMIT 1",
+                (filename, folder_id),
+            ).fetchone()
+            return dict(row) if row else None
+
+    def promote_version(
+        self,
+        file_id: str,
+        user: Optional[Any] = None,
+    ) -> Dict[str, Any]:
+        """Rolls back or promotes a specific historical version to active status."""
+        now = time.time()
+        with self._lock:
+            conn = self._get_connection()
+            with conn:
+                row = conn.execute("SELECT logical_id, version_number FROM cloud_files WHERE file_id = ?", (file_id,)).fetchone()
+                if not row:
+                    raise FileNotFoundError(f"File {file_id} not found")
+                logical_id = row["logical_id"]
+                version = row["version_number"]
+                conn.execute("UPDATE cloud_files SET is_current = 0, updated_at = ? WHERE logical_id = ?", (now, logical_id))
+                conn.execute("UPDATE cloud_files SET is_current = 1, updated_at = ? WHERE file_id = ?", (now, file_id))
+                return {
+                    "promoted": True,
+                    "file_id": file_id,
+                    "logical_id": logical_id,
+                    "version": version,
+                    "version_number": version,
+                }
+
+    def delete_file(
+        self,
+        file_id: str,
+        user: Optional[Any] = None,
+        delete_all_versions: bool = True,
+    ) -> bool:
+        """Permanently deletes a file record or logical lineage."""
+        now = time.time()
+        with self._lock:
+            conn = self._get_connection()
+            with conn:
+                row = conn.execute("SELECT logical_id, version_number, is_current FROM cloud_files WHERE file_id = ?", (file_id,)).fetchone()
+                if not row:
+                    return False
+                logical_id = row["logical_id"]
+                if delete_all_versions:
+                    conn.execute("DELETE FROM cloud_files WHERE logical_id = ?", (logical_id,))
+                else:
+                    conn.execute("DELETE FROM cloud_files WHERE file_id = ?", (file_id,))
+                    if row["is_current"]:
+                        remaining = conn.execute(
+                            "SELECT file_id FROM cloud_files WHERE logical_id = ? ORDER BY version_number DESC LIMIT 1",
+                            (logical_id,),
+                        ).fetchone()
+                        if remaining:
+                            conn.execute("UPDATE cloud_files SET is_current = 1, updated_at = ? WHERE file_id = ?", (now, remaining["file_id"]))
+                return True

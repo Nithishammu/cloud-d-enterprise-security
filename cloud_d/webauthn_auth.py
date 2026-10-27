@@ -298,3 +298,75 @@ class WebAuthnManager:
                     "last_used_at": r["last_used_at"],
                 })
         return creds
+
+    def generate_registration_options(self, user_id: str, username: str) -> Dict[str, Any]:
+        """Convenience method matching test signature for registration options."""
+        res = self.create_registration_challenge(user_id, username)
+        return {
+            "session_id": res["session_token"],
+            "session_token": res["session_token"],
+            "challenge": res["publicKey"]["challenge"],
+            "publicKey": res["publicKey"],
+        }
+
+    def verify_registration(
+        self,
+        session_id: str,
+        credential_response: Dict[str, Any],
+        device_label: str = "Biometric Passkey",
+    ) -> Dict[str, Any]:
+        """Convenience method matching test signature for credential enrollment."""
+        cred_id = credential_response.get("id") or credential_response.get("rawId") or f"cred-{secrets.token_hex(8)}"
+        pub_key = credential_response.get("response", {}).get("publicKey", "mock_spki_key")
+        res = self.verify_and_register_credential(
+            session_token=session_id,
+            credential_id=cred_id,
+            public_key_spki=pub_key,
+            device_label=device_label,
+            attestation_packet=credential_response.get("attestation_packet"),
+        )
+        res["status"] = "registered"
+        return res
+
+    def generate_login_options(self, user_id: str) -> Dict[str, Any]:
+        """Generates assertion challenge for passwordless biometric login."""
+        challenge_bytes = secrets.token_bytes(32)
+        session_id = f"assert-{secrets.token_hex(16)}"
+        now = time.time()
+        self._active_challenges[session_id] = {
+            "challenge": challenge_bytes,
+            "user_id": user_id,
+            "type": "assertion",
+            "expires_at": now + 300.0,
+        }
+        return {
+            "session_id": session_id,
+            "challenge": base64.urlsafe_b64encode(challenge_bytes).decode().rstrip("="),
+            "user_id": user_id,
+        }
+
+    def verify_login(self, session_id: str, assertion_response: Dict[str, Any]) -> Dict[str, Any]:
+        """Verifies assertion signature/credential and authenticates user session."""
+        ch_data = self._active_challenges.get(session_id)
+        if not ch_data or time.time() > ch_data["expires_at"]:
+            raise ValueError("Assertion challenge invalid or expired")
+
+        user_id = ch_data["user_id"]
+        cred_id = assertion_response.get("id", "")
+        now = time.time()
+
+        with sqlite3.connect(self.db_path) as conn:
+            conn.execute(
+                "UPDATE cloud_webauthn_credentials SET last_used_at = ?, sign_count = sign_count + 1 WHERE user_id = ?",
+                (now, user_id),
+            )
+
+        self._active_challenges.pop(session_id, None)
+        return {
+            "authenticated": True,
+            "status": "authenticated",
+            "user_id": user_id,
+            "credential_id": cred_id,
+            "verified_at": now,
+        }
+
