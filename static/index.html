@@ -15,7 +15,7 @@
   <link rel="icon" type="image/png" sizes="512x512" href="/icon-512.png">
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
   <link rel="manifest" href="/manifest.json" crossorigin="use-credentials">
-  <title>Cloud-D | Enterprise Cloud Storage &amp; Threat Defense</title>
+  <title>Cloud-D</title>
   <style>
     :root {
       color-scheme: dark;
@@ -1550,7 +1550,203 @@
         min-height: 36px;
       }
     }
-  </style>
+  
+    /* Google Drive Filter Chips & View Switcher (Signature Purple Palette) */
+    .gdrive-chips-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 20px 0 16px;
+      flex-wrap: wrap;
+    }
+    .gdrive-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--surface, #fffaff);
+      border: 1px solid var(--line, #d5c9e7);
+      color: var(--text, #2b2340);
+      padding: 7px 15px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 550;
+      cursor: pointer;
+      transition: all 0.18s ease;
+      box-shadow: 0 2px 6px rgba(86, 66, 112, 0.05);
+      user-select: none;
+    }
+    .gdrive-chip:hover {
+      background: var(--surface-2, #f0eafb);
+      border-color: var(--blue, #7864d8);
+      color: #1f1730;
+      transform: translateY(-1px);
+    }
+    .gdrive-chip.active {
+      background: #ede4f9;
+      border-color: #6d54cf;
+      color: #3e207b;
+      font-weight: 600;
+      box-shadow: 0 2px 8px rgba(109, 84, 207, 0.18);
+    }
+    .gdrive-chip .chip-caret {
+      font-size: 10px;
+      opacity: 0.65;
+      transition: transform 0.2s ease;
+    }
+    .gdrive-chip.active .chip-caret {
+      transform: rotate(180deg);
+    }
+    .view-switcher-group {
+      margin-left: auto;
+      display: inline-flex;
+      align-items: center;
+      background: var(--surface, #fffaff);
+      border: 1px solid var(--line, #d5c9e7);
+      border-radius: 10px;
+      padding: 3px;
+      gap: 3px;
+      box-shadow: 0 2px 6px rgba(86, 66, 112, 0.05);
+    }
+    .btn-view-switch {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 30px;
+      border: none;
+      background: transparent;
+      color: var(--muted, #6f6685);
+      border-radius: 7px;
+      cursor: pointer;
+      transition: all 0.18s ease;
+    }
+    .btn-view-switch:hover {
+      background: var(--surface-2, #f0eafb);
+      color: var(--text, #2b2340);
+    }
+    .btn-view-switch.active {
+      background: linear-gradient(135deg, #7864d8, #5a42bc);
+      color: #ffffff;
+      box-shadow: 0 2px 8px rgba(90, 66, 188, 0.3);
+    }
+
+    /* Chip Dropdown Popover */
+    .chip-popover {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      margin-top: 6px;
+      background: #ffffff;
+      border: 1px solid var(--line, #d5c9e7);
+      border-radius: 12px;
+      box-shadow: 0 10px 28px rgba(43, 35, 64, 0.18);
+      padding: 6px;
+      z-index: 100;
+      min-width: 175px;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .chip-popover-item {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      padding: 8px 12px;
+      border-radius: 8px;
+      background: transparent;
+      border: none;
+      color: var(--text, #2b2340);
+      font-size: 13px;
+      font-weight: 500;
+      text-align: left;
+      cursor: pointer;
+      transition: background 0.15s ease;
+      width: 100%;
+    }
+    .chip-popover-item:hover {
+      background: var(--surface-2, #f0eafb);
+      color: #2b2340;
+    }
+    .chip-popover-item.selected {
+      background: #ede4f9;
+      color: #43217b;
+      font-weight: 600;
+    }
+
+    /* Grid Mode for Files Table */
+    .cloud-files-grid-view {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+      gap: 14px;
+      padding: 16px;
+    }
+    .cloud-file-grid-card {
+      background: var(--surface, #fffaff);
+      border: 1px solid var(--line, #d5c9e7);
+      border-radius: 12px;
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      transition: all 0.2s ease;
+      box-shadow: 0 2px 8px rgba(86, 66, 112, 0.05);
+    }
+    .cloud-file-grid-card:hover {
+      border-color: var(--blue, #7864d8);
+      box-shadow: 0 6px 18px rgba(120, 100, 216, 0.15);
+      transform: translateY(-2px);
+    }
+    .cloud-file-grid-top {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .cloud-file-grid-icon {
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      border-radius: 10px;
+      background: #ede4f9;
+      color: #6d54cf;
+      font-size: 18px;
+      font-weight: bold;
+      flex-shrink: 0;
+    }
+    .cloud-file-grid-icon.structured {
+      background: #e1f7f5;
+      color: #27a9a0;
+    }
+    .cloud-file-grid-title {
+      font-weight: 650;
+      font-size: 13.5px;
+      color: var(--text, #2b2340);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .cloud-file-grid-meta {
+      font-size: 11.5px;
+      color: var(--muted, #6f6685);
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+    .cloud-file-grid-actions {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      margin-top: auto;
+      padding-top: 10px;
+      border-top: 1px solid var(--line, #d5c9e7);
+      flex-wrap: wrap;
+    }
+    .cloud-file-grid-actions .btn {
+      padding: 4px 8px;
+      font-size: 11px;
+    }
+    
+</style>
 <script>
     // Immediate Cache & ServiceWorker Purge
     if ('serviceWorker' in navigator) {
@@ -1568,7 +1764,7 @@
 <body>
   <section class="auth-screen" id="auth-screen" aria-labelledby="auth-title">
     <div class="auth-card">
-      <div class="auth-brand"><div class="brand-mark"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.3 9.4 17 19 7" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 2.5 20 6v5.3c0 5.3-3.4 8.6-8 10.2-4.6-1.6-8-4.9-8-10.2V6l8-3.5Z" stroke="currentColor" stroke-width="1.5"/></svg></div><div><div class="brand-name">Cloud-D</div><div class="brand-sub">Secure cloud workspace</div></div></div>
+      <div class="auth-brand"><div class="brand-mark"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.3 9.4 17 19 7" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 2.5 20 6v5.3c0 5.3-3.4 8.6-8 10.2-4.6-1.6-8-4.9-8-10.2V6l8-3.5Z" stroke="currentColor" stroke-width="1.5"/></svg></div><div><div class="brand-name">Cloud-D</div></div></div>
       <h1 id="auth-title">Sign in to your cloud</h1>
       <p class="auth-copy" id="auth-copy">Sign in using your username and password.</p>
       <div class="auth-role-switch" id="auth-role-switch" role="group" aria-label="Account type" hidden>
@@ -1590,7 +1786,7 @@
     <aside class="sidebar">
       <div class="brand">
         <div class="brand-mark"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.3 9.4 17 19 7" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 2.5 20 6v5.3c0 5.3-3.4 8.6-8 10.2-4.6-1.6-8-4.9-8-10.2V6l8-3.5Z" stroke="currentColor" stroke-width="1.5"/></svg></div>
-        <div><div class="brand-name">Cloud-D</div><div class="brand-sub">Defense intelligence</div></div>
+        <div><div class="brand-name">Cloud-D</div></div>
       </div>
       <div class="nav-label">Cloud Workspace</div>
       <nav class="nav" aria-label="Main navigation">
@@ -1646,9 +1842,94 @@
             <div class="card kpi"><div class="kpi-top"><span class="kpi-label">Uploaded records</span><span class="kpi-icon">◉</span></div><div class="kpi-value" id="cloud-record-count">0</div><div class="kpi-note">Structured data in your files</div></div>
             <div class="card kpi"><div class="kpi-top"><span class="kpi-label">Encrypted backup copies</span><span class="kpi-icon">⇅</span></div><div class="kpi-value" id="cloud-storage-size">0</div><div class="kpi-note" id="cloud-storage-note">SQLite backup replica</div></div>
           </div>
-          <div class="card storage-card section-gap"><div class="card-head"><div><div class="card-title">Primary storage and encrypted recovery copies</div><div class="card-desc">Cloud-D routes your files to the database assigned to your account and mirrors encrypted file data to the recovery database.</div></div><span class="pill green" id="database-status-pill">FILE CONTENTS ENCRYPTED</span></div><div class="storage-console"><div class="storage-intro"><span class="storage-lock">♢</span><div><strong id="database-heading">Encrypted file storage is ready</strong><p>Uploaded file contents are encrypted before saving. An encrypted recovery copy is stored separately and can be restored if a primary copy is missing.</p></div></div><div class="storage-stats"><div class="storage-stat"><span>Primary database</span><strong id="database-engine">SQLite</strong></div><div class="storage-stat"><span>File encryption</span><strong id="database-encryption">AES-256-GCM</strong></div><div class="storage-stat"><span>Backup file copies</span><strong id="database-files">0</strong></div><div class="storage-stat"><span>Backup database</span><strong id="database-size">SQLite</strong></div></div><div class="storage-note" id="database-note">File contents are encrypted in both SQLite databases. Account and folder metadata is stored separately.</div><div class="crypto-demo staff-only"><div class="crypto-demo-copy"><strong>Cryptographic demonstration · Primary DB</strong>Verify decrypts and authenticates encrypted file copies without exposing plaintext in the browser. Re-encrypt writes fresh AES-GCM ciphertext for the primary node.</div><div class="crypto-demo-actions"><button class="btn" id="verify-encryption-button" type="button">Verify encrypted copies</button><button class="btn" id="reencrypt-button" type="button">Re-encrypt primary</button></div></div></div></div>
-          <div class="card upload-card section-gap" id="upload-panel"><div class="card-head"><div><div class="card-title">Upload to Cloud Drive</div><div class="card-desc">Choose files and a destination folder. Cloud-D selects your assigned storage area automatically.</div></div><span class="pill blue" id="storage-mode-pill">ENCRYPTED STORAGE</span></div><form class="upload-controls" id="upload-form"><div class="control"><label for="upload-file">Documents and data files</label><label class="upload-drop" id="upload-drop" for="upload-file"><span class="upload-cloud-icon">☁</span><span><strong>Choose files or drag them here</strong><small>PDF, Word, text, images, spreadsheets, CSV, JSON, and more</small></span></label><input class="upload-input-hidden" id="upload-file" name="file" type="file" multiple required aria-describedby="upload-selection"><div class="upload-selection" id="upload-selection">No files selected</div></div><div class="control"><label for="upload-folder">Destination folder</label><div class="folder-select-row"><select id="upload-folder" name="folder_id" required><option value="">Loading folders…</option></select><button class="btn" id="create-folder-button" type="button">＋ New folder</button></div></div><button class="btn primary" type="submit" id="upload-button">Upload encrypted</button></form><div class="upload-progress" id="upload-progress-panel" aria-live="polite"><div class="upload-progress-track"><div class="upload-progress-fill" id="upload-progress-fill"></div></div><div class="upload-progress-caption"><span id="upload-progress-stage">Ready to upload</span><strong id="upload-progress-percent">0%</strong></div></div><div class="upload-note"><span id="upload-storage-note">Files are encrypted before being written to the database.</span> Limit: 10 MB total per upload. <span class="upload-status" id="upload-status">Sign in to upload files.</span></div></div>
-                    <div class="card cloud-folders-card section-gap">
+          <!-- Cloud-D Google Drive Filter Chips & View Switcher -->
+          <div class="gdrive-chips-row" id="drive-chips-section">
+            <div style="position:relative;display:inline-block;">
+              <button type="button" class="gdrive-chip" id="chip-filter-type" data-filter="type" aria-haspopup="true" aria-expanded="false">
+                <span id="chip-filter-type-label">Type</span> <span class="chip-caret">▾</span>
+              </button>
+              <div class="chip-popover" id="popover-filter-type" hidden>
+                <button type="button" class="chip-popover-item selected" data-value="all">All types</button>
+                <button type="button" class="chip-popover-item" data-value="documents">Documents (.pdf, .docx, .txt)</button>
+                <button type="button" class="chip-popover-item" data-value="spreadsheets">Spreadsheets &amp; Data (.csv, .xlsx, .json)</button>
+                <button type="button" class="chip-popover-item" data-value="images">Images (.png, .jpg)</button>
+              </div>
+            </div>
+
+            <div style="position:relative;display:inline-block;">
+              <button type="button" class="gdrive-chip" id="chip-filter-people" data-filter="people" aria-haspopup="true" aria-expanded="false">
+                <span id="chip-filter-people-label">People</span> <span class="chip-caret">▾</span>
+              </button>
+              <div class="chip-popover" id="popover-filter-people" hidden>
+                <button type="button" class="chip-popover-item selected" data-value="anyone">Anyone</button>
+                <button type="button" class="chip-popover-item" data-value="me">Owned by me</button>
+                <button type="button" class="chip-popover-item" data-value="shared">Shared with me</button>
+              </div>
+            </div>
+
+            <div style="position:relative;display:inline-block;">
+              <button type="button" class="gdrive-chip" id="chip-filter-modified" data-filter="modified" aria-haspopup="true" aria-expanded="false">
+                <span id="chip-filter-modified-label">Modified</span> <span class="chip-caret">▾</span>
+              </button>
+              <div class="chip-popover" id="popover-filter-modified" hidden>
+                <button type="button" class="chip-popover-item selected" data-value="anytime">Any time</button>
+                <button type="button" class="chip-popover-item" data-value="today">Today</button>
+                <button type="button" class="chip-popover-item" data-value="7days">Last 7 days</button>
+                <button type="button" class="chip-popover-item" data-value="30days">Last 30 days</button>
+              </div>
+            </div>
+
+            <div style="position:relative;display:inline-block;">
+              <button type="button" class="gdrive-chip" id="chip-filter-location" data-filter="location" aria-haspopup="true" aria-expanded="false">
+                <span id="chip-filter-location-label">Location</span> <span class="chip-caret">▾</span>
+              </button>
+              <div class="chip-popover" id="popover-filter-location" hidden>
+                <button type="button" class="chip-popover-item selected" data-value="all">Everywhere in Drive</button>
+                <button type="button" class="chip-popover-item" data-value="current">Current folder only</button>
+              </div>
+            </div>
+
+            <div class="view-switcher-group">
+              <button type="button" class="btn-view-switch active" id="btn-view-list" title="List view" aria-label="List view">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M3 13h2v-2H3v2zm0 4h2v-2H3v2zm0-8h2V7H3v2zm4 4h14v-2H7v2zm0 4h14v-2H7v2zM7 7v2h14V7H7z"/></svg>
+              </button>
+              <button type="button" class="btn-view-switch" id="btn-view-grid" title="Grid view" aria-label="Grid view">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M4 11h5V5H4v6zm0 7h5v-6H4v6zm6 0h5v-6h-5v6zm6 0h5v-6h-5v6zm-6-7h5V5h-5v6zm6-6v6h5V5h-5z"/></svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- Upload Progress Status Bar -->
+          <div id="upload-panel">
+            <div class="upload-progress" id="upload-progress-panel" aria-live="polite" style="margin: 0 0 16px 0;">
+              <div class="upload-progress-track"><div class="upload-progress-fill" id="upload-progress-fill"></div></div>
+              <div class="upload-progress-caption"><span id="upload-progress-stage">Ready to upload</span><strong id="upload-progress-percent">0%</strong></div>
+            </div>
+          </div>
+
+          <!-- Headless Upload & Cryptographic State Anchor (Preserves all 24 DOM hooks for complete JS stability) -->
+          <form class="upload-controls" id="upload-form" style="display:none;" aria-hidden="true">
+            <label id="upload-drop"></label>
+            <input class="upload-input-hidden" id="upload-file" name="file" type="file" multiple required>
+            <div class="upload-selection" id="upload-selection">No files selected</div>
+            <select id="upload-folder" name="folder_id"><option value="">Loading folders…</option></select>
+            <button class="btn primary" type="submit" id="upload-button">Upload encrypted</button>
+            <button class="btn" id="create-folder-button" type="button">＋ New folder</button>
+            <span id="storage-mode-pill">ENCRYPTED STORAGE</span>
+            <span id="upload-storage-note">Files are encrypted before storage.</span>
+            <span id="upload-status">Sign in to upload files.</span>
+            <span id="cloud-storage-note">SQLite backup replica</span>
+            <span id="database-status-pill">FILE CONTENTS ENCRYPTED</span>
+            <strong id="database-heading">Encrypted file storage is ready</strong>
+            <strong id="database-engine">SQLite</strong>
+            <strong id="database-encryption">AES-256-GCM</strong>
+            <strong id="database-files">0</strong>
+            <strong id="database-size">SQLite</strong>
+            <div id="database-note">File contents are encrypted in both SQLite databases.</div>
+            <button class="btn" id="verify-encryption-button" type="button">Verify</button>
+            <button class="btn" id="reencrypt-button" type="button">Re-encrypt</button>
+          </form>
+          <div class="card cloud-folders-card section-gap">
             <div class="card-head">
               <div>
                 <div class="card-title">Folders</div>
@@ -1665,7 +1946,9 @@
           </div>
 
 <div class="cloud-workspace section-gap">
-            <div class="card table-card cloud-files-card"><div class="card-head"><div><div class="card-title">My Drive · Files &amp; Folders</div><div class="card-desc" id="stored-files-description">Files are scoped to your account type and assigned folders.</div></div><span class="pill blue" id="stored-files-pill">0 FILES</span></div><div class="cloud-tools"><label class="cloud-search"><span>⌕</span><input id="cloud-file-search" type="search" placeholder="Search files or folders…" aria-label="Search stored cloud files"></label><select id="cloud-folder-filter" aria-label="Filter by folder"><option value="all">All folders</option></select><select id="cloud-type-filter" aria-label="Filter by file type"><option value="all">All file types</option><option value="data">Structured data</option><option value="document">Documents</option></select></div><div class="table-wrap"><table><thead><tr><th>FILE</th><th>FOLDER</th><th>SIZE</th><th>TYPE</th><th>RECORDS</th><th>BACKUP</th><th>ACTION</th></tr></thead><tbody id="cloud-files-body"><tr><td colspan="7" class="empty">No files yet. Upload a document above to add it to your cloud drive.</td></tr></tbody></table></div></div>
+            <div class="card table-card cloud-files-card"><div class="card-head"><div><div class="card-title">My Drive · Files &amp; Folders</div><div class="card-desc" id="stored-files-description">Files are scoped to your account type and assigned folders.</div></div><span class="pill blue" id="stored-files-pill">0 FILES</span></div><div class="cloud-tools"><label class="cloud-search"><span>⌕</span><input id="cloud-file-search" type="search" placeholder="Search files or folders…" aria-label="Search stored cloud files"></label><select id="cloud-folder-filter" aria-label="Filter by folder"><option value="all">All folders</option></select><select id="cloud-type-filter" aria-label="Filter by file type"><option value="all">All file types</option><option value="data">Structured data</option><option value="document">Documents</option></select></div><div class="table-wrap"><table><thead><tr><th>FILE</th><th>FOLDER</th><th>SIZE</th><th>TYPE</th><th>RECORDS</th><th>BACKUP</th><th>ACTION</th></tr></thead><tbody id="cloud-files-body"><tr><td colspan="7" class="empty">No files yet. Upload a document above to add it to your cloud drive.</td></tr></tbody></table></div>
+            <div class="cloud-files-grid-view" id="cloud-files-grid" style="display:none;"></div>
+          </div>
             <aside class="card cloud-activity-card"><div class="card-head"><div><div class="card-title">Live cloud activity</div><div class="card-desc">Recent actions in this browser session</div></div><span class="activity-live"><i></i>LIVE</span></div><div class="activity-list" id="cloud-activity-list"><div class="empty">Connecting to the cloud workspace…</div></div></aside>
           </div>
           <div class="footer-note" id="storage-footer-note">Cloud-D Drive · Zero-knowledge AES-256-GCM encryption with automated distributed backup replication.</div>
@@ -2008,7 +2291,7 @@
   <dialog class="cloud-dialog customer-dialog" id="customer-protection-dialog" aria-labelledby="cust-dialog-title">
     <div class="dialog-header">
       <div>
-        <div class="eyebrow">Cloud-D Autonomous Defense Intelligence</div>
+        <div class="eyebrow">Cloud-D</div>
         <h2 id="cust-dialog-title">Sentinel Protection Report</h2>
       </div>
       <button class="btn" id="close-cust-dialog" type="button">Close</button>

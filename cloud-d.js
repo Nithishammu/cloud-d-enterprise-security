@@ -30,6 +30,11 @@
   let accountType = 'customer';
   let currentFolders = [];
   let selectedFolderFilter = 'all';
+  let currentViewMode = 'list';
+  let activeChipType = 'all';
+  let activeChipPeople = 'anyone';
+  let activeChipModified = 'anytime';
+  let activeChipLocation = 'all';
   let uploadTriggeredFromNew = false;
 
   function updateDeploymentCopy() {
@@ -539,12 +544,53 @@
     if ($('cloud-folder-filter') && $('cloud-folder-filter').value !== selectedFolder) {
       $('cloud-folder-filter').value = selectedFolder;
     }
+    const now = Date.now();
     const files = cloudFileCache.filter(file => {
       const matchesText = !query || `${file.filename} ${file.folder_name}`.toLowerCase().includes(query);
       const matchesFolder = selectedFolder === 'all' || file.folder_id === selectedFolder;
       const matchesType = selectedType === 'all' || (selectedType === 'data' ? file.kind === 'data' : file.kind !== 'data');
-      return matchesText && matchesFolder && matchesType;
+
+      // Chip filters
+      let matchesChipType = true;
+      if (activeChipType !== 'all') {
+        const ext = (file.filename || '').split('.').pop().toLowerCase();
+        if (activeChipType === 'documents') {
+          matchesChipType = ['pdf', 'doc', 'docx', 'txt', 'rtf', 'md', 'odt'].includes(ext) || file.kind === 'document';
+        } else if (activeChipType === 'spreadsheets') {
+          matchesChipType = ['csv', 'xlsx', 'xls', 'json', 'parquet'].includes(ext) || file.kind === 'data';
+        } else if (activeChipType === 'images') {
+          matchesChipType = ['png', 'jpg', 'jpeg', 'webp', 'gif', 'svg'].includes(ext);
+        }
+      }
+
+      let matchesChipPeople = true;
+      if (activeChipPeople === 'me') {
+        matchesChipPeople = !file.shared || file.owner === currentUser?.username;
+      } else if (activeChipPeople === 'shared') {
+        matchesChipPeople = !!file.shared;
+      }
+
+      let matchesChipModified = true;
+      if (activeChipModified !== 'anytime' && file.created_at) {
+        const fileTime = new Date(file.created_at).getTime();
+        const diffMs = now - fileTime;
+        if (activeChipModified === 'today') {
+          matchesChipModified = diffMs <= 24 * 60 * 60 * 1000;
+        } else if (activeChipModified === '7days') {
+          matchesChipModified = diffMs <= 7 * 24 * 60 * 60 * 1000;
+        } else if (activeChipModified === '30days') {
+          matchesChipModified = diffMs <= 30 * 24 * 60 * 60 * 1000;
+        }
+      }
+
+      let matchesChipLocation = true;
+      if (activeChipLocation === 'current' && selectedFolderFilter !== 'all') {
+        matchesChipLocation = file.folder_id === selectedFolderFilter;
+      }
+
+      return matchesText && matchesFolder && matchesType && matchesChipType && matchesChipPeople && matchesChipModified && matchesChipLocation;
     });
+
     if ($('stored-files-description')) {
       if (selectedFolder === 'all') {
         $('stored-files-description').textContent = 'Files are scoped to your account and assigned folders.';
@@ -558,6 +604,8 @@
     $('stored-files-pill').textContent = files.length === cloudFileCache.length
       ? `${files.length} FILE${files.length === 1 ? '' : 'S'}`
       : `${files.length} OF ${cloudFileCache.length} FILES`;
+
+    // Render Table View (List)
     $('cloud-files-body').innerHTML = files.length ? files.map(file => {
       const name = escapeHtml(file.filename);
       const kind = file.kind === 'data' ? 'Structured data' : 'Document';
@@ -570,6 +618,60 @@
       const nodeShard = `<span class="pill blue" style="font-size:10px;padding:2px 7px;" title="Encrypted shard on Node ${file.node_id || 2}">Node ${file.node_id || 2} · 🛡</span>`;
       return `<tr><td><div class="file-entry"><span class="file-icon ${file.kind === 'data' ? 'structured' : ''}">${icon}</span><span class="file-entry-text"><strong>${name}</strong><small>Version ${version} · ${nodeShard} · ${escapeHtml(savedAt)}</small></span></div></td><td>${escapeHtml(file.folder_name)}</td><td>${formatBytes(Number(file.size_bytes || 0))}</td><td>${kind}</td><td>${fmt(file.record_count)}</td><td>${backupStatus}</td><td><div class="file-actions">${restoreButton}<button class="btn" type="button" data-preview-file="${escapeHtml(file.id)}" data-filename="${name}" title="Preview decrypted contents">👁 Preview</button><button class="btn" type="button" data-download-file="${escapeHtml(file.id)}" data-filename="${name}">Download</button><button class="btn" type="button" data-view-versions="${escapeHtml(file.logical_id)}" data-filename="${name}" data-folder-id="${escapeHtml(file.folder_id)}">◷ Versions · ${versions}</button><button class="btn" type="button" data-add-version="${escapeHtml(file.logical_id)}" data-filename="${name}" data-folder-id="${escapeHtml(file.folder_id)}" title="Upload next version of this file">⬆ New Version</button><button class="btn" type="button" data-replace-file="${escapeHtml(file.logical_id)}" data-filename="${name}" data-folder-id="${escapeHtml(file.folder_id)}" title="Replace/overwrite this file">⇄ Replace</button><button class="btn" type="button" data-verify-file="${escapeHtml(file.id)}" data-filename="${name}" title="Verify AES-256-GCM integrity proof">🔐 Verify</button><button class="btn danger" type="button" data-delete-file="${escapeHtml(file.id)}" data-filename="${name}">Delete</button></div></td></tr>`;
     }).join('') : `<tr><td colspan="7" class="empty">${cloudFileCache.length ? 'No matching files. Change the search or filters.' : 'Your cloud is ready. Upload a file to see it here.'}</td></tr>`;
+
+    // Render Grid View
+    const gridEl = $('cloud-files-grid');
+    if (gridEl) {
+      gridEl.innerHTML = files.length ? files.map(file => {
+        const name = escapeHtml(file.filename);
+        const icon = file.kind === 'data' ? '▦' : '▤';
+        const version = Number(file.version || 1);
+        const versions = Number(file.version_count || 1);
+        const savedAt = file.created_at ? new Date(file.created_at).toLocaleString() : 'Saved';
+        const backupStatus = file.backup_available ? '<span class="pill green" style="font-size:9.5px;padding:2px 6px;">BACKED UP</span>' : '<span class="pill amber" style="font-size:9.5px;padding:2px 6px;">NO COPY</span>';
+        const restoreButton = !file.primary_available ? `<button class="btn primary" type="button" data-restore-file="${escapeHtml(file.id)}">Restore</button>` : '';
+        const nodeShard = `<span class="pill blue" style="font-size:9.5px;padding:2px 6px;" title="Encrypted shard on Node ${file.node_id || 2}">Node ${file.node_id || 2} · 🛡</span>`;
+        return `
+          <div class="cloud-file-grid-card">
+            <div class="cloud-file-grid-top">
+              <div class="cloud-file-grid-icon ${file.kind === 'data' ? 'structured' : ''}">${icon}</div>
+              <div style="min-width:0;flex:1;">
+                <div class="cloud-file-grid-title" title="${name}">${name}</div>
+                <div style="display:flex;gap:4px;margin-top:2px;">
+                  <span class="pill blue" style="font-size:9px;padding:1px 5px;">v${version}</span>
+                  ${backupStatus}
+                </div>
+              </div>
+            </div>
+            <div class="cloud-file-grid-meta">
+              <div><strong>Folder:</strong> ${escapeHtml(file.folder_name)}</div>
+              <div><strong>Size:</strong> ${formatBytes(Number(file.size_bytes || 0))} · ${fmt(file.record_count)} records</div>
+              <div>${nodeShard} · ${escapeHtml(savedAt)}</div>
+            </div>
+            <div class="cloud-file-grid-actions file-actions">
+              ${restoreButton}
+              <button class="btn" type="button" data-preview-file="${escapeHtml(file.id)}" data-filename="${name}" title="Preview decrypted contents">👁</button>
+              <button class="btn" type="button" data-download-file="${escapeHtml(file.id)}" data-filename="${name}" title="Download">⭳</button>
+              <button class="btn" type="button" data-view-versions="${escapeHtml(file.logical_id)}" data-filename="${name}" data-folder-id="${escapeHtml(file.folder_id)}" title="Versions">◷ ${versions}</button>
+              <button class="btn" type="button" data-verify-file="${escapeHtml(file.id)}" data-filename="${name}" title="Verify integrity">🔐</button>
+              <button class="btn danger" type="button" data-delete-file="${escapeHtml(file.id)}" data-filename="${name}" title="Delete">🗑</button>
+            </div>
+          </div>
+        `;
+      }).join('') : `<div class="empty" style="grid-column: 1 / -1;">${cloudFileCache.length ? 'No matching files.' : 'Your cloud is ready. Upload a file to see it here.'}</div>`;
+    }
+
+    // Toggle view visibility
+    const tableWrap = document.querySelector('.table-wrap');
+    if (tableWrap && gridEl) {
+      if (currentViewMode === 'grid') {
+        tableWrap.style.display = 'none';
+        gridEl.style.display = 'grid';
+      } else {
+        tableWrap.style.display = '';
+        gridEl.style.display = 'none';
+      }
+    }
   }
 
   function renderAttackCards() {
@@ -1018,6 +1120,98 @@
   $('print-report').addEventListener('click', () => window.print());
   $('download-report').addEventListener('click', exportJson);
   $('download-csv').addEventListener('click', exportCsv);
+  
+  // View Switcher logic (List vs Grid)
+  const btnViewList = $('btn-view-list');
+  const btnViewGrid = $('btn-view-grid');
+  if (btnViewList && btnViewGrid) {
+    btnViewList.addEventListener('click', () => {
+      currentViewMode = 'list';
+      btnViewList.classList.add('active');
+      btnViewGrid.classList.remove('active');
+      renderFilteredCloudFiles();
+    });
+    btnViewGrid.addEventListener('click', () => {
+      currentViewMode = 'grid';
+      btnViewGrid.classList.add('active');
+      btnViewList.classList.remove('active');
+      renderFilteredCloudFiles();
+    });
+  }
+
+  // Google Drive Filter Chips Dropdown Handlers
+  const chipsConfig = [
+    { btnId: 'chip-filter-type', popoverId: 'popover-filter-type', labelId: 'chip-filter-type-label', defaultLabel: 'Type', stateVar: 'type' },
+    { btnId: 'chip-filter-people', popoverId: 'popover-filter-people', labelId: 'chip-filter-people-label', defaultLabel: 'People', stateVar: 'people' },
+    { btnId: 'chip-filter-modified', popoverId: 'popover-filter-modified', labelId: 'chip-filter-modified-label', defaultLabel: 'Modified', stateVar: 'modified' },
+    { btnId: 'chip-filter-location', popoverId: 'popover-filter-location', labelId: 'chip-filter-location-label', defaultLabel: 'Location', stateVar: 'location' }
+  ];
+
+  chipsConfig.forEach(cfg => {
+    const btn = $(cfg.btnId);
+    const popover = $(cfg.popoverId);
+    const label = $(cfg.labelId);
+    if (!btn || !popover) return;
+
+    btn.addEventListener('click', event => {
+      event.stopPropagation();
+      const isHidden = popover.hidden;
+      chipsConfig.forEach(c => {
+        const other = $(c.popoverId);
+        if (other && other !== popover) other.hidden = true;
+        const otherBtn = $(c.btnId);
+        if (otherBtn && otherBtn !== btn) otherBtn.setAttribute('aria-expanded', 'false');
+      });
+      popover.hidden = !isHidden;
+      btn.setAttribute('aria-expanded', !isHidden);
+    });
+
+    popover.addEventListener('click', event => {
+      const item = event.target.closest('.chip-popover-item');
+      if (!item) return;
+      event.stopPropagation();
+      popover.querySelectorAll('.chip-popover-item').forEach(el => el.classList.remove('selected'));
+      item.classList.add('selected');
+      const val = item.dataset.value;
+      const text = item.textContent.trim().split('(')[0].trim();
+
+      if (cfg.stateVar === 'type') {
+        activeChipType = val;
+        label.textContent = val === 'all' ? 'Type' : `Type: ${text}`;
+        btn.classList.toggle('active', val !== 'all');
+      } else if (cfg.stateVar === 'people') {
+        activeChipPeople = val;
+        label.textContent = val === 'anyone' ? 'People' : `People: ${text}`;
+        btn.classList.toggle('active', val !== 'anyone');
+      } else if (cfg.stateVar === 'modified') {
+        activeChipModified = val;
+        label.textContent = val === 'anytime' ? 'Modified' : `Modified: ${text}`;
+        btn.classList.toggle('active', val !== 'anytime');
+      } else if (cfg.stateVar === 'location') {
+        activeChipLocation = val;
+        label.textContent = val === 'all' ? 'Location' : `Location: ${text}`;
+        btn.classList.toggle('active', val !== 'all');
+      }
+      popover.hidden = true;
+      btn.setAttribute('aria-expanded', 'false');
+      renderFilteredCloudFiles();
+    });
+  });
+
+  document.addEventListener('click', event => {
+    if (!event.target.closest('.gdrive-chips-row')) {
+      chipsConfig.forEach(c => {
+        const p = $(c.popoverId);
+        if (p) p.hidden = true;
+        const b = $(c.btnId);
+        if (b) b.setAttribute('aria-expanded', 'false');
+      });
+    }
+  });
+
+  // Attach actions to grid view as well
+  $('cloud-files-grid')?.addEventListener('click', handleCloudFileAction);
+
   $('upload-form').addEventListener('submit', uploadDataset);
   $('cloud-upload-shortcut')?.addEventListener('click', () => {
     $('upload-panel').scrollIntoView({ behavior: 'smooth', block: 'center' });
