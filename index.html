@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>Google Drive | Cloud-D Autonomous Threat Defense & Storage</title>
+  <title>Cloud-D | Enterprise Autonomous Storage & Threat Defense</title>
   <link rel="manifest" href="/manifest.json">
   <meta name="theme-color" content="#f8fafd">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -13,29 +13,35 @@
   <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg-page: #f8fafd;
+      --bg-page: #f8f6fc;
       --bg-surface: #ffffff;
-      --bg-search: #e9eef6;
+      --bg-search: #f1edfa;
       --bg-search-focus: #ffffff;
-      --bg-hover: #eaebef;
-      --bg-active-pill: #c2e7ff;
-      --text-active-pill: #001d35;
-      --text-primary: #1f1f1f;
-      --text-secondary: #444746;
-      --text-muted: #747775;
-      --border-subtle: #e0e3e7;
-      --border-chip: #747775;
-      --card-folder: #f0f4f9;
-      --card-folder-hover: #e2e7ee;
-      --blue-google: #1a73e8;
-      --blue-hover: #1557b0;
+      --bg-hover: #f3edf9;
+      --bg-active-pill: #ede9fe;
+      --text-active-pill: #5b21b6;
+      --text-primary: #1e1b4b;
+      --text-secondary: #475569;
+      --text-muted: #64748b;
+      --border-subtle: #e2e8f0;
+      --border-chip: #cbd5e1;
+      --card-folder: #f5f3ff;
+      --card-folder-hover: #ede9fe;
+      --card-folder-border: #ddd6fe;
+      --blue-google: #7c3aed;
+      --blue-hover: #6d28d9;
       --purple-brand: #7c3aed;
-      --danger: #b3261e;
-      --danger-bg: #f9dedc;
-      --success: #146c2e;
-      --success-bg: #c4eed0;
-      --warning: #b06000;
-      --warning-bg: #ffdf99;
+      --purple-hover: #6d28d9;
+      --purple-dark: #4c1d95;
+      --purple-pill: #ede9fe;
+      --purple-pill-text: #6d28d9;
+      --teal: #0d9488;
+      --danger: #dc2626;
+      --danger-bg: #fee2e2;
+      --success: #16a34a;
+      --success-bg: #dcfce7;
+      --warning: #d97706;
+      --warning-bg: #fef3c7;
       --safe-bottom: env(safe-area-inset-bottom, 0px);
     }
     * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
@@ -64,23 +70,25 @@
       display: none !important;
     }
 
-    /* Auth Screen (Clean Google Account Aesthetic) */
+    /* Auth Screen (Signature Cloud-D Purple Atmosphere) */
     #auth-container {
       min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
-      background: #f8fafd;
-      padding: 24px;
+      padding: 24px 16px;
+      background: radial-gradient(circle at 10% 20%, rgba(124, 58, 237, 0.2), transparent 45%),
+                  radial-gradient(circle at 90% 80%, rgba(13, 148, 136, 0.15), transparent 45%),
+                  #0f0d17;
     }
     .auth-card {
       background: #ffffff;
-      border: 1px solid #dadce0;
+      border: 1px solid #cbd5e1;
       border-radius: 28px;
       max-width: 460px;
       width: 100%;
       padding: 40px 36px;
-      box-shadow: 0 4px 24px rgba(60,64,67,0.08);
+      box-shadow: 0 25px 60px rgba(0,0,0,0.45);
       animation: fadeIn 0.25s ease;
     }
     @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
@@ -97,12 +105,18 @@
     }
     .form-input:focus { border-color: var(--blue-google); outline: 2px solid var(--blue-google); }
     .auth-btn-primary {
-      width: 100%; padding: 14px; background: var(--blue-google); color: #ffffff;
-      border: none; border-radius: 24px; font-size: 14px; font-weight: 600; cursor: pointer;
-      transition: all 0.2s; margin-top: 10px; box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+      width: 100%; padding: 14px;
+      background: linear-gradient(135deg, #7c3aed, #6d28d9);
+      color: #ffffff;
+      border: none; border-radius: 24px; font-size: 14.5px; font-weight: 700; cursor: pointer;
+      transition: all 0.2s; margin-top: 10px;
+      box-shadow: 0 4px 14px rgba(124, 58, 237, 0.35);
       font-family: inherit;
     }
-    .auth-btn-primary:hover { background: var(--blue-hover); box-shadow: 0 2px 6px rgba(0,0,0,0.25); }
+    .auth-btn-primary:hover {
+      background: linear-gradient(135deg, #6d28d9, #5b21b6);
+      box-shadow: 0 6px 20px rgba(124, 58, 237, 0.45);
+    }
     .auth-error { color: var(--danger); font-size: 13px; margin-top: 14px; text-align: center; display: none; }
     .auth-toggle { text-align: center; margin-top: 24px; font-size: 13.5px; color: #444746; }
     .auth-toggle a { color: var(--blue-google); text-decoration: none; font-weight: 600; cursor: pointer; }
@@ -165,14 +179,14 @@
     }
     .btn-new-gdrive {
       background: #ffffff;
-      color: #1f1f1f;
-      border: none;
-      box-shadow: 0 1px 2px 0 rgba(60,64,67,0.3), 0 1px 3px 1px rgba(60,64,67,0.15);
+      color: #0f172a;
+      border: 1px solid #ede9fe;
+      box-shadow: 0 2px 8px rgba(124, 58, 237, 0.15);
       border-radius: 16px;
       height: 56px;
-      padding: 0 24px 0 18px;
+      padding: 0 24px 0 16px;
       font-size: 14px;
-      font-weight: 500;
+      font-weight: 600;
       display: inline-flex;
       align-items: center;
       gap: 12px;
@@ -181,8 +195,9 @@
       font-family: inherit;
     }
     .btn-new-gdrive:hover {
-      box-shadow: 0 1px 3px 0 rgba(60,64,67,0.3), 0 4px 8px 3px rgba(60,64,67,0.15);
-      background: #f8fafd;
+      box-shadow: 0 4px 14px rgba(124, 58, 237, 0.25);
+      background: #faf5ff;
+      border-color: #c4b5fd;
     }
     .new-gdrive-menu {
       position: absolute;
@@ -272,7 +287,7 @@
     }
     .storage-progress-fill {
       height: 100%;
-      background: var(--blue-google);
+      background: linear-gradient(90deg, #7c3aed, #a855f7);
       border-radius: 2px;
       width: 24%;
     }
@@ -511,19 +526,22 @@
       margin-bottom: 30px;
     }
     .gdrive-folder-card {
-      background: var(--card-folder);
-      border-radius: 12px;
+      background: #f5f3ff;
+      border: 1px solid #ede9fe;
+      border-radius: 14px;
       padding: 14px 16px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       cursor: pointer;
-      transition: background 0.15s, transform 0.1s;
+      transition: all 0.15s ease;
       user-select: none;
     }
     .gdrive-folder-card:hover {
-      background: var(--card-folder-hover);
+      background: #ede9fe;
+      border-color: #c4b5fd;
       transform: translateY(-1px);
+      box-shadow: 0 2px 8px rgba(124, 58, 237, 0.12);
     }
     .folder-card-left {
       display: flex;
@@ -1059,8 +1077,8 @@
       gap: 24px;
     }
     .sec-header-banner {
-      background: linear-gradient(135deg, #f0f4f9 0%, #e8f0fe 100%);
-      border: 1px solid #c2e7ff;
+      background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%);
+      border: 1px solid #ddd6fe;
       border-radius: 20px;
       padding: 26px 30px;
       position: relative;
@@ -1355,16 +1373,12 @@
   <div id="auth-container">
     <div class="auth-card">
       <div class="auth-logo-row">
-        <!-- Google Drive 3-color Triangle Logo -->
-        <svg width="40" height="36" viewBox="0 0 87.3 78">
-          <path d="M6.6 66.85l3.85 6.65c.8 1.4 1.95 2.5 3.3 3.3l13.75-23.8H0c0 1.55.4 3.1 1.2 4.5z" fill="#0066da"/>
-          <path d="M43.65 25L29.9 1.2c-1.35.8-2.5 1.9-3.3 3.3l-25.4 44A9.06 9.06 0 0 0 0 53h27.5z" fill="#00ac47"/>
-          <path d="M73.55 76.8c1.35-.8 2.5-1.9 3.3-3.3l1.6-2.75 7.65-13.25c.8-1.4 1.2-2.95 1.2-4.5H59.8l5.85 11.2z" fill="#ea4335"/>
-          <path d="M43.65 25L57.4 1.2C56.05.4 54.5 0 52.9 0H34.4c-1.6 0-3.15.45-4.5 1.2z" fill="#00832d"/>
-          <path d="M59.8 53H27.5L13.75 76.8c1.35.8 2.9 1.2 4.5 1.2h50.8c1.6 0 3.15-.45 4.5-1.2z" fill="#2684fc"/>
-          <path d="M73.4 26.5l-12.7-22c-.8-1.4-1.95-2.5-3.3-3.3L43.65 25 59.8 53h27.5c0-1.55-.4-3.1-1.2-4.5z" fill="#ffba00"/>
-        </svg>
-        <span class="auth-logo-title">Google Drive</span>
+        <div style="width:42px; height:42px; border-radius:12px; background:linear-gradient(135deg, #7c3aed, #4c1d95); display:flex; align-items:center; justify-content:center; box-shadow:0 4px 14px rgba(124,58,237,0.4); flex-shrink:0;">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+        </div>
+        <span class="auth-logo-title">Cloud<span style="color:#7c3aed;">-D</span> <span style="font-size:16px; font-weight:600; color:#64748b; margin-left:4px;">Drive</span></span>
       </div>
 
       <!-- Login View -->
@@ -1436,33 +1450,22 @@
     <!-- Desktop Sidebar (Google Drive Official Navigation) -->
     <aside class="gdrive-sidebar">
       <div class="gdrive-brand">
-        <!-- Google Drive 3-color Triangle Logo -->
-        <svg width="36" height="32" viewBox="0 0 87.3 78">
-          <path d="M6.6 66.85l3.85 6.65c.8 1.4 1.95 2.5 3.3 3.3l13.75-23.8H0c0 1.55.4 3.1 1.2 4.5z" fill="#0066da"/>
-          <path d="M43.65 25L29.9 1.2c-1.35.8-2.5 1.9-3.3 3.3l-25.4 44A9.06 9.06 0 0 0 0 53h27.5z" fill="#00ac47"/>
-          <path d="M73.55 76.8c1.35-.8 2.5-1.9 3.3-3.3l1.6-2.75 7.65-13.25c.8-1.4 1.2-2.95 1.2-4.5H59.8l5.85 11.2z" fill="#ea4335"/>
-          <path d="M43.65 25L57.4 1.2C56.05.4 54.5 0 52.9 0H34.4c-1.6 0-3.15.45-4.5 1.2z" fill="#00832d"/>
-          <path d="M59.8 53H27.5L13.75 76.8c1.35.8 2.9 1.2 4.5 1.2h50.8c1.6 0 3.15-.45 4.5-1.2z" fill="#2684fc"/>
-          <path d="M73.4 26.5l-12.7-22c-.8-1.4-1.95-2.5-3.3-3.3L43.65 25 59.8 53h27.5c0-1.55-.4-3.1-1.2-4.5z" fill="#ffba00"/>
-        </svg>
+        <div style="width:36px; height:36px; border-radius:10px; background:linear-gradient(135deg, #7c3aed, #4c1d95); display:flex; align-items:center; justify-content:center; box-shadow:0 3px 10px rgba(124,58,237,0.35); flex-shrink:0;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+        </div>
         <span class="gdrive-brand-text">
-          Drive
-          <span class="brand-shield-pill">Cloud-D</span>
+          <span style="font-weight:700; color:#0f172a; font-size:20px; letter-spacing:-0.3px;">Cloud<span style="color:#7c3aed;">-D</span></span>
+          <span class="brand-shield-pill" style="background:#ede9fe; color:#6d28d9; font-weight:700; font-size:11px; padding:2px 8px; border-radius:12px;">Drive Vault</span>
         </span>
       </div>
 
       <!-- Iconic Google + New Button -->
       <div class="gdrive-new-btn-container">
         <button class="btn-new-gdrive" onclick="toggleNewDropdown(event)">
-          <!-- Google 4-Color Plus SVG -->
-          <svg width="24" height="24" viewBox="0 0 24 24">
-            <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" fill="#333"/>
-            <path d="M11 5h2v6h-2z" fill="#EA4335"/>
-            <path d="M13 11h6v2h-6z" fill="#4285F4"/>
-            <path d="M11 13h2v6h-2z" fill="#34A853"/>
-            <path d="M5 11h6v2H5z" fill="#FBBC05"/>
-          </svg>
-          <span>New</span>
+          <div style="width:28px; height:28px; border-radius:8px; background:linear-gradient(135deg, #7c3aed, #6d28d9); display:flex; align-items:center; justify-content:center; color:#ffffff; font-size:18px; font-weight:700; box-shadow:0 2px 8px rgba(124,58,237,0.3); flex-shrink:0;">+</div>
+          <span style="font-weight:600; color:#0f172a;">New</span>
         </button>
         <div id="new-dropdown" class="new-gdrive-menu">
           <div class="new-gdrive-item" onclick="document.getElementById('global-file-input').click()">

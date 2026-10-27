@@ -997,7 +997,7 @@ function renderSuggestedFolders(folders) {
       (f) => `
     <div class="gdrive-folder-card" onclick="loadFiles('${f.folder_id}')">
       <div class="folder-card-left">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="#5f6368"><path d="M10 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2h-8l-2-2z"/></svg>
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="#7c3aed"><path d="M10 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2h-8l-2-2z"/></svg>
         <div>
           <div class="folder-card-name">${escapeHtml(f.name)}</div>
           <div class="folder-card-sub">in Shared with me</div>
@@ -1059,7 +1059,7 @@ function renderFiles(chronological = false) {
         <td class="col-size" style="color: #444746; font-size: 13px;">${sizeStr}</td>
         <td class="col-location">
           <div class="location-link" onclick="loadFiles('${file.folder_id}')">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="#5f6368"><path d="M10 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2h-8l-2-2z"/></svg>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="#7c3aed"><path d="M10 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2h-8l-2-2z"/></svg>
             <span>${escapeHtml(locName)}</span>
           </div>
         </td>
