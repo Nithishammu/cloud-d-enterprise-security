@@ -28,7 +28,7 @@ import threading
 import time
 from typing import Any, Dict, List, Optional, Tuple
 
-from flask import Flask, jsonify, request, send_from_directory, Response
+from flask import Flask, jsonify, request, send_from_directory, Response, abort, make_response
 
 from cloud_d.collab.crdt import CRDTSessionManager, CRDTOperation
 from cloud_d.logic.red_team_agent import RedTeamRLAgent
@@ -461,8 +461,7 @@ def create_app(db_path: Optional[str] = None, static_folder: Optional[str] = Non
         token = request.cookies.get("cloud_d_session") or request.headers.get("X-Session-Token")
         user = controller.get_session_user(token)
         if not user:
-            # Fallback auto-auth for demo staff partition
-            return {"user_id": "u-nithish", "username": "nithish", "role": "staff"}
+            abort(make_response(jsonify({"error": "Authentication required. Please sign in.", "status": "unauthorized"}), 401))
         return user
 
     # -------------------------------------------------------------------------
@@ -516,12 +515,18 @@ def create_app(db_path: Optional[str] = None, static_folder: Optional[str] = Non
 
     @app.route("/api/auth/me", methods=["GET"])
     def me():
-        user = _require_auth()
+        token = request.cookies.get("cloud_d_session") or request.headers.get("X-Session-Token")
+        user = controller.get_session_user(token)
+        if not user:
+            return jsonify({"authenticated": False, "user": None}), 200
         return jsonify({"authenticated": True, "user": user})
 
     @app.route("/api/auth/logout", methods=["POST"])
     def logout():
-        resp = jsonify({"status": "logged_out"})
+        token = request.cookies.get("cloud_d_session") or request.headers.get("X-Session-Token")
+        if token and token in controller._sessions:
+            controller._sessions.pop(token, None)
+        resp = jsonify({"status": "logged_out", "ok": True})
         resp.delete_cookie("cloud_d_session")
         return resp
 
@@ -661,6 +666,7 @@ def create_app(db_path: Optional[str] = None, static_folder: Optional[str] = Non
     # -------------------------------------------------------------------------
     @app.route("/api/files", methods=["GET"])
     def list_files():
+        user = _require_auth()
         folder_id = request.args.get("folder_id", "root")
         with sqlite3.connect(controller.db_path) as conn:
             conn.row_factory = sqlite3.Row
@@ -690,6 +696,7 @@ def create_app(db_path: Optional[str] = None, static_folder: Optional[str] = Non
 
     @app.route("/api/files/check-duplicate", methods=["POST"])
     def check_duplicate():
+        user = _require_auth()
         data = request.get_json(force=True) or {}
         filename = data.get("filename", "").strip()
         folder_id = data.get("folder_id", "root")
@@ -728,6 +735,7 @@ def create_app(db_path: Optional[str] = None, static_folder: Optional[str] = Non
 
     @app.route("/api/files/<file_id>", methods=["DELETE"])
     def delete_file(file_id):
+        user = _require_auth()
         with sqlite3.connect(controller.db_path) as conn:
             row = conn.execute("SELECT logical_id FROM cloud_files WHERE file_id = ?", (file_id,)).fetchone()
             if not row:
@@ -839,8 +847,8 @@ def create_app(db_path: Optional[str] = None, static_folder: Optional[str] = Non
 
     @app.route("/api/folders", methods=["GET", "POST"])
     def folders_route():
+        user = _require_auth()
         if request.method == "POST":
-            user = _require_auth()
             data = request.get_json(force=True) or {}
             name = data.get("name", "New Folder").strip()
             parent_id = data.get("parent_id", "root")
