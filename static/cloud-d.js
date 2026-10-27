@@ -9,7 +9,7 @@
     return;
   }
 
-  const $ = id => document.getElementById(id) || document.createElement("div");
+  const $ = id => document.getElementById(id);
   const fmt = value => new Intl.NumberFormat('en-US').format(value || 0);
   const isHostedDeployment = Boolean(location.hostname) && !['localhost', '127.0.0.1', '[::1]'].includes(location.hostname);
   const vectors = [
@@ -1037,7 +1037,7 @@
     if (files.length) $('upload-progress-panel').classList.remove('active');
     if (uploadTriggeredFromNew && files.length > 0) {
       uploadTriggeredFromNew = false;
-      const prog = $('upload-progress-panel'); if (prog) { prog.classList.add('active'); prog.style.display = 'block'; }
+      $('upload-panel').scrollIntoView({ behavior: 'smooth', block: 'center' });
       $('upload-button').click();
     }
   });
@@ -1729,76 +1729,5 @@
       if (file) openMobileFileSheet(file);
     }
   });
-
-
-  // Google Drive Filter Chips & View Switcher (Signature Cloud-D Purple Palette)
-  const chipType = $('chip-filter-type');
-  if (chipType) {
-    let typeIdx = 0;
-    const types = ['all', 'data', 'document'];
-    const typeLabels = ['Type ▾', 'Data (CSV/JSON) ▾', 'Documents ▾'];
-    chipType.addEventListener('click', () => {
-      typeIdx = (typeIdx + 1) % types.length;
-      $('cloud-type-filter').value = types[typeIdx];
-      const span = chipType.querySelector('span');
-      if (span) span.textContent = typeLabels[typeIdx];
-      chipType.classList.toggle('active', typeIdx !== 0);
-      renderFilteredCloudFiles();
-    });
-  }
-
-  const chipPeople = $('chip-filter-people');
-  if (chipPeople) {
-    chipPeople.addEventListener('click', () => {
-      showToast(currentUser ? `Operator: ${currentUser.username} (${currentUser.role}) • AES-256-GCM Shard Node 2` : 'Cloud-D Defense Intelligence');
-    });
-  }
-
-  const chipModified = $('chip-filter-modified');
-  if (chipModified) {
-    let sortAsc = false;
-    chipModified.addEventListener('click', () => {
-      sortAsc = !sortAsc;
-      cloudFileCache.sort((a, b) => {
-        const da = new Date(a.created_at || 0).getTime();
-        const db = new Date(b.created_at || 0).getTime();
-        return sortAsc ? da - db : db - da;
-      });
-      chipModified.classList.toggle('active', sortAsc);
-      const span = chipModified.querySelector('span');
-      if (span) span.textContent = sortAsc ? 'Oldest first ▾' : 'Modified ▾';
-      renderFilteredCloudFiles();
-    });
-  }
-
-  const chipLoc = $('chip-filter-location');
-  if (chipLoc) {
-    chipLoc.addEventListener('click', () => {
-      const select = $('cloud-folder-filter');
-      if (select && currentFolders && currentFolders.length) {
-        let nextIdx = (select.selectedIndex + 1) % select.options.length;
-        select.selectedIndex = nextIdx;
-        selectedFolderFilter = select.value;
-        renderFoldersGrid();
-        renderFilteredCloudFiles();
-      }
-    });
-  }
-
-  const btnList = $('btn-view-list');
-  const btnGrid = $('btn-view-grid');
-  const tableCard = document.querySelector('.cloud-files-card');
-  if (btnList && btnGrid) {
-    btnList.addEventListener('click', () => {
-      btnList.classList.add('active');
-      btnGrid.classList.remove('active');
-      if (tableCard) tableCard.classList.remove('grid-view-active');
-    });
-    btnGrid.addEventListener('click', () => {
-      btnGrid.classList.add('active');
-      btnList.classList.remove('active');
-      if (tableCard) tableCard.classList.add('grid-view-active');
-    });
-  }
 
 })();

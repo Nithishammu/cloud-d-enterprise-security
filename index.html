@@ -1550,92 +1550,6 @@
         min-height: 36px;
       }
     }
-  
-    /* Cloud-D Purple Drive Filter Chips & View Mode */
-    .gdrive-chips-row {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin: 14px 0 18px 0;
-      flex-wrap: wrap;
-    }
-    .gdrive-chip {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 7px 15px;
-      background: #ffffff;
-      border: 1.5px solid #e2d9f3;
-      border-radius: 20px;
-      font-size: 13px;
-      font-weight: 500;
-      color: #3b2a59;
-      cursor: pointer;
-      transition: all 0.18s ease;
-      box-shadow: 0 1px 3px rgba(157, 91, 240, 0.06);
-    }
-    .gdrive-chip:hover {
-      background: #f5edfc;
-      border-color: #8b5cf6;
-      color: #1e1533;
-      box-shadow: 0 2px 6px rgba(157, 91, 240, 0.15);
-    }
-    .gdrive-chip.active {
-      background: #ede9fe;
-      border-color: #8b5cf6;
-      color: #6d28d9;
-      font-weight: 600;
-    }
-    .view-switcher-group {
-      margin-left: auto;
-      display: flex;
-      align-items: center;
-      background: #ffffff;
-      border: 1.5px solid #e2d9f3;
-      border-radius: 10px;
-      overflow: hidden;
-      box-shadow: 0 1px 3px rgba(157, 91, 240, 0.06);
-    }
-    .btn-view-switch {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 6px 11px;
-      background: transparent;
-      border: none;
-      color: #6f6685;
-      cursor: pointer;
-      transition: all 0.15s ease;
-    }
-    .btn-view-switch:hover, .btn-view-switch.active {
-      background: #ede9fe;
-      color: #8b5cf6;
-    }
-    .grid-view-active table thead { display: none; }
-    .grid-view-active tbody {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-      gap: 14px;
-      padding: 12px;
-    }
-    .grid-view-active tbody tr {
-      display: flex;
-      flex-direction: column;
-      background: #ffffff;
-      border: 1.5px solid #e2d9f3;
-      border-radius: 14px;
-      padding: 14px;
-      box-shadow: 0 2px 8px rgba(157, 91, 240, 0.05);
-      transition: all 0.18s ease;
-    }
-    .grid-view-active tbody tr:hover {
-      border-color: #8b5cf6;
-      box-shadow: 0 4px 14px rgba(157, 91, 240, 0.12);
-    }
-    .grid-view-active tbody td {
-      border: none;
-      padding: 4px 0;
-    }
   </style>
 </head>
 <body>
@@ -1719,59 +1633,9 @@
             <div class="card kpi"><div class="kpi-top"><span class="kpi-label">Uploaded records</span><span class="kpi-icon">◉</span></div><div class="kpi-value" id="cloud-record-count">0</div><div class="kpi-note">Structured data in your files</div></div>
             <div class="card kpi"><div class="kpi-top"><span class="kpi-label">Encrypted backup copies</span><span class="kpi-icon">⇅</span></div><div class="kpi-value" id="cloud-storage-size">0</div><div class="kpi-note" id="cloud-storage-note">SQLite backup replica</div></div>
           </div>
-          <!-- Cloud Drive Filter Chips & Workspace Options (Modern Drive Layout in Signature Cloud-D Palette) -->
-          <div class="gdrive-chips-row" id="drive-chips-section">
-            <button type="button" class="gdrive-chip" id="chip-filter-type" data-filter="type">
-              <span>Type</span> <span style="font-size:10px;opacity:0.7">▾</span>
-            </button>
-            <button type="button" class="gdrive-chip" id="chip-filter-people" data-filter="people">
-              <span>People</span> <span style="font-size:10px;opacity:0.7">▾</span>
-            </button>
-            <button type="button" class="gdrive-chip" id="chip-filter-modified" data-filter="modified">
-              <span>Modified</span> <span style="font-size:10px;opacity:0.7">▾</span>
-            </button>
-            <button type="button" class="gdrive-chip" id="chip-filter-location" data-filter="location">
-              <span>Location</span> <span style="font-size:10px;opacity:0.7">▾</span>
-            </button>
-
-            <div class="view-switcher-group">
-              <button type="button" class="btn-view-switch active" id="btn-view-list" title="List view">
-                <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M3 13h2v-2H3v2zm0 4h2v-2H3v2zm0-8h2V7H3v2zm4 4h14v-2H7v2zm0 4h14v-2H7v2zM7 7v2h14V7H7z"/></svg>
-              </button>
-              <button type="button" class="btn-view-switch" id="btn-view-grid" title="Grid view">
-                <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M4 11h5V5H4v6zm0 7h5v-6H4v6zm6 0h5v-6h-5v6zm6 0h5v-6h-5v6zm-6-7h5V5h-5v6zm6-6v6h5V5h-5z"/></svg>
-              </button>
-            </div>
-          </div>
-
-          <!-- Active Upload Progress Monitor (Appears Dynamically During Encrypted Uploads) -->
-          <div class="upload-progress" id="upload-progress-panel" aria-live="polite" style="margin: 0 0 16px 0;">
-            <div class="upload-progress-track"><div class="upload-progress-fill" id="upload-progress-fill"></div></div>
-            <div class="upload-progress-caption"><span id="upload-progress-stage">Ready to upload</span><strong id="upload-progress-percent">0%</strong></div>
-          </div>
-
-          <!-- Headless Upload & Cryptographic State Anchor (Preserves all DOM hooks safely) -->
-          <form class="upload-controls" id="upload-form" style="display:none;" aria-hidden="true">
-            <input class="upload-input-hidden" id="upload-file" name="file" type="file" multiple required>
-            <div class="upload-selection" id="upload-selection">No files selected</div>
-            <select id="upload-folder" name="folder_id"><option value="">Loading folders…</option></select>
-            <button class="btn primary" type="submit" id="upload-button">Upload encrypted</button>
-            <button class="btn" id="create-folder-button" type="button">＋ New folder</button>
-            <span id="storage-mode-pill">ENCRYPTED STORAGE</span>
-            <span id="upload-storage-note">Files are encrypted before storage.</span>
-            <span id="upload-status">Sign in to upload files.</span>
-            <span id="cloud-storage-note">SQLite backup replica</span>
-            <span id="database-status-pill">FILE CONTENTS ENCRYPTED</span>
-            <strong id="database-heading">Encrypted file storage is ready</strong>
-            <strong id="database-engine">SQLite</strong>
-            <strong id="database-encryption">AES-256-GCM</strong>
-            <strong id="database-files">0</strong>
-            <strong id="database-size">SQLite</strong>
-            <div id="database-note">File contents are encrypted in both SQLite databases.</div>
-            <button class="btn" id="verify-encryption-button" type="button">Verify</button>
-            <button class="btn" id="reencrypt-button" type="button">Re-encrypt</button>
-          </form>
-          <div class="card cloud-folders-card section-gap">
+          <div class="card storage-card section-gap"><div class="card-head"><div><div class="card-title">Primary storage and encrypted recovery copies</div><div class="card-desc">Cloud-D routes your files to the database assigned to your account and mirrors encrypted file data to the recovery database.</div></div><span class="pill green" id="database-status-pill">FILE CONTENTS ENCRYPTED</span></div><div class="storage-console"><div class="storage-intro"><span class="storage-lock">♢</span><div><strong id="database-heading">Encrypted file storage is ready</strong><p>Uploaded file contents are encrypted before saving. An encrypted recovery copy is stored separately and can be restored if a primary copy is missing.</p></div></div><div class="storage-stats"><div class="storage-stat"><span>Primary database</span><strong id="database-engine">SQLite</strong></div><div class="storage-stat"><span>File encryption</span><strong id="database-encryption">AES-256-GCM</strong></div><div class="storage-stat"><span>Backup file copies</span><strong id="database-files">0</strong></div><div class="storage-stat"><span>Backup database</span><strong id="database-size">SQLite</strong></div></div><div class="storage-note" id="database-note">File contents are encrypted in both SQLite databases. Account and folder metadata is stored separately.</div><div class="crypto-demo staff-only"><div class="crypto-demo-copy"><strong>Cryptographic demonstration · Primary DB</strong>Verify decrypts and authenticates encrypted file copies without exposing plaintext in the browser. Re-encrypt writes fresh AES-GCM ciphertext for the primary node.</div><div class="crypto-demo-actions"><button class="btn" id="verify-encryption-button" type="button">Verify encrypted copies</button><button class="btn" id="reencrypt-button" type="button">Re-encrypt primary</button></div></div></div></div>
+          <div class="card upload-card section-gap" id="upload-panel"><div class="card-head"><div><div class="card-title">Upload to Cloud Drive</div><div class="card-desc">Choose files and a destination folder. Cloud-D selects your assigned storage area automatically.</div></div><span class="pill blue" id="storage-mode-pill">ENCRYPTED STORAGE</span></div><form class="upload-controls" id="upload-form"><div class="control"><label for="upload-file">Documents and data files</label><label class="upload-drop" id="upload-drop" for="upload-file"><span class="upload-cloud-icon">☁</span><span><strong>Choose files or drag them here</strong><small>PDF, Word, text, images, spreadsheets, CSV, JSON, and more</small></span></label><input class="upload-input-hidden" id="upload-file" name="file" type="file" multiple required aria-describedby="upload-selection"><div class="upload-selection" id="upload-selection">No files selected</div></div><div class="control"><label for="upload-folder">Destination folder</label><div class="folder-select-row"><select id="upload-folder" name="folder_id" required><option value="">Loading folders…</option></select><button class="btn" id="create-folder-button" type="button">＋ New folder</button></div></div><button class="btn primary" type="submit" id="upload-button">Upload encrypted</button></form><div class="upload-progress" id="upload-progress-panel" aria-live="polite"><div class="upload-progress-track"><div class="upload-progress-fill" id="upload-progress-fill"></div></div><div class="upload-progress-caption"><span id="upload-progress-stage">Ready to upload</span><strong id="upload-progress-percent">0%</strong></div></div><div class="upload-note"><span id="upload-storage-note">Files are encrypted before being written to the database.</span> Limit: 10 MB total per upload. <span class="upload-status" id="upload-status">Sign in to upload files.</span></div></div>
+                    <div class="card cloud-folders-card section-gap">
             <div class="card-head">
               <div>
                 <div class="card-title">Folders</div>
