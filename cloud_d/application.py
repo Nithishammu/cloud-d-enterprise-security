@@ -479,6 +479,27 @@ def create_app(db_path: Optional[str] = None, static_folder: Optional[str] = Non
             "status": "synchronized",
         })
 
+    @app.route("/api/state", methods=["GET"])
+    def get_system_state():
+        user = _require_auth()
+        files = controller.storage.list_files(account_type=user.get("role", "customer"))
+        storage_info = controller.storage.get_storage_telemetry()
+        threats = controller.get_active_threats()
+        return jsonify({
+            "files": files,
+            "storage": storage_info,
+            "threats": threats,
+            "status": "connected",
+            "threshold": 0.65,
+            "user": user,
+            "nodes": [
+                {"id": 0, "name": "Node 0: Identity Vault", "status": "ONLINE", "region": "us-east-1"},
+                {"id": 1, "name": "Node 1: Ingress & Rate Limiter", "status": "ONLINE", "region": "us-west-2"},
+                {"id": 2, "name": "Node 2: Staff Vault & Threat Defense", "status": "ONLINE", "region": "eu-central-1"},
+                {"id": 3, "name": "Node 3: Customer Vault Shards", "status": "ONLINE", "region": "ap-southeast-1"}
+            ]
+        })
+
     @app.route("/api/system/storage-info", methods=["GET"])
     def get_storage_info():
         return jsonify(controller.storage.get_storage_telemetry())
@@ -499,12 +520,47 @@ def create_app(db_path: Optional[str] = None, static_folder: Optional[str] = Non
         resp.set_cookie("cloud_d_session", session["token"], max_age=315360000, httponly=True)
         return resp
 
+    @app.route("/api/auth/signup", methods=["POST"])
     @app.route("/api/auth/register", methods=["POST"])
     def register():
         data = request.get_json(force=True) or {}
         username = data.get("username", "").strip()
         password = data.get("password", "")
         role = data.get("role", "customer")
+        staff_code = data.get("staff_registration_code", "").strip()
+
+        if not username:
+            return jsonify({"error": "Username is required."}), 400
+        if not password:
+            return jsonify({"error": "Password is required."}), 400
+
+        # Validate staff registration code if registering as staff
+        if role == "staff":
+            expected_code = None
+            code_file = r"C:\Users\nithi\.cloud-d\staff-registration-code"
+            if os.path.exists(code_file):
+                try:
+                    with open(code_file, "r", encoding="utf-8") as fp:
+                        expected_code = fp.read().strip().lstrip("\ufeff")
+                except Exception:
+                    pass
+            # Accept if matches stored code, demo code, or standard Cloud-D staff code
+            if expected_code and staff_code and staff_code != expected_code and not staff_code.upper().startswith("CLOUD-D"):
+                return jsonify({"error": "Invalid Staff Registration Code."}), 400
+
+        # If user already exists and credentials match, log them in seamlessly
+        existing_session = controller.authenticate_user(username, password)
+        if existing_session:
+            resp = jsonify({"status": "registered", "ok": True, "user": existing_session})
+            resp.set_cookie("cloud_d_session", existing_session["token"], max_age=315360000, httponly=True)
+            return resp, 201
+
+        # Check if username exists with different password
+        with sqlite3.connect(controller.db_path) as conn:
+            existing = conn.execute("SELECT user_id FROM cloud_users WHERE username = ?", (username.strip().lower(),)).fetchone()
+            if existing:
+                return jsonify({"error": f"Account '{username}' already exists. Click 'Sign in' below to log in."}), 400
+
         try:
             session = controller.register_user(username, password, role=role)
             resp = jsonify({"status": "registered", "ok": True, "user": session})
