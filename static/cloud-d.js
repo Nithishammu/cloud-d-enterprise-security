@@ -31,6 +31,16 @@
   let currentFolders = [];
   let selectedFolderFilter = 'all';
   let currentViewMode = 'list';
+  let activeDriveTab = 'home';
+  let starredFileIds = new Set(JSON.parse(localStorage.getItem('cloud_d_starred') || '[]'));
+  let trashFiles = JSON.parse(localStorage.getItem('cloud_d_trash') || '[]');
+
+  function saveStarred() {
+    localStorage.setItem('cloud_d_starred', JSON.stringify([...starredFileIds]));
+  }
+  function saveTrash() {
+    localStorage.setItem('cloud_d_trash', JSON.stringify(trashFiles));
+  }
   let activeChipType = 'all';
   let activeChipPeople = 'anyone';
   let activeChipModified = 'anytime';
@@ -538,6 +548,10 @@
   }
 
   function renderFilteredCloudFiles() {
+    if (activeDriveTab === 'trash') {
+      renderTrashFiles();
+      return;
+    }
     const query = ($('cloud-file-search').value || '').trim().toLowerCase();
     const selectedFolder = selectedFolderFilter;
     const selectedType = $('cloud-type-filter').value;
@@ -545,7 +559,7 @@
       $('cloud-folder-filter').value = selectedFolder;
     }
     const now = Date.now();
-    const files = cloudFileCache.filter(file => {
+    let files = cloudFileCache.filter(file => {
       const matchesText = !query || `${file.filename} ${file.folder_name}`.toLowerCase().includes(query);
       const matchesFolder = selectedFolder === 'all' || file.folder_id === selectedFolder;
       const matchesType = selectedType === 'all' || (selectedType === 'data' ? file.kind === 'data' : file.kind !== 'data');
@@ -588,11 +602,25 @@
         matchesChipLocation = file.folder_id === selectedFolderFilter;
       }
 
-      return matchesText && matchesFolder && matchesType && matchesChipType && matchesChipPeople && matchesChipModified && matchesChipLocation;
+      // Drive Tab filtering
+      let matchesTab = true;
+      if (activeDriveTab === 'starred') {
+        matchesTab = starredFileIds.has(file.id) || starredFileIds.has(file.logical_id);
+      }
+
+      return matchesText && matchesFolder && matchesType && matchesChipType && matchesChipPeople && matchesChipModified && matchesChipLocation && matchesTab;
     });
 
+    if (activeDriveTab === 'recent') {
+      files = [...files].sort((a, b) => new Date(b.created_at || 0) - new Date(a.created_at || 0));
+    }
+
     if ($('stored-files-description')) {
-      if (selectedFolder === 'all') {
+      if (activeDriveTab === 'recent') {
+        $('stored-files-description').textContent = 'Files opened, uploaded, or updated recently.';
+      } else if (activeDriveTab === 'starred') {
+        $('stored-files-description').textContent = 'Your starred and prioritized cloud files.';
+      } else if (selectedFolder === 'all') {
         $('stored-files-description').textContent = 'Files are scoped to your account and assigned folders.';
       } else {
         const curF = currentFolders.find(f => f.id === selectedFolder);
@@ -615,8 +643,10 @@
       const savedAt = file.created_at ? new Date(file.created_at).toLocaleString() : 'Saved';
       const backupStatus = file.backup_available ? '<span class="pill green">BACKED UP</span>' : '<span class="pill amber">NO COPY</span>';
       const restoreButton = !file.primary_available ? `<button class="btn primary" type="button" data-restore-file="${escapeHtml(file.id)}">Restore</button>` : '';
+      const isStarred = starredFileIds.has(file.id) || starredFileIds.has(file.logical_id);
+      const starBtn = `<button class="btn-star ${isStarred ? 'active' : ''}" type="button" data-star-file="${escapeHtml(file.id)}" data-logical-id="${escapeHtml(file.logical_id)}" title="${isStarred ? 'Unstar' : 'Star'} file">${isStarred ? '★' : '☆'}</button>`;
       const nodeShard = `<span class="pill blue" style="font-size:10px;padding:2px 7px;" title="Encrypted shard on Node ${file.node_id || 2}">Node ${file.node_id || 2} · 🛡</span>`;
-      return `<tr><td><div class="file-entry"><span class="file-icon ${file.kind === 'data' ? 'structured' : ''}">${icon}</span><span class="file-entry-text"><strong>${name}</strong><small>Version ${version} · ${nodeShard} · ${escapeHtml(savedAt)}</small></span></div></td><td>${escapeHtml(file.folder_name)}</td><td>${formatBytes(Number(file.size_bytes || 0))}</td><td>${kind}</td><td>${fmt(file.record_count)}</td><td>${backupStatus}</td><td><div class="file-actions">${restoreButton}<button class="btn" type="button" data-preview-file="${escapeHtml(file.id)}" data-filename="${name}" title="Preview decrypted contents">👁 Preview</button><button class="btn" type="button" data-download-file="${escapeHtml(file.id)}" data-filename="${name}">Download</button><button class="btn" type="button" data-view-versions="${escapeHtml(file.logical_id)}" data-filename="${name}" data-folder-id="${escapeHtml(file.folder_id)}">◷ Versions · ${versions}</button><button class="btn" type="button" data-add-version="${escapeHtml(file.logical_id)}" data-filename="${name}" data-folder-id="${escapeHtml(file.folder_id)}" title="Upload next version of this file">⬆ New Version</button><button class="btn" type="button" data-replace-file="${escapeHtml(file.logical_id)}" data-filename="${name}" data-folder-id="${escapeHtml(file.folder_id)}" title="Replace/overwrite this file">⇄ Replace</button><button class="btn" type="button" data-verify-file="${escapeHtml(file.id)}" data-filename="${name}" title="Verify AES-256-GCM integrity proof">🔐 Verify</button><button class="btn danger" type="button" data-delete-file="${escapeHtml(file.id)}" data-filename="${name}">Delete</button></div></td></tr>`;
+      return `<tr><td><div class="file-entry">${starBtn}<span class="file-icon ${file.kind === 'data' ? 'structured' : ''}">${icon}</span><span class="file-entry-text"><strong>${name}</strong><small>Version ${version} · ${nodeShard} · ${escapeHtml(savedAt)}</small></span></div></td><td>${escapeHtml(file.folder_name)}</td><td>${formatBytes(Number(file.size_bytes || 0))}</td><td>${kind}</td><td>${fmt(file.record_count)}</td><td>${backupStatus}</td><td><div class="file-actions">${restoreButton}<button class="btn" type="button" data-preview-file="${escapeHtml(file.id)}" data-filename="${name}" title="Preview decrypted contents">👁 Preview</button><button class="btn" type="button" data-download-file="${escapeHtml(file.id)}" data-filename="${name}">Download</button><button class="btn" type="button" data-view-versions="${escapeHtml(file.logical_id)}" data-filename="${name}" data-folder-id="${escapeHtml(file.folder_id)}">◷ Versions · ${versions}</button><button class="btn" type="button" data-add-version="${escapeHtml(file.logical_id)}" data-filename="${name}" data-folder-id="${escapeHtml(file.folder_id)}" title="Upload next version of this file">⬆ New Version</button><button class="btn" type="button" data-replace-file="${escapeHtml(file.logical_id)}" data-filename="${name}" data-folder-id="${escapeHtml(file.folder_id)}" title="Replace/overwrite this file">⇄ Replace</button><button class="btn" type="button" data-verify-file="${escapeHtml(file.id)}" data-filename="${name}" title="Verify AES-256-GCM integrity proof">🔐 Verify</button><button class="btn danger" type="button" data-delete-file="${escapeHtml(file.id)}" data-filename="${name}">Delete</button></div></td></tr>`;
     }).join('') : `<tr><td colspan="7" class="empty">${cloudFileCache.length ? 'No matching files. Change the search or filters.' : 'Your cloud is ready. Upload a file to see it here.'}</td></tr>`;
 
     // Render Grid View
@@ -633,7 +663,7 @@
         const nodeShard = `<span class="pill blue" style="font-size:9.5px;padding:2px 6px;" title="Encrypted shard on Node ${file.node_id || 2}">Node ${file.node_id || 2} · 🛡</span>`;
         return `
           <div class="cloud-file-grid-card">
-            <div class="cloud-file-grid-top">
+            <div class="cloud-file-grid-top">${starBtn}
               <div class="cloud-file-grid-icon ${file.kind === 'data' ? 'structured' : ''}">${icon}</div>
               <div style="min-width:0;flex:1;">
                 <div class="cloud-file-grid-title" title="${name}">${name}</div>
@@ -975,7 +1005,7 @@
     const isSingleVersion = Boolean(versionNum);
     const confirmMessage = isSingleVersion
       ? `Delete version ${versionNum} of "${filename}"?`
-      : `Are you sure you want to delete "${filename}"?\n\nThis will permanently remove the file and all its versions from the cloud.`;
+      : `Move "${filename}" to Trash?`;
 
     if (!confirm(confirmMessage)) {
       return;
@@ -987,9 +1017,14 @@
       const deleteUrl = isSingleVersion
         ? `/api/files/${encodeURIComponent(fileId)}?all=false`
         : `/api/files/${encodeURIComponent(fileId)}?all=true`;
+      const fileRecord = cloudFileCache.find(f => f.id === fileId || (logicalId && f.logical_id === logicalId));
+      if (fileRecord && !isSingleVersion) {
+        trashFiles.unshift({ ...fileRecord, trashed_at: new Date().toISOString() });
+        saveTrash();
+      }
       const result = await request(deleteUrl, { method: 'DELETE' });
       setSimulation(result.state);
-      showToast(isSingleVersion ? `Version ${versionNum} of ${filename} deleted.` : `${filename} deleted successfully.`);
+      showToast(isSingleVersion ? `Version ${versionNum} of ${filename} deleted.` : `"${filename}" moved to Trash.`);
       addCloudActivity('File deleted', isSingleVersion ? `${filename} (v${versionNum})` : filename, 'alert');
       if (isSingleVersion && $('version-dialog').open && logicalId) {
         const remaining = (result.state?.files || []).find(f => f.logical_id === logicalId);
@@ -1122,6 +1157,222 @@
   $('download-csv').addEventListener('click', exportCsv);
   
   // View Switcher logic (List vs Grid)
+  
+  function renderTrashFiles() {
+    $('stored-files-description').textContent = 'Files in Trash can be restored back or deleted permanently.';
+    $('stored-files-pill').textContent = `${trashFiles.length} IN TRASH`;
+    const tableWrap = document.querySelector('.table-wrap');
+    const gridEl = $('cloud-files-grid');
+
+    const emptyMsg = '<div class="empty" style="padding:28px;">Trash is empty. Items you delete from Cloud-D will appear here.</div>';
+    if (!trashFiles.length) {
+      $('cloud-files-body').innerHTML = `<tr><td colspan="7" class="empty">Trash is empty. Items you delete will appear here.</td></tr>`;
+      if (gridEl) gridEl.innerHTML = `<div class="empty" style="grid-column: 1 / -1;">Trash is empty. Items you delete will appear here.</div>`;
+      return;
+    }
+
+    $('cloud-files-body').innerHTML = trashFiles.map(file => {
+      const name = escapeHtml(file.filename);
+      const icon = file.kind === 'data' ? '▦' : '▤';
+      const trashedTime = file.trashed_at ? new Date(file.trashed_at).toLocaleString() : 'Recently';
+      return `<tr>
+        <td><div class="file-entry"><span class="file-icon ${file.kind === 'data' ? 'structured' : ''}">${icon}</span><span class="file-entry-text"><strong>${name}</strong><small>Deleted: ${escapeHtml(trashedTime)}</small></span></div></td>
+        <td>${escapeHtml(file.folder_name || 'My Drive')}</td>
+        <td>${formatBytes(Number(file.size_bytes || 0))}</td>
+        <td>${file.kind === 'data' ? 'Structured' : 'Document'}</td>
+        <td>${fmt(file.record_count || 0)}</td>
+        <td><span class="pill amber">TRASHED</span></td>
+        <td>
+          <div class="file-actions">
+            <button class="btn primary" type="button" data-restore-trash="${escapeHtml(file.id)}">↺ Restore</button>
+            <button class="btn danger" type="button" data-purge-trash="${escapeHtml(file.id)}" data-filename="${name}">Delete permanently</button>
+          </div>
+        </td>
+      </tr>`;
+    }).join('');
+
+    if (gridEl) {
+      gridEl.innerHTML = trashFiles.map(file => {
+        const name = escapeHtml(file.filename);
+        const icon = file.kind === 'data' ? '▦' : '▤';
+        const trashedTime = file.trashed_at ? new Date(file.trashed_at).toLocaleString() : 'Recently';
+        return `
+          <div class="cloud-file-grid-card">
+            <div class="cloud-file-grid-top">
+              <div class="cloud-file-grid-icon ${file.kind === 'data' ? 'structured' : ''}">${icon}</div>
+              <div style="min-width:0;flex:1;">
+                <div class="cloud-file-grid-title" title="${name}">${name}</div>
+                <span class="pill amber" style="font-size:9.5px;padding:2px 6px;">TRASHED</span>
+              </div>
+            </div>
+            <div class="cloud-file-grid-meta">
+              <div><strong>Deleted:</strong> ${escapeHtml(trashedTime)}</div>
+              <div><strong>Size:</strong> ${formatBytes(Number(file.size_bytes || 0))}</div>
+            </div>
+            <div class="cloud-file-grid-actions file-actions">
+              <button class="btn primary" type="button" data-restore-trash="${escapeHtml(file.id)}">↺ Restore</button>
+              <button class="btn danger" type="button" data-purge-trash="${escapeHtml(file.id)}" data-filename="${name}">Delete</button>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+  }
+
+  // Drive Navigation Tab Switching
+  function switchDriveTab(tab) {
+    activeDriveTab = tab;
+    document.querySelectorAll('[data-drive-tab]').forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.driveTab === tab);
+    });
+
+    // Make sure we are on the cloud page
+    nav('cloud');
+
+    const foldersCard = document.querySelector('.cloud-folders-card');
+    const kpisCard = document.querySelector('.kpis');
+    const sentinelBanner = $('customer-protection-banner');
+    const trashBar = $('trash-actions-bar');
+    const chipsRow = $('drive-chips-section');
+    const crumbCurrent = $('crumb-current');
+
+    if (tab === 'home') {
+      if (crumbCurrent) crumbCurrent.textContent = 'Home';
+      if (foldersCard) foldersCard.style.display = '';
+      if (kpisCard) kpisCard.style.display = '';
+      if (sentinelBanner && !sentinelBanner.hasAttribute('hidden')) sentinelBanner.style.display = '';
+      if (trashBar) trashBar.style.display = 'none';
+      if (chipsRow) chipsRow.style.display = '';
+    } else if (tab === 'my-drive') {
+      if (crumbCurrent) crumbCurrent.textContent = 'My Drive';
+      if (foldersCard) foldersCard.style.display = '';
+      if (kpisCard) kpisCard.style.display = '';
+      if (sentinelBanner && !sentinelBanner.hasAttribute('hidden')) sentinelBanner.style.display = '';
+      if (trashBar) trashBar.style.display = 'none';
+      if (chipsRow) chipsRow.style.display = '';
+    } else if (tab === 'recent') {
+      if (crumbCurrent) crumbCurrent.textContent = 'Recent';
+      if (foldersCard) foldersCard.style.display = 'none';
+      if (kpisCard) kpisCard.style.display = 'none';
+      if (sentinelBanner) sentinelBanner.style.display = 'none';
+      if (trashBar) trashBar.style.display = 'none';
+      if (chipsRow) chipsRow.style.display = '';
+    } else if (tab === 'starred') {
+      if (crumbCurrent) crumbCurrent.textContent = 'Starred';
+      if (foldersCard) foldersCard.style.display = 'none';
+      if (kpisCard) kpisCard.style.display = 'none';
+      if (sentinelBanner) sentinelBanner.style.display = 'none';
+      if (trashBar) trashBar.style.display = 'none';
+      if (chipsRow) chipsRow.style.display = '';
+    } else if (tab === 'trash') {
+      if (crumbCurrent) crumbCurrent.textContent = 'Trash';
+      if (foldersCard) foldersCard.style.display = 'none';
+      if (kpisCard) kpisCard.style.display = 'none';
+      if (sentinelBanner) sentinelBanner.style.display = 'none';
+      if (trashBar) trashBar.style.display = 'flex';
+      if (chipsRow) chipsRow.style.display = 'none';
+    }
+    renderFilteredCloudFiles();
+  }
+
+  // Sidebar + New Button interactions
+  const sideNewBtn = $('side-new-btn');
+  const sideNewMenu = $('side-new-menu');
+  if (sideNewBtn && sideNewMenu) {
+    sideNewBtn.addEventListener('click', event => {
+      event.stopPropagation();
+      sideNewMenu.hidden = !sideNewMenu.hidden;
+      sideNewBtn.setAttribute('aria-expanded', !sideNewMenu.hidden);
+    });
+    document.addEventListener('click', event => {
+      if (!event.target.closest('.side-new-dropdown')) {
+        sideNewMenu.hidden = true;
+        sideNewBtn.setAttribute('aria-expanded', 'false');
+      }
+    });
+  }
+
+  $('side-menu-upload')?.addEventListener('click', () => {
+    if (sideNewMenu) sideNewMenu.hidden = true;
+    uploadTriggeredFromNew = true;
+    $('upload-file')?.click();
+  });
+
+  $('side-menu-folder')?.addEventListener('click', () => {
+    if (sideNewMenu) sideNewMenu.hidden = true;
+    $('folder-dialog')?.showModal();
+    $('folder-name-input')?.focus();
+  });
+
+  // Attach tab switcher to all [data-drive-tab] buttons
+  document.querySelectorAll('[data-drive-tab]').forEach(btn => {
+    btn.addEventListener('click', () => switchDriveTab(btn.dataset.driveTab));
+  });
+
+  // Empty trash button
+  $('empty-trash-btn')?.addEventListener('click', () => {
+    if (!trashFiles.length) return;
+    if (confirm('Permanently delete all items from Trash? This cannot be undone.')) {
+      trashFiles = [];
+      saveTrash();
+      renderTrashFiles();
+      showToast('Trash emptied permanently.');
+    }
+  });
+
+  // Handle star toggling, restore from trash, and purge from trash
+  document.addEventListener('click', async event => {
+    // Star toggle
+    const starBtn = event.target.closest('[data-star-file]');
+    if (starBtn) {
+      event.stopPropagation();
+      const fileId = starBtn.dataset.starFile;
+      const logicalId = starBtn.dataset.logicalId;
+      const key = logicalId || fileId;
+      if (starredFileIds.has(key)) {
+        starredFileIds.delete(key);
+        showToast('Removed from Starred.');
+      } else {
+        starredFileIds.add(key);
+        showToast('Added to Starred.');
+      }
+      saveStarred();
+      renderFilteredCloudFiles();
+      return;
+    }
+
+    // Restore from trash
+    const restoreTrashBtn = event.target.closest('[data-restore-trash]');
+    if (restoreTrashBtn) {
+      event.stopPropagation();
+      const fileId = restoreTrashBtn.dataset.restoreTrash;
+      const idx = trashFiles.findIndex(f => f.id === fileId);
+      if (idx !== -1) {
+        const [restored] = trashFiles.splice(idx, 1);
+        saveTrash();
+        cloudFileCache.unshift(restored);
+        showToast(`"${restored.filename}" restored.`);
+        renderTrashFiles();
+      }
+      return;
+    }
+
+    // Purge from trash
+    const purgeTrashBtn = event.target.closest('[data-purge-trash]');
+    if (purgeTrashBtn) {
+      event.stopPropagation();
+      const fileId = purgeTrashBtn.dataset.purgeTrash;
+      const filename = purgeTrashBtn.dataset.filename || 'this item';
+      if (confirm(`Permanently delete "${filename}"? This cannot be undone.`)) {
+        trashFiles = trashFiles.filter(f => f.id !== fileId);
+        saveTrash();
+        renderTrashFiles();
+        showToast(`"${filename}" permanently deleted.`);
+      }
+      return;
+    }
+  });
+  
   const btnViewList = $('btn-view-list');
   const btnViewGrid = $('btn-view-grid');
   if (btnViewList && btnViewGrid) {

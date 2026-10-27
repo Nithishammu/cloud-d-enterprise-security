@@ -1746,6 +1746,114 @@
       font-size: 11px;
     }
     
+
+    /* Sidebar + New Button & Drive Navigation (Signature Purple Theme) */
+    .side-new-dropdown {
+      position: relative;
+      padding: 0 4px 18px;
+    }
+    .btn-side-new {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: #ffffff;
+      color: #2b1d44;
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      border-radius: 16px;
+      padding: 12px 22px;
+      font-size: 14px;
+      font-weight: 650;
+      cursor: pointer;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.22);
+      transition: all 0.2s ease;
+      width: auto;
+    }
+    .btn-side-new:hover {
+      background: #f7f2ff;
+      transform: translateY(-1px);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.28);
+      color: #1a0e30;
+    }
+    .btn-side-new svg {
+      stroke: #7864d8;
+      width: 20px;
+      height: 20px;
+    }
+    .side-new-menu {
+      position: absolute;
+      top: calc(100% - 6px);
+      left: 4px;
+      background: #ffffff;
+      border: 1px solid #d5c9e7;
+      border-radius: 14px;
+      box-shadow: 0 12px 36px rgba(35, 20, 60, 0.24);
+      padding: 6px;
+      z-index: 100;
+      min-width: 185px;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+    .side-menu-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 14px;
+      border-radius: 9px;
+      background: transparent;
+      border: none;
+      color: #2b2340;
+      font-size: 13.5px;
+      font-weight: 550;
+      text-align: left;
+      cursor: pointer;
+      transition: background 0.15s ease;
+      width: 100%;
+    }
+    .side-menu-item:hover {
+      background: #f0eafb;
+      color: #4a2b7a;
+    }
+    .side-menu-item svg {
+      stroke: #7864d8;
+    }
+    .drive-nav button {
+      border-radius: 20px;
+    }
+    .drive-nav button.active {
+      background: #e8ddfc !important;
+      color: #2b1452 !important;
+      font-weight: 650;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.16);
+    }
+    .drive-nav button.active svg {
+      fill: #2b1452 !important;
+    }
+    .drive-nav button svg {
+      transition: fill 0.18s ease;
+    }
+    .drive-nav button:hover:not(.active) svg {
+      fill: #ffffff;
+    }
+    .btn-star {
+      background: transparent;
+      border: none;
+      color: #b5a9cc;
+      font-size: 16px;
+      cursor: pointer;
+      padding: 2px 6px;
+      line-height: 1;
+      transition: color 0.15s ease, transform 0.15s ease;
+    }
+    .btn-star:hover {
+      color: #e5a11c;
+      transform: scale(1.2);
+    }
+    .btn-star.active {
+      color: #f1a91b;
+      text-shadow: 0 1px 3px rgba(241, 169, 27, 0.4);
+    }
+    
 </style>
 <script>
     // Immediate Cache & ServiceWorker Purge
@@ -1788,13 +1896,54 @@
         <div class="brand-mark"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.3 9.4 17 19 7" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 2.5 20 6v5.3c0 5.3-3.4 8.6-8 10.2-4.6-1.6-8-4.9-8-10.2V6l8-3.5Z" stroke="currentColor" stroke-width="1.5"/></svg></div>
         <div><div class="brand-name">Cloud-D</div></div>
       </div>
+      <!-- Google Drive Style + New Button with Upload & Folder Options -->
+      <div class="side-new-dropdown">
+        <button type="button" class="btn-side-new" id="side-new-btn" aria-haspopup="true" aria-expanded="false">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M12 5v14M5 12h14"/></svg>
+          <span>New</span>
+        </button>
+        <div class="side-new-menu" id="side-new-menu" hidden>
+          <button type="button" class="side-menu-item" id="side-menu-upload">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12"/></svg>
+            <span>Upload files</span>
+          </button>
+          <button type="button" class="side-menu-item" id="side-menu-folder">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+            <span>New folder</span>
+          </button>
+        </div>
+      </div>
+
       <div class="nav-label">Cloud Workspace</div>
-      <nav class="nav" aria-label="Main navigation">
-        <button class="active" data-page="cloud"><span class="nav-icon">☁</span>Cloud Storage</button>
-        <button data-page="threats" class="staff-only"><span class="nav-icon">🛡</span>Threat Simulation</button>
-        <button data-page="simulation" class="staff-only"><span class="nav-icon">⚡</span>Agent Background</button>
-        <button data-page="overview" class="staff-only"><span class="nav-icon">◫</span>Cloud Architecture</button>
-        <button data-page="report" class="staff-only"><span class="nav-icon">📋</span>Security Report</button>
+      <nav class="nav drive-nav" aria-label="Drive navigation">
+        <button class="active" data-page="cloud" data-drive-tab="home">
+          <span class="nav-icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg></span>
+          <span>Home</span>
+        </button>
+        <button data-page="cloud" data-drive-tab="my-drive">
+          <span class="nav-icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M19 2H5c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 18H5V4h14v16zm-7-2h2v-2h-2v2zm0-4h2v-2h-2v2zm0-4h2V8h-2v2z"/></svg></span>
+          <span>My Drive</span>
+        </button>
+        <button data-page="cloud" data-drive-tab="recent">
+          <span class="nav-icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg></span>
+          <span>Recent</span>
+        </button>
+        <button data-page="cloud" data-drive-tab="starred">
+          <span class="nav-icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="m12 17.27 6.18 3.73-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg></span>
+          <span>Starred</span>
+        </button>
+        <button data-page="cloud" data-drive-tab="trash">
+          <span class="nav-icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/></svg></span>
+          <span>Trash</span>
+        </button>
+      </nav>
+
+      <div class="nav-label staff-only" style="margin-top: 18px;">Threat Security &amp; AI</div>
+      <nav class="nav threat-nav staff-only" aria-label="Security navigation">
+        <button data-page="threats"><span class="nav-icon">⚔</span><span>Threat Simulation</span></button>
+        <button data-page="simulation"><span class="nav-icon">🤖</span><span>Agent Background</span></button>
+        <button data-page="overview"><span class="nav-icon">🛡</span><span>Cloud Architecture</span></button>
+        <button data-page="report"><span class="nav-icon">📊</span><span>Security Report</span></button>
       </nav>
       <div class="side-spacer"></div>
       <div class="side-card"><div class="side-card-title"><span style="color:var(--cyan)">🛡</span> Active Cloud Defense</div><p>Automated AI agent sentinels protect cloud storage nodes and account data against active threats.</p></div>
@@ -1946,7 +2095,11 @@
           </div>
 
 <div class="cloud-workspace section-gap">
-            <div class="card table-card cloud-files-card"><div class="card-head"><div><div class="card-title">My Drive · Files &amp; Folders</div><div class="card-desc" id="stored-files-description">Files are scoped to your account type and assigned folders.</div></div><span class="pill blue" id="stored-files-pill">0 FILES</span></div><div class="cloud-tools"><label class="cloud-search"><span>⌕</span><input id="cloud-file-search" type="search" placeholder="Search files or folders…" aria-label="Search stored cloud files"></label><select id="cloud-folder-filter" aria-label="Filter by folder"><option value="all">All folders</option></select><select id="cloud-type-filter" aria-label="Filter by file type"><option value="all">All file types</option><option value="data">Structured data</option><option value="document">Documents</option></select></div><div class="table-wrap"><table><thead><tr><th>FILE</th><th>FOLDER</th><th>SIZE</th><th>TYPE</th><th>RECORDS</th><th>BACKUP</th><th>ACTION</th></tr></thead><tbody id="cloud-files-body"><tr><td colspan="7" class="empty">No files yet. Upload a document above to add it to your cloud drive.</td></tr></tbody></table></div>
+            <div class="card table-card cloud-files-card"><div class="card-head"><div><div class="card-title">My Drive · Files &amp; Folders</div><div class="card-desc" id="stored-files-description">Files are scoped to your account type and assigned folders.</div></div><span class="pill blue" id="stored-files-pill">0 FILES</span></div><div class="cloud-tools"><label class="cloud-search"><span>⌕</span><input id="cloud-file-search" type="search" placeholder="Search files or folders…" aria-label="Search stored cloud files"></label><select id="cloud-folder-filter" aria-label="Filter by folder"><option value="all">All folders</option></select><select id="cloud-type-filter" aria-label="Filter by file type"><option value="all">All file types</option><option value="data">Structured data</option><option value="document">Documents</option></select></div><div class="trash-actions-bar" id="trash-actions-bar" style="display:none;align-items:center;justify-content:space-between;padding:12px 18px;background:#fbf2f4;border:1px solid #f0d5db;border-radius:10px;margin-bottom:14px;color:#7e2b45;">
+              <span style="font-size:13px;font-weight:550;">🗑 Items in Trash are kept safely until restored or permanently emptied.</span>
+              <button type="button" class="btn danger" id="empty-trash-btn" style="font-size:12px;padding:6px 14px;">Empty Trash Now</button>
+            </div>
+            <div class="table-wrap"><table><thead><tr><th>FILE</th><th>FOLDER</th><th>SIZE</th><th>TYPE</th><th>RECORDS</th><th>BACKUP</th><th>ACTION</th></tr></thead><tbody id="cloud-files-body"><tr><td colspan="7" class="empty">No files yet. Upload a document above to add it to your cloud drive.</td></tr></tbody></table></div>
             <div class="cloud-files-grid-view" id="cloud-files-grid" style="display:none;"></div>
           </div>
             <aside class="card cloud-activity-card"><div class="card-head"><div><div class="card-title">Live cloud activity</div><div class="card-desc">Recent actions in this browser session</div></div><span class="activity-live"><i></i>LIVE</span></div><div class="activity-list" id="cloud-activity-list"><div class="empty">Connecting to the cloud workspace…</div></div></aside>
