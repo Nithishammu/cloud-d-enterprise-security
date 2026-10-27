@@ -197,6 +197,17 @@ class CloudStorageVault:
                 conn.execute("CREATE INDEX IF NOT EXISTS idx_files_folder ON cloud_files(folder_id)")
                 conn.execute("CREATE INDEX IF NOT EXISTS idx_files_current ON cloud_files(is_current)")
 
+                # Dynamic column migrations for pre-existing databases
+                existing_cols = {row[1] for row in conn.execute("PRAGMA table_info(cloud_files)").fetchall()}
+                if "is_post_quantum" not in existing_cols:
+                    conn.execute("ALTER TABLE cloud_files ADD COLUMN is_post_quantum INTEGER NOT NULL DEFAULT 0")
+                if "is_client_encrypted" not in existing_cols:
+                    conn.execute("ALTER TABLE cloud_files ADD COLUMN is_client_encrypted INTEGER NOT NULL DEFAULT 0")
+                if "client_salt" not in existing_cols:
+                    conn.execute("ALTER TABLE cloud_files ADD COLUMN client_salt TEXT")
+                if "folder_id" not in existing_cols:
+                    conn.execute("ALTER TABLE cloud_files ADD COLUMN folder_id TEXT NOT NULL DEFAULT 'root'")
+
     def get_storage_telemetry(self) -> Dict[str, Any]:
         """Returns Task A persistent disk telemetry and storage statistics."""
         try:

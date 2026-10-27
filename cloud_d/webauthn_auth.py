@@ -181,6 +181,12 @@ class WebAuthnManager:
                 """
             )
 
+            cols = {row[1] for row in conn.execute("PRAGMA table_info(cloud_webauthn_credentials)").fetchall()}
+            if "security_level" not in cols:
+                conn.execute("ALTER TABLE cloud_webauthn_credentials ADD COLUMN security_level TEXT NOT NULL DEFAULT 'Hardware TEE'")
+            if "vendor" not in cols:
+                conn.execute("ALTER TABLE cloud_webauthn_credentials ADD COLUMN vendor TEXT NOT NULL DEFAULT 'Unknown'")
+
     def create_registration_challenge(self, user_id: str, username: str) -> Dict[str, Any]:
         """Generates standard W3C WebAuthn PublicKeyCredentialCreationOptions."""
         challenge_bytes = secrets.token_bytes(32)

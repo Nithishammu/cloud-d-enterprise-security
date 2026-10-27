@@ -130,6 +130,12 @@ class PushNotificationManager:
                 )
                 """
             )
+            cols_sub = {row[1] for row in conn.execute("PRAGMA table_info(cloud_push_subscriptions)").fetchall()}
+            if "token_type" not in cols_sub:
+                conn.execute("ALTER TABLE cloud_push_subscriptions ADD COLUMN token_type TEXT NOT NULL DEFAULT 'web_push'")
+            if "platform" not in cols_sub:
+                conn.execute("ALTER TABLE cloud_push_subscriptions ADD COLUMN platform TEXT NOT NULL DEFAULT 'web'")
+
             conn.execute(
                 """
                 CREATE TABLE IF NOT EXISTS cloud_push_history (
