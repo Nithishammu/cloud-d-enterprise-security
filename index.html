@@ -1551,6 +1551,19 @@
       }
     }
   </style>
+<script>
+    // Immediate Cache & ServiceWorker Purge
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.getRegistrations().then(regs => {
+        for (const reg of regs) reg.unregister();
+      });
+    }
+    if ('caches' in window) {
+      caches.keys().then(names => {
+        for (const name of names) caches.delete(name);
+      });
+    }
+  </script>
 </head>
 <body>
   <section class="auth-screen" id="auth-screen" aria-labelledby="auth-title">
