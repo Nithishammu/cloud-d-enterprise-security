@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import hashlib
 import hmac
+import base64
 import os
 import re
 import secrets
@@ -26,6 +27,18 @@ from .storage import EncryptedSQLiteStore
 
 
 VECTORS = ("auth", "flow", "query", "behavior")
+TARGET_DEFENDER_BY_ROLE = {
+    "auth": "auth",
+    "api": "flow",
+    "db": "query",
+    "customer": "behavior",
+}
+DEFENDER_NAMES = {
+    "auth": "AuthSentinel",
+    "flow": "FlowGuardian",
+    "query": "QueryShield",
+    "behavior": "BehaviorWatch",
+}
 VECTOR_NAMES = {
     "auth": ("Credential-Bot", "AuthSentinel", "Credential attacks"),
     "flow": ("FloodSwarm", "FlowGuardian", "DDoS / traffic floods"),
@@ -40,9 +53,11 @@ class CloudDApplication:
     def __init__(self):
         self.lock = RLock()
         self.threshold = .4
-        self.intensity = "normal"
+        self.intensity = 5
         self.active_vectors = set(VECTORS)
         self.storage = EncryptedSQLiteStore()
+        self.current_report_id = None
+        self.current_report_owner = None
         self._reset_unlocked()
 
     @staticmethod
@@ -52,8 +67,19 @@ class CloudDApplication:
     def register_user(self, details: dict) -> dict:
         email = str(details.get("email", "")).strip().casefold()
         username = str(details.get("username", "")).strip().casefold()
-        name = username
+        name = str(details.get("name", "")).strip()
         password = str(details.get("password", ""))
+        profile_picture = str(details.get("profile_picture", ""))
+        if profile_picture:
+            match = re.fullmatch(r"data:image/(png|jpeg|webp);base64,([A-Za-z0-9+/]+={0,2})", profile_picture)
+            if not match:
+                raise ValueError("Profile pictures must be PNG, JPEG, or WebP images.")
+            try:
+                image_bytes = base64.b64decode(match.group(2), validate=True)
+            except (ValueError, base64.binascii.Error) as exc:
+                raise ValueError("The selected profile picture could not be read.") from exc
+            if not image_bytes or len(image_bytes) > 2 * 1024 * 1024:
+                raise ValueError("Profile pictures must be 2 MB or smaller.")
         role = str(details.get("role", ""))
         if role not in {"customer", "staff"}:
             raise ValueError("Choose Customer or Staff as the account type.")
@@ -61,6 +87,8 @@ class CloudDApplication:
             raise ValueError("Enter a valid email address.")
         if not re.fullmatch(r"[a-z0-9][a-z0-9._-]{2,29}", username):
             raise ValueError("Choose a username with 3–30 letters, numbers, dots, underscores, or hyphens; it must start with a letter or number.")
+        if not name or len(name) > 80:
+            raise ValueError("Enter a name up to 80 characters.")
         if len(password) < 10 or len(password) > 1024:
             raise ValueError("Choose a password between 10 and 1024 characters.")
 
@@ -98,7 +126,7 @@ class CloudDApplication:
             raise ValueError("An account with that email already exists. Log in instead.")
         try:
             account = self.storage.create_user(
-                uuid.uuid4().hex, email, username, name, role, status, salt, self._password_hash(password, salt)
+                uuid.uuid4().hex, email, username, name, role, status, salt, self._password_hash(password, salt), profile_picture
             )
         except sqlite3.IntegrityError as exc:
             raise ValueError("That email address or username is already in use.") from exc
@@ -166,7 +194,7 @@ class CloudDApplication:
         self.last_run_at = None
         self.has_run = False
         flood = next(agent for agent in self.attackers if agent.vector_id == "flow")
-        flood.request_rate = {"normal": 5_000, "elevated": 7_000, "severe": 9_000}[self.intensity]
+        flood.request_rate = 3_500 + self.intensity * 500
         self.storage.sync_nodes([node.to_dict() for node in self.cloud.nodes.values()])
         self._restore_uploads_unlocked()
 
@@ -190,11 +218,13 @@ class CloudDApplication:
             self._reset_unlocked()
             return self.get_state()
 
-    def begin_new_run(self, config: dict | None = None) -> dict:
+    def begin_new_run(self, config: dict | None = None, user: dict | None = None) -> dict:
         with self.lock:
             if config:
                 self.configure(config)
             self._reset_unlocked()
+            self.current_report_id = uuid.uuid4().hex
+            self.current_report_owner = user["id"] if user else None
             return self.get_state()
 
     def configure(self, values: dict) -> None:
@@ -211,15 +241,18 @@ class CloudDApplication:
                     raise ValueError("Active vectors must be a list.")
                 self.active_vectors = set(requested).intersection(VECTORS)
             if "intensity" in values:
-                intensity = values["intensity"]
-                if intensity not in {"normal", "elevated", "severe"}:
-                    raise ValueError("Choose a valid attack intensity.")
+                try:
+                    intensity = int(values["intensity"])
+                except (TypeError, ValueError):
+                    raise ValueError("Attack intensity must be between 1 and 10.")
+                if not 1 <= intensity <= 10:
+                    raise ValueError("Attack intensity must be between 1 and 10.")
                 if intensity != self.intensity:
                     self.intensity = intensity
                     flood = next(agent for agent in self.attackers if agent.vector_id == "flow")
-                    flood.request_rate = {"normal": 5_000, "elevated": 7_000, "severe": 9_000}[intensity]
+                    flood.request_rate = 3_500 + intensity * 500
 
-    def simulate_round(self, config: dict | None = None) -> dict:
+    def simulate_round(self, config: dict | None = None, user: dict | None = None) -> dict:
         with self.lock:
             if config:
                 self.configure(config)
@@ -239,6 +272,14 @@ class CloudDApplication:
                 attack = attacker.decide(cloud_state)
                 if attack is None:
                     continue
+                target_node = self.cloud.nodes.get(attack.get("target"))
+                target_role = target_node.role if target_node else ""
+                attack["target_role"] = target_role
+                attack["assigned_defender_vector"] = TARGET_DEFENDER_BY_ROLE.get(target_role, "")
+                attack["assigned_defender"] = DEFENDER_NAMES.get(attack["assigned_defender_vector"], "")
+                base_damage = int(attack.get("damage", 0))
+                if base_damage:
+                    attack["damage"] = max(1, min(25, round(base_damage * self.intensity / 5)))
                 self.cloud.register_attack(attack)
                 attacks.append(attack)
                 count = self.counts[attacker.vector_id]
@@ -254,8 +295,8 @@ class CloudDApplication:
                     self.counts[vector]["actions"] += 1
 
             for attack in attacks:
-                blocker = self.engine.find_blocker(attack, joint_actions)
-                related = next((proposal for proposal in ranked if attack["type"] in proposal["counters"]), None)
+                blocker = self.engine.find_blocker(attack, joint_actions, TARGET_DEFENDER_BY_ROLE)
+                related = next((proposal for proposal in ranked if proposal.get("vector_id") == attack.get("assigned_defender_vector") and attack["type"] in proposal["counters"]), None)
                 decision = blocker or related
                 vector = decision["vector_id"] if decision else attack["family"]
                 if blocker:
@@ -286,6 +327,8 @@ class CloudDApplication:
                     "tactic": attack.get("tactic", ""),
                     "attack_type": attack["type"],
                     "target": attack["target_name"],
+                    "target_role": attack.get("target_role", ""),
+                    "assigned_defender": attack.get("assigned_defender", ""),
                     "utility": decision["utility"] if decision else 0.0,
                     "defender": blocker["agent"] if blocker else "",
                     "action": blocker["action"] if blocker else (decision["action"] if decision else ""),
@@ -300,7 +343,24 @@ class CloudDApplication:
             self.attack_log = self.attack_log[-500:]
             self.has_run = True
             self.last_run_at = datetime.now(timezone.utc).isoformat()
-            return self.get_state()
+            state = self.get_state(user)
+            report_owner = user["id"] if user else self.current_report_owner
+            if self.current_report_id and report_owner:
+                self.current_report_owner = report_owner
+                self.storage.save_simulation_report(self.current_report_id, report_owner, {
+                    "round": state["round"], "max_rounds": state["max_rounds"], "last_run_at": state["last_run_at"],
+                    "threshold": state["threshold"], "intensity": state["intensity"],
+                    "active_vectors": state["active_vectors"], "metrics": state["metrics"],
+                    "counts": state["counts"], "nodes": state["nodes"],
+                    "attack_log": state["attack_log"], "events": state["events"],
+                })
+            return state
+
+    def update_drive_entry(self, user: dict, logical_id: str, action: str) -> dict:
+        with self.lock:
+            result = self.storage.update_drive_entry(user, logical_id, action)
+            result["files"] = self.storage.list_files(user)
+            return result
 
     def upload_items(
         self,
@@ -427,25 +487,54 @@ class CloudDApplication:
 
     def get_state(self, user: dict | None = None) -> dict:
         if user and user["role"] == "customer":
-            return {
-                "round": 0,
+            public_metrics = self.cloud.final_report() if self.has_run else None
+            latest_activity = {
+                "id": self.current_report_id,
+                "last_run_at": self.last_run_at,
+                "round": self.cloud.round,
                 "max_rounds": self.cloud.MAX_ROUNDS,
-                "has_run": False,
-                "game_over": False,
-                "last_run_at": None,
+                "active": bool(self.has_run and self.cloud.round < self.cloud.MAX_ROUNDS),
+                "metrics": public_metrics,
+            } if self.has_run else None
+            public_nodes = [
+                {
+                    "name": node["name"], "role": node["role"], "status": node["status"],
+                    "health": node["health"], "uploaded_records": node["uploaded_records"],
+                    "compromised_records": node["compromised_records"],
+                }
+                for node in (public_metrics or {}).get("node_health", [])
+            ]
+            return {
+                "round": self.cloud.round if self.has_run else 0,
+                "max_rounds": self.cloud.MAX_ROUNDS,
+                "has_run": self.has_run,
+                "game_over": self.cloud.is_game_over() if self.has_run else False,
+                "last_run_at": self.last_run_at,
                 "threshold": self.threshold,
                 "intensity": self.intensity,
-                "active_vectors": [],
-                "counts": {},
-                "metrics": None,
-                "nodes": [],
+                "active_vectors": sorted(self.active_vectors) if self.has_run else [],
+                "counts": {key: dict(value) for key, value in self.counts.items()},
+                "metrics": public_metrics,
+                "nodes": public_nodes,
                 "storage": self.storage.snapshot(user),
                 "files": self.storage.list_files(user),
                 "folders": self.storage.list_folders(user),
+                "saved_reports": ([{
+                    "id": self.current_report_id,
+                    "created_at": self.last_run_at,
+                    "updated_at": self.last_run_at,
+                    "payload": {
+                        "round": self.cloud.round,
+                        "max_rounds": self.cloud.MAX_ROUNDS,
+                        "metrics": public_metrics,
+                    },
+                }] if latest_activity else []),
+                "shared_report": latest_activity,
+                "security_notice": latest_activity,
                 "attack_log": [],
                 "events": [],
                 "proposals": [],
-                "latency_ms": 0,
+                "latency_ms": round(sum(self.latencies) / len(self.latencies)) if self.latencies else 0,
                 "attackers": [],
                 "defenders": [],
                 "current_user": user,
@@ -466,6 +555,7 @@ class CloudDApplication:
             "storage": self.storage.snapshot(user),
             "files": self.storage.list_files(user) if user else [],
             "folders": self.storage.list_folders(user) if user else [],
+            "saved_reports": self.storage.list_simulation_reports(user["id"]) if user else [],
             "attack_log": list(self.attack_log),
             "events": list(self.cloud.events[-60:]),
             "proposals": [dict(proposal) for proposal in self.last_proposals],

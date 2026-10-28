@@ -133,7 +133,9 @@ class EncryptedSQLiteStore:
                     password_salt BLOB NOT NULL,
                     password_hash BLOB NOT NULL,
                     created_at TEXT NOT NULL,
-                    username TEXT NOT NULL DEFAULT ''
+                    username TEXT NOT NULL DEFAULT '',
+                    profile_nonce BLOB,
+                    profile_ciphertext BLOB
                 );
                 CREATE TABLE IF NOT EXISTS cloud_sessions (
                     session_hash TEXT PRIMARY KEY,
@@ -166,6 +168,23 @@ class EncryptedSQLiteStore:
                     created_at TEXT NOT NULL
                 );
                 CREATE INDEX IF NOT EXISTS cloud_files_node_idx ON cloud_files(node_id, created_at);
+                CREATE TABLE IF NOT EXISTS cloud_drive_entries (
+                    owner_id TEXT NOT NULL,
+                    logical_id TEXT NOT NULL,
+                    starred INTEGER NOT NULL DEFAULT 0,
+                    trashed_at TEXT,
+                    updated_at TEXT NOT NULL,
+                    PRIMARY KEY(owner_id, logical_id)
+                );
+                CREATE TABLE IF NOT EXISTS cloud_simulation_reports (
+                    report_id TEXT PRIMARY KEY,
+                    owner_id TEXT NOT NULL,
+                    node_id INTEGER NOT NULL,
+                    created_at TEXT NOT NULL,
+                    updated_at TEXT NOT NULL,
+                    nonce BLOB NOT NULL,
+                    ciphertext BLOB NOT NULL
+                );
                 CREATE TABLE IF NOT EXISTS backup_db.nodes (
                     node_id INTEGER PRIMARY KEY,
                     node_name TEXT NOT NULL,
@@ -180,7 +199,9 @@ class EncryptedSQLiteStore:
                     password_salt BLOB NOT NULL,
                     password_hash BLOB NOT NULL,
                     created_at TEXT NOT NULL,
-                    username TEXT NOT NULL DEFAULT ''
+                    username TEXT NOT NULL DEFAULT '',
+                    profile_nonce BLOB,
+                    profile_ciphertext BLOB
                 );
                 CREATE TABLE IF NOT EXISTS backup_db.folders (
                     folder_id TEXT PRIMARY KEY,
@@ -204,10 +225,28 @@ class EncryptedSQLiteStore:
                     ciphertext BLOB NOT NULL,
                     created_at TEXT NOT NULL
                 );
+                CREATE TABLE IF NOT EXISTS backup_db.drive_entries (
+                    owner_id TEXT NOT NULL,
+                    logical_id TEXT NOT NULL,
+                    starred INTEGER NOT NULL DEFAULT 0,
+                    trashed_at TEXT,
+                    updated_at TEXT NOT NULL,
+                    PRIMARY KEY(owner_id, logical_id)
+                );
+                CREATE TABLE IF NOT EXISTS backup_db.simulation_reports (
+                    report_id TEXT PRIMARY KEY,
+                    owner_id TEXT NOT NULL,
+                    node_id INTEGER NOT NULL,
+                    created_at TEXT NOT NULL,
+                    updated_at TEXT NOT NULL,
+                    nonce BLOB NOT NULL,
+                    ciphertext BLOB NOT NULL
+                );
                 """
             )
         self._migrate_file_versions()
         self._migrate_identity_and_backup()
+        self._expire_trash()
 
     def _migrate_file_versions(self) -> None:
         """Add version metadata and group older same-name uploads without changing their contents."""
@@ -253,6 +292,123 @@ class EncryptedSQLiteStore:
                 "CREATE INDEX IF NOT EXISTS cloud_files_logical_idx ON cloud_files(logical_id, version_number)"
             )
 
+    def _expire_trash(self) -> None:
+        """Permanently remove trashed versions after 90 days; current files have no TTL."""
+        cutoff = datetime.fromtimestamp(datetime.now(timezone.utc).timestamp() - 90 * 86400, timezone.utc).isoformat()
+        with self._lock, self._connection:
+            expired = self._connection.execute(
+                "SELECT owner_id, logical_id FROM cloud_drive_entries WHERE trashed_at IS NOT NULL AND trashed_at <= ?",
+                (cutoff,),
+            ).fetchall()
+            for row in expired:
+                self._connection.execute("DELETE FROM cloud_files WHERE logical_id = ?", (row["logical_id"],))
+                self._connection.execute("DELETE FROM backup_db.files WHERE logical_id = ?", (row["logical_id"],))
+                self._connection.execute(
+                    "DELETE FROM cloud_drive_entries WHERE owner_id = ? AND logical_id = ?",
+                    (row["owner_id"], row["logical_id"]),
+                )
+                self._connection.execute(
+                    "DELETE FROM backup_db.drive_entries WHERE owner_id = ? AND logical_id = ?",
+                    (row["owner_id"], row["logical_id"]),
+                )
+
+    def update_drive_entry(self, user: dict[str, Any], logical_id: str, action: str) -> dict[str, Any]:
+        if action not in {"star", "unstar", "trash", "restore"}:
+            raise ValueError("Choose a supported drive action.")
+        self._expire_trash()
+        with self._lock, self._connection:
+            row = self._connection.execute(
+                """SELECT 1 FROM cloud_files WHERE logical_id = ? AND access_role = ? AND (? = 'staff' OR owner_id = ?)
+                   UNION ALL SELECT 1 FROM backup_db.files WHERE logical_id = ? AND access_role = ? AND (? = 'staff' OR owner_id = ?) LIMIT 1""",
+                (logical_id, user["role"], user["role"], user["id"], logical_id, user["role"], user["role"], user["id"]),
+            ).fetchone()
+            if row is None:
+                raise ValueError("That file is not in your cloud area.")
+            now = datetime.now(timezone.utc).isoformat()
+            starred = int(action == "star")
+            trashed_at = now if action == "trash" else None
+            existing = self._connection.execute(
+                "SELECT starred, trashed_at FROM cloud_drive_entries WHERE owner_id = ? AND logical_id = ?",
+                (user["id"], logical_id),
+            ).fetchone()
+            if action == "unstar":
+                starred = 0
+                trashed_at = None if existing is None else existing["trashed_at"]
+            elif action == "restore":
+                starred = 0 if existing is None else int(existing["starred"])
+                trashed_at = None
+            elif action == "trash":
+                starred = 0 if existing is None else int(existing["starred"])
+            elif existing and existing["trashed_at"]:
+                trashed_at = existing["trashed_at"]
+            values = (user["id"], logical_id, starred, trashed_at, now)
+            self._connection.execute(
+                "INSERT INTO cloud_drive_entries(owner_id, logical_id, starred, trashed_at, updated_at) VALUES(?, ?, ?, ?, ?) "
+                "ON CONFLICT(owner_id, logical_id) DO UPDATE SET starred=excluded.starred, trashed_at=excluded.trashed_at, updated_at=excluded.updated_at",
+                values,
+            )
+            self._connection.execute(
+                "INSERT INTO backup_db.drive_entries(owner_id, logical_id, starred, trashed_at, updated_at) VALUES(?, ?, ?, ?, ?) "
+                "ON CONFLICT(owner_id, logical_id) DO UPDATE SET starred=excluded.starred, trashed_at=excluded.trashed_at, updated_at=excluded.updated_at",
+                values,
+            )
+        return {"logical_id": logical_id, "starred": bool(starred), "trashed_at": trashed_at}
+
+    def save_simulation_report(self, report_id: str, owner_id: str, payload: dict[str, Any]) -> None:
+        now = datetime.now(timezone.utc).isoformat()
+        node_id = 2
+        nonce, ciphertext = self._seal(node_id, report_id, payload)
+        with self._lock, self._connection:
+            row = self._connection.execute(
+                "SELECT created_at FROM cloud_simulation_reports WHERE report_id = ? AND owner_id = ?",
+                (report_id, owner_id),
+            ).fetchone()
+            created_at = row["created_at"] if row else now
+            values = (report_id, owner_id, node_id, created_at, now, nonce, ciphertext)
+            self._connection.execute(
+                "INSERT INTO cloud_simulation_reports VALUES(?, ?, ?, ?, ?, ?, ?) "
+                "ON CONFLICT(report_id) DO UPDATE SET updated_at=excluded.updated_at, nonce=excluded.nonce, ciphertext=excluded.ciphertext",
+                values,
+            )
+            self._connection.execute(
+                "INSERT INTO backup_db.simulation_reports VALUES(?, ?, ?, ?, ?, ?, ?) "
+                "ON CONFLICT(report_id) DO UPDATE SET updated_at=excluded.updated_at, nonce=excluded.nonce, ciphertext=excluded.ciphertext",
+                values,
+            )
+
+    def list_simulation_reports(self, owner_id: str, limit: int = 50) -> list[dict[str, Any]]:
+        with self._lock, self._connection:
+            backup_rows = {row["report_id"]: row for row in self._connection.execute(
+                "SELECT * FROM backup_db.simulation_reports WHERE owner_id = ?", (owner_id,)
+            ).fetchall()}
+            primary_rows = {row["report_id"]: row for row in self._connection.execute(
+                "SELECT * FROM cloud_simulation_reports WHERE owner_id = ?", (owner_id,)
+            ).fetchall()}
+            for report_id, backup in backup_rows.items():
+                if report_id not in primary_rows:
+                    self._connection.execute(
+                        "INSERT INTO cloud_simulation_reports VALUES(?, ?, ?, ?, ?, ?, ?)",
+                        tuple(backup[key] for key in ("report_id", "owner_id", "node_id", "created_at", "updated_at", "nonce", "ciphertext")),
+                    )
+                    primary_rows[report_id] = backup
+            rows = sorted(primary_rows.values(), key=lambda row: row["updated_at"], reverse=True)[:max(1, min(int(limit), 100))]
+        reports = []
+        for row in rows:
+            try:
+                payload = self._open(int(row["node_id"]), row["report_id"], row["nonce"], row["ciphertext"])
+            except StorageIntegrityError:
+                backup = backup_rows.get(row["report_id"])
+                if backup is None:
+                    continue
+                payload = self._open(int(backup["node_id"]), backup["report_id"], backup["nonce"], backup["ciphertext"])
+                with self._lock, self._connection:
+                    self._connection.execute(
+                        "UPDATE cloud_simulation_reports SET nonce=?, ciphertext=?, updated_at=? WHERE report_id=?",
+                        (backup["nonce"], backup["ciphertext"], backup["updated_at"], backup["report_id"]),
+                    )
+            reports.append({"id": row["report_id"], "created_at": row["created_at"], "updated_at": row["updated_at"], "payload": payload})
+        return reports
+
     def _migrate_identity_and_backup(self) -> None:
         """Recover missing primary rows and keep the separate backup database synchronized."""
         recovered_folder_id = "folder-recovered-staff"
@@ -270,6 +426,10 @@ class EncryptedSQLiteStore:
                     self._connection.execute(
                         f"ALTER TABLE {table} ADD COLUMN username TEXT NOT NULL DEFAULT ''"
                     )
+                if "profile_nonce" not in columns:
+                    self._connection.execute(f"ALTER TABLE {table} ADD COLUMN profile_nonce BLOB")
+                if "profile_ciphertext" not in columns:
+                    self._connection.execute(f"ALTER TABLE {table} ADD COLUMN profile_ciphertext BLOB")
             self._connection.execute("INSERT OR IGNORE INTO cloud_nodes SELECT * FROM backup_db.nodes")
             self._connection.execute("INSERT OR IGNORE INTO cloud_users SELECT * FROM backup_db.users")
             rows = self._connection.execute(
@@ -298,8 +458,8 @@ class EncryptedSQLiteStore:
             )
             self._connection.execute(
                 """INSERT OR IGNORE INTO backup_db.users(user_id, email, display_name, role, status, password_salt,
-                       password_hash, created_at, username)
-                   SELECT user_id, email, display_name, role, status, password_salt, password_hash, created_at, username
+                       password_hash, created_at, username, profile_nonce, profile_ciphertext)
+                   SELECT user_id, email, display_name, role, status, password_salt, password_hash, created_at, username, profile_nonce, profile_ciphertext
                    FROM cloud_users"""
             )
             self._connection.execute("INSERT OR IGNORE INTO cloud_folders SELECT * FROM backup_db.folders")
@@ -365,7 +525,7 @@ class EncryptedSQLiteStore:
             return []
         with self._lock:
             rows = self._connection.execute(
-                """SELECT f.file_id, f.logical_id, f.version_number, f.nonce, f.ciphertext
+                """SELECT f.file_id, f.logical_id, f.version_number, f.created_at, f.nonce, f.ciphertext
                    FROM cloud_files f WHERE f.node_id = ? AND f.folder_id = ? AND f.access_role = ?
                      AND f.is_current = 1 AND (? = 'staff' OR f.owner_id = ?)""",
                 (node_id, folder_id, access_role, access_role, owner_id),
@@ -375,10 +535,15 @@ class EncryptedSQLiteStore:
                 payload = self._open(node_id, row["file_id"], row["nonce"], row["ciphertext"])
                 filename = str(payload.get("filename", "uploaded-file"))[:120]
                 if filename.casefold() in requested:
+                    try:
+                        size_bytes = len(base64.b64decode(payload.get("content", ""), validate=True))
+                    except (ValueError, TypeError):
+                        size_bytes = 0
                     versions = self._connection.execute(
                         "SELECT COUNT(*) FROM cloud_files WHERE logical_id = ?", (row["logical_id"],)
                     ).fetchone()[0]
-                    found[filename] = {"filename": filename, "version": int(row["version_number"]), "version_count": int(versions)}
+                    found[filename] = {"filename": filename, "version": int(row["version_number"]), "version_count": int(versions),
+                                       "size_bytes": size_bytes, "created_at": row["created_at"]}
             return list(found.values())
 
     @staticmethod
@@ -415,11 +580,10 @@ class EncryptedSQLiteStore:
                 [(node["id"], node["name"], node["role"]) for node in nodes],
             )
 
-    @staticmethod
-    def _public_user(row: sqlite3.Row | dict[str, Any] | None) -> dict[str, Any] | None:
+    def _public_user(self, row: sqlite3.Row | dict[str, Any] | None) -> dict[str, Any] | None:
         if row is None:
             return None
-        return {
+        user = {
             "id": row["user_id"],
             "email": row["email"],
             "username": row["username"],
@@ -428,6 +592,10 @@ class EncryptedSQLiteStore:
             "status": row["status"],
             "created_at": row["created_at"],
         }
+        if "profile_nonce" in row.keys() and row["profile_nonce"] and row["profile_ciphertext"]:
+            profile = self._open(0, f"profile-{row['user_id']}", row["profile_nonce"], row["profile_ciphertext"])
+            user["profile_picture"] = profile.get("image_data_url", "")
+        return user
 
     def create_user(
         self,
@@ -439,21 +607,28 @@ class EncryptedSQLiteStore:
         status: str,
         password_salt: bytes,
         password_hash: bytes,
+        profile_picture: str = "",
     ) -> dict[str, Any]:
         created_at = datetime.now(timezone.utc).isoformat()
-        values = (user_id, email, display_name, role, status, password_salt, password_hash, created_at, username)
+        profile_nonce = profile_ciphertext = None
+        if profile_picture:
+            profile_nonce, profile_ciphertext = self._seal(0, f"profile-{user_id}", {"image_data_url": profile_picture})
+        values = (user_id, email, display_name, role, status, password_salt, password_hash, created_at, username, profile_nonce, profile_ciphertext)
         with self._lock, self._connection:
             self._connection.execute(
                 """INSERT INTO cloud_users(user_id, email, display_name, role, status, password_salt,
-                   password_hash, created_at, username) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)""",
+                   password_hash, created_at, username, profile_nonce, profile_ciphertext) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)""",
                 values,
             )
             self._connection.execute(
                 """INSERT INTO backup_db.users(user_id, email, display_name, role, status, password_salt,
-                   password_hash, created_at, username) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)""",
+                   password_hash, created_at, username, profile_nonce, profile_ciphertext) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)""",
                 values,
             )
-        return {"id": user_id, "email": email, "username": username, "name": display_name, "role": role, "status": status, "created_at": created_at}
+        result = {"id": user_id, "email": email, "username": username, "name": display_name, "role": role, "status": status, "created_at": created_at}
+        if profile_picture:
+            result["profile_picture"] = profile_picture
+        return result
 
     def get_user_credentials(self, username: str) -> dict[str, Any] | None:
         with self._lock:
@@ -504,7 +679,8 @@ class EncryptedSQLiteStore:
         token_hash = hashlib.sha256(raw_token.encode("utf-8")).hexdigest()
         with self._lock, self._connection:
             row = self._connection.execute(
-                """SELECT u.user_id, u.email, u.username, u.display_name, u.role, u.status, u.created_at
+                """SELECT u.user_id, u.email, u.username, u.display_name, u.role, u.status, u.created_at,
+                          u.profile_nonce, u.profile_ciphertext
                    FROM cloud_sessions s JOIN cloud_users u ON u.user_id = s.user_id
                    WHERE s.session_hash = ? AND s.expires_at > ? AND u.status = 'active'""",
                 (token_hash, int(datetime.now().timestamp())),
@@ -758,6 +934,7 @@ class EncryptedSQLiteStore:
         }
 
     def list_files(self, user: dict[str, Any]) -> list[dict[str, Any]]:
+        self._expire_trash()
         with self._lock:
             primary = self._connection.execute(
                 """SELECT f.*, COALESCE(d.name, bd.name, 'Recovered files') AS folder_name, 1 AS primary_available,
@@ -780,6 +957,16 @@ class EncryptedSQLiteStore:
                    ORDER BY b.created_at DESC""",
                 (user["role"], user["role"], user["id"]),
             ).fetchall()
+            drive = self._connection.execute(
+                "SELECT logical_id, starred, trashed_at FROM cloud_drive_entries WHERE owner_id = ?",
+                (user["id"],),
+            ).fetchall()
+            drive_backup = self._connection.execute(
+                "SELECT logical_id, starred, trashed_at FROM backup_db.drive_entries WHERE owner_id = ?",
+                (user["id"],),
+            ).fetchall()
+        drive_state = {row["logical_id"]: {"starred": row["starred"], "trashed_at": row["trashed_at"]}
+                       for row in [*drive_backup, *drive]}
         files = []
         for row in [*primary, *recovered]:
             decoded = self._decode_file_row(row)
@@ -791,6 +978,8 @@ class EncryptedSQLiteStore:
                 "version_count": int(row["version_count"]),
                 "primary_available": bool(row["primary_available"]),
                 "backup_available": bool(row["backup_available"]),
+                "starred": bool(drive_state.get(row["logical_id"], {}).get("starred", 0)),
+                "trashed_at": drive_state.get(row["logical_id"], {}).get("trashed_at"),
             })
         return files
 

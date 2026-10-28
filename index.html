@@ -155,6 +155,16 @@
     @keyframes livePulse { 50% { opacity:.4; box-shadow:0 0 2px currentColor; } }
     .cloud-last-sync { color:#75859c; font-size:8px; }
     .cloud-workspace { display:grid; grid-template-columns:minmax(0,1.7fr) minmax(250px,.72fr); gap:14px; align-items:start; }
+    .folder-inline { padding:0 18px 13px; margin-bottom:12px; border-bottom:1px solid #e5dcef; }
+    .folder-inline-title { margin:0 0 8px; color:#786d89; font-size:12px; font-weight:750; letter-spacing:.02em; }
+    .folder-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(180px,1fr)); gap:10px; }
+    .folder-tile { display:flex; align-items:center; gap:11px; min-width:0; min-height:62px; padding:10px 12px; border:1px solid #d8c9e9; border-radius:13px; color:#302545; background:linear-gradient(120deg,#fffaff,#f0f8f5); text-align:left; cursor:pointer; }
+    .folder-tile:hover,.folder-tile.selected { border-color:#8c6bd7; box-shadow:0 0 0 2px #8c6bd71c; }
+    .folder-tile-icon { display:grid; place-items:center; flex:0 0 36px; width:36px; height:36px; border-radius:10px; color:#6346b8; background:#eee6fb; font-size:20px; }
+    .folder-tile-copy { display:grid; min-width:0; gap:3px; }
+    .folder-tile-copy strong { overflow:hidden; color:#302545; font-size:13px; text-overflow:ellipsis; white-space:nowrap; }
+    .folder-tile-copy small { color:#817790; font-size:11px; }
+    .folder-empty { padding:15px; border:1px dashed #d8c9e9; border-radius:12px; color:#786f86; font-size:13px; }
     .cloud-files-card,.cloud-activity-card { overflow:hidden; }
     .cloud-tools { display:flex; align-items:center; gap:8px; padding:0 16px 13px; }
     .cloud-search { display:flex; align-items:center; gap:8px; flex:1; min-width:140px; min-height:35px; padding:0 10px; border:1px solid #4b4336; border-radius:8px; background:#191814; color:#a69b89; }
@@ -193,7 +203,7 @@
     .dialog-header h2 { margin:4px 0 0; font-size:17px; }
     .dialog-copy { color:#91a1b7; font-size:10px; line-height:1.6; margin:12px 0; }
     .duplicate-list { display:grid; gap:6px; padding:0; margin:12px 0 16px; list-style:none; }
-    .duplicate-list li { display:flex; justify-content:space-between; gap:12px; padding:10px; border:1px solid #4a4031; border-radius:8px; background:#191814; font-size:9px; }
+    .duplicate-list li { display:grid; gap:9px; padding:12px; border:1px solid #4a4031; border-radius:11px; background:#191814; font-size:10px; }
     .duplicate-list span { color:#8899b0; text-align:right; }
     .dialog-actions { display:flex; justify-content:flex-end; gap:8px; flex-wrap:wrap; margin-top:15px; }
     .dialog-actions .btn { min-height:35px; }
@@ -570,14 +580,46 @@
     .page#page-cloud.active { display:flex; flex-direction:column; gap:12px; }
     .page#page-cloud > * { margin-top:0; }
     .page#page-cloud .page-head { order:0; margin-bottom:2px; }
-    .page#page-cloud .kpis { order:1; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; margin:0; }
-    .page#page-cloud .kpis .kpi { padding:12px 15px; min-height:0; }
-    .page#page-cloud .kpis .kpi:nth-child(n+3) { display:none; }
-    .page#page-cloud .kpi-value { font-size:21px; margin-top:5px; }
-    .page#page-cloud .kpi-note { margin-top:2px; }
-    .page#page-cloud #upload-panel { order:2; margin:0; }
-    .page#page-cloud .cloud-workspace { order:3; margin:0; }
+    .page#page-cloud .kpis { display:none; }
+    .page#page-cloud #cloud-upload-shortcut { display:none; }
+    .page#page-cloud #upload-panel { order:1; margin:0; }
+    .page#page-cloud .cloud-workspace { order:2; margin:0; grid-template-columns:minmax(0,1fr); gap:16px; }
+    .page#page-threats .bottom-grid { grid-template-columns:1fr; }
     .page#page-cloud .storage-card { order:4; margin:0; background:linear-gradient(125deg,#fbf5ff,#fff5f0 55%,#eff9f4); border-color:#d9cdea; }
+    .drive-sidebar { align-self:start; position:sticky; top:84px; display:flex; flex-direction:column; gap:8px; padding:8px 0; }
+    .drive-new-dropdown { position:relative; padding:0 6px 10px; }
+    .drive-new-button { width:100%; min-height:48px; justify-content:flex-start; border-radius:15px; background:linear-gradient(135deg,#fff,#eee6fb); color:#36264f; box-shadow:0 5px 16px #5e477c18; }
+    .drive-new-button:focus { outline:none; border-color:#b8a3dc; box-shadow:0 0 0 2px #d9c8ef,0 5px 16px #5e477c18; }
+    .drive-new-button:focus-visible { outline:2px solid #8f77d5; outline-offset:2px; }
+    .drive-new-menu { position:absolute; top:calc(100% - 1px); left:6px; z-index:12; width:calc(100% - 12px); display:grid; gap:4px; padding:7px; border:1px solid #d8cbea; border-radius:14px; background:rgba(255,250,255,.98); box-shadow:0 14px 32px #38245228; backdrop-filter:blur(10px); }
+    .drive-new-menu[hidden] { display:none; }
+    .drive-new-menu button { display:flex; align-items:center; gap:10px; width:100%; min-height:42px; padding:8px 10px; border:0; border-radius:9px; background:transparent; color:#302444; text-align:left; font-size:13px; line-height:1.25; font-weight:650; transition:background .16s ease,color .16s ease; }
+    .drive-menu-icon { display:grid; flex:0 0 28px; width:28px; height:28px; place-items:center; border-radius:8px; color:#694fc0; background:#eee7fa; font-size:16px; }
+    .drive-new-menu button:hover,.drive-new-menu button:focus-visible { outline:none; background:#f0eafb; color:#533aa3; }
+    .drive-new-menu button:focus-visible { box-shadow:0 0 0 2px #c7b4e9; }
+    .drive-nav { display:grid; gap:3px; }
+    .drive-nav button { padding:10px 12px; color:#51445f; border-radius:9px; background:transparent; }
+    .drive-nav button:hover,.drive-nav button.active { color:#34234f; background:#e8def8; }
+    .drive-nav button.active { box-shadow:inset 3px 0 #8069dc; font-weight:750; }
+    .sidebar .drive-sidebar { position:static; align-self:stretch; padding:0 3px 15px; gap:7px; border-bottom:1px solid #594b70; margin-bottom:5px; }
+    .sidebar .drive-nav button { display:flex; width:100%; min-height:44px; align-items:center; gap:9px; padding:10px 8px; border:0; color:#aab3d4; text-align:left; font-size:13px; font-weight:550; line-height:1.3; letter-spacing:0; transition:.18s ease; }
+    .drive-nav-icon { display:inline-grid; flex:0 0 18px; width:18px; place-items:center; font-size:16px; line-height:1; }
+    .drive-nav-label,.nav-label-text { display:block; min-width:0; line-height:1.35; }
+    .sidebar .nav button { min-height:44px; gap:9px; padding:10px 8px; font-size:13px; font-weight:550; line-height:1.3; letter-spacing:0; }
+    .sidebar .nav-icon { display:inline-grid; flex:0 0 18px; width:18px; place-items:center; font-size:16px; line-height:1; }
+    .sidebar .drive-nav button:hover,.sidebar .drive-nav button.active { color:#fff; background:#55436f; }
+    .sidebar .drive-nav button.active { box-shadow:inset 3px 0 #d9c8ff; }
+    .sidebar .drive-new-dropdown { padding:0 2px 4px; }
+    .sidebar .drive-new-button { width:100%; }
+    .sidebar .drive-new-menu { left:2px; width:calc(100% - 4px); }
+    .page#page-cloud .cloud-files-card { grid-column:1; }
+    .cloud-files-card.is-empty .cloud-tools,.cloud-files-card.is-empty table thead { display:none; }
+    .cloud-files-card.is-empty .table-wrap { min-height:110px; display:grid; place-items:center; }
+    .cloud-files-card.is-empty .table-wrap tbody,.cloud-files-card.is-empty .table-wrap tr { width:100%; }
+    .cloud-files-card.is-empty .table-wrap td { border:0; padding:28px 16px; color:#51445f; text-align:center; }
+    .page#page-cloud .cloud-activity-card,.page#page-cloud .storage-card { display:none; }
+    .page#page-cloud .storage-card.is-visible { display:block; }
+    .page#page-cloud #upload-panel[hidden] { display:none; }
     .page#page-cloud .storage-card .card-head { padding:12px 16px 8px; }
     .page#page-cloud .storage-console { grid-template-columns:minmax(0,1fr) minmax(0,2fr); gap:9px 14px; padding:0 16px 12px; }
     .page#page-cloud .storage-intro { align-items:center; gap:9px; }
@@ -595,6 +637,11 @@
     .page#page-cloud .crypto-demo-actions .btn { min-height:28px; }
     .page#page-cloud .footer-note { order:5; margin:0; }
     @media (max-width:760px) {
+      .page#page-cloud .cloud-workspace { grid-template-columns:1fr; }
+      .sidebar .drive-sidebar { flex-direction:row; padding:0; border:0; margin:0; }
+      .drive-nav { display:flex; overflow-x:auto; }
+      .drive-nav button { white-space:nowrap; }
+      .page#page-cloud .cloud-files-card { grid-column:1; }
       .page#page-cloud .storage-console { grid-template-columns:1fr; }
       .page#page-cloud .storage-stats { grid-template-columns:repeat(2,minmax(0,1fr)); }
     }
@@ -609,6 +656,205 @@
     .auth-link-row,.auth-footnote { color:#51445f; }
     .table-card td strong,.metric-pairs strong,.report-meta strong { color:#261a38; }
     .pill,.mini-label { font-weight:750; }
+    .top-right { position:relative; }
+    .account-menu { position:relative; }
+    .account-avatar { border:0; cursor:pointer; font-size:19px; font-weight:750; color:#21182f; background:linear-gradient(145deg,#d9c8ff,#a890ed); box-shadow:0 3px 12px #6b4db533; }
+    .account-popover { position:absolute; z-index:30; right:0; top:calc(100% + 12px); width:min(360px,calc(100vw - 28px)); padding:16px; display:grid; gap:10px; border:1px solid #cfc1e4; border-radius:18px; background:#f7f4fa; color:#261a38; box-shadow:0 18px 50px #25183b30; }
+    .account-popover[hidden] { display:none; }
+    .account-popover-heading { display:grid; gap:2px; padding:2px 5px 7px; }
+    .account-popover-heading span { font-size:11px; color:#716881; }
+    .account-popover-heading strong { font-size:14px; }
+    .account-profile { display:flex; align-items:center; gap:12px; padding:13px; border:1px solid #e6dfee; border-radius:15px; background:#fff; }
+    .account-profile-avatar { display:grid; place-items:center; flex:0 0 auto; width:58px; height:58px; overflow:hidden; border-radius:50%; color:#21182f; background:linear-gradient(145deg,#d9c8ff,#a890ed); font-size:22px; font-weight:750; }
+    .account-profile-avatar img { width:100%; height:100%; object-fit:cover; }
+    .account-profile-copy { display:grid; min-width:0; gap:4px; }
+    .account-profile-copy strong { font-size:16px; overflow-wrap:anywhere; }
+    .account-profile-copy small { color:#706486; font-size:12px; overflow-wrap:anywhere; }
+    .account-check { margin-left:auto; color:#338d72; font-size:18px; font-weight:800; }
+    .account-actions { display:flex; flex-direction:column; gap:6px; padding:4px 0; }
+    .account-actions button { width:100%; min-height:50px; display:flex; align-items:center; justify-content:flex-start; gap:15px; padding:9px 12px; border:0; border-radius:12px; color:#2e2540; background:transparent; font:inherit; cursor:pointer; text-align:left; }
+    .account-actions button>span { display:grid; place-items:center; flex:0 0 34px; width:34px; height:34px; border-radius:50%; background:#e9e3f1; color:#6d55cd; font-size:20px; }
+    .account-actions button>strong { font-size:14px; font-weight:600; }
+    .account-actions button:hover { background:#ebe5f2; }
+    .app, .app * { cursor:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='36' viewBox='0 0 28 36'%3E%3Cpath d='M3 2v27l7-7 5 11 5-2-5-10h8z' fill='%23fff' stroke='%23000' stroke-width='2.5' stroke-linejoin='round'/%3E%3C/svg%3E") 3 2, auto; }
+    .app input[type="text"], .app input[type="search"], .app input[type="email"], .app input[type="password"], .app textarea, .app [contenteditable="true"] { cursor:text; }
+    .controls { grid-template-columns:repeat(2,minmax(0,1fr)); }
+    .control:last-child { grid-column:1/-1; }
+    .toggle-list { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:9px; }
+    .toggle { width:100%; min-height:42px; box-sizing:border-box; padding:10px 12px; gap:10px; border:1px solid #d5c7e7; border-radius:11px; background:linear-gradient(120deg,#fbf7ff,#edf8f3); color:#29213a; font-size:12px; font-weight:650; line-height:1.3; }
+    .toggle input { flex:0 0 auto; width:16px; height:16px; accent-color:#7054d8; }
+    .saved-report-list { display:grid; gap:9px; }
+    .saved-report-row { display:flex; align-items:center; justify-content:space-between; gap:12px; padding:12px 15px; border:1px solid var(--line); border-radius:12px; background:linear-gradient(120deg,#fffaff,#eef8f4); color:#29213a; }
+    .saved-report-row strong,.saved-report-row small { display:block; }
+    .saved-report-row small { margin-top:4px; color:#716881; }
+    .account-avatar img { width:100%; height:100%; object-fit:cover; border-radius:50%; }
+    .auth-fields input[type="file"] { position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; clip-path:inset(50%); }
+    .duplicate-name { font-size:12px; }
+    .duplicate-compare { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:9px; }
+    .duplicate-compare>div { display:grid; gap:5px; min-width:0; padding:10px; border-radius:9px; background:#f1ebf8; }
+    .duplicate-compare strong { font-size:11px; color:#2d2341; overflow-wrap:anywhere; }
+    .duplicate-compare small,.duplicate-label { font-size:9px; color:#6f6685; }
+    .duplicate-label { font-weight:750; letter-spacing:.08em; }
+    @media(max-width:760px) { .toggle-list { grid-template-columns:1fr; } }
+
+    /* Keep navigation in a left rail on compact windows instead of moving it above the page. */
+    @media (max-width:760px) {
+      .app { display:grid; grid-template-columns:190px minmax(0,1fr); min-height:100vh; }
+      .sidebar { position:sticky; top:0; align-self:start; height:100vh; overflow-y:auto; z-index:8; padding:14px 10px; border-right:1px solid #4c3c70; border-bottom:0; flex-direction:column; align-items:stretch; justify-content:flex-start; }
+      .brand { padding:0 4px 16px; }
+      .brand-mark { width:34px; height:34px; }
+      .brand-sub,.side-card,.side-foot,.side-spacer { display:none; }
+      .nav-label { display:block; }
+      .sidebar .drive-sidebar { flex-direction:column; align-self:stretch; padding:0 3px 7px; gap:4px; border-bottom:1px solid #594b70; margin:0 0 4px; }
+      .drive-nav { display:grid; gap:1px; overflow:visible; }
+      .drive-nav button { white-space:normal; }
+      .sidebar .nav { display:grid; gap:1px; }
+      .sidebar .drive-nav button,.sidebar .nav button { min-height:36px; gap:10px; padding:6px 8px; font-family:"Segoe UI",system-ui,sans-serif; font-size:14px; font-weight:450; line-height:1.25; letter-spacing:-.015em; }
+      .sidebar .drive-nav button.active,.sidebar .nav button.active { font-weight:600; }
+      .drive-nav-icon,.sidebar .nav-icon { font-size:16px; }
+      .nav-label { padding:9px 8px 5px; font-family:"Segoe UI",system-ui,sans-serif; font-size:11px; letter-spacing:.13em; }
+      .topbar { position:static; height:48px; padding:0 14px; }
+      .content { padding:20px 14px 32px; }
+    }
+    @media (max-width:430px) {
+      .app { grid-template-columns:68px minmax(0,1fr); }
+      .sidebar { padding:12px 7px; }
+      .brand { justify-content:center; padding:0 0 16px; }
+      .brand > div:last-child { display:none; }
+      .drive-new-dropdown { padding:0 0 8px; }
+      .sidebar .drive-new-button { min-height:44px; justify-content:center; padding:8px 0; }
+      .drive-new-label,.drive-nav-label,.nav-label,.nav-label-text { display:none; }
+      .drive-nav button,.sidebar .nav button { justify-content:center; gap:0; padding:7px 0; }
+      .drive-nav-icon,.sidebar .nav-icon { flex-basis:20px; width:20px; }
+      .sidebar .drive-new-menu { left:0; width:min(220px,calc(100vw - 78px)); }
+    }
+
+    .sim-control-actions { display:flex; align-items:center; justify-content:flex-end; gap:9px; padding:0 18px 16px; }
+    .sim-control-actions .btn { min-height:40px; }
+    @media (max-width:760px) { .sim-control-actions { flex-wrap:wrap; } }
+    .signup-name-row { display:flex; align-items:center; gap:11px; }
+    .signup-name-row input { flex:1; min-width:0; }
+    .signup-avatar-wrap { position:relative; flex:0 0 58px; width:58px; height:58px; }
+    .signup-avatar { width:58px; height:58px; display:grid; place-items:center; overflow:hidden; border:0; border-radius:50%; background:#596bbd; color:#fff; font-size:27px; font-weight:500; }
+    .signup-avatar img { width:100%; height:100%; object-fit:cover; }
+    .signup-avatar-edit { position:absolute; right:-3px; bottom:-2px; display:grid; place-items:center; width:27px; height:27px; padding:0; border:2px solid #fff; border-radius:50%; color:#24202d; background:#f1f3f7; box-shadow:0 2px 6px #1c183022; cursor:pointer; }
+    .signup-avatar-edit svg { width:15px; height:15px; }
+    .range-control label { display:flex; justify-content:space-between; align-items:center; gap:8px; }
+    .range-control label strong { color:#5e3fa4; font-variant-numeric:tabular-nums; }
+    .range-control input[type=range] { width:100%; accent-color:#7654d8; }
+    .sim-control-card .controls { grid-template-columns:1fr 1fr; }
+    .sim-control-card .control:last-child { grid-column:1/-1; }
+    .sim-control-actions { justify-content:stretch; }
+    .sim-control-actions .btn { width:100%; }
+    .simulation-lane { position:relative; display:grid; grid-template-columns:1fr auto 1fr; align-items:center; min-height:205px; margin:0 18px 18px; padding:18px 14px; overflow:hidden; border:1px solid #d9cbea; border-radius:15px; background:linear-gradient(110deg,#fffaff,#f2f7ff 52%,#effaf6); }
+    .lane-rail { position:absolute; left:12%; right:12%; top:50%; height:5px; border-radius:5px; background:linear-gradient(90deg,#d9d1e6,#c8d4e8,#d2e6da); transform:translateY(-50%); }
+    .lane-station { position:relative; z-index:2; display:grid; justify-items:center; gap:5px; width:130px; padding:12px 7px; border:1px solid #ded2ed; border-radius:13px; background:#fff; text-align:center; box-shadow:0 8px 22px #43316912; }
+    .attacker-station { justify-self:start; }
+    .cloud-station { justify-self:end; grid-column:3; }
+    .station-icon { width:39px; height:39px; display:grid; place-items:center; border-radius:12px; font-size:21px; }
+    .attacker-icon { background:#fff0f1; color:#d6384a; }
+    .cloud-icon { background:#eaf8ef; color:#259d67; }
+    .lane-station strong,.lane-firewall strong,.lane-defender strong { color:#302342; font-size:11px; }
+    .lane-station small,.lane-firewall small,.lane-defender small { color:#7c718f; font-size:9px; }
+    .lane-firewall { position:absolute; z-index:3; left:50%; top:50%; display:grid; justify-items:center; gap:5px; width:110px; padding:10px; border:2px solid #7654d8; border-radius:14px; background:#f1eaff; box-shadow:0 0 0 7px #7654d815,0 9px 24px #45257a22; transform:translate(-50%,-50%); }
+    .firewall-shield { color:#7150c6; font-size:25px; line-height:1; }
+    .lane-defender { position:absolute; z-index:2; left:55%; bottom:10px; display:flex; align-items:center; gap:7px; padding:6px 10px; border:1px solid #cbe8d8; border-radius:11px; background:#f4fff7; }
+    .lane-defender .station-icon { width:25px; height:25px; border-radius:8px; font-size:14px; }
+    .lane-defender strong,.lane-defender small { display:block; white-space:nowrap; }
+    .lane-packet { position:absolute; z-index:4; top:calc(50% - 5px); color:#df3349; font-size:19px; line-height:1; opacity:0; filter:drop-shadow(0 2px 4px #d72a4b66); }
+    .attack-packet { left:13%; }
+    .defense-packet { left:73%; color:#18a666; filter:drop-shadow(0 2px 4px #18a66666); }
+    .lane-packet.travel-attack { animation:attackTravel .7s ease-in forwards; }
+    .lane-packet.travel-defense { animation:defenseTravel .65s ease-out .72s forwards; }
+    @keyframes attackTravel { 0%{left:13%;opacity:0;transform:scale(.6)} 12%{opacity:1} 100%{left:49%;opacity:1;transform:scale(1.2)} }
+    @keyframes defenseTravel { 0%{left:72%;opacity:0;transform:scale(.6)} 15%{opacity:1} 100%{left:49%;opacity:1;transform:scale(1.2)} }
+    .simulation-lane.is-running .lane-rail { background:linear-gradient(90deg,#edbcc4,#d5c5e8,#b8e7cc); }
+    .live-simulation-page .simulation-lane { min-height:420px; margin:0 22px 22px; padding:32px; }
+    .live-simulation-page .lane-station { width:190px; padding:23px 14px; gap:10px; }
+    .live-simulation-page .station-icon { width:62px; height:62px; border-radius:18px; font-size:32px; }
+    .live-simulation-page .lane-station strong,.live-simulation-page .lane-firewall strong,.live-simulation-page .lane-defender strong { font-size:15px; }
+    .live-simulation-page .lane-station small,.live-simulation-page .lane-firewall small,.live-simulation-page .lane-defender small { font-size:12px; }
+    .live-simulation-page .lane-firewall { width:160px; padding:18px; }
+    .live-simulation-page .firewall-shield { font-size:38px; }
+    .live-simulation-page .lane-defender { left:50%; bottom:24px; gap:12px; padding:10px 14px; transform:translateX(-50%); }
+    .live-simulation-page .lane-defender .station-icon { width:38px; height:38px; }
+    .live-simulation-page .lane-packet { font-size:27px; }
+    .live-simulation-metrics { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; margin:0 22px 18px; }
+    .live-simulation-metric { padding:14px 16px; border:1px solid #ded2ed; border-radius:13px; background:linear-gradient(120deg,#fffaff,#eff8f4); }
+    .live-simulation-metric span { display:block; color:#786d89; font-size:12px; }
+    .live-simulation-metric strong { display:block; margin-top:4px; color:#302342; font-size:21px; }
+    .live-event-card { margin:0 22px 22px; }
+    .live-simulation-page .network-lane { display:grid; grid-template-columns:minmax(0,1fr) 180px minmax(0,1fr); align-items:stretch; gap:22px; min-height:500px; padding:22px 24px; }
+    .network-wires { position:absolute; inset:0; z-index:0; width:100%; height:100%; overflow:visible; pointer-events:none; }
+    .network-link { fill:none; stroke-width:3; stroke-linecap:round; opacity:.55; }
+    .network-link.attack-link { stroke:#e34f61; }
+    .network-link.defense-link { stroke:#2ca873; }
+    .network-column { position:relative; z-index:1; display:flex; min-width:0; flex-direction:column; gap:13px; }
+    .network-column-heading { color:#736987; font-size:12px; font-weight:750; letter-spacing:.04em; text-transform:uppercase; }
+    .network-stations { display:flex; flex:1; flex-direction:column; justify-content:space-between; gap:10px; }
+    .network-station { display:flex; align-items:center; gap:11px; width:100%; max-width:330px; min-height:70px; padding:10px 13px; border:1px solid #ded2ed; border-radius:14px; background:#fff; box-shadow:0 6px 18px #43316910; transition:box-shadow .2s ease,transform .2s ease,border-color .2s ease; }
+    .defender-column .network-station { margin-left:auto; }
+    .network-station>span:last-child { display:grid; min-width:0; gap:4px; }
+    .network-station strong { color:#302342; font-size:13px; }
+    .network-station small { color:#7c718f; font-size:10px; }
+    .network-agent-icon { display:grid; place-items:center; flex:0 0 38px; width:38px; height:38px; border-radius:12px; font-size:21px; font-weight:800; }
+    .attack-station .network-agent-icon { color:#cf3549; background:#fff0f2; }
+    .defense-station .network-agent-icon { color:#188956; background:#e9f8ef; }
+    .network-station.is-active { transform:scale(1.025); border-color:#9e7cde; box-shadow:0 0 0 4px #906bd72a,0 10px 28px #39234c22; }
+    .attack-station.is-active { border-color:#e34f61; box-shadow:0 0 0 4px #e34f6128,0 10px 28px #b7314322; }
+    .defense-station.is-active { border-color:#2ca873; box-shadow:0 0 0 4px #2ca87328,0 10px 28px #21835622; }
+    .network-firewall { position:relative; z-index:2; align-self:center; justify-self:center; display:grid; justify-items:center; gap:10px; width:164px; padding:22px 12px; border:3px solid #7654d8; border-radius:26px; background:linear-gradient(145deg,#f3edff,#e9e2fb); box-shadow:0 0 0 10px #7654d814,0 18px 40px #45257a22; text-align:center; }
+    .network-firewall strong { color:#302342; font-size:17px; }
+    .network-firewall small { color:#7c718f; font-size:11px; }
+    .network-firewall .firewall-shield { font-size:42px; }
+    .network-lane.is-running .network-firewall { animation:firewallPulse 1.25s ease-in-out infinite alternate; }
+    .network-packet { opacity:0; }
+    .network-packet.attack-packet { fill:#e3344c; filter:drop-shadow(0 0 5px #e3344caa); }
+    .network-packet.defense-packet { fill:#16a05c; filter:drop-shadow(0 0 5px #16a05caa); }
+    .network-packet.packet-visible { opacity:1; }
+    @keyframes firewallPulse { from{filter:drop-shadow(0 0 0 #7654d800)} to{filter:drop-shadow(0 0 18px #7654d877)} }
+    @media(max-width:1100px) { .live-simulation-page .network-lane { grid-template-columns:minmax(0,1fr) 150px minmax(0,1fr); gap:12px; min-height:460px; padding:18px 14px; } .network-station { min-height:62px; padding:8px 9px; gap:7px; } .network-agent-icon { flex-basis:31px; width:31px; height:31px; font-size:18px; } .network-station strong { font-size:11px; } .network-station small { font-size:9px; } .network-firewall { width:132px; padding:17px 8px; } }
+    @media(max-width:700px) {
+      .live-simulation-page .network-lane { grid-template-columns:minmax(0,1fr) 84px minmax(0,1fr); gap:5px; min-height:420px; margin:0 8px 12px; padding:13px 6px; }
+      .network-column { gap:8px; }
+      .network-column-heading { font-size:8px; letter-spacing:.01em; }
+      .network-stations { gap:7px; }
+      .network-station { min-height:62px; flex-direction:column; justify-content:center; gap:3px; padding:4px 2px; text-align:center; }
+      .network-station>span:last-child { gap:2px; }
+      .defender-column .network-station { margin-left:0; }
+      .network-agent-icon { flex:0 0 22px; width:22px; height:22px; border-radius:7px; font-size:14px; }
+      .network-station strong { font-size:8px; line-height:1.1; overflow-wrap:anywhere; }
+      .network-station small { font-size:7px; line-height:1.1; }
+      .network-firewall { width:78px; gap:5px; padding:12px 3px; border-radius:16px; }
+      .network-firewall strong { font-size:10px; }
+      .network-firewall small { font-size:8px; }
+      .network-firewall .firewall-shield { font-size:24px; }
+      .live-simulation-metrics { grid-template-columns:1fr; margin:0 10px 14px; }
+      .live-event-card { margin:0 10px 14px; }
+    }
+    .architecture-flow { display:flex; align-items:center; justify-content:space-between; gap:10px; padding:22px; }
+    .architecture-step { display:grid; justify-items:center; gap:7px; flex:1; min-width:0; padding:18px 9px; border:1px solid #dfd1ef; border-radius:14px; background:#fffaff; text-align:center; }
+    .architecture-icon { width:42px; height:42px; display:grid; place-items:center; border-radius:13px; background:#eee7fb; color:#684ab6; font-size:22px; }
+    .architecture-step strong { color:#302342; font-size:12px; }
+    .architecture-step small { color:#827892; font-size:9px; }
+    .architecture-step.recovery .architecture-icon { background:#e8f7ef; color:#249560; }
+    .architecture-arrow { color:#8265bc; font-size:22px; }
+    .architecture-facts { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:13px; margin-top:14px; }
+    .architecture-fact { padding:18px; }
+    .architecture-fact h2 { margin:13px 0 7px; color:#302342; font-size:14px; }
+    .architecture-fact p { margin:0; color:#746984; font-size:11px; line-height:1.6; }
+    .architecture-notice { display:flex; align-items:flex-start; gap:12px; margin-top:14px; padding:17px; }
+    .architecture-status-dot { flex:0 0 auto; width:11px; height:11px; margin-top:4px; border-radius:50%; background:#30ad71; box-shadow:0 0 0 5px #30ad711a; }
+    .architecture-notice strong { color:#302342; font-size:13px; }
+    .architecture-notice p { margin:5px 0 0; color:#786e89; font-size:10px; line-height:1.5; }
+    .customer-alert-dialog { width:min(420px,calc(100% - 28px)); border:1px solid #cdbbe5; border-radius:20px; padding:26px; background:#fffaff; color:#302342; text-align:center; box-shadow:0 25px 80px #24133f55; }
+    .customer-alert-dialog::backdrop { background:#2016328c; backdrop-filter:blur(4px); }
+    .customer-alert-mark { display:grid; place-items:center; width:54px; height:54px; margin:0 auto 14px; border-radius:50%; background:#e5f8ee; color:#168a54; font-size:26px; font-weight:800; }
+    .customer-alert-dialog h2 { margin:0; font-size:18px; }
+    .customer-alert-dialog p { color:#766c84; font-size:12px; line-height:1.6; }
+    @media(max-width:760px) { .architecture-flow { flex-wrap:wrap; } .architecture-step { flex-basis:38%; } .architecture-arrow { transform:rotate(90deg); } .architecture-facts { grid-template-columns:1fr; } .sim-control-card .controls { grid-template-columns:1fr; } .sim-control-card .control:last-child { grid-column:auto; } }
+    @media(max-width:760px) { .app { grid-template-columns:190px minmax(0,1fr); } .sidebar { position:fixed; left:0; top:0; bottom:0; width:190px; height:100vh; align-self:stretch; overflow-y:auto; overscroll-behavior:contain; } .main { grid-column:2; min-width:0; } }
+    @media(max-width:430px) { .app { grid-template-columns:68px minmax(0,1fr); } .sidebar { width:68px; } }
   </style>
 </head>
 <body>
@@ -623,6 +869,7 @@
       </div>
       <form id="auth-form" class="auth-fields">
         <label id="auth-email-field" hidden>Email address<input id="auth-email" name="email" type="email" autocomplete="email" maxlength="254"></label>
+        <label id="signup-name-field" hidden>Your name<span class="signup-name-row"><span class="signup-avatar-wrap"><span class="signup-avatar" id="signup-avatar-initial" aria-hidden="true"></span><button class="signup-avatar-edit" id="profile-picture-button" type="button" aria-label="Choose an optional profile picture" title="Choose profile picture"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m4 16.5-.8 4.3 4.3-.8L19.9 7.6a2.4 2.4 0 0 0-3.4-3.4L4 16.5Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="m14.8 5.9 3.3 3.3" stroke="currentColor" stroke-width="2"/></svg></button></span><input id="signup-name" name="name" type="text" autocomplete="name" maxlength="80" placeholder="Enter your name"></span><input id="profile-picture" name="profile_picture" type="file" accept="image/png,image/jpeg,image/webp"></label>
         <label>Username<input id="auth-username" name="username" type="text" autocomplete="username" minlength="3" maxlength="30" pattern="[A-Za-z0-9][A-Za-z0-9._-]{2,29}" required><small class="auth-footnote" id="auth-username-help" hidden>Use 3–30 letters, numbers, dots, underscores, or hyphens. Existing accounts use a username based on the part of their email before @.</small></label>
         <label>Password<span class="auth-password-field"><input id="auth-password" name="password" type="password" autocomplete="current-password" minlength="10" required></span><span class="password-visibility"><input id="password-toggle" type="checkbox" aria-controls="auth-password"><span>Show password</span></span><small class="auth-footnote">Use at least 10 characters.</small></label>
         <label id="staff-code-field" hidden>Staff Registration Code<input id="staff-registration-code" name="staff_registration_code" type="password" autocomplete="off"><small class="auth-footnote">A valid Staff Registration Code is mandatory. Staff account creation is not possible without a matching code.</small></label>
@@ -638,26 +885,30 @@
         <div class="brand-mark"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.3 9.4 17 19 7" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 2.5 20 6v5.3c0 5.3-3.4 8.6-8 10.2-4.6-1.6-8-4.9-8-10.2V6l8-3.5Z" stroke="currentColor" stroke-width="1.5"/></svg></div>
         <div><div class="brand-name">Cloud-D</div><div class="brand-sub">Defense intelligence</div></div>
       </div>
+      <div class="drive-sidebar" aria-label="Cloud drive navigation">
+        <div class="drive-new-dropdown"><button class="btn drive-new-button" id="drive-new-button" type="button" aria-label="New" title="New" aria-expanded="false"><span class="drive-new-icon" aria-hidden="true">＋</span><span class="drive-new-label">New</span></button><div class="drive-new-menu" id="drive-new-menu" hidden><button type="button" id="drive-upload-action"><span class="drive-menu-icon">⇧</span><span>Upload files</span></button><button type="button" id="drive-folder-action"><span class="drive-menu-icon">▱</span><span>New folder</span></button></div></div>
+        <nav class="drive-nav" aria-label="Files"><button type="button" class="active" data-drive-view="my-drive" title="My Drive"><span class="drive-nav-icon" aria-hidden="true">▤</span><span class="drive-nav-label">My Drive</span></button><button type="button" data-drive-view="recent" title="Recent"><span class="drive-nav-icon" aria-hidden="true">◷</span><span class="drive-nav-label">Recent</span></button><button type="button" data-drive-view="starred" title="Starred"><span class="drive-nav-icon" aria-hidden="true">☆</span><span class="drive-nav-label">Starred</span></button><button type="button" data-drive-view="trash" title="Trash"><span class="drive-nav-icon" aria-hidden="true">▤</span><span class="drive-nav-label">Trash</span></button></nav>
+      </div>
       <div class="nav-label">Workspace</div>
       <nav class="nav" aria-label="Main navigation">
-        <button class="active" data-page="cloud"><span class="nav-icon">☁</span>Cloud</button>
-        <button class="staff-only" data-page="overview"><span class="nav-icon">◫</span>Security Overview</button>
-        <button class="staff-only" data-page="simulation"><span class="nav-icon">⠿</span>Simulation</button>
-        <button class="staff-only" data-page="threats"><span class="nav-icon">⌁</span>Attack Simulation</button>
-        <button class="staff-only" data-page="report"><span class="nav-icon">▤</span>Defense report</button>
+        <button class="staff-only" data-page="overview" title="Security Overview"><span class="nav-icon" aria-hidden="true">◫</span><span class="nav-label-text">Security Overview</span></button>
+        <button class="staff-only" data-page="threats" title="Attack &amp; Defense Simulation Details"><span class="nav-icon" aria-hidden="true">⌁</span><span class="nav-label-text">Attack &amp; Defense Simulation Details</span></button>
+        <button class="staff-only" data-page="live-simulation" title="Live attack and defense"><span class="nav-icon" aria-hidden="true">◉</span><span class="nav-label-text">Live simulation</span></button>
+        <button class="customer-only" data-page="architecture" title="Cloud Architecture" hidden><span class="nav-icon" aria-hidden="true">⌘</span><span class="nav-label-text">Cloud Architecture</span></button>
+        <button data-page="report" title="Defense report"><span class="nav-icon" aria-hidden="true">▤</span><span class="nav-label-text">Defense report</span></button>
       </nav>
       <div class="side-spacer"></div>
       <div class="side-card"><div class="side-card-title"><span style="color:var(--cyan)">◉</span> Simulation mode</div><p>This prototype models agent decisions locally. It is not connected to a live cloud account or firewall.</p></div>
-      <div class="side-foot">PSG College of Technology<br>Applied Mathematics &amp; Computational Sciences</div>
+      <div class="side-foot">Nithish M.<br>Applied Mathematics &amp; Computational Sciences<br>PSG College of Technology</div>
     </aside>
     <main class="main">
       <header class="topbar">
         <div class="crumb">Cloud-D <span style="color:#53627a;padding:0 7px">/</span> <strong id="crumb-current">Cloud</strong></div>
-        <div class="top-right"><span class="sim-badge"><i class="dot"></i> Simulation</span><div class="user-chip"><div class="avatar" id="current-user-avatar">CD</div><span><strong id="current-user-name">Cloud-D user</strong><small class="user-role" id="current-user-role">Customer</small></span></div><button class="btn" id="logout-button" type="button">Sign out</button></div>
+        <div class="top-right"><div class="account-menu"><button class="avatar account-avatar" id="account-menu-button" type="button" aria-label="Open Cloud-D account" aria-expanded="false">N</button><div class="account-popover" id="account-popover" hidden><div class="account-popover-heading"><span>Signed in to</span><strong>Cloud-D account</strong></div><div class="account-profile"><div class="account-profile-avatar" id="account-profile-avatar">N</div><div class="account-profile-copy"><strong id="account-name">Nithish M.</strong><small id="account-email"></small></div><span class="account-check">✓</span></div><div class="account-actions"><button type="button" id="add-account-button"><span>＋</span><strong>Add another account</strong></button><button type="button" id="switch-account-button"><span>⇄</span><strong>Switch account</strong></button><button type="button" id="logout-account-button"><span>↪</span><strong>Sign out</strong></button></div></div></div><span id="current-user-name" hidden></span><span id="current-user-role" hidden></span></div>
       </header>
       <div class="content">
         <section class="page active" id="page-cloud">
-          <div class="page-head cloud-page-head"><div><div class="eyebrow" id="cloud-area-eyebrow">Cloud storage · Encrypted database</div><h1>Your cloud files</h1><p class="subtitle" id="cloud-area-description">Upload and organize files in the folders assigned to your account.</p></div><div class="cloud-head-status"><div class="cloud-head-actions"><span class="cloud-live syncing" id="cloud-connection-badge"><i></i><span id="cloud-connection-label">CONNECTING</span></span><span class="pill green" id="cloud-status-pill">YOUR AREA</span><button type="button" class="btn primary" id="cloud-upload-shortcut">＋ Upload files</button></div><div class="cloud-last-sync">Last synced <span id="cloud-last-sync">Waiting for connection…</span></div></div></div>
+          <div class="page-head cloud-page-head"><div><div class="eyebrow" id="cloud-area-eyebrow">Cloud storage · Encrypted database</div><h1>Your Cloud Workspace</h1><p class="subtitle" id="cloud-area-description">Upload and organize files in the folders assigned to your account.</p></div><div class="cloud-head-status"><div class="cloud-head-actions"><span class="cloud-live syncing" id="cloud-connection-badge"><i></i><span id="cloud-connection-label">CONNECTING</span></span><span class="pill green" id="cloud-status-pill">YOUR AREA</span><button type="button" class="btn primary" id="cloud-upload-shortcut">＋ Upload files</button></div><div class="cloud-last-sync">Last synced <span id="cloud-last-sync">Waiting for connection…</span></div></div></div>
           <div class="kpis">
             <div class="card kpi"><div class="kpi-top"><span class="kpi-label">Assigned storage area</span><span class="kpi-icon">☁</span></div><div class="kpi-value" id="cloud-nodes-online">—</div><div class="kpi-note">Automatically assigned by account type</div></div>
             <div class="card kpi"><div class="kpi-top"><span class="kpi-label">Current files</span><span class="kpi-icon">▤</span></div><div class="kpi-value" id="cloud-file-count">0</div><div class="kpi-note">Latest version in your folders</div></div>
@@ -665,18 +916,33 @@
             <div class="card kpi"><div class="kpi-top"><span class="kpi-label">Encrypted backup copies</span><span class="kpi-icon">⇅</span></div><div class="kpi-value" id="cloud-storage-size">0</div><div class="kpi-note" id="cloud-storage-note">SQLite backup replica</div></div>
           </div>
           <div class="card storage-card section-gap"><div class="card-head"><div><div class="card-title">Primary storage and encrypted recovery copies</div><div class="card-desc">Cloud-D routes your files to the database assigned to your account and mirrors encrypted file data to the recovery database.</div></div><span class="pill green" id="database-status-pill">FILE CONTENTS ENCRYPTED</span></div><div class="storage-console"><div class="storage-intro"><span class="storage-lock">♢</span><div><strong id="database-heading">Encrypted file storage is ready</strong><p>Uploaded file contents are encrypted before saving. An encrypted recovery copy is stored separately and can be restored if a primary copy is missing.</p></div></div><div class="storage-stats"><div class="storage-stat"><span>Primary database</span><strong id="database-engine">SQLite</strong></div><div class="storage-stat"><span>File encryption</span><strong id="database-encryption">AES-256-GCM</strong></div><div class="storage-stat"><span>Backup file copies</span><strong id="database-files">0</strong></div><div class="storage-stat"><span>Backup database</span><strong id="database-size">SQLite</strong></div></div><div class="storage-note" id="database-note">File contents are encrypted in both SQLite databases. Account and folder metadata is stored separately.</div><div class="crypto-demo staff-only"><div class="crypto-demo-copy"><strong>Cryptographic demonstration · Primary DB</strong>Verify decrypts and authenticates encrypted file copies without exposing plaintext in the browser. Re-encrypt writes fresh AES-GCM ciphertext for the primary node.</div><div class="crypto-demo-actions"><button class="btn" id="verify-encryption-button" type="button">Verify encrypted copies</button><button class="btn" id="reencrypt-button" type="button">Re-encrypt primary</button></div></div></div></div>
-          <div class="card upload-card section-gap" id="upload-panel"><div class="card-head"><div><div class="card-title">Upload to your cloud area</div><div class="card-desc">Choose files and a destination folder. Cloud-D selects your assigned storage area automatically.</div></div><span class="pill blue" id="storage-mode-pill">ENCRYPTED STORAGE</span></div><form class="upload-controls" id="upload-form"><div class="control"><label for="upload-file">Documents and data files</label><label class="upload-drop" id="upload-drop" for="upload-file"><span class="upload-cloud-icon">☁</span><span><strong>Choose files or drag them here</strong><small>PDF, Word, text, images, spreadsheets, CSV, JSON, and more</small></span></label><input class="upload-input-hidden" id="upload-file" name="file" type="file" multiple required aria-describedby="upload-selection"><div class="upload-selection" id="upload-selection">No files selected</div></div><div class="control"><label for="upload-folder">Destination folder</label><div class="folder-select-row"><select id="upload-folder" name="folder_id" required><option value="">Loading folders…</option></select><button class="btn" id="create-folder-button" type="button">＋ New folder</button></div></div><button class="btn primary" type="submit" id="upload-button">Upload encrypted</button></form><div class="upload-progress" id="upload-progress-panel" aria-live="polite"><div class="upload-progress-track"><div class="upload-progress-fill" id="upload-progress-fill"></div></div><div class="upload-progress-caption"><span id="upload-progress-stage">Ready to upload</span><strong id="upload-progress-percent">0%</strong></div></div><div class="upload-note"><span id="upload-storage-note">Files are encrypted before being written to the database.</span> Limit: 10 MB total per upload. <span class="upload-status" id="upload-status">Sign in to upload files.</span></div></div>
+          <div class="card upload-card section-gap" id="upload-panel" hidden><div class="card-head"><div><div class="card-title">Upload to your cloud area</div><div class="card-desc">Choose files and a destination folder. Cloud-D selects your assigned storage area automatically.</div></div><span class="pill blue" id="storage-mode-pill">ENCRYPTED STORAGE</span></div><form class="upload-controls" id="upload-form"><div class="control"><label for="upload-file">Documents and data files</label><label class="upload-drop" id="upload-drop" for="upload-file"><span class="upload-cloud-icon">☁</span><span><strong>Choose files or drag them here</strong><small>PDF, Word, text, images, spreadsheets, CSV, JSON, and more</small></span></label><input class="upload-input-hidden" id="upload-file" name="file" type="file" multiple required aria-describedby="upload-selection"><div class="upload-selection" id="upload-selection">No files selected</div></div><div class="control"><label for="upload-folder">Destination folder</label><div class="folder-select-row"><select id="upload-folder" name="folder_id" required><option value="">Loading folders…</option></select><button class="btn" id="create-folder-button" type="button">＋ New folder</button></div></div><button class="btn primary" type="submit" id="upload-button">Upload encrypted</button></form><div class="upload-progress" id="upload-progress-panel" aria-live="polite"><div class="upload-progress-track"><div class="upload-progress-fill" id="upload-progress-fill"></div></div><div class="upload-progress-caption"><span id="upload-progress-stage">Ready to upload</span><strong id="upload-progress-percent">0%</strong></div></div><div class="upload-note"><span id="upload-storage-note">Files are encrypted before being written to the database.</span> Limit: 10 MB total per upload. <span class="upload-status" id="upload-status">Sign in to upload files.</span></div></div>
           <div class="cloud-workspace section-gap">
-            <div class="card table-card cloud-files-card"><div class="card-head"><div><div class="card-title">Your cloud folders and files</div><div class="card-desc" id="stored-files-description">Files are scoped to your account type and assigned folders.</div></div><span class="pill blue" id="stored-files-pill">0 FILES</span></div><div class="cloud-tools"><label class="cloud-search"><span>⌕</span><input id="cloud-file-search" type="search" placeholder="Search files or folders…" aria-label="Search stored cloud files"></label><select id="cloud-folder-filter" aria-label="Filter by folder"><option value="all">All folders</option></select><select id="cloud-type-filter" aria-label="Filter by file type"><option value="all">All file types</option><option value="data">Structured data</option><option value="document">Documents</option></select></div><div class="table-wrap"><table><thead><tr><th>FILE</th><th>FOLDER</th><th>SIZE</th><th>TYPE</th><th>RECORDS</th><th>BACKUP</th><th>ACTION</th></tr></thead><tbody id="cloud-files-body"><tr><td colspan="7" class="empty">No files yet. Upload a document above to add it to your cloud.</td></tr></tbody></table></div></div>
+            <div class="card table-card cloud-files-card"><div class="card-head"><div><div class="card-title">Your cloud folders and files</div><div class="card-desc" id="stored-files-description">Files are scoped to your account type and assigned folders.</div></div><span class="pill blue" id="stored-files-pill">0 FILES</span></div><div class="folder-inline"><div class="folder-inline-title">Folders</div><div class="folder-grid" id="folder-grid"><div class="folder-empty">Loading folders…</div></div></div><div class="cloud-tools"><label class="cloud-search"><span>⌕</span><input id="cloud-file-search" type="search" placeholder="Search files or folders…" aria-label="Search stored cloud files"></label><select id="cloud-folder-filter" aria-label="Filter by folder"><option value="all">All folders</option></select><select id="cloud-type-filter" aria-label="Filter by file type"><option value="all">All file types</option><option value="data">Structured data</option><option value="document">Documents</option></select></div><div class="table-wrap"><table><thead><tr><th>FILE</th><th>FOLDER</th><th>SIZE</th><th>TYPE</th><th>RECORDS</th><th>BACKUP</th><th>ACTION</th></tr></thead><tbody id="cloud-files-body"><tr><td colspan="7" class="empty">No files yet. Upload a document above to add it to your cloud.</td></tr></tbody></table></div></div>
             <aside class="card cloud-activity-card"><div class="card-head"><div><div class="card-title">Live cloud activity</div><div class="card-desc">Recent actions in this browser session</div></div><span class="activity-live"><i></i>LIVE</span></div><div class="activity-list" id="cloud-activity-list"><div class="empty">Connecting to the cloud workspace…</div></div></aside>
           </div>
           <div class="footer-note" id="storage-footer-note">Cloud-D simulation · primary files are encrypted and mirrored into a separate recovery database.</div>
         </section>
 
+        <section class="page" id="page-architecture">
+          <div class="page-head"><div><div class="eyebrow">Customer workspace · Read only</div><h1>Cloud Architecture</h1><p class="subtitle">A simple view of how your account reaches its storage and how uploaded files are protected.</p></div></div>
+          <div class="card architecture-flow">
+            <div class="architecture-step"><span class="architecture-icon">◉</span><strong>Your account</strong><small>Verified sign-in</small></div><span class="architecture-arrow">→</span>
+            <div class="architecture-step"><span class="architecture-icon">⇄</span><strong>Cloud-D API</strong><small>Routes authorized requests</small></div><span class="architecture-arrow">→</span>
+            <div class="architecture-step"><span class="architecture-icon">▤</span><strong>Customer DB</strong><small>Your private file area</small></div><span class="architecture-arrow">→</span>
+            <div class="architecture-step recovery"><span class="architecture-icon">♢</span><strong>Recovery DB</strong><small>Encrypted recovery copy</small></div>
+          </div>
+          <div class="architecture-facts">
+            <article class="card architecture-fact"><span class="pill green">ACCESS</span><h2>Assigned to your account</h2><p>Cloud-D routes your file requests to your customer storage area and checks account ownership before returning files.</p></article>
+            <article class="card architecture-fact"><span class="pill blue">DATABASE</span><h2>SQLite primary and recovery</h2><p>File, folder, and version records are stored in the primary SQLite database and mirrored to a separate recovery database.</p></article>
+            <article class="card architecture-fact"><span class="pill amber">ENCRYPTION</span><h2>AES-256-GCM file protection</h2><p>Uploaded file contents and saved report snapshots are encrypted before storage. Passwords are stored as salted scrypt hashes.</p></article>
+          </div>
+          <div class="card architecture-notice"><span class="architecture-status-dot"></span><div><strong id="customer-security-status">Your cloud is protected</strong><p id="customer-security-detail">When a simulated security event is detected, Cloud-D will show its current status here.</p></div></div>
+        </section>
+
         <section class="page" id="page-overview">
           <div class="page-head">
             <div><div class="eyebrow">Security operations · Defense posture</div><h1>Security overview</h1><p class="subtitle">Review the defenses, decision policy, containment rates, and protection status guarding the simulated cloud.</p></div>
-            <div class="actions"><button class="btn" id="step-btn" title="Simulate one round">＋ One round</button><button class="btn primary" id="run-btn"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M5 3.5a.7.7 0 0 1 1.05-.6l6.2 3.6a.7.7 0 0 1 0 1.2l-6.2 3.6A.7.7 0 0 1 5 10.7V3.5Z"/></svg>Run 20-round simulation</button></div>
           </div>
           <div class="kpis">
             <div class="card kpi" style="--accent:var(--cyan);--glow:#52d6d033"><div class="kpi-top"><span class="kpi-label">Attack block rate</span><span class="kpi-icon">◈</span></div><div class="kpi-value" id="kpi-block">—</div><div class="kpi-note" id="kpi-block-note">Run a simulation to establish baseline</div></div>
@@ -719,36 +985,58 @@
         </section>
 
         <section class="page" id="page-threats">
-          <div class="page-head"><div><div class="eyebrow">Threat lab · Adversarial exercise</div><h1>Attack simulation</h1><p class="subtitle">Tune attack pressure, select active vectors, and inspect how defender utility scores change.</p></div><div class="actions"><button class="btn" id="threat-step">＋ Simulate one round</button><button class="btn primary" id="threat-run">Run simulation</button></div></div>
-          <div class="card sim-control-card"><div class="card-head"><div><div class="card-title">Exercise configuration</div><div class="card-desc">Settings apply to the next simulation run</div></div><span class="pill amber">LOCAL MODEL</span></div><div class="controls">
-            <div class="control"><label for="round-select">Simulation rounds</label><select id="round-select"><option value="20">20 rounds · full</option><option value="10">10 rounds · standard</option><option value="5">5 rounds · quick</option></select></div>
-            <div class="control"><label for="intensity-select">Attack intensity</label><select id="intensity-select"><option value="normal">Normal · baseline</option><option value="elevated">Elevated</option><option value="severe">Severe</option></select></div>
-            <div class="control"><label>Active attack vectors</label><div class="toggle-list"><label class="toggle"><input class="vector-toggle" type="checkbox" value="auth" checked> Credential</label><label class="toggle"><input class="vector-toggle" type="checkbox" value="flow" checked> DDoS</label><label class="toggle"><input class="vector-toggle" type="checkbox" value="query" checked> SQLi</label><label class="toggle"><input class="vector-toggle" type="checkbox" value="behavior" checked> Insider</label></div></div>
-          </div></div>
-          <h2 class="section-title">Adversarial agents</h2>
-          <div class="attack-grid" id="attack-cards"></div>
+          <div class="page-head"><div><div class="eyebrow">Threat lab · Coordinated defense</div><h1>Attack &amp; defense simulation details</h1><p class="subtitle">Review attacker activity, set the decision threshold, and choose the simulation rounds and intensity.</p></div></div>
+          <h2 class="section-title">Attacker activity</h2>
+          <div class="card"><div class="card-head"><div><div class="card-title">Attackers in this exercise</div><div class="card-desc">Current attempts and outcomes by attacker</div></div><span class="mini-label" id="attack-count-label">0 events</span></div><div class="agents-list" id="attack-summary"></div></div>
           <h2 class="section-title">Decision threshold</h2>
           <div class="card threshold-card"><div class="threshold-copy"><div class="threshold-title">Minimum utility to execute</div><div class="threshold-help">The decision engine ranks proposals and selects actions above this threshold.</div></div><div class="threshold-slider"><input id="threshold-lab" type="range" min="0.10" max="0.90" step="0.01" value="0.40"><div class="slider-row"><span>More responsive · 0.10</span><span>More selective · 0.90</span></div></div><div class="threshold-value" id="threshold-lab-label">0.40</div></div>
+          <div class="bottom-grid">
+            <div class="card sim-control-card"><div class="card-head"><div><div class="card-title">Choose attacker agents</div><div class="card-desc">Attack destinations and automatic defender assignments are configured in the Python engine.</div></div><span class="pill amber">LOCAL MODEL</span></div><div class="controls">
+              <div class="control range-control"><label for="round-select">Simulation rounds <strong id="round-value">20</strong></label><input id="round-select" type="range" min="1" max="20" step="1" value="20"><div class="slider-row"><span>1 round</span><span>20 rounds</span></div></div>
+              <div class="control range-control"><label for="intensity-select">Attack intensity <strong id="intensity-value">5 / 10</strong></label><input id="intensity-select" type="range" min="1" max="10" step="1" value="5"><div class="slider-row"><span>Low</span><span>High</span></div></div>
+              <div class="control"><label>Attackers to include</label><div class="toggle-list"><label class="toggle"><input class="vector-toggle" type="checkbox" value="auth" checked> Credential-Bot</label><label class="toggle"><input class="vector-toggle" type="checkbox" value="flow" checked> FloodSwarm</label><label class="toggle"><input class="vector-toggle" type="checkbox" value="query" checked> Injector-X</label><label class="toggle"><input class="vector-toggle" type="checkbox" value="behavior" checked> GhostUser</label></div><div class="card-desc" style="margin-top:9px">AuthSentinel, FlowGuardian, QueryShield, and BehaviorWatch respond automatically to the selected attack types.</div></div>
+            </div><div class="sim-control-actions"><button class="btn primary" id="threat-run">▶ Run 20 rounds</button></div></div>
+          </div>
           <h2 class="section-title">Recent simulated attack decisions</h2>
           <div class="card table-card"><div class="table-wrap"><table><thead><tr><th>ROUND</th><th>ATTACKER</th><th>TARGET NODE</th><th>UTILITY</th><th>DEFENDER ACTION</th><th>OUTCOME</th></tr></thead><tbody id="attack-table"></tbody></table></div></div>
-          <div class="footer-note">Attack patterns and outcomes are synthetic and generated in the browser.</div>
-        </section>
-
-        <section class="page" id="page-simulation">
-          <div class="page-head"><div><div class="eyebrow">Live exercise · Coordinated agents</div><h1>Attack and defense simulation</h1><p class="subtitle">Run the attackers against the cloud, watch defenders coordinate, and inspect each agent’s role and decisions.</p></div><div class="actions"><button class="btn" id="simulation-step">＋ One round</button><button class="btn primary" id="agents-run">Run 20-round simulation</button></div></div>
-          <div class="bottom-grid">
-            <div class="card"><div class="card-head"><div><div class="card-title">Attacker activity</div><div class="card-desc">Adversarial agents probe the simulated environment</div></div><span class="mini-label" id="attack-count-label">0 events</span></div><div class="agents-list" id="attack-summary"></div></div>
-            <div class="card"><div class="card-head"><div><div class="card-title">Defense event stream</div><div class="card-desc">Most recent attack outcomes and defender decisions</div></div><span class="pill blue">LIVE SIM</span></div><div class="feed" id="event-feed"><div class="empty">Run a simulation to see coordinated defense events.</div></div></div>
-          </div>
-          <h2 class="section-title">Defender agent network</h2>
-          <div class="agent-grid" id="agent-cards"></div>
           <h2 class="section-title">Coordination flow</h2>
           <div class="card report-banner"><div class="eyebrow" style="margin:0;color:#74ddd5">Multi-agent decision loop</div><p>Attack telemetry is scored by the matching specialist. Each defender proposes an action and utility score. The Decision Engine ranks proposals and forms a joint action set above the shared threshold; those decisions are then resolved against the attacks in the same simulation round. Confirmed blocks, node damage, and record exposure feed the defense report.</p><div class="report-meta"><span>Intelligence exchange<strong>Cross-round signature counts</strong></span><span>Decision policy<strong>Ranked utility + shared threshold</strong></span><span>Defense state<strong id="agents-state">Awaiting simulation</strong></span></div></div>
-          <div class="footer-note">Agent reliability displayed here reflects this simulation run only; it is not a measured production benchmark.</div>
+          <div class="footer-note">Attack patterns and target-based defender assignments are generated by the Python simulation engine.</div>
+        </section>
+
+        <section class="page live-simulation-page" id="page-live-simulation">
+          <div class="page-head"><div><div class="eyebrow">Live visualization · Staff simulation</div><h1>Live simulation</h1><p class="subtitle">See each simulated attack move from its agent station to the firewall and watch the matching defender respond.</p></div><div class="actions"><span class="pill blue" id="simulation-visual-status">READY</span><button class="btn" type="button" data-page="threats">Simulation details</button></div></div>
+          <h2 class="section-title">Adversarial agents</h2>
+          <div class="attack-grid" id="attack-cards"></div>
+          <h2 class="section-title">Defender agents</h2>
+          <div class="agent-grid" id="agent-cards"></div>
+          <div class="card sim-visual-card"><div class="card-head"><div><div class="card-title">Attacker and defender network</div><div class="card-desc">Red packets travel from active attackers to the central firewall; mapped green defender packets return to the firewall.</div></div></div><div class="simulation-lane network-lane" id="simulation-lane" aria-label="Four attacker stations and four defender stations connected to a central firewall">
+            <svg class="network-wires" viewBox="0 0 1000 500" preserveAspectRatio="none" aria-hidden="true">
+              <path class="network-link attack-link" d="M350 60 Q400 60 450 250"/><path class="network-link attack-link" d="M350 185 Q400 185 450 250"/><path class="network-link attack-link" d="M350 315 Q400 315 450 250"/><path class="network-link attack-link" d="M350 440 Q400 440 450 250"/>
+              <path class="network-link defense-link" d="M650 60 Q600 60 550 250"/><path class="network-link defense-link" d="M650 185 Q600 185 550 250"/><path class="network-link defense-link" d="M650 315 Q600 315 550 250"/><path class="network-link defense-link" d="M650 440 Q600 440 550 250"/>
+              <circle class="network-packet attack-packet" id="attack-packet-auth" r="8"><animateMotion dur=".85s" begin="indefinite" fill="freeze" path="M350 60 Q400 60 450 250"/></circle><circle class="network-packet attack-packet" id="attack-packet-flow" r="8"><animateMotion dur=".85s" begin="indefinite" fill="freeze" path="M350 185 Q400 185 450 250"/></circle><circle class="network-packet attack-packet" id="attack-packet-query" r="8"><animateMotion dur=".85s" begin="indefinite" fill="freeze" path="M350 315 Q400 315 450 250"/></circle><circle class="network-packet attack-packet" id="attack-packet-behavior" r="8"><animateMotion dur=".85s" begin="indefinite" fill="freeze" path="M350 440 Q400 440 450 250"/></circle>
+              <circle class="network-packet defense-packet" id="defense-packet-auth" r="8"><animateMotion dur=".85s" begin="indefinite" fill="freeze" path="M650 60 Q600 60 550 250"/></circle><circle class="network-packet defense-packet" id="defense-packet-flow" r="8"><animateMotion dur=".85s" begin="indefinite" fill="freeze" path="M650 185 Q600 185 550 250"/></circle><circle class="network-packet defense-packet" id="defense-packet-query" r="8"><animateMotion dur=".85s" begin="indefinite" fill="freeze" path="M650 315 Q600 315 550 250"/></circle><circle class="network-packet defense-packet" id="defense-packet-behavior" r="8"><animateMotion dur=".85s" begin="indefinite" fill="freeze" path="M650 440 Q600 440 550 250"/></circle>
+            </svg>
+            <div class="network-column attacker-column"><div class="network-column-heading">Attacker agents</div><div class="network-stations">
+              <div class="network-station attack-station" data-attacker-station="auth"><span class="network-agent-icon">⌑</span><span><strong>Credential-Bot</strong><small>Credential attacks</small></span></div>
+              <div class="network-station attack-station" data-attacker-station="flow"><span class="network-agent-icon">≋</span><span><strong>FloodSwarm</strong><small>DDoS / traffic floods</small></span></div>
+              <div class="network-station attack-station" data-attacker-station="query"><span class="network-agent-icon">⌘</span><span><strong>Injector-X</strong><small>SQL injection</small></span></div>
+              <div class="network-station attack-station" data-attacker-station="behavior"><span class="network-agent-icon">◌</span><span><strong>GhostUser</strong><small>Insider behavior</small></span></div>
+            </div></div>
+            <div class="network-firewall" id="firewall-center"><span class="firewall-shield">⬡</span><strong>Firewall</strong><small>Central inspection</small></div>
+            <div class="network-column defender-column"><div class="network-column-heading">Defender agents</div><div class="network-stations">
+              <div class="network-station defense-station" data-defender-station="auth"><span class="network-agent-icon">✓</span><span><strong>AuthSentinel</strong><small>Identity &amp; access</small></span></div>
+              <div class="network-station defense-station" data-defender-station="flow"><span class="network-agent-icon">✓</span><span><strong>FlowGuardian</strong><small>Traffic protection</small></span></div>
+              <div class="network-station defense-station" data-defender-station="query"><span class="network-agent-icon">✓</span><span><strong>QueryShield</strong><small>Query inspection</small></span></div>
+              <div class="network-station defense-station" data-defender-station="behavior"><span class="network-agent-icon">✓</span><span><strong>BehaviorWatch</strong><small>Activity monitoring</small></span></div>
+            </div></div>
+          </div>
+          <div class="live-simulation-metrics"><div class="live-simulation-metric"><span>Rounds completed</span><strong id="live-round-count">0 / 20</strong></div><div class="live-simulation-metric"><span>Threats contained</span><strong id="live-block-count">0 / 0</strong></div><div class="live-simulation-metric"><span>Cloud status</span><strong id="live-cloud-status">Ready</strong></div></div></div>
+          <div class="card live-event-card"><div class="card-head"><div><div class="card-title">Live defense events</div><div class="card-desc">Each event is listed with its target and the Python-assigned defender.</div></div></div><div class="feed" id="event-feed"><div class="empty">Run the simulation to see coordinated defense events.</div></div></div>
         </section>
 
         <section class="page" id="page-report">
-          <div class="page-head"><div><div class="eyebrow">Generated artifact · Simulation summary</div><h1>Final defense report</h1><p class="subtitle">A review-ready summary of attack containment, data protection, node health, and defender performance.</p></div><div class="actions"><button class="btn" id="print-report">Print report</button><button class="btn" id="download-csv">Export CSV</button><button class="btn primary" id="download-report">Download JSON</button></div></div>
+          <div class="page-head"><div><div class="eyebrow">Simulation summary · Live results</div><h1>Defense report</h1><p class="subtitle">Metrics, node health, and defender performance refresh after every simulation round.</p></div><div class="actions"><span class="pill blue" id="report-live-status">AWAITING SIMULATION</span><button class="btn" id="print-report">Print report</button><button class="btn" id="download-csv">Export CSV</button><button class="btn primary" id="download-report">Download JSON</button></div></div>
           <div class="card report-banner"><div class="eyebrow" style="margin:0;color:#74ddd5">Cloud-D · Enterprise cloud security exercise</div><p id="report-summary">No simulation has been run yet. Start a 20-round exercise to populate this report.</p><div class="report-meta"><span>Project<strong>Cloud-D Multi-Agent Decision System</strong></span><span>Prepared by<strong>Nithish M · 24X064</strong></span><span>Execution<strong id="report-date">Not run</strong></span><span>Rounds<strong id="report-rounds">0</strong></span></div></div>
           <div class="kpis report-kpis section-gap">
             <div class="card kpi"><div class="kpi-top"><span class="kpi-label">Attack block rate</span><span class="kpi-icon">◈</span></div><div class="kpi-value" id="report-block">—</div><div class="kpi-note" id="report-block-note">No events yet</div></div>
@@ -761,11 +1049,14 @@
           <div class="card table-card"><div class="table-wrap"><table><thead><tr><th>DEFENDER</th><th>THREAT DOMAIN</th><th>EVENTS SCORED</th><th>ACTIONS EXECUTED</th><th>CONTAINMENT RATE</th><th>LAST UTILITY</th></tr></thead><tbody id="report-agent-table"></tbody></table></div></div>
           <h2 class="section-title">Node health</h2>
           <div class="card table-card"><div class="table-wrap"><table><thead><tr><th>CLOUD NODE</th><th>STATUS</th><th>EVENTS OBSERVED</th><th>DEFENSE ACTIONS</th><th>SIMULATED IMPACT</th></tr></thead><tbody id="node-table"></tbody></table></div></div>
+          <h2 class="section-title">Saved report history</h2><div class="saved-report-list" id="saved-report-list"><div class="card empty">Saved encrypted reports will appear here after a simulation.</div></div>
+          <div class="footer-note">Saved report snapshots persist in encrypted SQLite storage and are mirrored to its recovery database. They have no automatic expiry.</div>
           <div class="footer-note">This report summarizes a local synthetic simulation. It does not certify or measure a real cloud deployment.</div>
         </section>
       </div>
     </main>
   </div>
+  <dialog class="customer-alert-dialog" id="customer-alert-dialog"><div class="customer-alert-mark">✓</div><h2>Security activity detected</h2><p id="customer-alert-copy">An attack simulation is in progress. Defense agents have responded and the situation is under control.</p><button class="btn primary" id="customer-alert-dismiss" type="button">Understood</button></dialog>
   <dialog class="cloud-dialog" id="folder-dialog" aria-labelledby="folder-dialog-title">
     <div class="dialog-header"><div><div class="eyebrow">Your assigned storage area</div><h2 id="folder-dialog-title">Create a folder</h2></div><button class="btn" id="close-folder-dialog" type="button">Close</button></div>
     <p class="dialog-copy">This folder will be available to your account in its assigned cloud area.</p>

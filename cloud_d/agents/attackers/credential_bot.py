@@ -14,7 +14,6 @@ class CredentialBot(BaseAgent):
     def decide(self, state):
         self.active = False
         auth = next((node for node in state["nodes"] if node["role"] == "auth" and node["health"] > 0), None)
-        api = next((node for node in state["nodes"] if node["role"] == "api" and node["health"] > 0), None)
         if auth is None:
             return None
         self.active = True
@@ -31,12 +30,11 @@ class CredentialBot(BaseAgent):
                 "defender_replies": [("block_ip", .68), ("lock_account", .86), ("monitor", .10)],
             },
         ]
-        if api is not None:
-            candidates.append({
-                "type": "token_replay", "family": "auth", "tactic": "stolen-token replay",
-                "target": api["id"], "target_name": api["name"], "damage": 6,
-                "defender_replies": [("revoke_token", .88), ("block_ip", .53), ("monitor", .12)],
-            })
+        candidates.append({
+            "type": "token_replay", "family": "auth", "tactic": "stolen-token replay",
+            "target": auth["id"], "target_name": auth["name"], "damage": 6,
+            "defender_replies": [("revoke_token", .88), ("block_ip", .53), ("monitor", .12)],
+        })
 
         root = {
             "kind": "max",

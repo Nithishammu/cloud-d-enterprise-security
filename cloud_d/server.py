@@ -139,6 +139,9 @@ class CloudDHandler(BaseHTTPRequestHandler):
         if path == "/api/folders":
             self._send_json(200, {"folders": self.app.list_folders(user)})
             return
+        if path == "/api/reports":
+            self._send_json(200, {"reports": self.app.storage.list_simulation_reports(user["id"])})
+            return
         self._send_json(404, {"error": "Not found."})
 
     def _download_file(self, file_id: str, user: dict):
@@ -213,6 +216,17 @@ class CloudDHandler(BaseHTTPRequestHandler):
         if path == "/api/upload":
             self._upload(user)
             return
+        if path == "/api/drive-state":
+            body = self._read_body()
+            if body is None:
+                return
+            try:
+                payload = json.loads(body.decode("utf-8"))
+                result = self.app.update_drive_entry(user, str(payload.get("logical_id", "")), str(payload.get("action", "")))
+                self._send_json(200, result)
+            except (UnicodeDecodeError, json.JSONDecodeError, AttributeError, ValueError) as exc:
+                self._send_json(400, {"error": str(exc) or "Choose a supported drive action."})
+            return
         if user["role"] != "staff":
             self._send_json(403, {"error": "Security simulation controls are available to staff accounts."})
             return
@@ -239,10 +253,10 @@ class CloudDHandler(BaseHTTPRequestHandler):
                     raise ValueError("Choose a supported encryption action.")
                 self._send_json(200, result)
             elif path == "/api/round":
-                self.app.simulate_round(payload)
+                self.app.simulate_round(payload, user)
                 self._send_json(200, self.app.get_state(user))
             elif path == "/api/restart":
-                self.app.begin_new_run(payload)
+                self.app.begin_new_run(payload, user)
                 self._send_json(200, self.app.get_state(user))
             elif path == "/api/reset":
                 self.app.reset()

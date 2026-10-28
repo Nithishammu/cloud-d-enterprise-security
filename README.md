@@ -20,7 +20,7 @@ On Windows, use `.venv\Scripts\python.exe -m cloud_d.main`.
 
 ## Accounts and access
 
-Sign in with the username and password saved on the account; Cloud-D reads the registered role automatically. New users follow the **Create an account** link below the sign-in form, then provide an email address, a unique username, and password before choosing **Customer** or **Staff**. Email is collected during account creation; the username is the sign-in ID and is shown as the account name. Usernames are case-insensitive and must be 3–30 characters using letters, numbers, dots, underscores, or hyphens. Passwords are salted and hashed with scrypt; the app stores a hash of the session token and expires sessions after 12 hours. Signing out revokes the current session.
+Sign in with the username and password saved on the account; Cloud-D reads the registered role automatically. New users follow the **Create an account** link below the sign-in form, then provide an email address, a unique username, and password before choosing **Customer** or **Staff**. An optional PNG, JPEG, or WebP profile picture (up to 2 MB) is encrypted and saved with the account. Email is collected during account creation; the username is the sign-in ID and is shown as the account name. Usernames are case-insensitive and must be 3–30 characters using letters, numbers, dots, underscores, or hyphens. Passwords are salted and hashed with scrypt; the app stores a hash of the session token and expires sessions after 12 hours. Signing out revokes the current session.
 
 On first launch after this update, existing accounts receive a username based on the part of their saved email before `@` (with a numeric suffix if needed to make it unique). That username is shown beside the account role after sign-in. The primary and recovery databases are migrated together, so existing accounts and files remain available.
 
@@ -35,7 +35,7 @@ Users can select an existing folder or create one. They cannot select another ac
 
 ## Storage, encryption, versions, and recovery
 
-Cloud-D keeps a primary SQLite database and a separate SQLite recovery database. Both contain account, folder, and node metadata; file contents are encrypted with **AES-256-GCM** before the encrypted blobs are saved. The rest of the SQLite metadata is not encrypted as a whole database. Passwords are stored as salted scrypt hashes, not plaintext. The app decrypts an authorized file inside the Python service when preparing a download.
+Cloud-D keeps a primary SQLite database and a separate SQLite recovery database. Uploaded file contents, optional profile pictures, and saved simulation report snapshots are encrypted with **AES-256-GCM** and mirrored to the recovery database. Passwords are stored as salted scrypt hashes, not plaintext. User, folder, drive-state, and node metadata is not encrypted as a whole database. The app decrypts an authorized file inside the Python service when preparing a download.
 
 By default, the local data folder is:
 
@@ -46,7 +46,9 @@ It contains `cloud-d.sqlite3`, `cloud-d-backup.sqlite3`, and `encryption.key`. K
 
 Set `CLOUD_D_DATA_DIR` to use a different data folder. Alternatively, `CLOUD_D_ENCRYPTION_KEY` can hold a URL-safe base64 encoding of exactly 32 random bytes. Keep that secret stable for as long as the database is needed; it takes precedence over `encryption.key`.
 
-Every upload is written to the account’s assigned primary area and mirrored as an encrypted file copy into the recovery database. The **Restore** action appears if a current primary copy is missing while its recovery copy remains available. If the primary SQLite file is replaced or lost while the backup database and key remain intact, Cloud-D rebuilds the primary file from the recovery copy on startup. Simulation state and active login sessions are not backed up.
+Every upload is written to the account’s assigned primary area and mirrored as an encrypted file copy into the recovery database. Saved files and their versions do not automatically expire. Moving a file to **Trash** starts a 90-day retention period; it can be restored during that period and is permanently deleted from both databases after expiry. Starred and Trash state is stored in SQLite, not only in the browser. Simulation report snapshots are updated after each round, retained without an automatic expiry, and mirrored as encrypted records. Active login sessions expire after 12 hours and are not backed up.
+
+Keep both SQLite databases and the encryption key together. A local copy persists on disk until deleted or its storage is lost; the current Render service has a temporary filesystem, so Render can discard the primary database, recovery copy, and key when the instance is replaced.
 
 Staff can use the **Cryptographic demonstration** controls in the Cloud page to verify and authenticate encrypted primary-node copies or re-encrypt them with fresh AES-GCM ciphertext. Verification happens inside the Python service; plaintext is not sent to the browser. This demonstrates file-content confidentiality and integrity while keeping the deployment intentionally suitable for classroom demonstrations.
 

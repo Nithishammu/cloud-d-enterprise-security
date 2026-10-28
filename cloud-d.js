@@ -24,8 +24,13 @@
   let cloudFileCache = [];
   let cloudActivity = [];
   let lastCloudFileIds = new Set();
+  let activeDriveView = 'my-drive';
+  let starredFileIds = new Set();
+  let trashedFileIds = new Set();
   let progressHideTimer = null;
   let currentUser = null;
+  let customerNoticeId = null;
+  let customerNoticePrimed = false;
   let authMode = 'login';
   let accountType = 'customer';
 
@@ -85,15 +90,33 @@
 
   async function enterWorkspace(user) {
     currentUser = user;
+    customerNoticeId = null;
+    customerNoticePrimed = false;
+    starredFileIds = new Set();
+    trashedFileIds = new Set();
+    $('account-name').textContent = user.name || user.username || 'Cloud-D user';
+    $('account-email').textContent = user.email || '';
+    const avatar = $('account-menu-button');
+    avatar.textContent = (user.name || user.username || 'N').trim().charAt(0).toUpperCase();
+    const profileAvatar = $('account-profile-avatar');
+    profileAvatar.textContent = (user.name || user.username || 'N').trim().charAt(0).toUpperCase();
+    if (user.profile_picture) {
+      const image = document.createElement('img');
+      image.src = user.profile_picture;
+      image.alt = 'Profile picture';
+      avatar.replaceChildren(image.cloneNode());
+      profileAvatar.replaceChildren(image);
+    }
     $('auth-screen').hidden = true;
     $('app-shell').hidden = false;
     $('current-user-name').textContent = user.username;
     $('current-user-role').textContent = user.role === 'staff' ? 'Staff operator' : 'Customer';
-    $('current-user-avatar').textContent = user.username.slice(0, 2).toUpperCase();
+    switchDriveView('my-drive');
     document.querySelectorAll('.page').forEach(item => item.classList.toggle('active', item.id === 'page-cloud'));
     document.querySelectorAll('.nav button').forEach(item => item.classList.toggle('active', item.dataset.page === 'cloud'));
     $('crumb-current').textContent = 'Cloud';
     document.querySelectorAll('.staff-only').forEach(item => { item.hidden = user.role !== 'staff'; });
+    document.querySelectorAll('.customer-only').forEach(item => { item.hidden = user.role !== 'customer'; });
     $('cloud-nodes-online').textContent = user.role === 'staff' ? 'Primary DB' : 'Customer DB';
     $('cloud-status-pill').textContent = user.role === 'staff' ? 'STAFF AREA' : 'CUSTOMER AREA';
     $('cloud-area-eyebrow').textContent = user.role === 'staff' ? 'Staff workspace · Primary DB' : 'Customer workspace · Customer DB';
@@ -121,8 +144,20 @@
     uploadSelect.innerHTML = folders.map(folder => `<option value="${escapeHtml(folder.id)}">${escapeHtml(folder.name)}</option>`).join('');
     filterSelect.innerHTML = '<option value="all">All folders</option>' + folders.map(folder => `<option value="${escapeHtml(folder.id)}">${escapeHtml(folder.name)}</option>`).join('');
     if (folders.some(folder => folder.id === previousUpload)) uploadSelect.value = previousUpload;
-    if (folders.some(folder => folder.id === previousFilter)) filterSelect.value = previousFilter;
+    const targetFilter = selectedId || previousFilter;
+    if (folders.some(folder => folder.id === targetFilter)) filterSelect.value = targetFilter;
+    renderFolderCards(folders);
     renderFilteredCloudFiles();
+  }
+
+  function renderFolderCards(folders) {
+    const grid = $('folder-grid');
+    const visibleFolders = folders.filter(folder => !['my files', 'recovered files'].includes(String(folder.name).trim().toLowerCase()));
+    grid.innerHTML = visibleFolders.length ? visibleFolders.map(folder => {
+      const count = cloudFileCache.filter(file => file.folder_id === folder.id && !trashedFileIds.has(String(file.logical_id || file.id))).length;
+      const selected = $('cloud-folder-filter').value === folder.id;
+      return `<button class="folder-tile${selected ? ' selected' : ''}" type="button" data-open-folder="${escapeHtml(folder.id)}" aria-pressed="${selected}" title="Double-click to open this folder and upload files here"><span class="folder-tile-icon" aria-hidden="true">▱</span><span class="folder-tile-copy"><strong>${escapeHtml(folder.name)}</strong><small>${count} file${count === 1 ? '' : 's'}</small></span></button>`;
+    }).join('') : '<div class="folder-empty">No folders yet. Choose <strong>New folder</strong> to create one.</div>';
   }
 
   async function submitAuth(event) {
@@ -135,12 +170,23 @@
       password: $('auth-password').value
     };
     const path = authMode === 'login' ? '/api/auth/login' : '/api/auth/signup';
+    try {
     if (authMode === 'signup') {
       payload.role = accountType;
       payload.email = $('auth-email').value.trim();
+      payload.name = $('signup-name').value.trim();
       payload.staff_registration_code = $('staff-registration-code').value.trim();
+      const pictureFile = $('profile-picture').files?.[0];
+      if (pictureFile) {
+        if (pictureFile.size > 2 * 1024 * 1024) { message.textContent = 'Profile pictures must be 2 MB or smaller.'; message.classList.add('error'); return; }
+        payload.profile_picture = await new Promise((resolve, reject) => {
+          const reader = new FileReader();
+          reader.onload = () => resolve(String(reader.result || ''));
+          reader.onerror = () => reject(new Error('The selected profile picture could not be read.'));
+          reader.readAsDataURL(pictureFile);
+        });
+      }
     }
-    try {
       const response = await authorizedFetch(path, {
         method: 'POST', body: JSON.stringify(payload), headers: { 'Content-Type': 'application/json' }
       });
@@ -168,10 +214,12 @@
     setPasswordVisibility(false);
     $('auth-title').textContent = signup ? 'Create your Cloud-D account' : 'Sign in to your cloud';
     $('auth-copy').textContent = signup
-      ? 'Enter your email address and choose a username. Choose Customer or Staff to set your cloud access.'
+      ? 'Enter your name, email address, and a username for signing in. Choose Customer or Staff to set your cloud access.'
       : 'Sign in using your username and password. Cloud-D finds your account type automatically.';
     $('auth-email-field').hidden = !signup;
+    $('signup-name-field').hidden = !signup;
     $('auth-email').required = signup;
+    $('signup-name').required = signup;
     $('auth-username').required = true;
     $('auth-username-help').hidden = false;
     $('auth-username-help').textContent = signup
@@ -199,6 +247,15 @@
     showAuthScreen('You have signed out.');
   }
 
+  async function changeAccount(mode) {
+    try { await authorizedFetch('/api/auth/logout', { method:'POST' }); } catch (_error) { /* continue to account selection */ }
+    lastCloudFileIds = new Set(); cloudFileCache = []; cloudActivity = [];
+    showAuthScreen('');
+    setAuthMode(mode);
+    $('account-popover').hidden = true;
+    $('account-menu-button').setAttribute('aria-expanded', 'false');
+  }
+
   async function createFolder(event) {
     event.preventDefault();
     const button = $('folder-form').querySelector('[type="submit"]');
@@ -211,6 +268,7 @@
       $('folder-dialog').close();
       $('folder-form').reset();
       await refreshFolders(result.folder.id);
+      switchDriveView('my-drive');
       showToast(`Folder “${result.folder.name}” created.`);
     } catch (error) {
       showToast(error.message, true);
@@ -222,7 +280,7 @@
   function config() {
     return {
       threshold: Number($('threshold').value),
-      intensity: $('intensity-select').value,
+      intensity: Number($('intensity-select').value),
       active_vectors: [...document.querySelectorAll('.vector-toggle:checked')].map(input => input.value)
     };
   }
@@ -233,6 +291,24 @@
     const newFiles = currentFiles.filter(file => !previousIds.has(file.id));
     const firstConnection = sim === null;
     sim = value;
+    if (currentUser?.role === 'customer') {
+      const notice = value.security_notice;
+      $('customer-security-status').textContent = notice
+        ? 'Security event detected · defense response active'
+        : 'Your cloud is protected';
+      $('customer-security-detail').textContent = notice
+        ? `The exercise is processing round ${notice.round} of ${notice.max_rounds}. Defender systems are responding to simulated activity; your files remain in your assigned customer area.`
+        : 'When a simulated security event is detected, Cloud-D will show its current status here.';
+      if (!customerNoticePrimed) {
+        customerNoticeId = notice?.id || null;
+        customerNoticePrimed = true;
+      } else if (notice?.id && notice.id !== customerNoticeId) {
+        customerNoticeId = notice.id;
+        $('customer-alert-dialog').showModal();
+      }
+    }
+    starredFileIds = new Set(currentFiles.filter(file => file.starred).map(file => String(file.logical_id || file.id)));
+    trashedFileIds = new Set(currentFiles.filter(file => file.trashed_at).map(file => String(file.logical_id || file.id)));
     lastCloudFileIds = new Set(currentFiles.map(file => file.id));
     if (firstConnection) {
       addCloudActivity('Cloud workspace connected', `${fmt(currentFiles.length)} current files · ${fmt(value.storage?.backup_file_count || 0)} encrypted backup copies`, 'success');
@@ -250,7 +326,10 @@
       $('threshold-label').textContent = $('threshold-lab-label').textContent = Number(value.threshold).toFixed(2);
       $('engine-threshold').textContent = Number(value.threshold).toFixed(2);
     }
-    if (value.intensity) $('intensity-select').value = value.intensity;
+    if (value.intensity !== undefined && value.intensity !== null) {
+      $('intensity-select').value = value.intensity;
+      $('intensity-value').textContent = `${value.intensity} / 10`;
+    }
     if (value.active_vectors) {
       document.querySelectorAll('.vector-toggle').forEach(input => { input.checked = value.active_vectors.includes(input.value); });
     }
@@ -297,23 +376,29 @@
   }
 
   function nav(page) {
-    if (page !== 'cloud' && currentUser?.role !== 'staff') return;
+    const permitted = currentUser?.role === 'staff'
+      ? ['cloud', 'overview', 'threats', 'live-simulation', 'report']
+      : ['cloud', 'architecture', 'report'];
+    if (!permitted.includes(page)) return;
     document.querySelectorAll('.page').forEach(item => item.classList.toggle('active', item.id === `page-${page}`));
     document.querySelectorAll('.nav button').forEach(button => button.classList.toggle('active', button.dataset.page === page));
-    $('crumb-current').textContent = ({ cloud: 'Cloud', overview: 'Security Overview', simulation: 'Simulation', threats: 'Attack Simulation', report: 'Defense Report' })[page] || 'Cloud';
+    $('crumb-current').textContent = ({ cloud: 'Cloud', architecture: 'Cloud Architecture', overview: 'Security Overview', threats: 'Attack & Defense Simulation Details', 'live-simulation': 'Live Simulation', report: 'Defense Report' })[page] || 'Cloud';
     window.scrollTo(0, 0);
     if (page === 'cloud') syncCloudWorkspace();
   }
 
   async function syncCloudWorkspace() {
-    if (!currentUser || !document.getElementById('page-cloud').classList.contains('active') || document.visibilityState !== 'visible' || running || uploading) return;
-    setCloudConnection('syncing');
+    if (!currentUser || document.visibilityState !== 'visible' || running || uploading) return;
+    const onCloudPage = document.getElementById('page-cloud').classList.contains('active');
+    if (onCloudPage) setCloudConnection('syncing');
     try {
       setSimulation(await request('/api/state'));
-      await refreshFolders();
-      setCloudConnection('connected');
+      if (onCloudPage) {
+        await refreshFolders();
+        setCloudConnection('connected');
+      }
     } catch (_error) {
-      setCloudConnection('offline');
+      if (onCloudPage) setCloudConnection('offline');
     }
   }
 
@@ -362,7 +447,7 @@
     $('event-feed').innerHTML = events.length ? events.map(event => {
       const result = event.blocked ? 'Threat contained' : event.damage ? 'Threat impacted node' : 'Attempt caused no damage';
       const status = event.blocked ? '' : event.damage ? 'missed' : '';
-      return `<div class="feed-item"><i class="feed-dot ${status}"></i><div><div class="feed-title">${result} · ${event.attacker}</div><div class="feed-detail">${event.action || 'No qualifying defense'} · Utility ${Number(event.utility).toFixed(2)} · ${event.target}${event.damage ? ` · ${event.damage} damage` : ''}</div></div><span class="feed-time">R${event.round}</span></div>`;
+      return `<div class="feed-item"><i class="feed-dot ${status}"></i><div><div class="feed-title">${result} · ${event.attacker}</div><div class="feed-detail">${event.defender || event.assigned_defender || 'Defender monitoring'} · ${event.action || 'No qualifying defense'} · ${event.target}${event.damage ? ` · ${event.damage} damage` : ''}</div></div><span class="feed-time">R${event.round}</span></div>`;
     }).join('') : '<div class="empty">Run a simulation to see agent decisions and attack outcomes.</div>';
   }
 
@@ -400,9 +485,14 @@
 
   function renderCloudFiles(files) {
     cloudFileCache = files || [];
-    const storageBytes = cloudFileCache.reduce((total, file) => total + Number(file.size_bytes || 0), 0);
-    $('cloud-file-count').textContent = fmt(cloudFileCache.length);
+    const activeFiles = cloudFileCache.filter(file => !file.trashed_at);
+    const storageBytes = activeFiles.reduce((total, file) => total + Number(file.size_bytes || 0), 0);
+    $('cloud-file-count').textContent = fmt(activeFiles.length);
     $('cloud-storage-size').textContent = formatBytes(storageBytes);
+    document.querySelectorAll('[data-open-folder]').forEach(tile => {
+      const count = cloudFileCache.filter(file => file.folder_id === tile.dataset.openFolder && !file.trashed_at).length;
+      tile.querySelector('small').textContent = `${count} file${count === 1 ? '' : 's'}`;
+    });
     renderFilteredCloudFiles();
   }
 
@@ -410,12 +500,21 @@
     const query = ($('cloud-file-search').value || '').trim().toLowerCase();
     const selectedFolder = $('cloud-folder-filter').value;
     const selectedType = $('cloud-type-filter').value;
-    const files = cloudFileCache.filter(file => {
+    const viewFiles = cloudFileCache.filter(file => {
+      const fileKey = String(file.logical_id || file.id);
+      const isTrashed = trashedFileIds.has(fileKey);
+      if (activeDriveView === 'trash' ? !isTrashed : isTrashed) return false;
+      if (activeDriveView === 'starred' && !starredFileIds.has(fileKey)) return false;
+      return true;
+    });
+    document.querySelector('.cloud-files-card').classList.toggle('is-empty', viewFiles.length === 0);
+    let files = viewFiles.filter(file => {
       const matchesText = !query || `${file.filename} ${file.folder_name}`.toLowerCase().includes(query);
       const matchesFolder = selectedFolder === 'all' || file.folder_id === selectedFolder;
       const matchesType = selectedType === 'all' || (selectedType === 'data' ? file.kind === 'data' : file.kind !== 'data');
       return matchesText && matchesFolder && matchesType;
     });
+    if (activeDriveView === 'recent') files.sort((left, right) => new Date(right.created_at || 0) - new Date(left.created_at || 0));
     $('stored-files-pill').textContent = files.length === cloudFileCache.length
       ? `${files.length} FILE${files.length === 1 ? '' : 'S'}`
       : `${files.length} OF ${cloudFileCache.length} FILES`;
@@ -428,8 +527,44 @@
       const savedAt = file.created_at ? new Date(file.created_at).toLocaleString() : 'Saved';
       const backupStatus = file.backup_available ? '<span class="pill green">BACKED UP</span>' : '<span class="pill amber">NO COPY</span>';
       const restoreButton = !file.primary_available ? `<button class="btn primary" type="button" data-restore-file="${escapeHtml(file.id)}">Restore</button>` : '';
-      return `<tr><td><div class="file-entry"><span class="file-icon ${file.kind === 'data' ? 'structured' : ''}">${icon}</span><span class="file-entry-text"><strong>${name}</strong><small>Version ${version} · ${escapeHtml(savedAt)}</small></span></div></td><td>${escapeHtml(file.folder_name)}</td><td>${formatBytes(Number(file.size_bytes || 0))}</td><td>${kind}</td><td>${fmt(file.record_count)}</td><td>${backupStatus}</td><td><div class="file-actions">${restoreButton}<button class="btn" type="button" data-download-file="${escapeHtml(file.id)}" data-filename="${name}">Download</button><button class="btn" type="button" data-view-versions="${escapeHtml(file.logical_id)}" data-filename="${name}">Versions · ${versions}</button></div></td></tr>`;
-    }).join('') : `<tr><td colspan="7" class="empty">${cloudFileCache.length ? 'No matching files. Change the search or filters.' : 'Your cloud is ready. Upload a file to see it here.'}</td></tr>`;
+      const fileKey = escapeHtml(file.logical_id || file.id);
+      const trashAction = activeDriveView === 'trash'
+        ? `<button class="btn" type="button" data-restore-trash="${fileKey}">Restore</button>`
+        : `<button class="btn" type="button" data-trash-file="${fileKey}">Move to trash</button>`;
+      const starAction = activeDriveView === 'trash' ? '' : `<button class="btn" type="button" data-star-file="${fileKey}" aria-label="${starredFileIds.has(file.logical_id || file.id) ? 'Remove from' : 'Add to'} Starred">${starredFileIds.has(file.logical_id || file.id) ? '★' : '☆'}</button>`;
+      const fileActions = activeDriveView === 'trash' ? trashAction : `${starAction}${trashAction}${restoreButton}<button class="btn" type="button" data-download-file="${escapeHtml(file.id)}" data-filename="${name}">Download</button><button class="btn" type="button" data-view-versions="${escapeHtml(file.logical_id)}" data-filename="${name}">Versions · ${versions}</button>`;
+      const trashInfo = activeDriveView === 'trash' && file.trashed_at
+        ? `In Trash · auto-deletes in ${Math.max(0, 90 - Math.floor((Date.now() - new Date(file.trashed_at).getTime()) / 86400000))} days`
+        : activeDriveView === 'recent' ? `Uploaded ${escapeHtml(savedAt)} · Version ${version}` : `Version ${version} · Uploaded ${escapeHtml(savedAt)}`;
+      return `<tr><td><div class="file-entry"><span class="file-icon ${file.kind === 'data' ? 'structured' : ''}">${icon}</span><span class="file-entry-text"><strong>${name}</strong><small>${trashInfo}</small></span></div></td><td>${escapeHtml(file.folder_name)}</td><td>${formatBytes(Number(file.size_bytes || 0))}</td><td>${kind}</td><td>${fmt(file.record_count)}</td><td>${backupStatus}</td><td><div class="file-actions">${fileActions}</div></td></tr>`;
+    }).join('') : `<tr><td colspan="7" class="empty">${activeDriveView === 'starred' ? 'No starred files yet. Use ☆ beside a file to save it here.' : activeDriveView === 'trash' ? 'Trash is empty.' : cloudFileCache.length ? 'No matching files. Change the search or filters.' : 'Your cloud is ready. Choose New to upload a file.'}</td></tr>`;
+  }
+
+  async function updateDriveEntry(logicalId, action, button) {
+    if (button) button.disabled = true;
+    try {
+      const result = await request('/api/drive-state', { method:'POST', body:JSON.stringify({ logical_id:logicalId, action }), headers:{'Content-Type':'application/json'} });
+      if (sim) { sim.files = result.files; renderCloudFiles(sim.files); }
+      showToast(action === 'trash' ? 'File moved to Trash. It will be permanently deleted after 90 days.' : action === 'restore' ? 'File restored to My Drive.' : action === 'star' ? 'Added to Starred.' : 'Removed from Starred.');
+    } catch (error) { showToast(error.message, true); }
+    finally { if (button) button.disabled = false; }
+  }
+
+  function switchDriveView(view) {
+    if (!$('page-cloud').classList.contains('active')) nav('cloud');
+    activeDriveView = view;
+    document.querySelectorAll('[data-drive-view]').forEach(button => button.classList.toggle('active', button.dataset.driveView === view));
+    const labels = { 'my-drive': 'My Drive', recent: 'Recent', starred: 'Starred', trash: 'Trash' };
+    const descriptions = {
+      'my-drive': 'Your files and folders',
+      recent: 'Most recently uploaded files first · upload date and time shown for every file',
+      starred: 'Files you marked with a star',
+      trash: 'Restore files within 90 days; older items are permanently deleted'
+    };
+    $('crumb-current').textContent = labels[view];
+    document.querySelector('.cloud-files-card .card-title').textContent = labels[view];
+    $('stored-files-description').textContent = descriptions[view];
+    renderFilteredCloudFiles();
   }
 
   function renderAttackCards() {
@@ -471,6 +606,19 @@
   function renderReport() {
     const metrics = sim?.metrics;
     const counts = sim?.counts || {};
+    const reportStatus = $('report-live-status');
+    if (running) {
+      reportStatus.className = 'pill amber';
+      reportStatus.textContent = `UPDATING · ROUND ${sim?.round || 0}/${sim?.max_rounds || 20}`;
+    } else if (sim?.has_run) {
+      reportStatus.className = 'pill green';
+      reportStatus.textContent = sim.game_over
+        ? `COMPLETE · ${sim.round} ROUNDS`
+        : `CURRENT · ROUND ${sim.round}/${sim.max_rounds}`;
+    } else {
+      reportStatus.className = 'pill blue';
+      reportStatus.textContent = 'AWAITING SIMULATION';
+    }
     $('report-block').textContent = metrics?.total_attacks ? `${metrics.block_rate.toFixed(1)}%` : '—';
     $('report-block-note').textContent = metrics?.total_attacks ? `${metrics.blocked} / ${metrics.total_attacks} attack events blocked` : 'No events yet';
     $('report-data').textContent = metrics ? `${metrics.protection_rate.toFixed(3)}%` : '—';
@@ -481,7 +629,7 @@
     $('report-rounds').textContent = sim?.round || 0;
     $('report-date').textContent = sim?.last_run_at ? new Date(sim.last_run_at).toLocaleString() : 'Not run';
     $('report-summary').textContent = metrics
-      ? `The ${metrics.rounds}-round Cloud-D simulation processed ${metrics.total_attacks} attack events across ${(sim.active_vectors || []).length} enabled vectors. Defender agents blocked ${metrics.blocked} events (${metrics.block_rate.toFixed(1)}%). The cloud contains ${fmt(metrics.total_records)} individual records; ${fmt(metrics.compromised)} were compromised (${metrics.protection_rate.toFixed(3)}% protected). Simulated node damage totaled ${metrics.damage_taken}. Uploaded file contents are not included in this report.`
+      ? `The ${metrics.rounds}-round Cloud-D simulation processed ${metrics.total_attacks} attack events. Defender agents blocked ${metrics.blocked} events (${metrics.block_rate.toFixed(1)}%). The cloud contains ${fmt(metrics.total_records)} individual records; ${fmt(metrics.compromised)} were compromised (${metrics.protection_rate.toFixed(3)}% protected). Simulated node damage totaled ${metrics.damage_taken}. Uploaded file contents are not included in this report.`
       : 'No simulation has been run yet. Start an exercise to populate this report.';
     $('report-agent-table').innerHTML = vectors.map(vector => {
       const count = counts[vector.id] || { scored: 0, blocked: 0, actions: 0, last: 0 };
@@ -495,6 +643,12 @@
       const defended = (sim.attack_log || []).filter(event => event.target === node.name && event.blocked).length;
       return `<tr><td><strong>${node.name}</strong><div class="node-meta">${node.role} · ${node.uploaded_records} uploaded</div></td><td><span class="pill ${statusClass}">${node.status}</span></td><td>${observed}</td><td>${defended}</td><td>${node.compromised_records} records exposed · ${node.health} HP</td></tr>`;
     }).join('') : '<tr><td colspan="5" class="empty">Cloud nodes initialize when the Python simulation starts.</td></tr>';
+    const savedReports = sim?.saved_reports || [];
+    $('saved-report-list').innerHTML = savedReports.length ? savedReports.map(item => {
+      const report = item.payload || {};
+      const result = report.metrics || {};
+      return `<article class="saved-report-row"><div><strong>Run · ${escapeHtml(new Date(item.created_at).toLocaleString())}</strong><small>Updated ${escapeHtml(new Date(item.updated_at).toLocaleString())} · Round ${Number(report.round || 0)}/${Number(report.max_rounds || 20)} · ${Number(result.blocked || 0)} blocked · ${Number(result.protection_rate || 0).toFixed(2)}% protected</small></div><span class="pill green">AES-256-GCM</span></article>`;
+    }).join('') : '<div class="card empty">Saved encrypted reports will appear here after a simulation.</div>';
   }
 
   function renderAll() {
@@ -503,31 +657,77 @@
     renderAttackTable();
     renderAgentCards();
     renderReport();
+    $('live-round-count').textContent = `${sim?.round || 0} / ${sim?.max_rounds || 20}`;
+    $('live-block-count').textContent = `${sim?.metrics?.blocked || 0} / ${sim?.metrics?.total_attacks || 0}`;
+    $('live-cloud-status').textContent = sim?.game_over ? 'Exercise complete' : sim?.round ? 'Protected' : 'Ready';
   }
 
-  async function runSimulation({ oneRound = false } = {}) {
+  function animatePacket(packetId) {
+    const packet = $(packetId);
+    if (!packet) return;
+    packet.classList.remove('packet-visible');
+    void packet.getBBox();
+    packet.classList.add('packet-visible');
+    const motion = packet.querySelector('animateMotion');
+    if (motion?.beginElement) motion.beginElement();
+  }
+
+  function animateRoundEvents(events) {
+    document.querySelectorAll('.network-station').forEach(station => station.classList.remove('is-active'));
+    document.querySelectorAll('.network-packet').forEach(packet => packet.classList.remove('packet-visible'));
+    if (!events.length) return new Promise(resolve => setTimeout(resolve, 500));
+    let responseCount = 0;
+    for (const event of events) {
+      const attacker = vectors.find(vector => vector.attacker === event.attacker);
+      if (!attacker) continue;
+      document.querySelector(`[data-attacker-station="${attacker.id}"]`)?.classList.add('is-active');
+      animatePacket(`attack-packet-${attacker.id}`);
+      const defender = vectors.find(vector => vector.defender === event.assigned_defender);
+      if (defender) {
+        document.querySelector(`[data-defender-station="${defender.id}"]`)?.classList.add('is-active');
+        animatePacket(`defense-packet-${defender.id}`);
+        responseCount += 1;
+      }
+    }
+    $('simulation-visual-status').textContent = `ROUND ${events[0].round} · ${responseCount} RESPONSE${responseCount === 1 ? '' : 'S'}`;
+    return new Promise(resolve => setTimeout(() => {
+      document.querySelectorAll('.network-station').forEach(station => station.classList.remove('is-active'));
+      document.querySelectorAll('.network-packet').forEach(packet => packet.classList.remove('packet-visible'));
+      resolve();
+    }, 1250));
+  }
+
+  async function runSimulation() {
     if (currentUser?.role !== 'staff') { showToast('Security simulations are available to staff accounts.', true); return; }
     if (running) return;
     const selected = config();
-    if (!selected.active_vectors.length) { showToast('Select at least one attack vector.', true); nav('threats'); return; }
+    if (!selected.active_vectors.length) { showToast('Select at least one attack agent.', true); nav('threats'); return; }
     running = true;
+    nav('live-simulation');
     renderOverview();
+    renderReport();
     try {
-      const rounds = oneRound ? 1 : Number($('round-select').value);
-      if (!oneRound || !sim || sim.game_over) sim = await request('/api/restart', { method: 'POST', body: JSON.stringify(selected), headers: { 'Content-Type': 'application/json' } });
+      const rounds = Number($('round-select').value);
+      sim = await request('/api/restart', { method: 'POST', body: JSON.stringify(selected), headers: { 'Content-Type': 'application/json' } });
+      $('simulation-visual-status').textContent = 'ATTACK IN MOTION';
+      $('simulation-lane').classList.add('is-running');
       for (let index = 0; index < rounds; index++) {
         if (sim.game_over || sim.round >= sim.max_rounds) break;
         sim = await request('/api/round', { method: 'POST', body: JSON.stringify(selected), headers: { 'Content-Type': 'application/json' } });
         renderAll();
-        if (!oneRound) await new Promise(resolve => setTimeout(resolve, 110));
+        await animateRoundEvents((sim.attack_log || []).filter(event => Number(event.round) === Number(sim.round)));
       }
       renderAll();
+      $('simulation-visual-status').textContent = 'DEFENSE COMPLETE';
+      $('simulation-lane').classList.remove('is-running');
       showToast(`Round ${sim.round} · ${sim.metrics.blocked} of ${sim.metrics.total_attacks} attacks blocked.`);
     } catch (error) {
       showToast(error.message, true);
     } finally {
       running = false;
+      $('simulation-lane').classList.remove('is-running');
       renderOverview();
+      renderReport();
     }
   }
 
@@ -558,7 +758,7 @@
         result = await uploadWithProgress(formData, progress);
       } catch (error) {
         if (error.status !== 409 || !error.payload?.duplicates?.length) throw error;
-        const duplicateMode = await chooseDuplicateMode(error.payload.duplicates);
+        const duplicateMode = await chooseDuplicateMode(error.payload.duplicates, files);
         if (!duplicateMode) throw new Error('Upload cancelled. No files were changed.');
         formData.set('duplicate_mode', duplicateMode);
         $('upload-status').textContent = duplicateMode === 'replace'
@@ -622,11 +822,13 @@
     });
   }
 
-  function chooseDuplicateMode(duplicates) {
+  function chooseDuplicateMode(duplicates, selectedFiles) {
     const dialog = $('duplicate-dialog');
-    $('duplicate-file-list').innerHTML = duplicates.map(item =>
-      `<li><strong>${escapeHtml(item.filename)}</strong><span>Current version ${Number(item.version) || 1} · ${Number(item.version_count) || 1} saved</span></li>`
-    ).join('');
+    $('duplicate-file-list').innerHTML = duplicates.map(item => {
+      const incoming = selectedFiles.find(file => file.name.toLocaleLowerCase() === String(item.filename).toLocaleLowerCase());
+      const savedWhen = item.created_at ? new Date(item.created_at).toLocaleString() : 'Saved in your cloud';
+      return `<li><strong class="duplicate-name">${escapeHtml(item.filename)}</strong><div class="duplicate-compare"><div><span class="duplicate-label">CURRENT FILE</span><strong>Version ${Number(item.version) || 1} · ${formatBytes(Number(item.size_bytes || 0))}</strong><small>Saved ${escapeHtml(savedWhen)}</small></div><div><span class="duplicate-label">NEW UPLOAD</span><strong>${formatBytes(Number(incoming?.size || 0))}</strong><small>${incoming ? `File modified ${new Date(incoming.lastModified).toLocaleString()}` : 'Selected upload'}</small></div></div></li>`;
+    }).join('');
     return new Promise(resolve => {
       dialog.returnValue = '';
       const onClose = () => resolve(dialog.returnValue === 'new_version' || dialog.returnValue === 'replace' ? dialog.returnValue : null);
@@ -653,6 +855,22 @@
   }
 
   function handleCloudFileAction(event) {
+    const starButton = event.target.closest('[data-star-file]');
+    if (starButton) {
+      const fileKey = starButton.dataset.starFile;
+      updateDriveEntry(fileKey, starredFileIds.has(fileKey) ? 'unstar' : 'star', starButton);
+      return;
+    }
+    const trashButton = event.target.closest('[data-trash-file]');
+    if (trashButton) {
+      updateDriveEntry(trashButton.dataset.trashFile, 'trash', trashButton);
+      return;
+    }
+    const restoreTrashButton = event.target.closest('[data-restore-trash]');
+    if (restoreTrashButton) {
+      updateDriveEntry(restoreTrashButton.dataset.restoreTrash, 'restore', restoreTrashButton);
+      return;
+    }
     const restoreButton = event.target.closest('[data-restore-file]');
     if (restoreButton) {
       restoreBackedUpFile(restoreButton.dataset.restoreFile, restoreButton);
@@ -763,6 +981,7 @@
   }
 
   document.querySelectorAll('.nav button').forEach(button => button.addEventListener('click', () => nav(button.dataset.page)));
+  $('page-live-simulation').querySelector('[data-page="threats"]').addEventListener('click', () => nav('threats'));
   $('threshold').addEventListener('input', event => {
     $('threshold-lab').value = event.target.value;
     $('threshold-label').textContent = $('threshold-lab-label').textContent = Number(event.target.value).toFixed(2);
@@ -773,22 +992,88 @@
     $('threshold-label').textContent = $('threshold-lab-label').textContent = Number(event.target.value).toFixed(2);
     $('engine-threshold').textContent = Number(event.target.value).toFixed(2);
   });
-  $('run-btn').addEventListener('click', () => runSimulation());
-  $('step-btn').addEventListener('click', () => runSimulation({ oneRound: true }));
   $('threat-run').addEventListener('click', () => runSimulation());
-  $('threat-step').addEventListener('click', () => runSimulation({ oneRound: true }));
-  $('agents-run').addEventListener('click', () => { nav('simulation'); runSimulation(); });
-  $('simulation-step').addEventListener('click', () => runSimulation({ oneRound: true }));
+  $('round-select').addEventListener('input', event => {
+    $('round-value').textContent = event.target.value;
+    $('threat-run').textContent = `▶ Run ${event.target.value} round${Number(event.target.value) === 1 ? '' : 's'}`;
+  });
+  $('intensity-select').addEventListener('input', event => {
+    $('intensity-value').textContent = `${event.target.value} / 10`;
+  });
+  $('customer-alert-dismiss').addEventListener('click', () => $('customer-alert-dialog').close());
+  $('signup-name').addEventListener('input', event => {
+    const initial = $('signup-avatar-initial');
+    if (!$('profile-picture').files?.length) initial.textContent = event.target.value.trim().charAt(0).toUpperCase();
+  });
   $('print-report').addEventListener('click', () => window.print());
   $('download-report').addEventListener('click', exportJson);
   $('download-csv').addEventListener('click', exportCsv);
   $('upload-form').addEventListener('submit', uploadDataset);
+  $('drive-new-button').addEventListener('click', event => {
+    event.stopPropagation();
+    const menu = $('drive-new-menu');
+    menu.hidden = !menu.hidden;
+    event.currentTarget.setAttribute('aria-expanded', String(!menu.hidden));
+  });
+  document.addEventListener('click', event => {
+    if (!event.target.closest('.drive-new-dropdown')) {
+      $('drive-new-menu').hidden = true;
+      $('drive-new-button').setAttribute('aria-expanded', 'false');
+    }
+  });
+  $('drive-upload-action').addEventListener('click', () => {
+    $('drive-new-menu').hidden = true;
+    $('drive-new-button').setAttribute('aria-expanded', 'false');
+    if (!$('page-cloud').classList.contains('active')) nav('cloud');
+    $('upload-panel').hidden = false;
+    $('upload-panel').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    setTimeout(() => $('upload-file').click(), 220);
+  });
+  $('drive-folder-action').addEventListener('click', () => {
+    $('drive-new-menu').hidden = true;
+    $('drive-new-button').setAttribute('aria-expanded', 'false');
+    if (!$('page-cloud').classList.contains('active')) nav('cloud');
+    $('folder-dialog').showModal();
+    $('folder-name-input').focus();
+  });
+  document.querySelectorAll('[data-drive-view]').forEach(button => {
+    button.addEventListener('click', () => switchDriveView(button.dataset.driveView));
+  });
   $('cloud-upload-shortcut').addEventListener('click', () => {
+    $('upload-panel').hidden = false;
     $('upload-panel').scrollIntoView({ behavior: 'smooth', block: 'center' });
     setTimeout(() => $('upload-file').click(), 220);
   });
   $('cloud-file-search').addEventListener('input', renderFilteredCloudFiles);
-  $('cloud-folder-filter').addEventListener('change', renderFilteredCloudFiles);
+  $('cloud-folder-filter').addEventListener('change', () => {
+    renderFolderCards([...$('cloud-folder-filter').options].filter(option => option.value !== 'all').map(option => ({ id: option.value, name: option.textContent })));
+    renderFilteredCloudFiles();
+  });
+  function selectFolderTile(tile) {
+    if (!$('page-cloud').classList.contains('active')) nav('cloud');
+    switchDriveView('my-drive');
+    $('cloud-folder-filter').value = tile.dataset.openFolder;
+    document.querySelectorAll('[data-open-folder]').forEach(folder => {
+      const selected = folder.dataset.openFolder === tile.dataset.openFolder;
+      folder.classList.toggle('selected', selected);
+      folder.setAttribute('aria-pressed', String(selected));
+    });
+    renderFilteredCloudFiles();
+  }
+  $('folder-grid').addEventListener('click', event => {
+    const tile = event.target.closest('[data-open-folder]');
+    if (tile) selectFolderTile(tile);
+  });
+  $('folder-grid').addEventListener('dblclick', event => {
+    const tile = event.target.closest('[data-open-folder]');
+    if (!tile) return;
+    selectFolderTile(tile);
+    $('upload-folder').value = tile.dataset.openFolder;
+    $('upload-panel').hidden = false;
+    $('upload-panel').scrollIntoView({ behavior:'smooth', block:'center' });
+    $('upload-status').textContent = `Ready to upload into ${tile.querySelector('strong').textContent}.`;
+    showToast(`Opened ${tile.querySelector('strong').textContent}. Choose files to upload here.`);
+  });
   $('cloud-type-filter').addEventListener('change', renderFilteredCloudFiles);
   $('cloud-files-body').addEventListener('click', handleCloudFileAction);
   $('version-list').addEventListener('click', handleCloudFileAction);
@@ -820,7 +1105,40 @@
   });
   $('verify-encryption-button').addEventListener('click', event => runNodeCryptoAction(2, 'verify', event.currentTarget));
   $('reencrypt-button').addEventListener('click', event => runNodeCryptoAction(2, 'reencrypt', event.currentTarget));
-  $('logout-button').addEventListener('click', signOut);
+  $('account-menu-button').addEventListener('click', event => {
+    event.stopPropagation();
+    const popover = $('account-popover');
+    popover.hidden = !popover.hidden;
+    event.currentTarget.setAttribute('aria-expanded', String(!popover.hidden));
+  });
+  document.addEventListener('click', event => {
+    if (!event.target.closest('.account-menu')) {
+      $('account-popover').hidden = true;
+      $('account-menu-button').setAttribute('aria-expanded', 'false');
+    }
+  });
+  $('add-account-button').addEventListener('click', () => changeAccount('signup'));
+  $('switch-account-button').addEventListener('click', () => changeAccount('login'));
+  $('logout-account-button').addEventListener('click', signOut);
+  $('profile-picture-button').addEventListener('click', () => $('profile-picture').click());
+  $('profile-picture').addEventListener('change', event => {
+    const file = event.target.files?.[0];
+    const avatar = $('signup-avatar-initial');
+    if (!file) {
+      avatar.textContent = $('signup-name').value.trim().charAt(0).toUpperCase();
+      return;
+    }
+    if (!['image/png', 'image/jpeg', 'image/webp'].includes(file.type) || file.size > 2 * 1024 * 1024) {
+      event.target.value = '';
+      showToast('Choose a PNG, JPEG, or WebP image up to 2 MB.', true);
+      avatar.textContent = $('signup-name').value.trim().charAt(0).toUpperCase();
+      return;
+    }
+    const image = document.createElement('img');
+    image.src = URL.createObjectURL(file);
+    image.alt = 'Profile picture preview';
+    avatar.replaceChildren(image);
+  });
   $('create-folder-button').addEventListener('click', () => {
     $('folder-dialog').showModal();
     $('folder-name-input').focus();
@@ -836,9 +1154,6 @@
     dropArea.classList.remove('drag-over');
     $('upload-file').files = event.dataTransfer.files;
     $('upload-file').dispatchEvent(new Event('change', { bubbles: true }));
-  });
-  $('round-select').addEventListener('change', event => {
-    $('run-btn').textContent = Number(event.target.value) === 20 ? 'Run 20-round simulation' : `Run ${event.target.value}-round simulation`;
   });
 
   async function bootstrapSession() {
