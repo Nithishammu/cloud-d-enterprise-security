@@ -104,6 +104,9 @@ class CloudDHandler(BaseHTTPRequestHandler):
         secure = forwarded_proto == "https" or bool(os.environ.get("RENDER"))
         return f"cloud_d_session={token}; Path=/; Max-Age={max_age}; HttpOnly; SameSite=Strict" + ("; Secure" if secure else "")
 
+    def do_HEAD(self):
+        self.do_GET()
+
     def do_GET(self):
         path = urlsplit(self.path).path
         if path == "/api/health":
@@ -384,7 +387,8 @@ class CloudDHandler(BaseHTTPRequestHandler):
         for name, value in (headers or {}).items():
             self.send_header(name, value)
         self.end_headers()
-        self.wfile.write(encoded)
+        if self.command != "HEAD":
+            self.wfile.write(encoded)
 
     def _send_file(self, path: Path, content_type: str):
         try:
@@ -399,7 +403,8 @@ class CloudDHandler(BaseHTTPRequestHandler):
         self.send_header("X-Content-Type-Options", "nosniff")
         self.send_header("Content-Security-Policy", "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; connect-src 'self'; object-src 'none'; base-uri 'self'")
         self.end_headers()
-        self.wfile.write(content)
+        if self.command != "HEAD":
+            self.wfile.write(content)
 
     def log_message(self, fmt: str, *args):
         # Local-only server; avoid echoing headers or uploaded content to logs.
