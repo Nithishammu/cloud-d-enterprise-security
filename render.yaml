@@ -8,5 +8,7 @@ services:
     healthCheckPath: /api/health
     autoDeploy: true
     envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.9
       - key: CLOUD_D_STAFF_REGISTRATION_CODE
         sync: false
