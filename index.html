@@ -566,6 +566,39 @@
     .auth-brand .brand-sub { color:#755e9b; }
     .auth-brand .brand-mark { background:linear-gradient(145deg,#bda5ff,#866bdd); color:#2a1b48; box-shadow:0 10px 26px #8062cf42; }
 
+    /* Keep the cloud workspace focused on upload and files; compress secondary status. */
+    .page#page-cloud.active { display:flex; flex-direction:column; gap:12px; }
+    .page#page-cloud > * { margin-top:0; }
+    .page#page-cloud .page-head { order:0; margin-bottom:2px; }
+    .page#page-cloud .kpis { order:1; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; margin:0; }
+    .page#page-cloud .kpis .kpi { padding:12px 15px; min-height:0; }
+    .page#page-cloud .kpis .kpi:nth-child(n+3) { display:none; }
+    .page#page-cloud .kpi-value { font-size:21px; margin-top:5px; }
+    .page#page-cloud .kpi-note { margin-top:2px; }
+    .page#page-cloud #upload-panel { order:2; margin:0; }
+    .page#page-cloud .cloud-workspace { order:3; margin:0; }
+    .page#page-cloud .storage-card { order:4; margin:0; background:linear-gradient(125deg,#fbf5ff,#fff5f0 55%,#eff9f4); border-color:#d9cdea; }
+    .page#page-cloud .storage-card .card-head { padding:12px 16px 8px; }
+    .page#page-cloud .storage-console { grid-template-columns:minmax(0,1fr) minmax(0,2fr); gap:9px 14px; padding:0 16px 12px; }
+    .page#page-cloud .storage-intro { align-items:center; gap:9px; }
+    .page#page-cloud .storage-lock { width:30px; height:30px; border-radius:9px; font-size:14px; background:#e8def8; border-color:#d0c0ed; color:#6852b2; }
+    .page#page-cloud .storage-intro strong { color:#261a38; font-size:10px; }
+    .page#page-cloud .storage-intro p { color:#51445f; font-size:9px; line-height:1.4; margin-top:3px; }
+    .page#page-cloud .storage-stats { grid-template-columns:repeat(4,minmax(0,1fr)); gap:6px; }
+    .page#page-cloud .storage-stat { padding:7px 9px; border-radius:8px; background:linear-gradient(145deg,#f4edfc,#fff3ec 65%,#edf8f2); border-color:#ded2ed; }
+    .page#page-cloud .storage-stat span { color:#51445f; font-size:8px; }
+    .page#page-cloud .storage-stat strong { color:#21182f; font-size:10px; margin-top:3px; }
+    .page#page-cloud .storage-note { padding-top:7px; font-size:8px; color:#51445f; }
+    .page#page-cloud .crypto-demo { padding-top:8px; gap:10px; }
+    .page#page-cloud .crypto-demo-copy { color:#51445f; font-size:8px; }
+    .page#page-cloud .crypto-demo-copy strong { color:#62479b; font-size:9px; }
+    .page#page-cloud .crypto-demo-actions .btn { min-height:28px; }
+    .page#page-cloud .footer-note { order:5; margin:0; }
+    @media (max-width:760px) {
+      .page#page-cloud .storage-console { grid-template-columns:1fr; }
+      .page#page-cloud .storage-stats { grid-template-columns:repeat(2,minmax(0,1fr)); }
+    }
+
     /* High contrast type on the pastel surfaces. */
     .page h1,.page h2,.page h3,.card-title,.agent-card h3,.kpi-value,.threshold-title,
     .node-name,.engine-name,.table-card td,.dialog-header h2,.cloud-dialog h2,
