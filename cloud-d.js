@@ -1,598 +1,1339 @@
-YªçŠx-®éÜj×¢ëiºÚ+Š§j[h‘éÜ¢éíÛ½Ù:-jZ.¶›­–)Ş³R‚‚’Óâ°Ğ¢wW6R7G&–7Bs°Ğ Ğ¢òò'&÷w6W"6ææ÷BÆVæ6‚F†R—F†öâ&ö6W72g&öÒf–ÆS¢òòâF†R–ç7FÆÆV@Ğ¢òòÖ4õ2Æöv–â6W'f–6R7F'G2—B–âF†R&6¶w&÷VæC²6VæBf–ÆRÖ÷VæVBW6W'2FğĞ¢òòF†R6ÖRÖ÷&–v–âF6†&ö&B6W'fVB'’F†BÆö6Â6W'f–6RàĞ¢–b†Æö6F–öâç&÷Fö6öÂÓÓÒvf–ÆS¢r’°Ğ¢Æö6F–öâç&WÆ6R‚v‡GG¢òó#rããã£ƒscRòr“°Ğ¢&WGW&ã°Ğ¢ĞĞ Ğ¢òò&VÖ÷fR7FÆRöffÆ–æR6†VÆÇ2ÆVgB'’V&Æ–W"6Æ÷VBÔB'V–ÆG2âF†—26—FPĞ¢òòW6W2æWGv÷&²&W7öç6W2öæÇ“²¶VW–ærâöÆBv÷&¶W"6â6†÷rö'6öÆWFRT’àĞ¢6öç7B7FÆUv÷&¶W$6ÆVçWÒ†7–æ2‚’Óâ°Ğ¢–b‚‚w6W'f–6Uv÷&¶W"r–âæf–vF÷"’’&WGW&ã°Ğ¢6öç7B&Vv—7G&F–öç2Òv—Bæf–vF÷"ç6W'f–6Uv÷&¶W"ævWE&Vv—7G&F–öç2‚“°Ğ¢v—B&öÖ—6RæÆÂ‡&Vv—7G&F–öç2æÖ‡&Vv—7G&F–öâÓâ&Vv—7G&F–öâçVç&Vv—7FW"‚’’“°Ğ¢–b‚v66†W2r–âv–æF÷r’°Ğ¢6öç7B66†TæÖW2Òv—B66†W2æ¶W—2‚“°Ğ¢v—B&öÖ—6RæÆÂ†66†TæÖW2æÖ†æÖRÓâ66†W2æFVÆWFR†æÖR’’“°Ğ¢ĞĞ¢Ò’‚’æ6F6‚‚‚’Óâ·Ò“°Ğ Ğ¢6öç7BBÒ–BÓâFö7VÖVçBævWDVÆVÖVçD'”–B†–B“°Ğ¢6öç7Bf×BÒfÇVRÓâæWr–çFÂäçVÖ&W$f÷&ÖB‚vVâÕU2r’æf÷&ÖB‡fÇVRÇÂ“°Ğ¢6öç7B—4†÷7FVDFWÆ÷–ÖVçBÒ&ööÆVâ†Æö6F–öâæ†÷7FæÖR’bb²vÆö6Æ†÷7BrÂs#rãããrÂu³££ÒuÒæ–æ6ÇVFW2†Æö6F–öâæ†÷7FæÖR“°Ğ¢6öç7BfV7F÷'2Ò°Ğ¢²–C¢vWF‚rÂGF6¶W#¢t7&VFVçF–ÂÔ&÷BrÂFVfVæFW#¢tWF…6VçF–æVÂrÂFöÖ–ã¢t7&VFVçF–ÂGF6·2rÂ–6öã¢~(ÉrÂF&vWC¢tWF‚6W'fW"rÂ6öÆ÷#¢wf"‚ÒÖ7–â’rÒÀĞ¢²–C¢vfÆ÷rrÂGF6¶W#¢tfÆööE7v&ÒrÂFVfVæFW#¢tfÆ÷twV&F–ârÂFöÖ–ã¢tDFõ2òG&ff–2fÆööG2rÂ–6öã¢~(˜²rÂF&vWC¢t’vFWv’rÂ6öÆ÷#¢wf"‚ÒÖ&ÇVR’rÒÀĞ¢²–C¢wVW'’rÂGF6¶W#¢t–æ¦V7F÷"Õ‚rÂFVfVæFW#¢uVW'•6†–VÆBrÂFöÖ–ã¢u5Â–æ¦V7F–öârÂ–6öã¢~(É‚rÂF&vWC¢u&–Ö'’D"rÂ6öÆ÷#¢wf"‚Ò×W'ÆR’rÒÀĞ¢²–C¢v&V†f–÷"rÂGF6¶W#¢tv†÷7EW6W"rÂFVfVæFW#¢t&V†f–÷%vF6‚rÂFöÖ–ã¢t–ç6–FW"òæöÖÆ÷W2&V†f–÷"rÂ–6öã¢~)xÂrÂF&vWC¢t7W7FöÖW"D"rÂ6öÆ÷#¢wf"‚ÒÖÖ&W"’rĞĞ¢Ó°Ğ¢ÆWB6–ÒÒçVÆÃ°Ğ¢ÆWB'Vææ–ærÒfÇ6S°Ğ¢ÆWB7F÷&WVW7FVBÒfÇ6S°Ğ¢ÆWBWÆöF–ærÒfÇ6S°Ğ¢ÆWB6Æ÷VDf–ÆT66†RÒµÓ°Ğ¢ÆWB6Æ÷VD7F—f—G’ÒµÓ°Ğ¢ÆWBÆ7D6Æ÷VDf–ÆT–G2ÒæWr6WB‚“°Ğ¢ÆWB7F—fTG&—fUf–WrÒv×’ÖG&—fRs°Ğ¢ÆWB7F'&VDf–ÆT–G2ÒæWr6WB‚“°Ğ¢ÆWBG&6†VDf–ÆT–G2ÒæWr6WB‚“°Ğ¢ÆWB7W'&VçEW6W"ÒçVÆÃ°Ğ¢ÆWB7W7FöÖW$æ÷F–6T–BÒçVÆÃ°Ğ¢ÆWB7W7FöÖW$æ÷F–6U&–ÖVBÒfÇ6S°Ğ¢ÆWBWF„ÖöFRÒvÆöv–âs°Ğ¢ÆWB66÷VçEG—RÒv7W7FöÖW"s°Ğ¢ÆWB–ç7FÆÅ&ö×DWfVçBÒçVÆÃ°Ğ Ğ¢v–æF÷ræFDWfVçDÆ—7FVæW"‚v&Vf÷&V–ç7FÆÇ&ö×BrÂWfVçBÓâ°Ğ¢WfVçBç&WfVçDFVfVÇB‚“°Ğ¢–ç7FÆÅ&ö×DWfVçBÒWfVçC°Ğ¢Ò“°Ğ Ğ¢v–æF÷ræFDWfVçDÆ—7FVæW"‚v–ç7FÆÆVBrÂ‚’Óâ°Ğ¢–ç7FÆÅ&ö×DWfVçBÒçVÆÃ°Ğ¢Fö7VÖVçBçVW'•6VÆV7F÷$ÆÂ‚u¶FFÖ–ç7FÆÂÖÒr’æf÷$V6‚†'WGFöâÓâ°Ğ¢'WGFöâçFW‡D6öçFVçBÒt6Æ÷VBÔB–ç7FÆÆVBs°Ğ¢'WGFöâæF—6&ÆVBÒG'VS°Ğ¢Ò“°Ğ¢Ò“°Ğ Ğ¢Fö7VÖVçBçVW'•6VÆV7F÷$ÆÂ‚u¶FFÖ–ç7FÆÂÖÒr’æf÷$V6‚†'WGFöâÓâ°Ğ¢'WGFöâæFDWfVçDÆ—7FVæW"‚v6Æ–6²rÂ7–æ2‚’Óâ°Ğ¢6öç7B†VÇÒ'WGFöâç&VçDVÆVÖVçBçVW'•6VÆV7F÷"‚u¶FFÖ–ç7FÆÂÖ†VÇÒr“°Ğ¢–b†–ç7FÆÅ&ö×DWfVçB’°Ğ¢–ç7FÆÅ&ö×DWfVçBç&ö×B‚“°Ğ¢6öç7B6†ö–6RÒv—B–ç7FÆÅ&ö×DWfVçBçW6W$6†ö–6S°Ğ¢–ç7FÆÅ&ö×DWfVçBÒçVÆÃ°Ğ¢–b†6†ö–6Ræ÷WF6öÖRÓÓÒv66WFVBr’°Ğ¢'WGFöâçFW‡D6öçFVçBÒt6Æ÷VBÔB–ç7FÆÆVBs°Ğ¢'WGFöâæF—6&ÆVBÒG'VS°Ğ¢†VÇæ†–FFVâÒG'VS°Ğ¢ĞĞ¢&WGW&ã°Ğ¢ĞĞ¢6öç7B—4ÆTÖö&–ÆRÒö—†öæWÆ—GÆ—öBö’çFW7B†æf–vF÷"çW6W$vVçBĞ¢ÇÂ†æf–vF÷"çÆFf÷&ÒÓÓÒtÖ4–çFVÂrbbæf–vF÷"æÖ…F÷V6…ö–çG2â“°Ğ¢†VÇçFW‡D6öçFVçBÒ—4ÆTÖö&–ÆPĞ¢òt–â6f&’ÂF6†&RÂF†Vâ6†ö÷6RFBFò†öÖR67&VVââpĞ¢¢t÷Vâ–÷W"'&÷w6W"ÖVçRæB6†ö÷6R–ç7FÆÂ6Æ÷VBÔB÷"FBFò†öÖR67&VVââs°Ğ¢†VÇæ†–FFVâÒfÇ6S°Ğ¢Ò“°Ğ¢Ò“°Ğ Ğ¢gVæ7F–öâWFFTFWÆ÷–ÖVçD6÷’‚’°Ğ¢6öç7B†÷7FVBÒ—4†÷7FVDFWÆ÷–ÖVçC°Ğ¢6öç7BÖöFU–ÆÂÒB‚w7F÷&vRÖÖöFR×–ÆÂr“°Ğ¢6öç7B6Æ÷VE7F÷&vTæ÷FRÒB‚v6Æ÷VB×7F÷&vRÖæ÷FRr“°Ğ¢6öç7BWÆöE7F÷&vTæ÷FRÒB‚wWÆöB×7F÷&vRÖæ÷FRr“°Ğ¢–b†ÖöFU–ÆÂ’ÖöFU–ÆÂçFW‡D6öçFVçBÒ†÷7FVBòt„õ5DTB+rDTÕõ$%’r¢tÄô4Â+rU%4•5DTåBs°Ğ¢–b†6Æ÷VE7F÷&vTæ÷FR’6Æ÷VE7F÷&vTæ÷FRçFW‡D6öçFVçBÒ†÷7FV@Ğ¢òtU2Ó#SbÔt4Òf–ÆR6÷–W2+r†÷7B7F÷&vR—2FV×÷&'’pĞ¢¢tWFöÖF–25Æ—FR&V6÷fW'’6÷’s°Ğ¢–b‡WÆöE7F÷&vTæ÷FR’WÆöE7F÷&vTæ÷FRçFW‡D6öçFVçBÒ†÷7FV@Ğ¢òuWÆöG2&RVæ7'—FVB&Vf÷&R5Æ—FRw&—FW2F†VÒâ&VæFW.(	—2f–ÆW7—7FVÒ—2FV×÷&'’Â6òF†—2†÷7FVB6÷’Ö’&RÆ÷7Bv†Vâ—G2–ç7Fæ6R—2&WÆ6VBâpĞ¢¢tf–ÆR6öçFVçG2&RVæ7'—FVB&Vf÷&R5Æ—FRw&—FW2F†VÒæB7F’öâF†—2FWf–6R7&÷72&W7F'G2â&6²W&÷F‚FF&6W2æBF†RVæ7'—F–öâ¶W’FövWF†W"âs°Ğ¢B‚w7F÷&VBÖf–ÆW2ÖFW67&—F–öâr’çFW‡D6öçFVçBÒtföÆFW'2æBf–ÆW2&R66÷VBFò–÷W"66÷VçBâV6‚6fVB&Wf—6–öâ—2Ö—'&÷&VBFòF†RVæ7'—FVB&V6÷fW'’FF&6Râs°Ğ¢B‚w7F÷&vRÖfö÷FW"Öæ÷FRr’çFW‡D6öçFVçBÒ†÷7FV@Ğ¢òu6–×VÆF–öâöæÇ’+rf–ÆR6öçFVçG2W6RU2Ó#SbÔt4ÒÂ'WBF†—2&VæFW"6W'f–6R†2FV×÷&'’Æö6Â7F÷&vRâpĞ¢¢u6–×VÆF–öâöæÇ’+rf–ÆR6öçFVçG2W6RU2Ó#SbÔt4ÒæBW'6—7B–âÆö6Â5Æ—FRFF&6W2âs°Ğ¢ĞĞ¢WFFTFWÆ÷–ÖVçD6÷’‚“°Ğ Ğ¢7–æ2gVæ7F–öâWF†÷&—¦VDfWF6‚‡F‚Â²ÖWF†öBÒttUBrÂ&öG’Â†VFW'2ÒÒ·Ò’°Ğ¢G'’°Ğ¢6öç7B&WVW7D†VFW'2ÒæWr†VFW'2††VFW'2ÇÂ·Ò“°Ğ¢&WGW&âv—BfWF6‚‡F‚Â²ÖWF†öBÂ&öG’Â†VFW'3¢&WVW7D†VFW'2Â7&VFVçF–Ç3¢w6ÖRÖ÷&–v–ârÒ“°Ğ¢Ò6F6‚…öW'&÷"’°Ğ¢6öç7BÖW76vRÒ—4†÷7FVDFWÆ÷–ÖVç@Ğ¢òt6÷VÆBæ÷B&V6‚F†R†÷7FVB6–×VÆF–öââ—BÖ’&R7F'F–ær÷"v¶–æs²&WG'’–âÖöÖVçBâpĞ¢¢t6÷VÆBæ÷B&V6‚F†RÆö6Â6–×VÆF–öââF†R6Æ÷VBÔB&6¶w&÷VæB6W'f–6RÖ’7F–ÆÂ&R7F'F–æs²G'’v–â–âÖöÖVçBâs°Ğ¢6†÷uFö7B†ÖW76vRÂG'VR“°Ğ¢F‡&÷ræWrW'&÷"†ÖW76vR“°Ğ¢ĞĞ¢ĞĞ Ğ¢7–æ2gVæ7F–öâ&WVW7B‡F‚Â÷F–öç2Ò·Ò’°Ğ¢6öç7B&W7öç6RÒv—BWF†÷&—¦VDfWF6‚‡F‚Â÷F–öç2“°Ğ¢6öç7B–ÆöBÒv—B&W7öç6Ræ§6öâ‚’æ6F6‚‚‚’Óâ‡·Ò’“°Ğ¢–b‡&W7öç6Rç7FGW2ÓÓÒCbb7W'&VçEW6W"’°Ğ¢6†÷tWF…67&VVâ‚u–÷W"6W76–öâW‡—&VBâÆV6R6–vâ–âv–ââr“°Ğ¢ĞĞ¢–b‚&W7öç6Ræö²’F‡&÷ræWrW'&÷"‡–ÆöBæW'&÷"ÇÂ&WVW7Bf–ÆVB‚G·&W7öç6Rç7FGW7Ò’æ“°Ğ¢&WGW&â–ÆöC°Ğ¢ĞĞ Ğ¢gVæ7F–öâ6†÷tWF…67&VVâ†ÖW76vRÒrr’°Ğ¢7W'&VçEW6W"ÒçVÆÃ°Ğ¢6–ÒÒçVÆÃ°Ğ¢Æ7D6Æ÷VDf–ÆT–G2ÒæWr6WB‚“°Ğ¢6Æ÷VDf–ÆT66†RÒµÓ°Ğ¢6Æ÷VD7F—f—G’ÒµÓ°Ğ¢B‚v×6†VÆÂr’æ†–FFVâÒG'VS°Ğ¢B‚v×6†VÆÂr’ç7G–ÆRæF—7Æ’ÒvæöæRs°Ğ¢B‚v×6†VÆÂr’æ–æW'BÒG'VS°Ğ¢B‚v×6†VÆÂr’ç6WDGG&–'WFR‚v&–Ö†–FFVârÂwG'VRr“°Ğ¢B‚vWF‚×67&VVâr’æ†–FFVâÒfÇ6S°Ğ¢B‚wv÷&·76R×6–FV&"r’æ†–FFVâÒG'VS°Ğ¢Fö7VÖVçBæ&öG’æ6Æ74Æ—7BæFB‚vWF‚Ö7F—fRr“°Ğ¢6WDWF„ÖöFR‚vÆöv–ârÂfÇ6R“°Ğ¢B‚vWF‚ÖÖW76vRr’çFW‡D6öçFVçBÒÖW76vS°Ğ¢B‚vWF‚ÖÖW76vRr’æ6Æ74Æ—7BçFövvÆR‚vW'&÷"rÂ&ööÆVâ†ÖW76vR’“°Ğ¢B‚vWF‚ÖÖW76vRr’æ6Æ74Æ—7Bç&VÖ÷fR‚vW'&÷"r“°Ğ¢B‚vWF‚×77v÷&Br’çfÇVRÒrs°Ğ¢ĞĞ Ğ¢7–æ2gVæ7F–öâVçFW%v÷&·76R‡W6W"’°Ğ¢7W'&VçEW6W"ÒW6W#°Ğ¢7W7FöÖW$æ÷F–6T–BÒçVÆÃ°Ğ¢7W7FöÖW$æ÷F–6U&–ÖVBÒfÇ6S°Ğ¢7F'&VDf–ÆT–G2ÒæWr6WB‚“°Ğ¢G&6†VDf–ÆT–G2ÒæWr6WB‚“°Ğ¢B‚v66÷VçBÖæÖRr’çFW‡D6öçFVçBÒW6W"ææÖRÇÂW6W"çW6W&æÖRÇÂt6Æ÷VBÔBW6W"s°Ğ¢B‚v66÷VçBÖVÖ–Âr’çFW‡D6öçFVçBÒW6W"æVÖ–ÂÇÂrs°Ğ¢6öç7BfF"ÒB‚v66÷VçBÖÖVçRÖ'WGFöâr“°Ğ¢fF"çFW‡D6öçFVçBÒ‡W6W"ææÖRÇÂW6W"çW6W&æÖRÇÂtâr’çG&–Ò‚’æ6†$Bƒ’çFõWW$66R‚“°Ğ¢6öç7B&öf–ÆTfF"ÒB‚v66÷VçB×&öf–ÆRÖfF"r“°Ğ¢&öf–ÆTfF"çFW‡D6öçFVçBÒ‡W6W"ææÖRÇÂW6W"çW6W&æÖRÇÂtâr’çG&–Ò‚’æ6†$Bƒ’çFõWW$66R‚“°Ğ¢–b‡W6W"ç&öf–ÆU÷–7GW&R’°Ğ¢6öç7B–ÖvRÒFö7VÖVçBæ7&VFTVÆVÖVçB‚v–Örr“°Ğ¢–ÖvRç7&2ÒW6W"ç&öf–ÆU÷–7GW&S°Ğ¢–ÖvRæÇBÒu&öf–ÆR–7GW&Rs°Ğ¢fF"ç&WÆ6T6†–ÆG&Vâ†–ÖvRæ6ÆöæTæöFR‚’“°Ğ¢&öf–ÆTfF"ç&WÆ6T6†–ÆG&Vâ†–ÖvR“°Ğ¢ĞĞ¢B‚vWF‚×67&VVâr’æ†–FFVâÒG'VS°Ğ¢Fö7VÖVçBæ&öG’æ6Æ74Æ—7Bç&VÖ÷fR‚vWF‚Ö7F—fRr“°Ğ¢B‚v×6†VÆÂr’æ†–FFVâÒfÇ6S°Ğ¢B‚v×6†VÆÂr’ç7G–ÆRç&VÖ÷fU&÷W'G’‚vF—7Æ’r“°Ğ¢B‚v×6†VÆÂr’æ–æW'BÒfÇ6S°Ğ¢B‚v×6†VÆÂr’ç&VÖ÷fTGG&–'WFR‚v&–Ö†–FFVâr“°Ğ¢B‚wv÷&·76R×6–FV&"r’æ†–FFVâÒfÇ6S°Ğ¢B‚v7W'&VçB×W6W"ÖæÖRr’çFW‡D6öçFVçBÒW6W"çW6W&æÖS°Ğ¢B‚v7W'&VçB×W6W"×&öÆRr’çFW‡D6öçFVçBÒW6W"ç&öÆRÓÓÒw7Ffbròu7Ffb÷W&F÷"r¢t7W7FöÖW"s°Ğ¢7v—F6„G&—fUf–Wr‚v×’ÖG&—fRr“°Ğ¢Fö7VÖVçBçVW'•6VÆV7F÷$ÆÂ‚rçvRr’æf÷$V6‚†—FVÒÓâ—FVÒæ6Æ74Æ—7BçFövvÆR‚v7F—fRrÂ—FVÒæ–BÓÓÒwvRÖ6Æ÷VBr’“°Ğ¢Fö7VÖVçBçVW'•6VÆV7F÷$ÆÂ‚rææb'WGFöâr’æf÷$V6‚†—FVÒÓâ—FVÒæ6Æ74Æ—7BçFövvÆR‚v7F—fRrÂ—FVÒæFF6WBçvRÓÓÒv6Æ÷VBr’“°Ğ¢B‚v7'VÖ"Ö7W'&VçBr’çFW‡D6öçFVçBÒt6Æ÷VBs°Ğ¢Fö7VÖVçBçVW'•6VÆV7F÷$ÆÂ‚rç7FfbÖöæÇ’r’æf÷$V6‚†—FVÒÓâ²—FVÒæ†–FFVâÒW6W"ç&öÆRÓÒw7Ffbs²Ò“°Ğ¢Fö7VÖVçBçVW'•6VÆV7F÷$ÆÂ‚ræ7W7FöÖW"ÖöæÇ’r’æf÷$V6‚†—FVÒÓâ²—FVÒæ†–FFVâÒW6W"ç&öÆRÓÒv7W7FöÖW"s²Ò“°Ğ¢B‚v6Æ÷VBÖæöFW2ÖöæÆ–æRr’çFW‡D6öçFVçBÒW6W"ç&öÆRÓÓÒw7Ffbròu&–Ö'’D"r¢t7W7FöÖW"D"s°Ğ¢B‚v6Æ÷VB×7FGW2×–ÆÂr’çFW‡D6öçFVçBÒW6W"ç&öÆRÓÓÒw7Ffbròu5Ddb$Tr¢t5U5DôÔU"$Ts°Ğ¢B‚v6Æ÷VBÖ&VÖW–V'&÷rr’çFW‡D6öçFVçBÒW6W"ç&öÆRÓÓÒw7Ffbròu7Ffbv÷&·76R+r&–Ö'’D"r¢t7W7FöÖW"v÷&·76R+r7W7FöÖW"D"s°Ğ¢B‚v6Æ÷VBÖ&VÖFW67&—F–öâr’çFW‡D6öçFVçBÒW6W"ç&öÆRÓÓÒw7FfbpĞ¢òtÖævRf–ÆW2–â6†&VB7FfbföÆFW'2â6Æ÷VBÔB&÷WFW2F†VÒFòF†R&–Ö'’D"æB¶VW2Væ7'—FVB&V6÷fW'’6÷–W2âpĞ¢¢u–÷W"f–ÆW27F’–â–÷W"&—fFR7W7FöÖW"D"föÆFW'2â6Æ÷VBÔB76–vç2F†—27F÷&vR&VWFöÖF–6ÆÇ’âs°Ğ¢G'’°Ğ¢v—B&Vg&W6„föÆFW'2‚“°Ğ¢6WE6–×VÆF–öâ†v—B&WVW7B‚rö’÷7FFRr’“°Ğ¢6WD6Æ÷VD6öææV7F–öâ‚v6öææV7FVBr“°Ğ¢Ò6F6‚†W'&÷"’°Ğ¢6WD6Æ÷VD6öææV7F–öâ‚vöffÆ–æRr“°Ğ¢ĞĞ¢ĞĞ Ğ¢7–æ2gVæ7F–öâ&Vg&W6„föÆFW'2‡6VÆV7FVD–BÒrr’°Ğ¢6öç7B&W7VÇBÒv—B&WVW7B‚rö’öföÆFW'2r“°Ğ¢6öç7BföÆFW'2Ò&W7VÇBæföÆFW'2ÇÂµÓ°Ğ¢6öç7BWÆöE6VÆV7BÒB‚wWÆöBÖföÆFW"r“°Ğ¢6öç7Bf–ÇFW%6VÆV7BÒB‚v6Æ÷VBÖföÆFW"Öf–ÇFW"r“°Ğ¢6öç7B&Wf–÷W5WÆöBÒ6VÆV7FVD–BÇÂWÆöE6VÆV7BçfÇVS°Ğ¢6öç7B&Wf–÷W4f–ÇFW"Òf–ÇFW%6VÆV7BçfÇVS°Ğ¢WÆöE6VÆV7Bæ–ææW$…DÔÂÒföÆFW'2æÖ†föÆFW"ÓâÆ÷F–öâfÇVSÒ"G¶W66T‡FÖÂ†föÆFW"æ–B—Ò#âG¶W66T‡FÖÂ†föÆFW"ææÖR—ÓÂö÷F–öãæ’æ¦ö–â‚rr“°Ğ¢f–ÇFW%6VÆV7Bæ–ææW$…DÔÂÒsÆ÷F–öâfÇVSÒ&ÆÂ#äÆÂföÆFW'3Âö÷F–öãâr²föÆFW'2æÖ†föÆFW"ÓâÆ÷F–öâfÇVSÒ"G¶W66T‡FÖÂ†föÆFW"æ–B—Ò#âG¶W66T‡FÖÂ†föÆFW"ææÖR—ÓÂö÷F–öãæ’æ¦ö–â‚rr“°Ğ¢–b†föÆFW'2ç6öÖR†föÆFW"ÓâföÆFW"æ–BÓÓÒ&Wf–÷W5WÆöB’’WÆöE6VÆV7BçfÇVRÒ&Wf–÷W5WÆöC°Ğ¢6öç7BF&vWDf–ÇFW"Ò6VÆV7FVD–BÇÂ&Wf–÷W4f–ÇFW#°Ğ¢–b†föÆFW'2ç6öÖR†föÆFW"ÓâföÆFW"æ–BÓÓÒF&vWDf–ÇFW"’’f–ÇFW%6VÆV7BçfÇVRÒF&vWDf–ÇFW#°Ğ¢&VæFW$föÆFW$6&G2†föÆFW'2“°Ğ¢&VæFW$f–ÇFW&VD6Æ÷VDf–ÆW2‚“°Ğ¢ĞĞ Ğ¢gVæ7F–öâ&VæFW$föÆFW$6&G2†föÆFW'2’°Ğ¢6öç7Bw&–BÒB‚vföÆFW"Öw&–Br“°Ğ¢6öç7Bf—6–&ÆTföÆFW'2ÒföÆFW'2æf–ÇFW"†föÆFW"Óâ²v×’f–ÆW2rÂw&V6÷fW&VBf–ÆW2uÒæ–æ6ÇVFW2…7G&–ær†föÆFW"ææÖR’çG&–Ò‚’çFôÆ÷vW$66R‚’’“°Ğ¢w&–Bæ–ææW$…DÔÂÒf—6–&ÆTföÆFW'2æÆVæwF‚òf—6–&ÆTföÆFW'2æÖ†föÆFW"Óâ°Ğ¢6öç7B6÷VçBÒ6Æ÷VDf–ÆT66†Ræf–ÇFW"†f–ÆRÓâf–ÆRæföÆFW%ö–BÓÓÒföÆFW"æ–BbbG&6†VDf–ÆT–G2æ†2…7G&–ær†f–ÆRæÆöv–6Åö–BÇÂf–ÆRæ–B’’’æÆVæwFƒ°Ğ¢6öç7B6VÆV7FVBÒB‚v6Æ÷VBÖföÆFW"Öf–ÇFW"r’çfÇVRÓÓÒföÆFW"æ–C°Ğ¢&WGW&âÆ'WGFöâ6Æ73Ò&föÆFW"×F–ÆRG·6VÆV7FVBòr6VÆV7FVBr¢rwÒ"G—SÒ&'WGFöâ"FFÖ÷VâÖföÆFW#Ò"G¶W66T‡FÖÂ†föÆFW"æ–B—Ò"&–×&W76VCÒ"G·6VÆV7FVGÒ"F—FÆSÒ$F÷V&ÆRÖ6Æ–6²Fò÷VâF†—2föÆFW"æBWÆöBf–ÆW2†W&R#ãÇ7â6Æ73Ò&föÆFW"×F–ÆRÖ–6öâ"&–Ö†–FFVãÒ'G'VR#î)kÂ÷7ããÇ7â6Æ73Ò&föÆFW"×F–ÆRÖ6÷’#ãÇ7G&öæsâG¶W66T‡FÖÂ†föÆFW"ææÖR—ÓÂ÷7G&öæsãÇ6ÖÆÃâG¶6÷VçGÒf–ÆRG¶6÷VçBÓÓÒòrr¢w2wÓÂ÷6ÖÆÃãÂ÷7ããÂö'WGFöãæ°Ğ¢Ò’æ¦ö–â‚rr’¢sÆF—b6Æ73Ò&föÆFW"ÖV×G’#äæòföÆFW'2–WBâ6†ö÷6RÇ7G&öæsäæWrföÆFW#Â÷7G&öæsâFò7&VFRöæRãÂöF—câs°Ğ¢ĞĞ Ğ¢7–æ2gVæ7F–öâ7V&Ö—DWF‚†WfVçB’°Ğ¢WfVçBç&WfVçDFVfVÇB‚“°Ğ¢6öç7BÖW76vRÒB‚vWF‚ÖÖW76vRr“°Ğ¢ÖW76vRçFW‡D6öçFVçBÒufW&–g––ær66÷VçN(
-bs°Ğ¢ÖW76vRæ6Æ74Æ—7Bç&VÖ÷fR‚vW'&÷"r“°Ğ¢6öç7B–ÆöBÒ°Ğ¢W6W&æÖS¢B‚vWF‚×W6W&æÖRr’çfÇVRçG&–Ò‚’ÀĞ¢77v÷&C¢B‚vWF‚×77v÷&Br’çfÇVPĞ¢Ó°Ğ¢6öç7BF‚ÒWF„ÖöFRÓÓÒvÆöv–âròrö’öWF‚öÆöv–âr¢rö’öWF‚÷6–vçWs°Ğ¢G'’°Ğ¢–b†WF„ÖöFRÓÓÒw6–vçWr’°Ğ¢–ÆöBç&öÆRÒ66÷VçEG—S°Ğ¢–ÆöBæVÖ–ÂÒB‚vWF‚ÖVÖ–Âr’çfÇVRçG&–Ò‚“°Ğ¢–ÆöBææÖRÒ–ÆöBçW6W&æÖS°Ğ¢–ÆöBç7Ffe÷&Vv—7G&F–öåö6öFRÒB‚w7Ffb×&Vv—7G&F–öâÖ6öFRr’çfÇVRçG&–Ò‚“°Ğ¢ĞĞ¢6öç7B&W7öç6RÒv—BWF†÷&—¦VDfWF6‚‡F‚Â°Ğ¢ÖWF†öC¢uõ5BrÂ&öG“¢¥4ôâç7G&–æv–g’‡–ÆöB’Â†VFW'3¢²t6öçFVçBÕG—Rs¢vÆ–6F–öâö§6öârĞĞ¢Ò“°Ğ¢6öç7B&W7VÇBÒv—B&W7öç6Ræ§6öâ‚’æ6F6‚‚‚’Óâ‡·Ò’“°Ğ¢–b‚&W7öç6Ræö²’F‡&÷ræWrW'&÷"‡&W7VÇBæW'&÷"ÇÂt66÷VçBfW&–f–6F–öâf–ÆVBâr“°Ğ¢B‚vWF‚Öf÷&Òr’ç&W6WB‚“°Ğ¢6WE77v÷&Ef—6–&–Æ—G’†fÇ6R“°Ğ¢v—BVçFW%v÷&·76R‡&W7VÇBçW6W"“°Ğ¢Ò6F6‚†W'&÷"’°Ğ¢ÖW76vRçFW‡D6öçFVçBÒW'&÷"æÖW76vS°Ğ¢ÖW76vRæ6Æ74Æ—7BæFB‚vW'&÷"r“°Ğ¢ĞĞ¢ĞĞ Ğ¢gVæ7F–öâ6WE77v÷&Ef—6–&–Æ—G’‡f—6–&ÆR’°Ğ¢6öç7B77v÷&BÒB‚vWF‚×77v÷&Br“°Ğ¢6öç7BFövvÆRÒB‚w77v÷&B×FövvÆRr“°Ğ¢77v÷&BçG—RÒf—6–&ÆRòwFW‡Br¢w77v÷&Bs°Ğ¢FövvÆRæ6†V6¶VBÒf—6–&ÆS°Ğ¢ĞĞ Ğ¢gVæ7F–öâ6WDWF„ÖöFR†ÖöFRÂ6ÆV$ÖW76vRÒG'VR’°Ğ¢WF„ÖöFRÒÖöFS°Ğ¢6öç7B6–vçWÒÖöFRÓÓÒw6–vçWs°Ğ¢6WE77v÷&Ef—6–&–Æ—G’†fÇ6R“°Ğ¢B‚vWF‚×F—FÆRr’çFW‡D6öçFVçBÒ6–vçWòt7&VFR–÷W"6Æ÷VBÔB66÷VçBr¢u6–vâ–âFò–÷W"6Æ÷VBs°Ğ¢B‚vWF‚Ö6÷’r’çFW‡D6öçFVçBÒ6–vçW Ğ¢òtVçFW"–÷W"VÖ–ÂFG&W72æB6†ö÷6RW6W&æÖRâ6†ö÷6R7W7FöÖW"÷"7FfbFò6WB–÷W"6Æ÷VB66W72âpĞ¢¢u6–vâ–âW6–ær–÷W"W6W&æÖRæB77v÷&Bâ6Æ÷VBÔBf–æG2–÷W"66÷VçBG—RWFöÖF–6ÆÇ’âs°Ğ¢B‚vWF‚ÖVÖ–ÂÖf–VÆBr’æ†–FFVâÒ6–vçW°Ğ¢B‚vWF‚ÖVÖ–Âr’ç&WV—&VBÒ6–vçW°Ğ¢B‚vWF‚×W6W&æÖRr’ç&WV—&VBÒG'VS°Ğ¢B‚vWF‚×W6W&æÖRÖ†VÇr’æ†–FFVâÒfÇ6S°Ğ¢B‚vWF‚×W6W&æÖRÖ†VÇr’çFW‡D6öçFVçBÒ6–vçW Ğ¢òuW6R>(	33ÆWGFW'2ÂçVÖ&W'2ÂF÷G2ÂVæFW'66÷&W2Â÷"‡—†Vç2âW6W&æÖW2×W7B7F'Bv—F‚ÆWGFW"÷"çVÖ&W"âpĞ¢¢tf÷"öÆFW"66÷VçG2ÂF†RW6W&æÖR—2&6VBöâF†R'Böb–÷W"VÖ–Â&Vf÷&Râ–÷W"W6W&æÖRV'2&W6–FR–÷W"&öÆRgFW"6–vâÖ–ââs°Ğ¢B‚vWF‚×&öÆR×7v—F6‚r’æ†–FFVâÒ6–vçW°Ğ¢B‚vWF‚×77v÷&Br’æWFö6ö×ÆWFRÒ6–vçWòvæWr×77v÷&Br¢v7W'&VçB×77v÷&Bs°Ğ¢B‚vWF‚×7V&Ö—Br’çFW‡D6öçFVçBÒ6–vçWòt7&VFR66÷VçBr¢u6–vâ–âs°Ğ¢B‚w7FfbÖ6öFRÖf–VÆBr’æ†–FFVâÒ6–vçWÇÂ66÷VçEG—RÓÒw7Ffbs°Ğ¢B‚w7Ffb×&Vv—7G&F–öâÖ6öFRr’ç&WV—&VBÒ6–vçWbb66÷VçEG—RÓÓÒw7Ffbs°Ğ¢B‚vWF‚ÖÖöFRÖÆ–æ²r’çFW‡D6öçFVçBÒ6–vçWòu6–vâ–âr¢t7&VFRâ66÷VçBs°Ğ¢B‚vWF‚ÖÖöFRÖÆ–æ²r’æ‡&VbÒ6–vçWòr6Æöv–âr¢r76–vçWs°Ğ¢B‚vWF‚ÖÆ–æ²×&÷rr’æf—'7D6†–ÆBçFW‡D6öçFVçBÒ6–vçWòtÇ&VG’†fRâ66÷VçCòr¢tæWrFò6Æ÷VBÔCòs°Ğ¢–b†6ÆV$ÖW76vR’°Ğ¢B‚vWF‚ÖÖW76vRr’çFW‡D6öçFVçBÒrs°Ğ¢B‚vWF‚ÖÖW76vRr’æ6Æ74Æ—7Bç&VÖ÷fR‚vW'&÷"r“°Ğ¢ĞĞ¢ĞĞ Ğ¢7–æ2gVæ7F–öâ6–vä÷WB‚’°Ğ¢G'’²v—BWF†÷&—¦VDfWF6‚‚rö’öWF‚öÆöv÷WBrÂ²ÖWF†öC¢uõ5BrÒ“²Ò6F6‚…öW'&÷"’²ò¢6ÆV"F†RÆö6Âf–WrWfVâöffÆ–æR¢òĞĞ¢Æ7D6Æ÷VDf–ÆT–G2ÒæWr6WB‚“°Ğ¢6Æ÷VDf–ÆT66†RÒµÓ°Ğ¢6Æ÷VD7F—f—G’ÒµÓ°Ğ¢6†÷tWF…67&VVâ‚u–÷R†fR6–væVB÷WBâr“°Ğ¢ĞĞ Ğ¢7–æ2gVæ7F–öâ6†ævT66÷VçB†ÖöFR’°Ğ¢G'’²v—BWF†÷&—¦VDfWF6‚‚rö’öWF‚öÆöv÷WBrÂ²ÖWF†öC¢uõ5BrÒ“²Ò6F6‚…öW'&÷"’²ò¢6öçF–çVRFò66÷VçB6VÆV7F–öâ¢òĞĞ¢Æ7D6Æ÷VDf–ÆT–G2ÒæWr6WB‚“²6Æ÷VDf–ÆT66†RÒµÓ²6Æ÷VD7F—f—G’ÒµÓ°Ğ¢6†÷tWF…67&VVâ‚rr“°Ğ¢6WDWF„ÖöFR†ÖöFR“°Ğ¢B‚v66÷VçB×÷÷fW"r’æ†–FFVâÒG'VS°Ğ¢B‚v66÷VçBÖÖVçRÖ'WGFöâr’ç6WDGG&–'WFR‚v&–ÖW‡æFVBrÂvfÇ6Rr“°Ğ¢ĞĞ Ğ¢7–æ2gVæ7F–öâ7&VFTföÆFW"†WfVçB’°Ğ¢WfVçBç&WfVçDFVfVÇB‚“°Ğ¢6öç7B'WGFöâÒB‚vföÆFW"Öf÷&Òr’çVW'•6VÆV7F÷"‚u·G—SÒ'7V&Ö—B%Òr“°Ğ¢'WGFöâæF—6&ÆVBÒG'VS°Ğ¢G'’°Ğ¢6öç7B&W7VÇBÒv—B&WVW7B‚rö’öföÆFW'2rÂ°Ğ¢ÖWF†öC¢uõ5BrÂ†VFW'3¢²t6öçFVçBÕG—Rs¢vÆ–6F–öâö§6öârÒÀĞ¢&öG“¢¥4ôâç7G&–æv–g’‡²æÖS¢B‚vföÆFW"ÖæÖRÖ–çWBr’çfÇVRÒĞ¢Ò“°Ğ¢B‚vföÆFW"ÖF–Æörr’æ6Æ÷6R‚“°Ğ¢B‚vföÆFW"Öf÷&Òr’ç&W6WB‚“°Ğ¢v—B&Vg&W6„föÆFW'2‡&W7VÇBæföÆFW"æ–B“°Ğ¢7v—F6„G&—fUf–Wr‚v×’ÖG&—fRr“°Ğ¢6†÷uFö7B†föÆFW"(	ÂG·&W7VÇBæföÆFW"ææÖWŞ(	Ò7&VFVBæ“°Ğ¢Ò6F6‚†W'&÷"’°Ğ¢6†÷uFö7B†W'&÷"æÖW76vRÂG'VR“°Ğ¢Òf–æÆÇ’°Ğ¢'WGFöâæF—6&ÆVBÒfÇ6S°Ğ¢ĞĞ¢ĞĞ Ğ¢gVæ7F–öâ6öæf–r‚’°Ğ¢&WGW&â°Ğ¢F‡&W6†öÆC¢çVÖ&W"‚B‚wF‡&W6†öÆBr’çfÇVR’ÀĞ¢–çFVç6—G“¢çVÖ&W"‚B‚v–çFVç6—G’×6VÆV7Br’çfÇVR’ÀĞ¢7F—fU÷fV7F÷'3¢²ââæFö7VÖVçBçVW'•6VÆV7F÷$ÆÂ‚rçfV7F÷"×FövvÆS¦6†V6¶VBr•ÒæÖ†–çWBÓâ–çWBçfÇVRĞ¢Ó°Ğ¢ĞĞ Ğ¢gVæ7F–öâ6WE6–×VÆF–öâ‡fÇVR’°Ğ¢6öç7B&Wf–÷W4–G2ÒÆ7D6Æ÷VDf–ÆT–G3°Ğ¢6öç7B7W'&VçDf–ÆW2ÒfÇVRæf–ÆW2ÇÂµÓ°Ğ¢6öç7BæWtf–ÆW2Ò7W'&VçDf–ÆW2æf–ÇFW"†f–ÆRÓâ&Wf–÷W4–G2æ†2†f–ÆRæ–B’“°Ğ¢6öç7Bf—'7D6öææV7F–öâÒ6–ÒÓÓÒçVÆÃ°Ğ¢6–ÒÒfÇVS°Ğ¢–b†7W'&VçEW6W#òç&öÆRÓÓÒv7W7FöÖW"r’°Ğ¢6öç7Bæ÷F–6RÒfÇVRç6V7W&—G•öæ÷F–6S°Ğ¢B‚v7W7FöÖW"×6V7W&—G’×7FGW2r’çFW‡D6öçFVçBÒæ÷F–6PĞ¢òu6V7W&—G’WfVçBFWFV7FVB+rFVfVç6R&W7öç6R7F—fRpĞ¢¢u–÷W"6Æ÷VB—2&÷FV7FVBs°Ğ¢B‚v7W7FöÖW"×6V7W&—G’ÖFWF–Âr’çFW‡D6öçFVçBÒæ÷F–6PĞ¢òF†RW†W&6—6R—2&ö6W76–ær&÷VæBG¶æ÷F–6Rç&÷VæGÒöbG¶æ÷F–6RæÖ…÷&÷VæG7ÒâFVfVæFW"7—7FV×2&R&W7öæF–ærFò6–×VÆFVB7F—f—G“²–÷W"f–ÆW2&VÖ–â–â–÷W"76–væVB7W7FöÖW"&Væ Ğ¢¢uv†Vâ6–×VÆFVB6V7W&—G’WfVçB—2FWFV7FVBÂ6Æ÷VBÔBv–ÆÂ6†÷r—G27W'&VçB7FGW2†W&Râs°Ğ¢–b‚7W7FöÖW$æ÷F–6U&–ÖVB’°Ğ¢7W7FöÖW$æ÷F–6T–BÒæ÷F–6Sòæ–BÇÂçVÆÃ°Ğ¢7W7FöÖW$æ÷F–6U&–ÖVBÒG'VS°Ğ¢ÒVÇ6R–b†æ÷F–6Sòæ–Bbbæ÷F–6Ræ–BÓÒ7W7FöÖW$æ÷F–6T–B’°Ğ¢7W7FöÖW$æ÷F–6T–BÒæ÷F–6Ræ–C°Ğ¢B‚v7W7FöÖW"ÖÆW'BÖF–Æörr’ç6†÷tÖöFÂ‚“°Ğ¢ĞĞ¢ĞĞ¢7F'&VDf–ÆT–G2ÒæWr6WB†7W'&VçDf–ÆW2æf–ÇFW"†f–ÆRÓâf–ÆRç7F'&VB’æÖ†f–ÆRÓâ7G&–ær†f–ÆRæÆöv–6Åö–BÇÂf–ÆRæ–B’’“°Ğ¢G&6†VDf–ÆT–G2ÒæWr6WB†7W'&VçDf–ÆW2æf–ÇFW"†f–ÆRÓâf–ÆRçG&6†VEöB’æÖ†f–ÆRÓâ7G&–ær†f–ÆRæÆöv–6Åö–BÇÂf–ÆRæ–B’’“°Ğ¢Æ7D6Æ÷VDf–ÆT–G2ÒæWr6WB†7W'&VçDf–ÆW2æÖ†f–ÆRÓâf–ÆRæ–B’“°Ğ¢–b†f—'7D6öææV7F–öâ’°Ğ¢FD6Æ÷VD7F—f—G’‚t6Æ÷VBv÷&·76R6öææV7FVBrÂG¶f×B†7W'&VçDf–ÆW2æÆVæwF‚—Ò7W'&VçBf–ÆW2+rG¶f×B‡fÇVRç7F÷&vSòæ&6·Wöf–ÆUö6÷VçBÇÂ—ÒVæ7'—FVB&6·W6÷–W6Âw7V66W72r“°Ğ¢ÒVÇ6R–b†æWtf–ÆW2æÆVæwF‚’°Ğ¢6öç7BfW'6–öæVBÒæWtf–ÆW2æf–ÇFW"†f–ÆRÓâçVÖ&W"†f–ÆRçfW'6–öâ’â“°Ğ¢–b‡fW'6–öæVBæÆVæwF‚ÓÓÒbbæWtf–ÆW2æÆVæwF‚ÓÓÒ’°Ğ¢FD6Æ÷VD7F—f—G’‚tæWrf–ÆRfW'6–öâ6fVBrÂG·fW'6–öæVE³Òæf–ÆVæÖWÒ+rfW'6–öâG·fW'6–öæVE³ÒçfW'6–öçÖÂwWÆöBr“°Ğ¢ÒVÇ6R°Ğ¢6öç7BÆö6F–öç2Ò²ââææWr6WB†æWtf–ÆW2æÖ†f–ÆRÓâf–ÆRæföÆFW%öæÖR’æf–ÇFW"„&ööÆVâ’•Òæ¦ö–â‚rÂr“°Ğ¢FD6Æ÷VD7F—f—G’†G¶æWtf–ÆW2æÆVæwF‡Òf–ÆRG¶æWtf–ÆW2æÆVæwF‚ÓÓÒòrr¢w2wÒ7–æ6VFÂÆö6F–öç2òFFVB÷"WFFVB–âG¶Æö6F–öç7Ö¢tFFVB÷"WFFVB–â–÷W"76–væVB7F÷&vR&VrÂwWÆöBr“°Ğ¢ĞĞ¢ĞĞ¢–b‡fÇVRçF‡&W6†öÆBÓÒVæFVf–æVB’°Ğ¢B‚wF‡&W6†öÆBr’çfÇVRÒB‚wF‡&W6†öÆBÖÆ"r’çfÇVRÒfÇVRçF‡&W6†öÆC°Ğ¢B‚wF‡&W6†öÆBÖÆ&VÂr’çFW‡D6öçFVçBÒB‚wF‡&W6†öÆBÖÆ"ÖÆ&VÂr’çFW‡D6öçFVçBÒçVÖ&W"‡fÇVRçF‡&W6†öÆB’çFôf—†VBƒ"“°Ğ¢B‚vVæv–æR×F‡&W6†öÆBr’çFW‡D6öçFVçBÒçVÖ&W"‡fÇVRçF‡&W6†öÆB’çFôf—†VBƒ"“°Ğ¢ĞĞ¢–b‡fÇVRæ–çFVç6—G’ÓÒVæFVf–æVBbbfÇVRæ–çFVç6—G’ÓÒçVÆÂ’°Ğ¢B‚v–çFVç6—G’×6VÆV7Br’çfÇVRÒfÇVRæ–çFVç6—G“°Ğ¢B‚v–çFVç6—G’×fÇVRr’çFW‡D6öçFVçBÒG·fÇVRæ–çFVç6—G—Òò°Ğ¢ĞĞ¢–b‡fÇVRæ7F—fU÷fV7F÷'2’°Ğ¢Fö7VÖVçBçVW'•6VÆV7F÷$ÆÂ‚rçfV7F÷"×FövvÆRr’æf÷$V6‚†–çWBÓâ²–çWBæ6†V6¶VBÒfÇVRæ7F—fU÷fV7F÷'2æ–æ6ÇVFW2†–çWBçfÇVR“²Ò“°Ğ¢ĞĞ¢&VæFW$ÆÂ‚“°Ğ¢ĞĞ Ğ¢gVæ7F–öâFD6Æ÷VD7F—f—G’‡F—FÆRÂFWF–ÂÂ7G–ÆRÒw7V66W72r’°Ğ¢6Æ÷VD7F—f—G’çVç6†–gB‡²F—FÆRÂFWF–ÂÂ7G–ÆRÂF–ÖS¢æWrFFR‚’Ò“°Ğ¢6Æ÷VD7F—f—G’Ò6Æ÷VD7F—f—G’ç6Æ–6RƒÂ‚“°Ğ¢&VæFW$6Æ÷VD7F—f—G’‚“°Ğ¢ĞĞ Ğ¢gVæ7F–öâ&VæFW$6Æ÷VD7F—f—G’‚’°Ğ¢B‚v6Æ÷VBÖ7F—f—G’ÖÆ—7Br’æ–ææW$…DÔÂÒ6Æ÷VD7F—f—G’æÆVæwF‚ò6Æ÷VD7F—f—G’æÖ†—FVÒÓâ°Ğ¢6öç7B–6öâÒ—FVÒç7G–ÆRÓÓÒwWÆöBrò~(zrr¢—FVÒç7G–ÆRÓÓÒvF÷væÆöBrò~(z’r¢—FVÒç7G–ÆRÓÓÒw6V7W&Rrò~)É2r¢~)x’s°Ğ¢6öç7Bv†VâÒ—FVÒçF–ÖRçFôÆö6ÆUF–ÖU7G&–ær…µÒÂ²†÷W#¢s"ÖF–v—BrÂÖ–çWFS¢s"ÖF–v—BrÂ6V6öæC¢s"ÖF–v—BrÒ“°Ğ¢&WGW&âÆF—b6Æ73Ò&7F—f—G’×&÷r#ãÇ7â6Æ73Ò&7F—f—G’Ö–6öâG¶—FVÒç7G–ÆWÒ#âG¶–6öçÓÂ÷7ããÆF—b6Æ73Ò&7F—f—G’Ö6÷’#ãÇ7G&öæsâG¶W66T‡FÖÂ†—FVÒçF—FÆR—ÓÂ÷7G&öæsãÇ7ãâG¶W66T‡FÖÂ†—FVÒæFWF–Â—ÓÂ÷7ããÂöF—cãÇF–ÖR6Æ73Ò&7F—f—G’×F–ÖR#âG·v†VçÓÂ÷F–ÖSãÂöF—cæ°Ğ¢Ò’æ¦ö–â‚rr’¢sÆF—b6Æ73Ò&V×G’#ä6Æ÷VB7F—f—G’v–ÆÂV"†W&RãÂöF—câs°Ğ¢ĞĞ Ğ¢gVæ7F–öâ6WD6Æ÷VD6öææV7F–öâ‡7FFR’°Ğ¢6öç7B&FvRÒB‚v6Æ÷VBÖ6öææV7F–öâÖ&FvRr“°Ğ¢&FvRæ6Æ74æÖRÒ6Æ÷VBÖÆ—fRG·7FFRÓÓÒv6öææV7FVBròrr¢7FFWÖ°Ğ¢B‚v6Æ÷VBÖ6öææV7F–öâÖÆ&VÂr’çFW‡D6öçFVçBÒ7FFRÓÓÒv6öææV7FVBròt4ôääT5DTBr¢7FFRÓÓÒw7–æ6–ærròu5”ä4”ärr¢tôddÄ”äRs°Ğ¢–b‡7FFRÓÓÒv6öææV7FVBr’°Ğ¢B‚v6Æ÷VBÖÆ7B×7–æ2r’çFW‡D6öçFVçBÒæWrFFR‚’çFôÆö6ÆUF–ÖU7G&–ær…µÒÂ²†÷W#¢s"ÖF–v—BrÂÖ–çWFS¢s"ÖF–v—BrÂ6V6öæC¢s"ÖF–v—BrÒ“°Ğ¢ĞĞ¢ĞĞ Ğ¢gVæ7F–öâ6†÷uFö7B†ÖW76vRÂW'&÷"ÒfÇ6R’°Ğ¢6öç7BFö7BÒB‚wFö7Br“°Ğ¢Fö7BçFW‡D6öçFVçBÒÖW76vS°Ğ¢Fö7Bç7G–ÆRæ&6¶w&÷VæBÒW'&÷"òr3Cs#S&"r¢rs°Ğ¢Fö7Bç7G–ÆRæ&÷&FW$6öÆ÷"ÒW'&÷"òr6CC“S‚r¢rs°Ğ¢Fö7Bæ6Æ74Æ—7BæFB‚w6†÷rr“°Ğ¢6ÆV%F–ÖV÷WB‡6†÷uFö7BçF–ÖW"“°Ğ¢6†÷uFö7BçF–ÖW"Ò6WEF–ÖV÷WB‚‚’ÓâFö7Bæ6Æ74Æ—7Bç&VÖ÷fR‚w6†÷rr’Â3#“°Ğ¢ĞĞ Ğ¢gVæ7F–öâW66T‡FÖÂ‡fÇVR’°Ğ¢&WGW&â7G&–ær‡fÇVR’ç&WÆ6R‚õ²cÃâ"uÒörÂ6†&7FW"Óâ‡°Ğ¢rbs¢rf×²rÂsÂs¢rfÇC²rÂsâs¢rfwC²rÂr"s¢rgV÷C²rÂ"r#¢rb33“²pĞ¢Ò•¶6†&7FW%Ò“°Ğ¢ĞĞ Ğ¢gVæ7F–öâæb‡vR’°Ğ¢6öç7BW&Ö—GFVBÒ7W'&VçEW6W#òç&öÆRÓÓÒw7FfbpĞ¢ò²v6Æ÷VBrÂv÷fW'f–WrrÂwF‡&VG2rÂvÆ—fR×6–×VÆF–öârÂw&W÷'BuĞĞ¢¢²v6Æ÷VBrÂv&6†—FV7GW&RrÂw&W÷'BuÓ°Ğ¢–b‚W&Ö—GFVBæ–æ6ÇVFW2‡vR’’&WGW&ã°Ğ¢Fö7VÖVçBçVW'•6VÆV7F÷$ÆÂ‚rçvRr’æf÷$V6‚†—FVÒÓâ—FVÒæ6Æ74Æ—7BçFövvÆR‚v7F—fRrÂ—FVÒæ–BÓÓÒvRÒG·vWÖ’“°Ğ¢Fö7VÖVçBçVW'•6VÆV7F÷$ÆÂ‚rææb'WGFöâr’æf÷$V6‚†'WGFöâÓâ'WGFöâæ6Æ74Æ—7BçFövvÆR‚v7F—fRrÂ'WGFöâæFF6WBçvRÓÓÒvR’“°Ğ¢B‚v7'VÖ"Ö7W'&VçBr’çFW‡D6öçFVçBÒ‡²6Æ÷VC¢t6Æ÷VBrÂ&6†—FV7GW&S¢t6Æ÷VB&6†—FV7GW&RrÂ÷fW'f–Ws¢u6V7W&—G’÷fW'f–WrrÂF‡&VG3¢tGF6²bFVfVç6R6–×VÆF–öâFWF–Ç2rÂvÆ—fR×6–×VÆF–öâs¢tÆ—fR6–×VÆF–öârÂ&W÷'C¢tFVfVç6R&W÷'BrÒ•·vUÒÇÂt6Æ÷VBs°Ğ¢v–æF÷rç67&öÆÅFòƒÂ“°Ğ¢–b‡vRÓÓÒv6Æ÷VBr’7–æ46Æ÷VEv÷&·76R‚“°Ğ¢ĞĞ Ğ¢7–æ2gVæ7F–öâ7–æ46Æ÷VEv÷&·76R‚’°Ğ¢–b‚7W'&VçEW6W"ÇÂFö7VÖVçBçf—6–&–Æ—G•7FFRÓÒwf—6–&ÆRrÇÂ'Vææ–ærÇÂWÆöF–ær’&WGW&ã°Ğ¢6öç7Böä6Æ÷VEvRÒFö7VÖVçBævWDVÆVÖVçD'”–B‚wvRÖ6Æ÷VBr’æ6Æ74Æ—7Bæ6öçF–ç2‚v7F—fRr“°Ğ¢–b†öä6Æ÷VEvR’6WD6Æ÷VD6öææV7F–öâ‚w7–æ6–ærr“°Ğ¢G'’°Ğ¢6WE6–×VÆF–öâ†v—B&WVW7B‚rö’÷7FFRr’“°Ğ¢–b†öä6Æ÷VEvR’°Ğ¢v—B&Vg&W6„föÆFW'2‚“°Ğ¢6WD6Æ÷VD6öææV7F–öâ‚v6öææV7FVBr“°Ğ¢ĞĞ¢Ò6F6‚…öW'&÷"’°Ğ¢–b†öä6Æ÷VEvR’6WD6Æ÷VD6öææV7F–öâ‚vöffÆ–æRr“°Ğ¢ĞĞ¢ĞĞ Ğ¢gVæ7F–öâ&VæFW$÷fW'f–Wr‚’°Ğ¢6öç7BÖWG&–72Ò6–ÓòæÖWG&–73°Ğ¢6öç7B6÷VçG2Ò6–Óòæ6÷VçG2ÇÂ·Ó°Ğ¢6öç7BF÷FÄGF6·2ÒÖWG&–73òçF÷FÅöGF6·2ÇÂ°Ğ¢6öç7B&Æö6¶VBÒÖWG&–73òæ&Æö6¶VBÇÂ°Ğ¢B‚v·’Ö&Æö6²r’çFW‡D6öçFVçBÒF÷FÄGF6·2òG¶ÖWG&–72æ&Æö6µ÷&FRçFôf—†VBƒ—ÒV¢~(	Bs°Ğ¢B‚v·’Ö&Æö6²Öæ÷FRr’æ–ææW$…DÔÂÒF÷FÄGF6·2òÇ7G&öæsâG¶&Æö6¶VGÒ&Æö6¶VCÂ÷7G&öæsâöbG·F÷FÄGF6·7ÒGF6²WfVçG6¢u'VâF†RvVçG2Fò7F'BF†R6–×VÆF–öâs°Ğ¢B‚v·’ÖFFr’çFW‡D6öçFVçBÒÖWG&–72òG¶ÖWG&–72ç&÷FV7F–öå÷&FRçFôf—†VBƒ2—ÒV¢~(	Bs°Ğ¢B‚v·’ÖFFÖæ÷FRr’çFW‡D6öçFVçBÒÖWG&–72òG¶f×B†ÖWG&–72ç&÷FV7FVB—ÒòG¶f×B†ÖWG&–72çF÷FÅ÷&V6÷&G2—Ò7GVÂ&V6÷&G2&÷FV7FVF¢u&V6÷&G2&÷FV7FVBò7F÷&VBs°Ğ¢B‚v·’×&W7öç6Rr’çFW‡D6öçFVçBÒ6–Óòæ†5÷'VâòG·6–ÒæÆFVæ7•ö×7Ò×6¢~(	Bs°Ğ¢B‚v·’Ö6öçF–æVBr’æ–ææW$…DÔÂÒG¶&Æö6¶VGÒÇ6ÖÆÂ7G–ÆSÒ&föçB×6—¦S£'ƒ¶6öÆ÷#¢3ƒ“ƒ¶föçB×vV–v‡C£c#âòG·F÷FÄGF6·7ÓÂ÷6ÖÆÃæ°Ğ¢B‚v·’Ö6öçF–æVBÖæ÷FRr’çFW‡D6öçFVçBÒ6–Óòç&÷VæBòG·6–Òç&÷VæGÒöbG·6–ÒæÖ…÷&÷VæG7Ò&÷VæG2&ö6W76VF¢tæòGF6²&÷VæG2&ö6W76VBs°Ğ¢B‚w&÷VæB×–ÆÂr’çFW‡D6öçFVçBÒG·'Vææ–æròu%Tää”ärr¢6–ÓòævÖUö÷fW"òt4ôÕÄUDRr¢6–Óòç&÷VæBòt”â$ôu$U52r¢u$TE’wÒ+rG·6–Óòç&÷VæBÇÂÒ$õTäE6°Ğ¢f÷"†6öç7BfV7F÷"öbfV7F÷'2’B†æöFRÒG·fV7F÷"æ–GÖ’çFW‡D6öçFVçBÒ6÷VçG5·fV7F÷"æ–EÓòæ7F–öç2ÇÂ°Ğ¢f÷"†ÆWB’Ò²’ÃÒC²’²²’B†Æ–æ²ÒG¶—Ö’æ6Æ74Æ—7BçFövvÆR‚v7F—fRrÂ'Vææ–ær“°Ğ¢&VæFW$vVçE7VÖÖ'’‚“°Ğ¢&VæFW$GF6µ7VÖÖ'’‚“°Ğ¢&VæFW$æöFW2‚“°Ğ¢ĞĞ Ğ¢gVæ7F–öâ&VæFW$vVçE7VÖÖ'’‚’°Ğ¢6öç7B6÷VçG2Ò6–Óòæ6÷VçG2ÇÂ·Ó°Ğ¢B‚vvVçB×7VÖÖ'’r’æ–ææW$…DÔÂÒfV7F÷'2æÖ‡fV7F÷"Óâ°Ğ¢6öç7B6÷VçBÒ6÷VçG5·fV7F÷"æ–EÒÇÂ²66÷&VC¢Â&Æö6¶VC¢Ó°Ğ¢6öç7B&FRÒ6÷VçBç66÷&VBò6÷VçBæ&Æö6¶VBò6÷VçBç66÷&VB¢¢°Ğ¢&WGW&âÆF—b6Æ73Ò&vVçB×&÷r#ãÆF—b6Æ73Ò&vVçBÖ–B#ãÇ7â6Æ73Ò&vVçBÖ–6öâ"7G–ÆSÒ"ÒÖvVçBÖ6öÆ÷#¢G·fV7F÷"æ6öÆ÷'Ò#âG·fV7F÷"æ–6öçÓÂ÷7ãâG·fV7F÷"æFVfVæFW'ÓÂöF—cãÆF—b6Æ73Ò&&"×w&#ãÆF—b6Æ73Ò&&""7G–ÆSÒ"ÒÖvVçBÖ6öÆ÷#¢G·fV7F÷"æ6öÆ÷'Ó·v–GFƒ¢G·&FWÒR#ãÂöF—cãÂöF—cãÆF—b6Æ73Ò&vVçB×66÷&R#âG¶6÷VçBç66÷&VBòG·&FRçFôf—†VBƒ—ÒV¢~(	BwÓÂöF—cãÂöF—cæ°Ğ¢Ò’æ¦ö–â‚rr“°Ğ¢ĞĞ Ğ¢gVæ7F–öâ&VæFW$GF6µ7VÖÖ'’†7F—fUfV7F÷'2Ò6–Óòæ7F—fU÷fV7F÷'2’°Ğ¢6öç7B6÷VçG2Ò6–Óòæ6÷VçG2ÇÂ·Ó°Ğ¢6öç7BGF6´ÆörÒ6–ÓòæGF6µöÆörÇÂµÓ°Ğ¢6öç7B7W'&VçE&÷VæBÒçVÖ&W"‡6–Óòç&÷VæBÇÂ“°Ğ¢6öç7B6VÆV7FVBÒæWr6WB†7F—fUfV7F÷'2ÇÂµÒ“°Ğ¢B‚vGF6²×7VÖÖ'’r’æ–ææW$…DÔÂÒfV7F÷'2æÖ‡fV7F÷"Óâ°Ğ¢6öç7B6÷VçBÒ6÷VçG5·fV7F÷"æ–EÒÇÂ²66÷&VC¢Â&Æö6¶VC¢Ó°Ğ¢6öç7BWfVçG2ÒGF6´Æöræf–ÇFW"†WfVçBÓâWfVçBæGF6¶W"ÓÓÒfV7F÷"æGF6¶W"“°Ğ¢6öç7BGFV×G2ÒÖF‚æÖ‚„çVÖ&W"†6÷VçBç66÷&VBÇÂ’ÂWfVçG2æÆVæwF‚“°Ğ¢6öç7B&Æö6¶VBÒWfVçG2æÆVæwF‚òWfVçG2æf–ÇFW"†WfVçBÓâWfVçBæ&Æö6¶VB’æÆVæwF‚¢ÖF‚æÖ–â†GFV×G2ÂçVÖ&W"†6÷VçBæ&Æö6¶VBÇÂ’“°Ğ¢6öç7B76VBÒÖF‚æÖ‚ƒÂGFV×G2Ò&Æö6¶VB“°Ğ¢6öç7BÆFW7BÒWfVçG2æf–æB†WfVçBÓâçVÖ&W"†WfVçBç&÷VæB’ÓÓÒ7W'&VçE&÷VæB“°Ğ¢6öç7B—47F—fRÒ'Vææ–ærbb‡6VÆV7FVBç6—¦Rò6VÆV7FVBæ†2‡fV7F÷"æ–B’¢G'VR“°Ğ¢6öç7B7FGW2ÒÆFW7Bò†ÆFW7Bæ&Æö6¶VBòt$Äô4´TBr¢ÆFW7BæFÖvRòt”Õ5DTBr¢t”å5T5DTBr’¢—47F—fRòu%Tää”ärr¢GFV×G2ò‡76VBòt5D•dRr¢t4ôåD”äTBr’¢t”DÄRs°Ğ¢6öç7B–ÆÂÒÆFW7Còæ&Æö6¶VBÇÂ7FGW2ÓÓÒt4ôåD”äTBròvw&VVâr¢ÆFW7CòæFÖvRÇÂ7FGW2ÓÓÒt5D•dRròw&VBr¢—47F—fRòvÖ&W"r¢v&ÇVRs°Ğ¢&WGW&âÆF—b6Æ73Ò&vVçB×&÷r#ãÆF—b6Æ73Ò&vVçBÖ–B#ãÇ7â6Æ73Ò&vVçBÖ–6öâ"7G–ÆSÒ"ÒÖvVçBÖ6öÆ÷#¢G·fV7F÷"æ6öÆ÷'Ò#âG·fV7F÷"æ–6öçÓÂ÷7ãâG·fV7F÷"æGF6¶W'ÓÂöF—cãÆF—b7G–ÆSÒ&6öÆ÷#¢3ƒs“fC¶föçB×6—¦S£—‚#âG¶GFV×G7ÒGFV×G2+rG·76VGÒ76VB+rG¶&Æö6¶VGÒ&Æö6¶VCÂöF—cãÆF—b6Æ73Ò&vVçB×66÷&R#ãÇ7â6Æ73Ò'–ÆÂG·–ÆÇÒ#âG·7FGW7ÓÂ÷7ããÂöF—cãÂöF—cæ°Ğ¢Ò’æ¦ö–â‚rr“°Ğ¢B‚vGF6²Ö6÷VçBÖÆ&VÂr’çFW‡D6öçFVçBÒG·6–ÓòæÖWG&–73òçF÷FÅöGF6·2ÇÂGF6´ÆöræÆVæwF‚ÇÂÒWfVçG6°Ğ¢ĞĞ Ğ¢gVæ7F–öâf÷&ÖD'—FW2†'—FW2’°Ğ¢–b‚'—FW2’&WGW&âs"s°Ğ¢6öç7BVæ—G2Ò²t"rÂt´"rÂtÔ"rÂtt"uÓ°Ğ¢6öç7B–æFW‚ÒÖF‚æÖ–â„ÖF‚æfÆö÷"„ÖF‚æÆör†'—FW2’òÖF‚æÆörƒ#B’’ÂVæ—G2æÆVæwF‚Ò“°Ğ¢&WGW&âG²†'—FW2òƒ#B¢¢–æFW‚’’çFôf—†VB†–æFW‚ò¢—ÒG·Væ—G5¶–æFW…×Ö°Ğ¢ĞĞ Ğ¢gVæ7F–öâ&VæFW%7F÷&vR‚’°Ğ¢6öç7B7F÷&vRÒ6–Óòç7F÷&vRÇÂ·Ó°Ğ¢6öç7BW'6—7FVçBÒ7F÷&vRçW'6—7FVçBÓÓÒVæFVf–æVBò—4†÷7FVDFWÆ÷–ÖVçB¢&ööÆVâ‡7F÷&vRçW'6—7FVçB“°Ğ¢B‚vFF&6RÖVæv–æRr’çFW‡D6öçFVçBÒ7F÷&vRæVæv–æRÇÂu5Æ—FRs°Ğ¢B‚vFF&6RÖVæ7'—F–öâr’çFW‡D6öçFVçBÒ7F÷&vRæVæ7'—F–öâÇÂtU2Ó#SbÔt4Òs°Ğ¢B‚vFF&6RÖf–ÆW2r’çFW‡D6öçFVçBÒf×B‡7F÷&vRæ&6·Wöf–ÆUö6÷VçBÇÂ“°Ğ¢B‚vFF&6R×6—¦Rr’çFW‡D6öçFVçBÒ7F÷&vRæ&6·W÷&VG’òu&VG’r¢uVæf–Æ&ÆRs°Ğ¢B‚vFF&6RÖ†VF–ærr’çFW‡D6öçFVçBÒW'6—7FVçBòu&–Ö'’æB&V6÷fW'’7F÷&vR&R&VG’r¢t†÷7FVB&–Ö'’æB&V6÷fW'’7F÷&vR&RFV×÷&'’s°Ğ¢B‚vFF&6RÖæ÷FRr’çFW‡D6öçFVçBÒ7F÷&vRç7F÷&vUöæ÷FRÇÂ†—4†÷7FVDFWÆ÷–ÖVç@Ğ¢òuF†R†÷7FVB6W'f–6RW6W2FV×÷&'’7F÷&vRâVæ7'—FVBf–ÆR6öçFVçG2Ö’&RÆ÷7Bv†VâF†R–ç7Fæ6R—2&WÆ6VBâpĞ¢¢tVæ7'—FVBf–ÆR6öçFVçG2æBF†R6W&FR5Æ—FR&V6÷fW'’6÷’7F’–âF†—2FWf–6^(	—26Æ÷VBÔBFFföÆFW"â66÷VçBæBföÆFW"ÖWFFF&Ræ÷BVæ7'—FVB2v†öÆRFF&6Râr“°Ğ¢B‚vFF&6R×7FGW2×–ÆÂr’çFW‡D6öçFVçBÒW'6—7FVçBòtd”ÄR4õ”U2$TE’r¢uDTÕõ$%’„õ5DTBs°Ğ¢B‚vFF&6R×7FGW2×–ÆÂr’æ6Æ74æÖRÒ–ÆÂG·W'6—7FVçBbb7F÷&vRæ&6·W÷&VG’òvw&VVâr¢vÖ&W"wÖ°Ğ¢ĞĞ Ğ¢gVæ7F–öâ&VæFW$6Æ÷VDf–ÆW2†f–ÆW2’°Ğ¢6Æ÷VDf–ÆT66†RÒf–ÆW2ÇÂµÓ°Ğ¢6öç7B7F—fTf–ÆW2Ò6Æ÷VDf–ÆT66†Ræf–ÇFW"†f–ÆRÓâf–ÆRçG&6†VEöB“°Ğ¢6öç7B7F÷&vT'—FW2Ò7F—fTf–ÆW2ç&VGV6R‚‡F÷FÂÂf–ÆR’ÓâF÷FÂ²çVÖ&W"†f–ÆRç6—¦Uö'—FW2ÇÂ’Â“°Ğ¢B‚v6Æ÷VBÖf–ÆRÖ6÷VçBr’çFW‡D6öçFVçBÒf×B†7F—fTf–ÆW2æÆVæwF‚“°Ğ¢B‚v6Æ÷VB×7F÷&vR×6—¦Rr’çFW‡D6öçFVçBÒf÷&ÖD'—FW2‡7F÷&vT'—FW2“°Ğ¢Fö7VÖVçBçVW'•6VÆV7F÷$ÆÂ‚u¶FFÖ÷VâÖföÆFW%Òr’æf÷$V6‚‡F–ÆRÓâ°Ğ¢6öç7B6÷VçBÒ6Æ÷VDf–ÆT66†Ræf–ÇFW"†f–ÆRÓâf–ÆRæföÆFW%ö–BÓÓÒF–ÆRæFF6WBæ÷VäföÆFW"bbf–ÆRçG&6†VEöB’æÆVæwFƒ°Ğ¢F–ÆRçVW'•6VÆV7F÷"‚w6ÖÆÂr’çFW‡D6öçFVçBÒG¶6÷VçGÒf–ÆRG¶6÷VçBÓÓÒòrr¢w2wÖ°Ğ¢Ò“°Ğ¢&VæFW$f–ÇFW&VD6Æ÷VDf–ÆW2‚“°Ğ¢ĞĞ Ğ¢gVæ7F–öâ&VæFW$f–ÇFW&VD6Æ÷VDf–ÆW2‚’°Ğ¢6öç7BVW'’Ò‚B‚v6Æ÷VBÖf–ÆR×6V&6‚r’çfÇVRÇÂrr’çG&–Ò‚’çFôÆ÷vW$66R‚“°Ğ¢6öç7B6VÆV7FVDföÆFW"ÒB‚v6Æ÷VBÖföÆFW"Öf–ÇFW"r’çfÇVS°Ğ¢6öç7B6VÆV7FVEG—RÒB‚v6Æ÷VB×G—RÖf–ÇFW"r’çfÇVS°Ğ¢6öç7Bf–Wtf–ÆW2Ò6Æ÷VDf–ÆT66†Ræf–ÇFW"†f–ÆRÓâ°Ğ¢6öç7Bf–ÆT¶W’Ò7G&–ær†f–ÆRæÆöv–6Åö–BÇÂf–ÆRæ–B“°Ğ¢6öç7B—5G&6†VBÒG&6†VDf–ÆT–G2æ†2†f–ÆT¶W’“°Ğ¢–b†7F—fTG&—fUf–WrÓÓÒwG&6‚rò—5G&6†VB¢—5G&6†VB’&WGW&âfÇ6S°Ğ¢–b†7F—fTG&—fUf–WrÓÓÒw7F'&VBrbb7F'&VDf–ÆT–G2æ†2†f–ÆT¶W’’’&WGW&âfÇ6S°Ğ¢&WGW&âG'VS°Ğ¢Ò“°Ğ¢Fö7VÖVçBçVW'•6VÆV7F÷"‚ræ6Æ÷VBÖf–ÆW2Ö6&Br’æ6Æ74Æ—7BçFövvÆR‚v—2ÖV×G’rÂf–Wtf–ÆW2æÆVæwF‚ÓÓÒ“°Ğ¢ÆWBf–ÆW2Òf–Wtf–ÆW2æf–ÇFW"†f–ÆRÓâ°Ğ¢6öç7BÖF6†W5FW‡BÒVW'’ÇÂG¶f–ÆRæf–ÆVæÖWÒG¶f–ÆRæföÆFW%öæÖWÖçFôÆ÷vW$66R‚’æ–æ6ÇVFW2‡VW'’“°Ğ¢v÷kh‘éì¶»§q«^tXÚÙ]œÙ]]šX]J	ØŞ	ËÚ[
-NÃBˆXÚÙ]œÙ]]šX]J	ØŞIËÚ[JNÃBˆYˆ
-›ÙÜ™\ÜÈJH™\]Y\İ[š[X][Û‘œ˜[YJİ\
-NÃBˆ[ÙH™\ÛÛ™J
-NÃBˆNÃBˆ™\]Y\İ[š[X][Û‘œ˜[YJİ\
-NÃBˆJNÃBˆHØ]Ú
-Ù\œ›ÜŠHÃBˆHÃBˆYˆ
-İ™È	‰ˆ\[ÙˆXÚÙ]™Ù]›ŞOOH	Ù[˜İ[Û‰ÊH›ÚYXÚÙ]™Ù]›Ş
+(() => {
+  'use strict';
 
-NÃBˆYˆ
-[İ[ÛË˜™YÚ[‘[[Y[
-H[İ[Û‹˜™YÚ[‘[[Y[
+  // A browser cannot launch the Python process from file://. The installed
+  // macOS login service starts it in the background; send file-opened users to
+  // the same-origin dashboard served by that local service.
+  if (location.protocol === 'file:') {
+    location.replace('http://127.0.0.1:8765/');
+    return;
+  }
 
-NÃBˆHØ]Ú
-Ø[š[X][Û‘\œ›ÜŠHÃBˆËÈİ][ÛˆYÚYÚÈ[™H›İ[™›ØÙ\ÜÈÙÈ™[XZ[ˆš\ÚX›HYˆÕ‘È[İ[Ûˆ\È[˜]˜Z[X›KƒBˆCBˆ™]\›ˆ™]È›ÛZ\ÙJ™\ÛÛ™HOˆÙ][Y[İ]
-™\ÛÛ™KL
-JNÃBˆCBˆCBƒBˆ[˜İ[Ûˆ\]S™]ÛÜšÔ›İ]\Ê
-HÃBˆÛÛœİ[™HH	
-	ÜÚ[][][Û‹[[™IÊNÃBˆÛÛœİİ™ÈH[™OËœ]Y\TÙ[XİÜŠ	Ë›™]ÛÜšË]Ú\™\ÉÊNÃBˆÛÛœİš\™]Ø[H	
-	Ùš\™]Ø[XÙ[\‰ÊNÃBˆYˆ
-[[™H\İ™ÈYš\™]Ø[
-H™]\›ÃBƒBˆÛÛœİİ™Ô™XİHİ™Ë™Ù]›İ[™[™ĞÛY[™Xİ
+  // Remove stale offline app shells left by earlier Cloud-D builds. This site
+  // uses network responses only; keeping an old worker can show obsolete UI.
+  const staleWorkerCleanup = (async () => {
+    if (!('serviceWorker' in navigator)) return;
+    const registrations = await navigator.serviceWorker.getRegistrations();
+    await Promise.all(registrations.map(registration => registration.unregister()));
+    if ('caches' in window) {
+      const cacheNames = await caches.keys();
+      await Promise.all(cacheNames.map(name => caches.delete(name)));
+    }
+  })().catch(() => {});
 
-NÃBˆYˆ
-\İ™Ô™XİÚY\İ™Ô™XİšZYÚ
-H™]\›ÃBˆİ™ËœÙ]]šX]J	İšY]Ğ›Ş	Ë	Üİ™Ô™XİÚYH	Üİ™Ô™XİšZYÚX
-NÃBˆİ™ËœÙ]]šX]J	Ü™\Ù\™P\ÜXİ˜][ÉË	Û›Û™IÊNÃBƒBˆÛÛœİÚ[H
-[[Y[YÙJHOˆÃBˆÛÛœİ™XİH[[Y[™Ù]›İ[™[™ĞÛY[™Xİ
+  const $ = id => document.getElementById(id);
+  const fmt = value => new Intl.NumberFormat('en-US').format(value || 0);
+  const isHostedDeployment = Boolean(location.hostname) && !['localhost', '127.0.0.1', '[::1]'].includes(location.hostname);
+  const vectors = [
+    { id: 'auth', attacker: 'Credential-Bot', defender: 'AuthSentinel', domain: 'Credential attacks', icon: 'âŒ‘', target: 'Auth Server', color: 'var(--cyan)' },
+    { id: 'flow', attacker: 'FloodSwarm', defender: 'FlowGuardian', domain: 'DDoS / traffic floods', icon: 'â‰‹', target: 'API Gateway', color: 'var(--blue)' },
+    { id: 'query', attacker: 'Injector-X', defender: 'QueryShield', domain: 'SQL injection', icon: 'âŒ˜', target: 'Primary DB', color: 'var(--purple)' },
+    { id: 'behavior', attacker: 'GhostUser', defender: 'BehaviorWatch', domain: 'Insider / anomalous behavior', icon: 'â—Œ', target: 'Customer DB', color: 'var(--amber)' }
+  ];
+  let sim = null;
+  let running = false;
+  let stopRequested = false;
+  let uploading = false;
+  let cloudFileCache = [];
+  let cloudActivity = [];
+  let lastCloudFileIds = new Set();
+  let activeDriveView = 'my-drive';
+  let starredFileIds = new Set();
+  let trashedFileIds = new Set();
+  let currentUser = null;
+  let customerNoticeId = null;
+  let customerNoticePrimed = false;
+  let authMode = 'login';
+  let accountType = 'customer';
+  function updateDeploymentCopy() {
+    const hosted = isHostedDeployment;
+    const modePill = $('storage-mode-pill');
+    const cloudStorageNote = $('cloud-storage-note');
+    const uploadStorageNote = $('upload-storage-note');
+    if (modePill) modePill.textContent = hosted ? 'HOSTED Â· TEMPORARY' : 'LOCAL Â· PERSISTENT';
+    if (cloudStorageNote) cloudStorageNote.textContent = hosted
+      ? 'AES-256-GCM file copies Â· host storage is temporary'
+      : 'Automatic SQLite recovery copy';
+    if (uploadStorageNote) uploadStorageNote.textContent = hosted
+      ? 'Uploads are encrypted before SQLite writes them. Renderâ€™s filesystem is temporary, so this hosted copy may be lost when its instance is replaced.'
+      : 'File contents are encrypted before SQLite writes them and stay on this device across app restarts. Back up both databases and the encryption key together.';
+    $('stored-files-description').textContent = 'Folders and files are scoped to your account. Each saved revision is mirrored to the encrypted recovery database.';
+    $('storage-footer-note').textContent = hosted
+      ? 'Simulation only Â· file contents use AES-256-GCM, but this Render service has temporary local storage.'
+      : 'Simulation only Â· file contents use AES-256-GCM and persist in local SQLite databases.';
+  }
+  updateDeploymentCopy();
 
-NÃBˆ™]\›ˆÃBˆˆ
-YÙHOOH	ÛY	ÈÈ™Xİ›YˆYÙHOOH	ÜšYÚ	ÈÈ™XİœšYÚˆ™Xİ›Y
-È™XİÚYÈŠHHİ™Ô™Xİ›YBˆNˆ™XİÜ
-È™XİšZYÚÈˆHİ™Ô™XİÜBˆNÃBˆNÃBˆÛÛœİ›İ]HH
-İ\[™
-HOˆÃBˆÛÛœİÛÛ›ÛH
-İ\
-È[™
-HÈÃBˆÛÛœİÛÛ›ÛHHİ\H
-È
-[™HHİ\JH
-ˆŒMÃBˆ™]\›ˆH	Üİ\H	Üİ\_HH	ØÛÛ›ÛH	ØÛÛ›Û_H	Ù[™H	Ù[™_XÃBˆNÃBˆÛÛœİÙ]›İ]HH
-Ú\™KXÚÙ]Y]
-HOˆÃBˆYˆ
-Ú\™JHÚ\™KœÙ]]šX]J	Ù	Ë]
-NÃBˆÛÛœİ[İ[ÛˆH	
-XÚÙ]Y
-OËœ]Y\TÙ[XİÜŠ	Ø[š[X]S[İ[Û‰ÊNÃBˆYˆ
-[İ[ÛŠH[İ[Û‹œÙ]]šX]J	Ü]	Ë]
-NÃBˆNÃBˆÛÛœİš\™]Ø[YHÚ[
-š\™]Ø[	ÛY	ÊNÃBˆÛÛœİš\™]Ø[šYÚHÚ[
-š\™]Ø[	ÜšYÚ	ÊNÃBˆÛÛœİ]XÚÕÚ\™\ÈHİ™Ëœ]Y\TÙ[XİÜ[
-	Ë˜]XÚË[[šÉÊNÃBˆÛÛœİY™[œÙUÚ\™\ÈHİ™Ëœ]Y\TÙ[XİÜ[
-	Ë™Y™[œÙK[[šÉÊNÃBƒBˆ™XİÜœË™›Ü‘XXÚ
+  async function authorizedFetch(path, { method = 'GET', body, headers } = {}) {
+    try {
+      const requestHeaders = new Headers(headers || {});
+      return await fetch(path, { method, body, headers: requestHeaders, credentials: 'same-origin' });
+    } catch (_error) {
+      const message = isHostedDeployment
+          ? 'Could not reach the hosted simulation. It may be starting or waking; retry in a moment.'
+          : 'Could not reach the local simulation. The Cloud-D background service may still be starting; try again in a moment.';
+      showToast(message, true);
+      throw new Error(message);
+    }
+  }
 
-™XİÜ‹[™^
-HOˆÃBˆÛÛœİ]XÚÙ\ˆHØİ[Y[œ]Y\TÙ[XİÜŠÙ]KX]XÚÙ\‹\İ][ÛH‰İ™XİÜ‹šYH—X
-NÃBˆÛÛœİY™[™\ˆHØİ[Y[œ]Y\TÙ[XİÜŠÙ]KYY™[™\‹\İ][ÛH‰İ™XİÜ‹šYH—X
-NÃBˆYˆ
-]XÚÙ\ŠHÙ]›İ]J]XÚÕÚ\™\ÖÚ[™^K]XÚË\XÚÙ]Iİ™XİÜ‹šYX›İ]JÚ[
-]XÚÙ\‹	ÜšYÚ	ÊKš\™]Ø[Y
-JNÃBˆYˆ
-Y™[™\ŠHÃBˆÙ]›İ]JY™[œÙUÚ\™\ÖÚ[™^KY™[œÙKZ[‹\XÚÙ]Iİ™XİÜ‹šYX›İ]JÚ[
-Y™[™\‹	ÛY	ÊKš\™]Ø[šYÚ
-JNÃBˆÙ]›İ]J[Y™[œÙK\XÚÙ]Iİ™XİÜ‹šYX›İ]Jš\™]Ø[šYÚÚ[
-Y™[™\‹	ÛY	ÊJJNÃBˆCBˆJNÃBˆCBƒBˆ]™]ÛÜšÔ›İ]Qœ˜[YHHÃBˆ[˜İ[ÛˆØÚY[S™]ÛÜšÔ›İ]U\]J
-HÃBˆYˆ
-™]ÛÜšÔ›İ]Qœ˜[YJHØ[˜Ù[[š[X][Û‘œ˜[YJ™]ÛÜšÔ›İ]Qœ˜[YJNÃBˆ™]ÛÜšÔ›İ]Qœ˜[YHH™\]Y\İ[š[X][Û‘œ˜[YJ
+  async function request(path, options = {}) {
+    const response = await authorizedFetch(path, options);
+    const payload = await response.json().catch(() => ({}));
+    if (response.status === 401 && currentUser) {
+      showAuthScreen('Your session expired. Please sign in again.');
+    }
+    if (!response.ok) throw new Error(payload.error || `Request failed (${response.status}).`);
+    return payload;
+  }
 
-HOˆÃBˆ™]ÛÜšÔ›İ]Qœ˜[YHHÃBˆ\]S™]ÛÜšÔ›İ]\Ê
-NÃBˆJNÃBˆCBˆÚ[™İË˜Y]™[\İ[™\Š	Ü™\Ú^™IËØÚY[S™]ÛÜšÔ›İ]U\]KÈ\ÜÚ]™NˆYHJNÃBƒBˆ\Ş[˜È[˜İ[Ûˆ[š[X]P]XÚÕ˜Y™šXÊ™XİÜ’YË\Ô[™[™ÊHÃBˆÛÛœİXİ]™U™XİÜœÈH™XİÜœË™š[\Š™XİÜˆOˆ™XİÜ’YËš[˜ÛY\Ê™XİÜ‹šY
-JNÃBˆYˆ
-XXİ]™U™XİÜœË›[™İ
-H™]\›ÃBˆXİ]™U™XİÜœË™›Ü‘XXÚ
-™XİÜˆOˆÃBˆØİ[Y[œ]Y\TÙ[XİÜŠÙ]KX]XÚÙ\‹\İ][ÛH‰İ™XİÜ‹šYH—X
-OË˜Û\ÜÓ\İ˜Y
-	Ú\ËXXİ]™IÊNÃBˆÛÛœİ›İÈHØİ[Y[œ]Y\TÙ[XİÜŠÙ]K\›ØÙ\ÜËXYÙ[H‰İ™XİÜ‹šYH—X
-NÃBˆ›İÏË˜Û\ÜÓ\İ˜Y
-	Ú\Ë[[İš[™ÉÊNÃBˆÛÛœİ›ØÙ\ÜÈH›İÏËœ]Y\TÙ[XİÜŠ	Ë›]™K\›ØÙ\ÜËXYÙ[ÛX[	ÊNÃBˆYˆ
-›ØÙ\ÜÊH›ØÙ\ÜË^ÛÛ[H	Ğ]XÚÈXÚÙ][İš[™ÈÈš\™]Ø[	ÎÃBˆÛÛœİİ]ÛÛYHH›İÏËœ]Y\TÙ[XİÜŠ	Ë›]™K\›ØÙ\ÜË[İ]ÛÛYIÊNÃBˆYˆ
-İ]ÛÛYJHİ]ÛÛYK^ÛÛ[H	ÒSˆS”ÒU	ÎÃBˆJNÃBˆÚ[H
-\Ô[™[™Ê
-JHÃBˆ]ØZ]›ÛZ\ÙK˜[
-Xİ]™U™XİÜœË›X\
-™XİÜˆOˆ[š[X]TXÚÙ]
-]XÚË\XÚÙ]Iİ™XİÜ‹šYX
-JJNÃBˆYˆ
-\Ô[™[™Ê
-JH]ØZ]™]È›ÛZ\ÙJ™\ÛÛ™HOˆÙ][Y[İ]
-™\ÛÛ™KLŒ
-JNÃBˆCBˆCBƒBˆ[˜İ[Ûˆ[š[X]T›İ[™]™[Ê]™[ÊHÃBˆØİ[Y[œ]Y\TÙ[XİÜ[
-	Ë›™]ÛÜšË\İ][Û‰ÊK™›Ü‘XXÚ
-İ][ÛˆOˆİ][Û‹˜Û\ÜÓ\İœ™[[İ™J	Ú\ËXXİ]™IÊJNÃBˆØİ[Y[œ]Y\TÙ[XİÜ[
-	Ë›™]ÛÜšË\XÚÙ]	ÊK™›Ü‘XXÚ
-XÚÙ]OˆXÚÙ]˜Û\ÜÓ\İœ™[[İ™J	ÜXÚÙ]]š\ÚX›IÊJNÃBˆYˆ
-Y]™[Ë›[™İ
-H™]\›ˆ™]È›ÛZ\ÙJ™\ÛÛ™HOˆÙ][Y[İ]
-™\ÛÛ™KL
-JNÃBˆ]™\ÜÛœÙPÛİ[HÃBˆÛÛœİ™\ÜÛœÙS[İ[ÛœÈH×NÃBˆ›Üˆ
-ÛÛœİ]™[Ùˆ]™[ÊHÃBˆÛÛœİ]XÚÙ\ˆH™XİÜœË™š[™
-™XİÜˆOˆ™XİÜ‹˜]XÚÙ\ˆOOH]™[˜]XÚÙ\ŠNÃBˆYˆ
-X]XÚÙ\ŠHÛÛ[YNÃBˆØİ[Y[œ]Y\TÙ[XİÜŠÙ]KX]XÚÙ\‹\İ][ÛH‰Ø]XÚÙ\‹šYH—X
-OË˜Û\ÜÓ\İ˜Y
-	Ú\ËXXİ]™IÊNÃBˆÛÛœİY™[™\“[İ[ÛœÈH×NÃBˆÛÛœİY™[™\ˆH™XİÜœË™š[™
-™XİÜˆOˆ™XİÜ‹™Y™[™\ˆOOH
-]™[™Y™[™\ˆ]™[˜\ÜÚYÛ™YÙY™[™\ŠJNÃBˆYˆ
-Y™[™\ŠHÃBˆØİ[Y[œ]Y\TÙ[XİÜŠÙ]KYY™[™\‹\İ][ÛH‰ÙY™[™\‹šYH—X
-OË˜Û\ÜÓ\İ˜Y
-	Ú\ËXXİ]™IÊNÃBˆY™[™\“[İ[ÛœËœ\Ú
+  function showAuthScreen(message = '') {
+    currentUser = null;
+    sim = null;
+    lastCloudFileIds = new Set();
+    cloudFileCache = [];
+    cloudActivity = [];
+    $('app-shell').hidden = true;
+    $('app-shell').style.display = 'none';
+    $('app-shell').inert = true;
+    $('app-shell').setAttribute('aria-hidden', 'true');
+    $('auth-screen').hidden = false;
+    $('workspace-sidebar').hidden = true;
+    document.body.classList.add('auth-active');
+    setAuthMode('login', false);
+    $('auth-message').textContent = message;
+    $('auth-message').classList.toggle('error', Boolean(message));
+    $('auth-message').classList.remove('error');
+    $('auth-password').value = '';
+  }
 
-\Ş[˜È
+  async function enterWorkspace(user) {
+    currentUser = user;
+    customerNoticeId = null;
+    customerNoticePrimed = false;
+    starredFileIds = new Set();
+    trashedFileIds = new Set();
+    $('account-name').textContent = user.name || user.username || 'Cloud-D user';
+    $('account-email').textContent = user.email || '';
+    const avatar = $('account-menu-button');
+    avatar.textContent = (user.name || user.username || 'N').trim().charAt(0).toUpperCase();
+    const profileAvatar = $('account-profile-avatar');
+    profileAvatar.textContent = (user.name || user.username || 'N').trim().charAt(0).toUpperCase();
+    if (user.profile_picture) {
+      const image = document.createElement('img');
+      image.src = user.profile_picture;
+      image.alt = 'Profile picture';
+      avatar.replaceChildren(image.cloneNode());
+      profileAvatar.replaceChildren(image);
+    }
+    $('auth-screen').hidden = true;
+    document.body.classList.remove('auth-active');
+    $('app-shell').hidden = false;
+    $('app-shell').style.removeProperty('display');
+    $('app-shell').inert = false;
+    $('app-shell').removeAttribute('aria-hidden');
+    $('workspace-sidebar').hidden = false;
+    $('current-user-name').textContent = user.username;
+    $('current-user-role').textContent = user.role === 'staff' ? 'Staff operator' : 'Customer';
+    switchDriveView('my-drive');
+    document.querySelectorAll('.page').forEach(item => item.classList.toggle('active', item.id === 'page-cloud'));
+    document.querySelectorAll('.nav button').forEach(item => item.classList.toggle('active', item.dataset.page === 'cloud'));
+    $('crumb-current').textContent = 'Cloud';
+    document.querySelectorAll('.staff-only').forEach(item => { item.hidden = user.role !== 'staff'; });
+    document.querySelectorAll('.customer-only').forEach(item => { item.hidden = user.role !== 'customer'; });
+    $('cloud-nodes-online').textContent = user.role === 'staff' ? 'Primary DB' : 'Customer DB';
+    $('cloud-status-pill').textContent = user.role === 'staff' ? 'STAFF AREA' : 'CUSTOMER AREA';
+    $('cloud-area-eyebrow').textContent = user.role === 'staff' ? 'Staff workspace Â· Primary DB' : 'Customer workspace Â· Customer DB';
+    $('cloud-area-description').textContent = user.role === 'staff'
+      ? 'Manage files in shared staff folders. Cloud-D routes them to the Primary DB and keeps encrypted recovery copies.'
+      : 'Your files stay in your private Customer DB folders. Cloud-D assigns this storage area automatically.';
+    try {
+      await refreshFolders();
+      setSimulation(await request('/api/state'));
+      setCloudConnection('connected');
+    } catch (error) {
+      setCloudConnection('offline');
+    }
+  }
 
-HOˆÃBˆ]ØZ]™]È›ÛZ\ÙJ™\ÛÛ™HOˆÙ][Y[İ]
-™\ÛÛ™KŒŒ
-JNÃBˆ]ØZ][š[X]TXÚÙ]
-Y™[œÙKZ[‹\XÚÙ]IÙY™[™\‹šYX
-NÃBˆ]ØZ][š[X]TXÚÙ]
-Y™[œÙK\XÚÙ]IÙY™[™\‹šYX
-NÃBˆJJ
-JNÃBˆ™\ÜÛœÙPÛİ[
-ÏHNÃBˆCBˆ™\ÜÛœÙS[İ[ÛœËœ\Ú
-‹‹™Y™[™\“[İ[ÛœÊNÃBˆCBˆ	
-	ÜÚ[][][Û‹]š\İX[\İ]\ÉÊK^ÛÛ[H“ÕS‘	Ù]™[ÖÌKœ›İ[™H0­È	Ü™\ÜÛœÙPÛİ[H‘TÔÓ”ÑIÜ™\ÜÛœÙPÛİ[OOHHÈ	ÉÈˆ	ÔÉßXÃBˆ™]\›ˆ›ÛZ\ÙK˜[
-™\ÜÛœÙS[İ[ÛœÊK[Š
+  async function refreshFolders(selectedId = '') {
+    const result = await request('/api/folders');
+    const folders = result.folders || [];
+    const uploadSelect = $('upload-folder');
+    const filterSelect = $('cloud-folder-filter');
+    const previousUpload = selectedId || uploadSelect.value;
+    const previousFilter = filterSelect.value;
+    uploadSelect.innerHTML = folders.map(folder => `<option value="${escapeHtml(folder.id)}">${escapeHtml(folder.name)}</option>`).join('');
+    filterSelect.innerHTML = '<option value="all">All folders</option>' + folders.map(folder => `<option value="${escapeHtml(folder.id)}">${escapeHtml(folder.name)}</option>`).join('');
+    if (folders.some(folder => folder.id === previousUpload)) uploadSelect.value = previousUpload;
+    const targetFilter = selectedId || previousFilter;
+    if (folders.some(folder => folder.id === targetFilter)) filterSelect.value = targetFilter;
+    syncFolderLocationLabel();
+    renderFolderCards(folders);
+    renderFilteredCloudFiles();
+  }
 
-HOˆ™]È›ÛZ\ÙJ™\ÛÛ™HOˆÙ][Y[İ]
+  function syncFolderLocationLabel() {
+    const uploadSelect = $('upload-folder');
+    const filterSelect = $('cloud-folder-filter');
+    const folderId = filterSelect.value !== 'all' ? filterSelect.value : uploadSelect.value;
+    const folderName = [...uploadSelect.options].find(option => option.value === folderId)?.textContent || 'My Files';
+    const label = $('folder-location-label');
+    if (!label) return;
+    label.textContent = filterSelect.value !== 'all'
+      ? `${folderName} is open Â· new uploads will go here.`
+      : `All folders shown Â· new uploads will go to ${folderName}.`;
+  }
 
+  function renderFolderCards(folders) {
+    const grid = $('folder-grid');
+    const visibleFolders = folders.filter(folder => !['my files', 'recovered files'].includes(String(folder.name).trim().toLowerCase()));
+    grid.innerHTML = visibleFolders.length ? visibleFolders.map(folder => {
+      const count = cloudFileCache.filter(file => file.folder_id === folder.id && !trashedFileIds.has(String(file.logical_id || file.id))).length;
+      const selected = $('cloud-folder-filter').value === folder.id;
+      return `<button class="folder-tile${selected ? ' selected' : ''}" type="button" data-open-folder="${escapeHtml(folder.id)}" aria-pressed="${selected}" title="Click to open this folder. New uploads will be saved here."><span class="folder-tile-icon" aria-hidden="true">â–±</span><span class="folder-tile-copy"><strong>${escapeHtml(folder.name)}</strong><small>${count} file${count === 1 ? '' : 's'}</small></span></button>`;
+    }).join('') : '<div class="folder-empty">No folders yet. Choose <strong>New folder</strong> to create one.</div>';
+  }
 
-HOˆÃBˆØİ[Y[œ]Y\TÙ[XİÜ[
-	Ë›™]ÛÜšË\İ][Û‰ÊK™›Ü‘XXÚ
-İ][ÛˆOˆİ][Û‹˜Û\ÜÓ\İœ™[[İ™J	Ú\ËXXİ]™IÊJNÃBˆØİ[Y[œ]Y\TÙ[XİÜ[
-	Ë›™]ÛÜšË\XÚÙ]	ÊK™›Ü‘XXÚ
-XÚÙ]OˆXÚÙ]˜Û\ÜÓ\İœ™[[İ™J	ÜXÚÙ]]š\ÚX›IÊJNÃBˆ™\ÛÛ™J
-NÃBˆKL
-JJNÃBˆCBƒBˆ\Ş[˜È[˜İ[Ûˆ[”Ú[][][ÛŠ
-HÃBˆYˆ
-İ\œ™[\Ù\Ëœ›ÛHOOH	ÜİY™‰ÊHÈÚİÕØ\İ
-	ÔÙXİ\š]HÚ[][][ÛœÈ\™H]˜Z[X›HÈİY™ˆXØÛİ[Ë‰ËYJNÈ™]\›ÈCBˆYˆ
-[›š[™ÊH™]\›ÃBˆÛÛœİÙ[XİYHÛÛ™šYÊ
-NÃBˆYˆ
-\Ù[XİY˜Xİ]™Wİ™XİÜœË›[™İ
-HÈÚİÕØ\İ
-	ÔÙ[Xİ]X\İÛ™H]XÚÈYÙ[‰ËYJNÈ™]\›ÈCBˆ[›š[™ÈHYNÃBˆİÜ™\]Y\İYH˜[ÙNÃBˆ	
-	İ™X]\İÜ	ÊK™\ØX›YH˜[ÙNÃBˆ	
-	İ™X]\İÜ	ÊK^ÛÛ[H	ø¥¨İÜ	ÎÃBˆÛÛœİ[]ÛœÈHÉ
-	İ™X]\[‰ÊWK™š[\Š›ÛÛX[ŠNÃBˆÛÛœİÜšYÚ[˜[X™[ÈH[]ÛœË›X\
-]ÛˆOˆ]Û‹^ÛÛ[
-NÃBˆ[]ÛœË™›Ü‘XXÚ
-]ÛˆOˆÃBˆ]Û‹™\ØX›YHYNÃBˆ]Û‹^ÛÛ[H	Ô[›š[™ÈÚ[][][Û¸ )‰ÎÃBˆ]Û‹œÙ]]šX]J	Ø\šXKX\ŞIË	İYIÊNÃBˆJNÃBˆHÃBˆ˜]Š	Û]™K\Ú[][][Û‰ÊNÃBˆ]ØZ]™]È›ÛZ\ÙJ™\ÛÛ™HOˆ™\]Y\İ[š[X][Û‘œ˜[YJ
+  async function submitAuth(event) {
+    event.preventDefault();
+    const message = $('auth-message');
+    message.textContent = 'Verifying accountâ€¦';
+    message.classList.remove('error');
+    const payload = {
+      username: $('auth-username').value.trim(),
+      password: $('auth-password').value
+    };
+    const path = authMode === 'login' ? '/api/auth/login' : '/api/auth/signup';
+    try {
+    if (authMode === 'signup') {
+      payload.role = accountType;
+      payload.email = $('auth-email').value.trim();
+      payload.name = payload.username;
+      payload.staff_registration_code = $('staff-registration-code').value.trim();
+    }
+      const response = await authorizedFetch(path, {
+        method: 'POST', body: JSON.stringify(payload), headers: { 'Content-Type': 'application/json' }
+      });
+      const result = await response.json().catch(() => ({}));
+      if (!response.ok) throw new Error(result.error || 'Account verification failed.');
+      $('auth-form').reset();
+      setPasswordVisibility(false);
+      await enterWorkspace(result.user);
+    } catch (error) {
+      message.textContent = error.message;
+      message.classList.add('error');
+    }
+  }
 
-HOˆ™\]Y\İ[š[X][Û‘œ˜[YJ™\ÛÛ™JJJNÃBˆ\]S™]ÛÜšÔ›İ]\Ê
-NÃBˆ	
-	ÜÚ[][][Û‹]š\İX[\İ]\ÉÊK^ÛÛ[H	ĞÓÓ“‘PÕS‘ÈÈÒSUSUSÓˆS‘ÒS‘IÎÃBˆ	
-	Û]™K\›ØÙ\ÜË\›İ[™	ÊK^ÛÛ[H	ÔÕT•S‘ÉÎÃBˆÛÛœİ›İ[™ÈH[X™\Š	
-	Ü›İ[™\Ù[Xİ	ÊK˜[YJNÃBˆ	
-	ÜÚ[][][Û‹[[™IÊK˜Û\ÜÓ\İ˜Y
-	Ú\Ë\[›š[™ÉÊNÃBˆ]™\İ\[™[™ÈHYNÃBˆÛÛœİ™\İ\˜Y™šXÈH[š[X]P]XÚÕ˜Y™šXÊÙ[XİY˜Xİ]™Wİ™XİÜœË
+  function setPasswordVisibility(visible) {
+    const password = $('auth-password');
+    const toggle = $('password-toggle');
+    password.type = visible ? 'text' : 'password';
+    toggle.checked = visible;
+  }
 
-HOˆ™\İ\[™[™È	‰ˆ\İÜ™\]Y\İY
-NÃBˆHÃBˆÚ[HH]ØZ]™\]Y\İ
-	ËØ\KÜ™\İ\	ËÈY]Ùˆ	ÔÔÕ	Ë›ÙNˆ”ÓÓ‹œİš[™ÚYJÙ[XİY
-KXY\œÎˆÈ	ĞÛÛ[U\IÎˆ	Ø\XØ][Û‹ÚœÛÛ‰ÈHJNÃBˆHš[˜[HÃBˆ™\İ\[™[™ÈH˜[ÙNÃBˆ]ØZ]™\İ\˜Y™šXÎÃBˆCBˆ™[™\“]™TÚ[][][ÛŠ
-NÃBˆ	
-	ÜÚ[][][Û‹]š\İX[\İ]\ÉÊK^ÛÛ[H	ĞUPÒÈSˆSÕSÓ‰ÎÃBˆ›Üˆ
-][™^HÈ[™^›İ[™ÎÈ[™^
-ÊÊHÃBˆYˆ
-İÜ™\]Y\İYÚ[K™Ø[YWÛİ™\ˆÚ[Kœ›İ[™HÚ[K›X^Ü›İ[™ÊHœ™XZÎÃBˆ]›İ[™[™[™ÈHYNÃBˆÛÛœİ]XÚÕ˜Y™šXÈH[š[X]P]XÚÕ˜Y™šXÊÙ[XİY˜Xİ]™Wİ™XİÜœË
+  function setAuthMode(mode, clearMessage = true) {
+    authMode = mode;
+    const signup = mode === 'signup';
+    setPasswordVisibility(false);
+    $('auth-title').textContent = signup ? 'Create your Cloud-D account' : 'Sign in to your cloud';
+    $('auth-copy').textContent = signup
+      ? 'Enter your email address and choose a username. Choose Customer or Staff to set your cloud access.'
+      : 'Sign in using your username and password. Cloud-D finds your account type automatically.';
+    $('auth-email-field').hidden = !signup;
+    $('auth-email').required = signup;
+    $('auth-username').required = true;
+    $('auth-username-help').hidden = false;
+    $('auth-username-help').textContent = signup
+      ? 'Use 3â€“30 letters, numbers, dots, underscores, or hyphens. Usernames must start with a letter or number.'
+      : 'For older accounts, the username is based on the part of your email before @. Your username appears beside your role after sign-in.';
+    $('auth-role-switch').hidden = !signup;
+    $('auth-password').autocomplete = signup ? 'new-password' : 'current-password';
+    $('auth-submit').textContent = signup ? 'Create account' : 'Sign in';
+    $('staff-code-field').hidden = !signup || accountType !== 'staff';
+    $('staff-registration-code').required = signup && accountType === 'staff';
+    $('auth-mode-link').textContent = signup ? 'Sign in' : 'Create an account';
+    $('auth-mode-link').href = signup ? '#login' : '#signup';
+    $('auth-link-row').firstChild.textContent = signup ? 'Already have an account?' : 'New to Cloud-D?';
+    if (clearMessage) {
+      $('auth-message').textContent = '';
+      $('auth-message').classList.remove('error');
+    }
+  }
 
-HOˆ›İ[™[™[™È	‰ˆ\İÜ™\]Y\İY
-NÃBˆHÃBˆÚ[HH]ØZ]™\]Y\İ
-	ËØ\KÜ›İ[™	ËÈY]Ùˆ	ÔÔÕ	Ë›ÙNˆ”ÓÓ‹œİš[™ÚYJÙ[XİY
-KXY\œÎˆÈ	ĞÛÛ[U\IÎˆ	Ø\XØ][Û‹ÚœÛÛ‰ÈHJNÃBˆHš[˜[HÃBˆ›İ[™[™[™ÈH˜[ÙNÃBˆ]ØZ]]XÚÕ˜Y™šXÎÃBˆCBˆ™[™\“]™TÚ[][][ÛŠ
-NÃBˆ]ØZ][š[X]T›İ[™]™[Ê
-Ú[K˜]XÚ×ÛÙÈ×JK™š[\Š]™[Oˆ[X™\Š]™[œ›İ[™
-HOOH[X™\ŠÚ[Kœ›İ[™
-JJNÃBˆCBˆ™[™\“]™TÚ[][][ÛŠ
-NÃBˆ	
-	ÜÚ[][][Û‹]š\İX[\İ]\ÉÊK^ÛÛ[HİÜ™\]Y\İYÈÕÔQQ•Tˆ“ÕS‘	ÜÚ[Kœ›İ[™Xˆ	ÑQ‘S”ÑHÓÓTUIÎÃBˆ	
-	ÜÚ[][][Û‹[[™IÊK˜Û\ÜÓ\İœ™[[İ™J	Ú\Ë\[›š[™ÉÊNÃBˆÚİÕØ\İ
-İÜ™\]Y\İYBˆÈÚ[][][ÛˆİÜYY\ˆ›İ[™	ÜÚ[Kœ›İ[™K˜Bˆˆ›İ[™	ÜÚ[Kœ›İ[™H0­È	ÜÚ[K›Y]šXÜË˜›ØÚÙYHÙˆ	ÜÚ[K›Y]šXÜËİ[Ø]XÚÜßH]XÚÜÈ›ØÚÙY˜
-NÃBˆHØ]Ú
-\œ›ÜŠHÃBˆ	
-	ÜÚ[][][Û‹]š\İX[\İ]\ÉÊK^ÛÛ[H	ÔÒSUSUSÓˆÓÕS“ÕÕT•	ÎÃBˆ	
-	Û]™K\›ØÙ\ÜË\›İ[™	ÊK^ÛÛ[H	ÑT”“Ô‰ÎÃBˆÚİÕØ\İ
-\œ›Ü‹›Y\ÜØYÙKYJNÃBˆHš[˜[HÃBˆ[›š[™ÈH˜[ÙNÃBˆ[]ÛœË™›Ü‘XXÚ
+  async function signOut() {
+    try { await authorizedFetch('/api/auth/logout', { method: 'POST' }); } catch (_error) { /* clear the local view even offline */ }
+    lastCloudFileIds = new Set();
+    cloudFileCache = [];
+    cloudActivity = [];
+    showAuthScreen('You have signed out.');
+  }
 
-]Û‹[™^
-HOˆÃBˆ]Û‹™\ØX›YH˜[ÙNÃBˆ]Û‹^ÛÛ[HÜšYÚ[˜[X™[ÖÚ[™^NÃBˆ]Û‹œ™[[İ™P]šX]J	Ø\šXKX\ŞIÊNÃBˆJNÃBˆ	
-	ÜÚ[][][Û‹[[™IÊK˜Û\ÜÓ\İœ™[[İ™J	Ú\Ë\[›š[™ÉÊNÃBˆØİ[Y[œ]Y\TÙ[XİÜ[
-	Ë›™]ÛÜšË\İ][Û‹š\ËXXİ]™IÊK™›Ü‘XXÚ
-İ][ÛˆOˆİ][Û‹˜Û\ÜÓ\İœ™[[İ™J	Ú\ËXXİ]™IÊJNÃBˆØİ[Y[œ]Y\TÙ[XİÜ[
-	Ë›™]ÛÜšË\XÚÙ]œXÚÙ]]š\ÚX›IÊK™›Ü‘XXÚ
-XÚÙ]OˆXÚÙ]˜Û\ÜÓ\İœ™[[İ™J	ÜXÚÙ]]š\ÚX›IÊJNÃBˆ	
-	İ™X]\İÜ	ÊK™\ØX›YHYNÃBˆ	
-	İ™X]\İÜ	ÊK^ÛÛ[H	ø¥¨İÜ	ÎÃBˆØİ[Y[œ]Y\TÙ[XİÜ[
-	Ë›]™K\›ØÙ\ÜË\›İËš\Ë[[İš[™ÉÊK™›Ü‘XXÚ
-›İÈOˆ›İË˜Û\ÜÓ\İœ™[[İ™J	Ú\Ë[[İš[™ÉÊJNÃBˆ™[™\“]™TÚ[][][ÛŠ
-NÃBˆHÃBˆ™[™\“İ™\šY]Ê
-NÃBˆ™[™\]XÚÕX›J
-NÃBˆ	
-	ØYÙ[Ë\İ]IÊK^ÛÛ[HÚ[OËš\×Ü[ˆÈ	ÜÚ[Kœ›İ[™H›İ[™È0­È	ÜÚ[K›Y]šXÜË˜›ØÚÙYH›ØÚÜØˆ	Ğ]ØZ][™ÈÚ[][][Û‰ÎÃBˆ™[™\”™\Ü
+  async function changeAccount(mode) {
+    try { await authorizedFetch('/api/auth/logout', { method:'POST' }); } catch (_error) { /* continue to account selection */ }
+    lastCloudFileIds = new Set(); cloudFileCache = []; cloudActivity = [];
+    showAuthScreen('');
+    setAuthMode(mode);
+    $('account-popover').hidden = true;
+    $('account-menu-button').setAttribute('aria-expanded', 'false');
+  }
 
-NÃBˆHØ]Ú
-™[™\‘\œ›ÜŠHÃBˆÛÛœÛÛK™\œ›ÜŠ	ÔÚ[][][ÛˆÛÛ\]Y]HÙXÛÛ™\H\Ú›Ø\™[™[Ûİ[›İ™Yœ™\Ú‰Ë™[™\‘\œ›ÜŠNÃBˆCBˆCBˆCBƒBˆ[˜İ[ÛˆİÜÚ[][][ÛŠ
-HÃBˆYˆ
-\[›š[™ÈİÜ™\]Y\İY
-H™]\›ÃBˆİÜ™\]Y\İYHYNÃBˆ	
-	İ™X]\İÜ	ÊK™\ØX›YHYNÃBˆ	
-	İ™X]\İÜ	ÊK^ÛÛ[H	ÔİÜ[™ø )‰ÎÃBˆ	
-	ÜÚ[][][Û‹]š\İX[\İ]\ÉÊK^ÛÛ[HÕÔS‘ÈQ•Tˆ“ÕS‘	ÜÚ[OËœ›İ[™XÃBˆCBƒBˆ\Ş[˜È[˜İ[Ûˆ\ØY]\Ù]
-]™[
-HÃBˆ]™[Ëœ™]™[Y˜][ËŠ
-NÃBˆÛÛœİš[\ÈHË‹‹‰
-	İ\ØYYš[IÊK™š[\×NÃBˆYˆ
-Yš[\Ë›[™İ
-H™]\›ÃBˆÛÛœİİ[]\ÈHš[\Ëœ™YXÙJ
-İ[š[JHOˆİ[
-Èš[KœÚ^™K
-NÃBˆYˆ
-İ[]\ÈˆL
-ˆL
-ˆL
-HÃBˆ	
-	İ\ØYY›Ü›IÊKœ™\Ù]
+  async function createFolder(event) {
+    event.preventDefault();
+    const button = $('folder-form').querySelector('[type="submit"]');
+    button.disabled = true;
+    try {
+      const result = await request('/api/folders', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name: $('folder-name-input').value })
+      });
+      $('folder-dialog').close();
+      $('folder-form').reset();
+      await refreshFolders(result.folder.id);
+      switchDriveView('my-drive');
+      showToast(`Folder â€œ${result.folder.name}â€ created.`);
+    } catch (error) {
+      showToast(error.message, true);
+    } finally {
+      button.disabled = false;
+    }
+  }
 
-NÃBˆÚİÕØ\İ
-	ÔÙ[XİYš[\È]\İİ[LPˆÜˆ\ÜË‰ËYJNÃBˆ™]\›ÃBˆCBˆÛÛœİÙ[XİY›Û\ˆH	
-	İ\ØYY›Û\‰ÊK˜[YNÃBˆYˆ
-\Ù[XİY›Û\ŠHÃBˆ	
-	İ\ØYY›Ü›IÊKœ™\Ù]
+  function config() {
+    return {
+      threshold: Number($('threshold').value),
+      intensity: Number($('intensity-select').value),
+      active_vectors: [...document.querySelectorAll('.vector-toggle:checked')].map(input => input.value)
+    };
+  }
 
-NÃBˆÚİÕØ\İ
-	ĞÚÛÜÙHH\İ[˜][Ûˆ›Û\ˆ™Y›Ü™H\ØY[™Ë‰ËYJNÃBˆ™]\›ÃBˆCBˆ\ØY[™ÈHYNÃBˆÛÛœİ›Ü›Q]HH™]È›Ü›Q]J	
-	İ\ØYY›Ü›IÊJNÃBˆÛÛœİ›Û\“˜[YHH	
-	İ\ØYY›Û\‰ÊKœÙ[XİYÜ[ÛœÖÌOË^ÛÛ[	Ş[İ\ˆ›Û\‰ÎÃBˆÚİÕØ\İ
-\ØY[™È	Ùš[\Ë›[™İHš[IÙš[\Ë›[™İOOHHÈ	ÉÈˆ	ÜÉßHÈ	Ù›Û\“˜[Y_x )˜
-NÃBˆHÃBˆ]™\İ[ÃBˆHÃBˆ™\İ[H]ØZ]\ØYÚ]›ÙÜ™\ÜÊ›Ü›Q]K
+  function setSimulation(value) {
+    const previousIds = lastCloudFileIds;
+    const currentFiles = value.files || [];
+    const newFiles = currentFiles.filter(file => !previousIds.has(file.id));
+    const firstConnection = sim === null;
+    sim = value;
+    if (currentUser?.role === 'customer') {
+      const notice = value.security_notice;
+      $('customer-security-status').textContent = notice
+        ? 'Security event detected Â· defense response active'
+        : 'Your cloud is protected';
+      $('customer-security-detail').textContent = notice
+        ? `The exercise is processing round ${notice.round} of ${notice.max_rounds}. Defender systems are responding to simulated activity; your files remain in your assigned customer area.`
+        : 'When a simulated security event is detected, Cloud-D will show its current status here.';
+      if (!customerNoticePrimed) {
+        customerNoticeId = notice?.id || null;
+        customerNoticePrimed = true;
+      } else if (notice?.id && notice.id !== customerNoticeId) {
+        customerNoticeId = notice.id;
+        $('customer-alert-dialog').showModal();
+      }
+    }
+    starredFileIds = new Set(currentFiles.filter(file => file.starred).map(file => String(file.logical_id || file.id)));
+    trashedFileIds = new Set(currentFiles.filter(file => file.trashed_at).map(file => String(file.logical_id || file.id)));
+    lastCloudFileIds = new Set(currentFiles.map(file => file.id));
+    if (firstConnection) {
+      addCloudActivity('Cloud workspace connected', `${fmt(currentFiles.length)} current files Â· ${fmt(value.storage?.backup_file_count || 0)} encrypted backup copies`, 'success');
+    } else if (newFiles.length) {
+      const versioned = newFiles.filter(file => Number(file.version) > 1);
+      if (versioned.length === 1 && newFiles.length === 1) {
+        addCloudActivity('New file version saved', `${versioned[0].filename} Â· version ${versioned[0].version}`, 'upload');
+      } else {
+        const locations = [...new Set(newFiles.map(file => file.folder_name).filter(Boolean))].join(', ');
+        addCloudActivity(`${newFiles.length} file${newFiles.length === 1 ? '' : 's'} synced`, locations ? `Added or updated in ${locations}` : 'Added or updated in your assigned storage area', 'upload');
+      }
+    }
+    if (value.threshold !== undefined) {
+      $('threshold').value = $('threshold-lab').value = value.threshold;
+      $('threshold-label').textContent = $('threshold-lab-label').textContent = Number(value.threshold).toFixed(2);
+      $('engine-threshold').textContent = Number(value.threshold).toFixed(2);
+    }
+    if (value.intensity !== undefined && value.intensity !== null) {
+      $('intensity-select').value = value.intensity;
+      $('intensity-value').textContent = `${value.intensity} / 10`;
+    }
+    if (value.active_vectors) {
+      document.querySelectorAll('.vector-toggle').forEach(input => { input.checked = value.active_vectors.includes(input.value); });
+    }
+    renderAll();
+  }
 
-HOˆßJNÃBˆHØ]Ú
-\œ›ÜŠHÃBˆYˆ
-\œ›Ü‹œİ]\ÈOOHHY\œ›Ü‹œ^[ØYË™\XØ]\ÏË›[™İ
-H›İÈ\œ›ÜÃBˆÛÛœİ\XØ]S[ÙHH]ØZ]ÚÛÜÙQ\XØ]S[ÙJ\œ›Ü‹œ^[ØY™\XØ]\Ëš[\ÊNÃBˆYˆ
-Y\XØ]S[ÙJH›İÈ™]È\œ›ÜŠ	Õ\ØYØ[˜Ù[Yˆ›Èš[\ÈÙ\™HÚ[™ÙY‰ÊNÃBˆ›Ü›Q]KœÙ]
-	Ù\XØ]WÛ[ÙIË\XØ]S[ÙJNÃBˆ™\İ[H]ØZ]\ØYÚ]›ÙÜ™\ÜÊ›Ü›Q]K
+  function addCloudActivity(title, detail, style = 'success') {
+    cloudActivity.unshift({ title, detail, style, time: new Date() });
+    cloudActivity = cloudActivity.slice(0, 8);
+    renderCloudActivity();
+  }
 
-HOˆßJNÃBˆCBˆÙ]Ú[][][ÛŠ™\İ[œİ]JNÃBˆÛÛœİ\]Tİ[[X\HH
-™\İ[™š[Wİ\]\È×JK›X\
-š[HOˆ	Ùš[K™š[[˜[Y_H0­È‰Ùš[K™\œÚ[ÛŸX
-Kš›Ú[Š	Ë	ÊNÃBˆ	
-	İ\ØYY›Ü›IÊKœ™\Ù]
+  function renderCloudActivity() {
+    $('cloud-activity-list').innerHTML = cloudActivity.length ? cloudActivity.map(item => {
+      const icon = item.style === 'upload' ? 'â‡§' : item.style === 'download' ? 'â‡©' : item.style === 'secure' ? 'âœ“' : 'â—‰';
+      const when = item.time.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+      return `<div class="activity-row"><span class="activity-icon ${item.style}">${icon}</span><div class="activity-copy"><strong>${escapeHtml(item.title)}</strong><span>${escapeHtml(item.detail)}</span></div><time class="activity-time">${when}</time></div>`;
+    }).join('') : '<div class="empty">Cloud activity will appear here.</div>';
+  }
 
-NÃBˆ	
-	İ\ØYY›Û\‰ÊK˜[YHHÙ[XİY›Û\ÃBˆÛÛœİ˜[Y\ÈHš[\Ë›[™İOOHHÈš[\ÖÌK›˜[YHˆ	Ùš[\Ë›[™İHš[\ØÃBˆÚİÕØ\İ
-	Û˜[Y\ßH\ØYYÈ	Ü™\İ[™›Û\ŸK‰İ\]Tİ[[X\HÈ\]Yˆ	İ\]Tİ[[X\_K˜ˆ	ÉßX
-NÃBˆHØ]Ú
-\œ›ÜŠHÃBˆYˆ
-\œ›Ü‹œİ]\ÈOOHJHÚİĞ]]ØÜ™Y[Š	Ö[İ\ˆÙ\ÜÚ[Ûˆ^\™YˆX\ÙHÚYÛˆ[ˆYØZ[‹‰ÊNÃBˆÚİÕØ\İ
-\œ›Ü‹›Y\ÜØYÙKYJNÃBˆHš[˜[HÃBˆ\ØY[™ÈH˜[ÙNÃBˆCBˆCBƒBˆ[˜İ[Ûˆ\ØYÚ]›ÙÜ™\ÜÊ›Ü›Q]KÛ”›ÙÜ™\ÜÊHÃBˆ™]\›ˆ™]È›ÛZ\ÙJ
-™\ÛÛ™K™Z™Xİ
-HOˆÃBˆÛÛœİˆH™]ÈS™\]Y\İ
+  function setCloudConnection(state) {
+    const badge = $('cloud-connection-badge');
+    badge.className = `cloud-live ${state === 'connected' ? '' : state}`;
+    $('cloud-connection-label').textContent = state === 'connected' ? 'CONNECTED' : state === 'syncing' ? 'SYNCING' : 'OFFLINE';
+    if (state === 'connected') {
+      $('cloud-last-sync').textContent = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+    }
+  }
 
-NÃBˆ‹›Ü[Š	ÔÔÕ	Ë	ËØ\Kİ\ØY	ÊNÃBˆ‹[Y[İ]HLŒÃBˆ‹Ú]Ü™Y[X[ÈHYNÃBˆ‹\ØY˜Y]™[\İ[™\Š	Ü›ÙÜ™\ÜÉË]™[OˆÃBˆYˆ
-]™[›[™İÛÛ\]X›JHÛ”›ÙÜ™\ÜÊX]œ›İ[™
-]™[›ØYYÈ]™[İ[
-ˆL
-JNÃBˆJNÃBˆ‹˜Y]™[\İ[™\Š	ÛØY	Ë
+  function showToast(message, error = false) {
+    const toast = $('toast');
+    toast.textContent = message;
+    toast.style.background = error ? '#47252b' : '';
+    toast.style.borderColor = error ? '#a44958' : '';
+    toast.classList.add('show');
+    clearTimeout(showToast.timer);
+    showToast.timer = setTimeout(() => toast.classList.remove('show'), 3200);
+  }
 
-HOˆÃBˆ]^[ØYHßNÃBˆHÈ^[ØYH”ÓÓ‹œ\œÙJ‹œ™\ÜÛœÙU^	ŞßIÊNÈHØ]Ú
-Ù\œ›ÜŠHÈÊˆ™\Üİ]\È™[İÈ
-‹ÈCBˆYˆ
-‹œİ]\ÈŒ‹œİ]\ÈHÌ
-HÃBˆÛÛœİ\œ›ÜˆH™]È\œ›ÜŠ^[ØY™\œ›Üˆ\ØY˜Z[Y
-	Ş‹œİ]\ßJK˜
-NÃBˆ\œ›Ü‹œİ]\ÈH‹œİ]\ÎÃBˆ\œ›Ü‹œ^[ØYH^[ØYÃBˆ™Z™Xİ
-\œ›ÜŠNÃBˆ™]\›ÃBˆCBˆ™\ÛÛ™J^[ØY
-NÃBˆJNÃBˆ‹˜Y]™[\İ[™\Š	Ù\œ›Ü‰Ë
+  function escapeHtml(value) {
+    return String(value).replace(/[&<>"']/g, character => ({
+      '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+    })[character]);
+  }
 
-HOˆ™Z™Xİ
-™]È\œ›ÜŠ	ÕHÛİYÛÛ›™Xİ[Ûˆ[™Y\š[™È\ØYˆÚXÚÈHÛÛ›™Xİ[Ûˆ[™™]K‰ÊJJNÃBˆ‹˜Y]™[\İ[™\Š	İ[Y[İ]	Ë
+  function nav(page) {
+    const permitted = currentUser?.role === 'staff'
+      ? ['cloud', 'overview', 'threats', 'live-simulation', 'report']
+      : ['cloud', 'architecture', 'report'];
+    if (!permitted.includes(page)) return;
+    document.querySelectorAll('.page').forEach(item => item.classList.toggle('active', item.id === `page-${page}`));
+    document.querySelectorAll('.nav button').forEach(button => button.classList.toggle('active', button.dataset.page === page));
+    $('crumb-current').textContent = ({ cloud: 'Cloud', architecture: 'Cloud Architecture', overview: 'Security Overview', threats: 'Attack & Defense Simulation Details', 'live-simulation': 'Live Simulation', report: 'Defense Report' })[page] || 'Cloud';
+    window.scrollTo(0, 0);
+    if (page === 'live-simulation') requestAnimationFrame(() => requestAnimationFrame(updateNetworkRoutes));
+    if (page === 'cloud') syncCloudWorkspace();
+  }
 
-HOˆ™Z™Xİ
-™]È\œ›ÜŠ	Õ\ØY[YYİ]ˆHHÛX[\ˆ˜]ÚÙˆš[\Ë‰ÊJJNÃBˆ‹˜Y]™[\İ[™\Š	ØX›Ü	Ë
+  async function syncCloudWorkspace() {
+    if (!currentUser || document.visibilityState !== 'visible' || running || uploading) return;
+    const onCloudPage = document.getElementById('page-cloud').classList.contains('active');
+    if (onCloudPage) setCloudConnection('syncing');
+    try {
+      setSimulation(await request('/api/state'));
+      if (onCloudPage) {
+        await refreshFolders();
+        setCloudConnection('connected');
+      }
+    } catch (_error) {
+      if (onCloudPage) setCloudConnection('offline');
+    }
+  }
 
-HOˆ™Z™Xİ
-™]È\œ›ÜŠ	Õ\ØYØ\ÈØ[˜Ù[Y‰ÊJJNÃBˆ‹œÙ[™
-›Ü›Q]JNÃBˆJNÃBˆCBƒBˆ[˜İ[ÛˆÚÛÜÙQ\XØ]S[ÙJ\XØ]\ËÙ[XİYš[\ÊHÃBˆÛÛœİX[ÙÈH	
-	Ù\XØ]KYX[ÙÉÊNÃBˆ	
-	Ù\XØ]KYš[K[\İ	ÊKš[›™\’SH\XØ]\Ë›X\
-][HOˆÃBˆÛÛœİ[˜ÛÛZ[™ÈHÙ[XİYš[\Ë™š[™
-š[HOˆš[K›˜[YKÓØØ[SİÙ\Ø\ÙJ
-HOOHİš[™Ê][K™š[[˜[YJKÓØØ[SİÙ\Ø\ÙJ
-JNÃBˆÛÛœİØ]™YÚ[ˆH][K˜Ü™X]YØ]È™]È]J][K˜Ü™X]YØ]
-KÓØØ[Tİš[™Ê
-Hˆ	ÔØ]™Y[ˆ[İ\ˆÛİY	ÎÃBˆ™]\›ˆOİ›Û™ÈÛ\ÜÏH™\XØ]K[˜[YH‰Ù\ØØ\R[
-][K™š[[˜[YJ_OÜİ›Û™Ï]ˆÛ\ÜÏH™\XØ]KXÛÛ\\™H]Ü[ˆÛ\ÜÏH™\XØ]K[X™[ÕT”‘S•’SOÜÜ[İ›Û™Ï•™\œÚ[Ûˆ	Ó[X™\Š][K™\œÚ[ÛŠH_H0­È	Ù›Ü›X]]\Ê[X™\Š][KœÚ^™WØ]\È
-J_OÜİ›Û™ÏÛX[”Ø]™Y	Ù\ØØ\R[
-Ø]™YÚ[Š_OÜÛX[Ù]]Ü[ˆÛ\ÜÏH™\XØ]K[X™[“‘UÈTĞQÜÜ[İ›Û™Ï‰Ù›Ü›X]]\Ê[X™\Š[˜ÛÛZ[™ÏËœÚ^™H
-J_OÜİ›Û™ÏÛX[‰Ú[˜ÛÛZ[™ÈÈš[H[ÙYšYY	Û™]È]J[˜ÛÛZ[™Ë›\İ[ÙYšYY
-KÓØØ[Tİš[™Ê
-_Xˆ	ÔÙ[XİY\ØY	ßOÜÛX[Ù]Ù]ÛO˜ÃBˆJKš›Ú[Š	ÉÊNÃBˆ™]\›ˆ™]È›ÛZ\ÙJ™\ÛÛ™HOˆÃBˆX[ÙËœ™]\›•˜[YHH	ÉÎÃBˆÛÛœİÛÛÜÙHH
+  function renderOverview() {
+    const metrics = sim?.metrics;
+    const counts = sim?.counts || {};
+    const totalAttacks = metrics?.total_attacks || 0;
+    const blocked = metrics?.blocked || 0;
+    $('kpi-block').textContent = totalAttacks ? `${metrics.block_rate.toFixed(1)}%` : 'â€”';
+    $('kpi-block-note').innerHTML = totalAttacks ? `<strong>${blocked} blocked</strong> of ${totalAttacks} attack events` : 'Run the agents to start the simulation';
+    $('kpi-data').textContent = metrics ? `${metrics.protection_rate.toFixed(3)}%` : 'â€”';
+    $('kpi-data-note').textContent = metrics ? `${fmt(metrics.protected)} / ${fmt(metrics.total_records)} actual records protected` : 'Records protected / stored';
+    $('kpi-response').textContent = sim?.has_run ? `${sim.latency_ms} ms` : 'â€”';
+    $('kpi-contained').innerHTML = `${blocked} <small style="font-size:12px;color:#8190a8;font-weight:600">/ ${totalAttacks}</small>`;
+    $('kpi-contained-note').textContent = sim?.round ? `${sim.round} of ${sim.max_rounds} rounds processed` : 'No attack rounds processed';
+    $('round-pill').textContent = `${running ? 'RUNNING' : sim?.game_over ? 'COMPLETE' : sim?.round ? 'IN PROGRESS' : 'READY'} Â· ${sim?.round || 0} ROUNDS`;
+    for (const vector of vectors) $(`node-${vector.id}`).textContent = counts[vector.id]?.actions || 0;
+    for (let i = 1; i <= 4; i++) $(`link-${i}`).classList.toggle('active', running);
+    renderAgentSummary();
+    renderAttackSummary();
+    renderNodes();
+  }
 
-HOˆ™\ÛÛ™JX[ÙËœ™]\›•˜[YHOOH	Û™]×İ™\œÚ[Û‰ÈX[ÙËœ™]\›•˜[YHOOH	Ü™\XÙIÈÈX[ÙËœ™]\›•˜[YHˆ[
-NÃBˆX[ÙË˜Y]™[\İ[™\Š	ØÛÜÙIËÛÛÜÙKÈÛ˜ÙNˆYHJNÃBˆX[ÙËœÚİÓ[Ù[
+  function renderAgentSummary() {
+    const counts = sim?.counts || {};
+    $('agent-summary').innerHTML = vectors.map(vector => {
+      const count = counts[vector.id] || { scored: 0, blocked: 0 };
+      const rate = count.scored ? count.blocked / count.scored * 100 : 0;
+      return `<div class="agent-row"><div class="agent-id"><span class="agent-icon" style="--agent-color:${vector.color}">${vector.icon}</span>${vector.defender}</div><div class="bar-wrap"><div class="bar" style="--agent-color:${vector.color};width:${rate}%"></div></div><div class="agent-score">${count.scored ? `${rate.toFixed(0)}%` : 'â€”'}</div></div>`;
+    }).join('');
+  }
 
-NÃBˆJNÃBˆCBƒBˆ\Ş[˜È[˜İ[ÛˆÜ[•™\œÚ[Û’\İÜJÙÚXØ[Yš[[˜[YJHÃBˆÛÛœİX[ÙÈH	
-	İ™\œÚ[Û‹YX[ÙÉÊNÃBˆ	
-	İ™\œÚ[Û‹YX[ÙË]]IÊK^ÛÛ[H™\œÚ[Ûˆ\İÜH0­È	Ùš[[˜[Y_XÃBˆ	
-	İ™\œÚ[Û‹[\İ	ÊKš[›™\’SH	Ï]ˆÛ\ÜÏH™[\H“ØY[™È™\œÚ[Ûœø )Ù]‰ÎÃBˆX[ÙËœÚİÓ[Ù[
+  function renderAttackSummary() {
+    const counts = sim?.counts || {};
+    const attackLog = sim?.attack_log || [];
+    const blockedEvents = attackLog.filter(event => event.blocked).length;
+    const impactEvents = attackLog.filter(event => !event.blocked && Number(event.damage || 0) > 0).length;
+    const runUtilities = attackLog.map(event => Number(event.utility)).filter(Number.isFinite);
+    const runMeanUtility = runUtilities.length ? runUtilities.reduce((sum, utility) => sum + utility, 0) / runUtilities.length : null;
+    $('live-run-attempts').textContent = fmt(attackLog.length);
+    $('live-run-blocked').textContent = fmt(blockedEvents);
+    $('live-run-impacts').textContent = fmt(impactEvents);
+    $('live-run-containment').textContent = attackLog.length ? `${(blockedEvents / attackLog.length * 100).toFixed(1)}%` : 'â€”';
+    $('live-run-utility').textContent = runMeanUtility === null ? 'â€”' : runMeanUtility.toFixed(2);
+    const summaryMarkup = vectors.map(vector => {
+      const count = counts[vector.id] || { scored: 0, blocked: 0 };
+      const events = attackLog.filter(event => event.attacker === vector.attacker);
+      const attempts = Math.max(Number(count.scored || 0), events.length);
+      const blocked = events.length ? events.filter(event => event.blocked).length : Math.min(attempts, Number(count.blocked || 0));
+      const impacts = events.filter(event => !event.blocked && Number(event.damage || 0) > 0).length;
+      const passedWithoutDamage = Math.max(0, attempts - blocked - impacts);
+      const containment = attempts ? blocked / attempts * 100 : 0;
+      const utilityScores = events.map(event => Number(event.utility)).filter(Number.isFinite);
+      const meanUtility = utilityScores.length ? utilityScores.reduce((sum, utility) => sum + utility, 0) / utilityScores.length : null;
+      const utilityRange = utilityScores.length ? `${Math.min(...utilityScores).toFixed(2)}â€“${Math.max(...utilityScores).toFixed(2)}` : 'â€”';
+      const thresholds = [...new Set(events.map(event => Number(event.threshold)).filter(Number.isFinite).map(value => value.toFixed(2)))];
+      const threshold = thresholds.length ? thresholds.join(' / ') : Number(sim?.threshold ?? 0.4).toFixed(2);
+      const targets = [...new Set(events.map(event => event.target).filter(Boolean))];
+      const defenders = [...new Set(events.map(event => event.assigned_defender || event.defender).filter(Boolean))];
+      const rateClass = !attempts ? 'blue' : containment >= 75 ? 'green' : containment >= 50 ? 'amber' : 'red';
+      const targetText = targets.length ? targets.join(', ') : vector.target;
+      const defenderText = defenders.length ? defenders.join(', ') : vector.defender;
+      const meanText = meanUtility === null ? 'â€”' : meanUtility.toFixed(2);
+      return `<div class="agent-row"><div class="agent-id"><span class="agent-icon" style="--agent-color:${vector.color}">${vector.icon}</span><strong>${escapeHtml(vector.attacker)}</strong><span class="agent-domain">${escapeHtml(vector.domain)}</span></div><div class="live-attack-stats"><div><span>Attempts</span><strong>${attempts}</strong></div><div><span>Blocked</span><strong>${blocked}</strong></div><div><span>Impacts</span><strong>${impacts}</strong></div><div><span>No damage</span><strong>${passedWithoutDamage}</strong></div></div><div class="live-attack-extra"><span><strong>Target:</strong> ${escapeHtml(targetText)} Â· <strong>Defender:</strong> ${escapeHtml(defenderText)}</span><span><strong>Containment:</strong> ${attempts ? `${containment.toFixed(1)}%` : 'â€”'} Â· <strong>Mean utility:</strong> ${meanText} <span>(range ${utilityRange})</span> Â· <strong>Threshold:</strong> ${threshold}</span></div><div class="agent-score live-attack-rate"><span class="pill ${rateClass}">${attempts ? `${containment.toFixed(1)}% contained` : 'NO DATA'}</span></div></div>`;
+    }).join('');
+    ['attack-summary', 'live-attack-summary'].forEach(id => {
+      const container = $(id);
+      if (container) container.innerHTML = summaryMarkup;
+    });
+    const eventCount = Math.max(Number(sim?.metrics?.total_attacks || 0), attackLog.length);
+    ['attack-count-label', 'live-attack-count-label', 'live-history-count'].forEach(id => {
+      const label = $(id);
+      if (label) label.textContent = `${eventCount} events`;
+    });
+  }
 
-NÃBˆHÃBˆÛÛœİ™\İ[H]ØZ]™\]Y\İ
-Ø\KÙš[KYÜ›İ\ËÉÙ[˜ÛÙUT’PÛÛ\Û™[
-ÙÚXØ[Y
-_Kİ™\œÚ[ÛœØ
-NÃBˆ	
-	İ™\œÚ[Û‹[\İ	ÊKš[›™\’SH™\İ[™\œÚ[ÛœË›X\
-™\œÚ[ÛˆOˆÃBˆÛÛœİØ]™Y]H™]È]J™\œÚ[Û‹˜Ü™X]YØ]
-KÓØØ[Tİš[™Ê
-NÃBˆÛÛœİİ]\ÈH™\œÚ[Û‹˜İ\œ™[È	ÏÜ[ˆÛ\ÜÏHœ[Ü™Y[ˆÕT”‘S•ÜÜ[‰Èˆ	ÏÜ[ˆÛ\ÜÏHœ[›YH’TÕÔ–OÜÜ[‰ÎÃBˆ™]\›ˆ]ˆÛ\ÜÏH™\œÚ[Û‹\›İÈ]ˆÛ\ÜÏH™\œÚ[Û‹[XZ[ˆ]İ›Û™Ï•™\œÚ[Ûˆ	Ó[X™\Š™\œÚ[Û‹™\œÚ[ÛŠ_OÜİ›Û™Ïˆ	Üİ]\ßOÙ]ÛX[‰Ù\ØØ\R[
-Ø]™Y]
-_H0­È	Ù›Ü›X]]\Ê[X™\Š™\œÚ[Û‹œÚ^™WØ]\È
-J_H0­È	Ù›]
-™\œÚ[Û‹œ™XÛÜ™ØÛİ[
-_H™XÛÜ™	Ó[X™\Š™\œÚ[Û‹œ™XÛÜ™ØÛİ[
-HOOHHÈ	ÉÈˆ	ÜÉßOÜÛX[Ù]]ÛˆÛ\ÜÏH˜ˆˆ\OH˜]Ûˆˆ]KYİÛ›ØYYš[OH‰Ù\ØØ\R[
-™\œÚ[Û‹šY
-_Hˆ]KYš[[˜[YOH‰Ù\ØØ\R[
-š[[˜[YJ_H‘İÛ›ØYØ]ÛÙ]˜ÃBˆJKš›Ú[Š	ÉÊH	Ï]ˆÛ\ÜÏH™[\H“›ÈØ]™Y™\œÚ[ÛœÈÙ\™H›İ[™Ù]‰ÎÃBˆHØ]Ú
-\œ›ÜŠHÃBˆ	
-	İ™\œÚ[Û‹[\İ	ÊKš[›™\’SH]ˆÛ\ÜÏH™[\H‰Ù\ØØ\R[
-\œ›Ü‹›Y\ÜØYÙJ_OÙ]˜ÃBˆCBˆCBƒBˆ[˜İ[Ûˆ[™PÛİYš[PXİ[ÛŠ]™[
-HÃBˆÛÛœİİ\]ÛˆH]™[\™Ù]˜ÛÜÙ\İ
-	ÖÙ]K\İ\‹Yš[WIÊNÃBˆYˆ
-İ\]ÛŠHÃBˆÛÛœİš[RÙ^HHİ\]Û‹™]\Ù]œİ\‘š[NÃBˆ\]Qš]™Q[Jš[RÙ^Kİ\œ™Yš[RYËš\Êš[RÙ^JHÈ	İ[œİ\‰Èˆ	Üİ\‰Ëİ\]ÛŠNÃBˆ™]\›ÃBˆCBˆÛÛœİ˜\Ú]ÛˆH]™[\™Ù]˜ÛÜÙ\İ
-	ÖÙ]K]˜\ÚYš[WIÊNÃBˆYˆ
-˜\Ú]ÛŠHÃBˆ\]Qš]™Q[J˜\Ú]Û‹™]\Ù]˜\Úš[K	İ˜\Ú	Ë˜\Ú]ÛŠNÃBˆ™]\›ÃBˆCBˆÛÛœİ™\İÜ™U˜\Ú]ÛˆH]™[\™Ù]˜ÛÜÙ\İ
-	ÖÙ]K\™\İÜ™K]˜\ÚIÊNÃBˆYˆ
-™\İÜ™U˜\Ú]ÛŠHÃBˆ\]Qš]™Q[J™\İÜ™U˜\Ú]Û‹™]\Ù]œ™\İÜ™U˜\Ú	Ü™\İÜ™IË™\İÜ™U˜\Ú]ÛŠNÃBˆ™]\›ÃBˆCBˆÛÛœİ™\İÜ™P]ÛˆH]™[\™Ù]˜ÛÜÙ\İ
-	ÖÙ]K\™\İÜ™KYš[WIÊNÃBˆYˆ
-™\İÜ™P]ÛŠHÃBˆ™\İÜ™P˜XÚÙY\š[J™\İÜ™P]Û‹™]\Ù]œ™\İÜ™Qš[K™\İÜ™P]ÛŠNÃBˆ™]\›ÃBˆCBˆÛÛœİ™\œÚ[Û]ÛˆH]™[\™Ù]˜ÛÜÙ\İ
-	ÖÙ]K]šY]Ë]™\œÚ[Ûœ×IÊNÃBˆYˆ
-™\œÚ[Û]ÛŠHÃBˆÜ[•™\œÚ[Û’\İÜJ™\œÚ[Û]Û‹™]\Ù]šY]Õ™\œÚ[ÛœË™\œÚ[Û]Û‹™]\Ù]™š[[˜[YJNÃBˆ™]\›ÃBˆCBˆÛÛœİİÛ›ØY]ÛˆH]™[\™Ù]˜ÛÜÙ\İ
-	ÖÙ]KYİÛ›ØYYš[WIÊNÃBˆYˆ
-İÛ›ØY]ÛŠHÃBˆİÛ›ØYÛİYš[JİÛ›ØY]Û‹™]\Ù]™İÛ›ØYš[KİÛ›ØY]Û‹™]\Ù]™š[[˜[YJCBˆ˜Ø]Ú
-\œ›ÜˆOˆÚİÕØ\İ
-\œ›Ü‹›Y\ÜØYÙKYJJNÃBˆCBˆCBƒBˆ\Ş[˜È[˜İ[Ûˆ™\İÜ™P˜XÚÙY\š[Jš[RY]ÛŠHÃBˆ]Û‹™\ØX›YHYNÃBˆÛÛœİÛ^H]Û‹^ÛÛ[ÃBˆ]Û‹^ÛÛ[H	Ô™\İÜš[™ø )‰ÎÃBˆHÃBˆÛÛœİ™\İ[H]ØZ]™\]Y\İ
-Ø\KÙš[\ËÉÙ[˜ÛÙUT’PÛÛ\Û™[
-š[RY
-_KÜ™\İÜ™XÈY]Ùˆ	ÔÔÕ	ÈJNÃBˆÙ]Ú[][][ÛŠ™\İ[œİ]JNÃBˆÚİÕØ\İ
-	Ü™\İ[™š[[˜[Y_H™\İÜ™Yœ›ÛHH[˜Ü\Y˜XÚİ\˜
-NÃBˆYÛİYXİ]š]J	Ñš[H™\İÜ™Yœ›ÛH˜XÚİ\	Ë™\İ[™š[[˜[YK	ÜÙXİ\™IÊNÃBˆHØ]Ú
-\œ›ÜŠHÃBˆÚİÕØ\İ
-\œ›Ü‹›Y\ÜØYÙKYJNÃBˆHš[˜[HÃBˆ]Û‹™\ØX›YH˜[ÙNÃBˆ]Û‹^ÛÛ[HÛ^ÃBˆCBˆCBƒBˆ[˜İ[Ûˆ^ÜœÛÛŠ
-HÃBˆYˆ
-\Ú[JHÈÚİÕØ\İ
-	ĞÛÛ›™XİÈH]ÛˆÚ[][][Ûˆ™Y›Ü™H^Ü[™Ë‰ËYJNÈ™]\›ÈCBˆÛÛœİ™\ÜHÃBˆ›Ú™Xİˆ	ĞÛİYQ8 %H][KPYÙ[XÚ\Ú[ÛˆŞ\İ[H›Üˆ[\œš\ÙHÛİYÙXİ\š]IËBˆ]]Üˆ	Óš]\ÚH0­È	ËÚ[][][Û—ÛÛ›NˆYKBˆÙ[™\˜]YØ]ˆÚ[K›\İÜ[—Ø]BˆÛÛ™šYİ\˜][ÛˆÈ›İ[™ˆÚ[Kœ›İ[™™\ÚÛˆÚ[K™\ÚÛ[[œÚ]NˆÚ[Kš[[œÚ]KXİ]™Wİ™XİÜœÎˆÚ[K˜Xİ]™Wİ™XİÜœÈKBˆ[ÛÜš]\ÎˆÈÜ™Y[X[Ø›İˆ	ÓZ[š[X^\‰Ë]Y\WÜÚY[ˆ	Ñ^Xİ[X^Ú]Ú[˜ÙH›Ù\ÉËİ\œÎˆ	Ô[H[™][]H]\š\İXÜÉÈKBˆY]šXÜÎˆÚ[K›Y]šXÜËBˆÛİ[ÎˆÚ[K˜Ûİ[ËBˆ›Ù\ÎˆÚ[K››Ù\ËBˆ]XÚ×ÛÙÎˆÚ[K˜]XÚ×ÛÙËBˆ]™[ÎˆÚ[K™]™[ÃBˆNÃBˆİÛ›ØYš[J	ØÛİYYYY™[œÙK\™\ÜšœÛÛ‰Ë”ÓÓ‹œİš[™ÚYJ™\Ü[ŠK	Ø\XØ][Û‹ÚœÛÛ‰ÊNÃBˆCBƒBˆ[˜İ[Ûˆ^ÜÜİŠ
-HÃBˆYˆ
-\Ú[JHÈÚİÕØ\İ
-	ĞÛÛ›™XİÈH]ÛˆÚ[][][Ûˆ™Y›Ü™H^Ü[™Ë‰ËYJNÈ™]\›ÈCBˆÛÛœİ›İÜÈHÖÉÜ›İ[™	Ë	Ø]XÚÙ\‰Ë	Ø]XÚ×İ\IË	İ\™Ù]Û›ÙIË	İ][]IË	ÙY™[™\‰Ë	ØXİ[Û‰Ë	Ûİ]ÛÛYIË	Ù[XYÙIË	Ü™XÛÜ™ÚY	Ë	Ü^[ØY	×WNÃBˆ›Üˆ
-ÛÛœİ]™[ÙˆÚ[K˜]XÚ×ÛÙÊH›İÜËœ\Ú
-Ù]™[œ›İ[™]™[˜]XÚÙ\‹]™[˜]XÚ×İ\K]™[\™Ù]]™[][]K]™[™Y™[™\‹]™[˜Xİ[Û‹]™[˜›ØÚÙYÈ	Ø›ØÚÙY	Èˆ]™[™[XYÙHÈ	Ú[\Xİ	Èˆ	Û›×Ù[XYÙIË]™[™[XYÙK]™[œ™XÛÜ™ÚY]™[œ^[ØYJNÃBˆÛÛœİÜİˆH›İÜË›X\
-›İÈOˆ›İË›X\
-˜[YHOˆ‰Ôİš[™Ê˜[YHÏÈ	ÉÊKœ™\XÙP[
-	È‰Ë	Èˆ‰Ê_H˜
-Kš›Ú[Š	Ë	ÊJKš›Ú[Š	×‰ÊNÃBˆİÛ›ØYš[J	ØÛİYYY]™[Ë˜Üİ‰ËÜİ‹	İ^ØÜİ‰ÊNÃBˆCBƒBˆ[˜İ[ÛˆİÛ›ØYš[J˜[YKÛÛ[\JHÃBˆØ]™P›ØŠ˜[YK™]È›ØŠØÛÛ[KÈ\HJJNÃBˆCBƒBˆ[˜İ[ÛˆØ]™P›ØŠ˜[YK›ØŠHÃBˆÛÛœİ\›HT“˜Ü™X]SØš™XİT“
-›ØŠNÃBˆÛÛœİ[šÈHØİ[Y[˜Ü™X]Q[[Y[
-	ØIÊNÃBˆ[šËš™YˆH\›ÃBˆ[šË™İÛ›ØYH˜[YNÃBˆ[šË˜ÛXÚÊ
-NÃBˆÙ][Y[İ]
+  function formatBytes(bytes) {
+    if (!bytes) return '0 B';
+    const units = ['B', 'KB', 'MB', 'GB'];
+    const index = Math.min(Math.floor(Math.log(bytes) / Math.log(1024)), units.length - 1);
+    return `${(bytes / (1024 ** index)).toFixed(index ? 1 : 0)} ${units[index]}`;
+  }
 
+  function renderStorage() {
+    const storage = sim?.storage || {};
+    const persistent = storage.persistent === undefined ? !isHostedDeployment : Boolean(storage.persistent);
+    $('database-engine').textContent = storage.engine || 'SQLite';
+    $('database-encryption').textContent = storage.encryption || 'AES-256-GCM';
+    $('database-files').textContent = fmt(storage.backup_file_count || 0);
+    $('database-size').textContent = storage.backup_ready ? 'Ready' : 'Unavailable';
+    $('database-heading').textContent = persistent ? 'Primary and recovery storage are ready' : 'Hosted primary and recovery storage are temporary';
+    $('database-note').textContent = storage.storage_note || (isHostedDeployment
+      ? 'The hosted service uses temporary storage. Encrypted file contents may be lost when the instance is replaced.'
+      : 'Encrypted file contents and the separate SQLite recovery copy stay in this deviceâ€™s Cloud-D data folder. Account and folder metadata are not encrypted as a whole database.');
+    $('database-status-pill').textContent = persistent ? 'FILE COPIES READY' : 'TEMPORARY HOSTED';
+    $('database-status-pill').className = `pill ${persistent && storage.backup_ready ? 'green' : 'amber'}`;
+  }
 
-HOˆT“œ™]›ÚÙSØš™XİT“
-\›
-KL
-NÃBˆÚİÕØ\İ
-	Û˜[Y_HİÛ›ØYY˜
-NÃBˆCBƒBˆ\Ş[˜È[˜İ[ÛˆİÛ›ØYÛİYš[Jš[RYš[[˜[YJHÃBˆÛÛœİ™\ÜÛœÙHH]ØZ]]]Üš^™Y™]Ú
-Ø\KÙš[\ËÉÙ[˜ÛÙUT’PÛÛ\Û™[
-š[RY
-_KÙİÛ›ØY
-NÃBˆYˆ
-™\ÜÛœÙKœİ]\ÈOOHJHÚİĞ]]ØÜ™Y[Š	Ö[İ\ˆÙ\ÜÚ[Ûˆ^\™YˆX\ÙHÚYÛˆ[ˆYØZ[‹‰ÊNÃBˆYˆ
-\™\ÜÛœÙK›ÚÊHÃBˆÛÛœİ^[ØYH]ØZ]™\ÜÛœÙKšœÛÛŠ
-K˜Ø]Ú
+  function renderCloudFiles(files) {
+    cloudFileCache = files || [];
+    const activeFiles = cloudFileCache.filter(file => !file.trashed_at);
+    const storageBytes = activeFiles.reduce((total, file) => total + Number(file.size_bytes || 0), 0);
+    $('cloud-file-count').textContent = fmt(activeFiles.length);
+    $('cloud-storage-size').textContent = formatBytes(storageBytes);
+    document.querySelectorAll('[data-open-folder]').forEach(tile => {
+      const count = cloudFileCache.filter(file => file.folder_id === tile.dataset.openFolder && !file.trashed_at).length;
+      tile.querySelector('small').textContent = `${count} file${count === 1 ? '' : 's'}`;
+    });
+    renderFilteredCloudFiles();
+  }
 
+  function renderFilteredCloudFiles() {
+    const query = ($('cloud-file-search').value || '').trim().toLowerCase();
+    const selectedFolder = $('cloud-folder-filter').value;
+    const selectedType = $('cloud-type-filter').value;
+    const viewFiles = cloudFileCache.filter(file => {
+      const fileKey = String(file.logical_id || file.id);
+      const isTrashed = trashedFileIds.has(fileKey);
+      if (activeDriveView === 'trash' ? !isTrashed : isTrashed) return false;
+      if (activeDriveView === 'starred' && !starredFileIds.has(fileKey)) return false;
+      return true;
+    });
+    document.querySelector('.cloud-files-card').classList.toggle('is-empty', viewFiles.length === 0);
+    let files = viewFiles.filter(file => {
+      const matchesText = !query || `${file.filename} ${file.folder_name}`.toLowerCase().includes(query);
+      const matchesFolder = selectedFolder === 'all' || file.folder_id === selectedFolder;
+      const matchesType = selectedType === 'all' || (selectedType === 'data' ? file.kind === 'data' : file.kind !== 'data');
+      return matchesText && matchesFolder && matchesType;
+    });
+    if (activeDriveView === 'recent') files.sort((left, right) => new Date(right.created_at || 0) - new Date(left.created_at || 0));
+    $('stored-files-pill').textContent = files.length === cloudFileCache.length
+      ? `${files.length} FILE${files.length === 1 ? '' : 'S'}`
+      : `${files.length} OF ${cloudFileCache.length} FILES`;
+    $('cloud-files-body').innerHTML = files.length ? files.map(file => {
+      const name = escapeHtml(file.filename);
+      const kind = file.kind === 'data' ? 'Structured data' : 'Document';
+      const icon = file.kind === 'data' ? 'â–¦' : 'â–¤';
+      const version = Number(file.version || 1);
+      const versions = Number(file.version_count || 1);
+      const savedAt = file.created_at ? new Date(file.created_at).toLocaleString() : 'Saved';
+      const backupStatus = file.backup_available ? '<span class="pill green">BACKED UP</span>' : '<span class="pill amber">NO COPY</span>';
+      const restoreButton = !file.primary_available ? `<button class="btn primary" type="button" data-restore-file="${escapeHtml(file.id)}">Restore</button>` : '';
+      const fileKey = escapeHtml(file.logical_id || file.id);
+      const trashAction = activeDriveView === 'trash'
+        ? `<button class="btn" type="button" data-restore-trash="${fileKey}">Restore</button>`
+        : `<button class="btn" type="button" data-trash-file="${fileKey}">Move to trash</button>`;
+      const starAction = activeDriveView === 'trash' ? '' : `<button class="btn" type="button" data-star-file="${fileKey}" aria-label="${starredFileIds.has(file.logical_id || file.id) ? 'Remove from' : 'Add to'} Starred">${starredFileIds.has(file.logical_id || file.id) ? 'â˜…' : 'â˜†'}</button>`;
+      const fileActions = activeDriveView === 'trash' ? trashAction : `${starAction}${trashAction}${restoreButton}<button class="btn" type="button" data-download-file="${escapeHtml(file.id)}" data-filename="${name}">Download</button><button class="btn" type="button" data-view-versions="${escapeHtml(file.logical_id)}" data-filename="${name}">Versions Â· ${versions}</button>`;
+      const trashInfo = activeDriveView === 'trash' && file.trashed_at
+        ? `In Trash Â· auto-deletes in ${Math.max(0, 90 - Math.floor((Date.now() - new Date(file.trashed_at).getTime()) / 86400000))} days`
+        : activeDriveView === 'recent' ? `Uploaded ${escapeHtml(savedAt)} Â· Version ${version}` : `Version ${version} Â· Uploaded ${escapeHtml(savedAt)}`;
+      return `<tr><td><div class="file-entry"><span class="file-icon ${file.kind === 'data' ? 'structured' : ''}">${icon}</span><span class="file-entry-text"><strong>${name}</strong><small>${trashInfo}</small></span></div></td><td>${escapeHtml(file.folder_name)}</td><td>${formatBytes(Number(file.size_bytes || 0))}</td><td>${kind}</td><td>${fmt(file.record_count)}</td><td>${backupStatus}</td><td><div class="file-actions">${fileActions}</div></td></tr>`;
+    }).join('') : `<tr><td colspan="7" class="empty">${activeDriveView === 'starred' ? 'No starred files yet. Use â˜† beside a file to save it here.' : activeDriveView === 'trash' ? 'Trash is empty.' : cloudFileCache.length ? 'No matching files. Change the search or filters.' : 'Your cloud is ready. Choose New to upload a file.'}</td></tr>`;
+  }
 
-HOˆ
-ßJJNÃBˆ›İÈ™]È\œ›ÜŠ^[ØY™\œ›ÜˆİÛ›ØY˜Z[Y
-	Ü™\ÜÛœÙKœİ]\ßJK˜
-NÃBˆCBˆØ]™P›ØŠš[[˜[YK]ØZ]™\ÜÛœÙK˜›ØŠ
-JNÃBˆYÛİYXİ]š]J	Ñš[HXÜ\Y[™İÛ›ØYY	Ëš[[˜[YK	ÙİÛ›ØY	ÊNÃBˆCBƒBˆ\Ş[˜È[˜İ[Ûˆ[“›ÙPÜ\ĞXİ[ÛŠ›ÙRYXİ[Û‹]ÛŠHÃBˆÛÛœİÜšYÚ[˜[^H]Û‹^ÛÛ[ÃBˆ]Û‹™\ØX›YHYNÃBˆ]Û‹^ÛÛ[HXİ[ÛˆOOH	İ™\šYIÈÈ	ĞÚXÚÚ[™ø )‰Èˆ	Õ\][™ø )‰ÎÃBˆHÃBˆÛÛœİ™\İ[H]ØZ]™\]Y\İ
-	ËØ\KÛ›ÙKXÜ\ÉËÃBˆY]Ùˆ	ÔÔÕ	ËBˆXY\œÎˆÈ	ĞÛÛ[U\IÎˆ	Ø\XØ][Û‹ÚœÛÛ‰ÈKBˆ›ÙNˆ”ÓÓ‹œİš[™ÚYJÈ›ÙWÚYˆ[X™\Š›ÙRY
-KXİ[ÛˆJCBˆJNÃBˆYˆ
-Xİ[ÛˆOOH	İ™\šYIÊHÃBˆÚİÕØ\İ
-	Ü™\İ[››Ù_Nˆ	Ù›]
-™\İ[™\šYšYY
-_H[˜Ü\Yš[IÜ™\İ[™\šYšYYOOHHÈ	ÉÈˆ	ÜÉßHXÜ\Y[™™\šYšYYˆZ[^İ^YYÛˆHÙ\™\‹˜
-NÃBˆYÛİYXİ]š]J	ÑXÜ\[Ûˆ™\šYšYY	Ë	Ü™\İ[››Ù_H0­È	Ù›]
-™\İ[™\šYšYY
-_H[˜Ü\Yš[\È]][XØ]Y	ÜÙXİ\™IÊNÃBˆH[ÙHÃBˆÚİÕØ\İ
-	Ü™\İ[››Ù_Nˆ™KY[˜Ü\Y	Ù›]
-™\İ[œ™Y[˜Ü\Y
-_Hš[IÜ™\İ[œ™Y[˜Ü\YOOHHÈ	ÉÈˆ	ÜÉßK˜
-NÃBˆYÛİYXİ]š]J	Ó›ÙH]H™KY[˜Ü\Y	Ë	Ü™\İ[››Ù_H0­È	Ù›]
-™\İ[œ™Y[˜Ü\Y
-_H[˜Ü\Yš[\È\]Y	ÜÙXİ\™IÊNÃBˆCBˆHØ]Ú
-\œ›ÜŠHÃBˆÚİÕØ\İ
-\œ›Ü‹›Y\ÜØYÙKYJNÃBˆHš[˜[HÃBˆ]Û‹™\ØX›YH˜[ÙNÃBˆ]Û‹^ÛÛ[HÜšYÚ[˜[^ÃBˆCBˆCBƒBˆØİ[Y[œ]Y\TÙ[XİÜ[
-	Ë›˜]ˆ]Û‰ÊK™›Ü‘XXÚ
-]ÛˆOˆ]Û‹˜Y]™[\İ[™\Š	ØÛXÚÉË
+  async function updateDriveEntry(logicalId, action, button) {
+    if (button) button.disabled = true;
+    try {
+      const result = await request('/api/drive-state', { method:'POST', body:JSON.stringify({ logical_id:logicalId, action }), headers:{'Content-Type':'application/json'} });
+      if (sim) { sim.files = result.files; renderCloudFiles(sim.files); }
+      showToast(action === 'trash' ? 'File moved to Trash. It will be permanently deleted after 90 days.' : action === 'restore' ? 'File restored to My Drive.' : action === 'star' ? 'Added to Starred.' : 'Removed from Starred.');
+    } catch (error) { showToast(error.message, true); }
+    finally { if (button) button.disabled = false; }
+  }
 
-HOˆ˜]Š]Û‹™]\Ù]œYÙJJJNÃBˆ	
-	ÜYÙK[]™K\Ú[][][Û‰ÊKœ]Y\TÙ[XİÜŠ	ÖÙ]K\YÙOH™X]È—IÊK˜Y]™[\İ[™\Š	ØÛXÚÉË
+  function switchDriveView(view) {
+    if (!$('page-cloud').classList.contains('active')) nav('cloud');
+    activeDriveView = view;
+    document.querySelectorAll('[data-drive-view]').forEach(button => button.classList.toggle('active', button.dataset.driveView === view));
+    const labels = { 'my-drive': 'My Drive', recent: 'Recent', starred: 'Starred', trash: 'Trash' };
+    const descriptions = {
+      'my-drive': 'Your files and folders',
+      recent: 'Most recently uploaded files first Â· upload date and time shown for every file',
+      starred: 'Files you marked with a star',
+      trash: 'Restore files within 90 days; older items are permanently deleted'
+    };
+    $('crumb-current').textContent = labels[view];
+    document.querySelector('.cloud-files-card .card-title').textContent = labels[view];
+    $('stored-files-description').textContent = descriptions[view];
+    renderFilteredCloudFiles();
+  }
 
-HOˆ˜]Š	İ™X]ÉÊJNÃBˆ	
-	İ™\ÚÛ[X‰ÊK˜Y]™[\İ[™\Š	Ú[œ]	Ë]™[OˆÃBˆ	
-	İ™\ÚÛ	ÊK˜[YHH]™[\™Ù]˜[YNÃBˆ	
-	İ™\ÚÛ[X™[	ÊK^ÛÛ[H	
-	İ™\ÚÛ[X‹[X™[	ÊK^ÛÛ[H[X™\Š]™[\™Ù]˜[YJKÑš^Y
-ŠNÃBˆ	
-	Ù[™Ú[™K]™\ÚÛ	ÊK^ÛÛ[H[X™\Š]™[\™Ù]˜[YJKÑš^Y
-ŠNÃBˆJNÃBˆ	
-	İ™X]\[‰ÊK˜Y]™[\İ[™\Š	ØÛXÚÉË
+  function renderAttackTable() {
+    const rows = [...(sim?.attack_log || [])].reverse();
+    const markup = rows.length ? rows.map(event => {
+      const utility = Number(event.utility ?? 0).toFixed(2);
+      const proposalUtility = Number(event.proposal_utility ?? event.utility ?? 0).toFixed(2);
+      const threshold = Number(event.threshold ?? sim?.threshold ?? 0.4).toFixed(2);
+      const utilityApplied = Boolean(event.utility_applied ?? event.blocked);
+      const utilitySource = event.utility_source || (utilityApplied ? 'Applied utility' : event.action ? 'Candidate utility' : 'No matching proposal');
+      const proposals = (event.matching_proposals || []).map(proposal => `${escapeHtml(proposal.defender || 'Defender')} ${Number(proposal.utility || 0).toFixed(2)}${proposal.executed ? ' Â· applied' : proposal.above_threshold ? ' Â· eligible' : ' Â· below threshold'}`).join(' Â· ');
+      const decision = event.blocked
+        ? `Executed: ${event.action || 'Defense action'}`
+        : event.action ? `Not executed: ${event.action}` : 'No action selected';
+      const outcome = event.blocked ? 'BLOCKED Â· defense succeeded' : Number(event.damage || 0) > 0 ? 'IMPACT Â· attack succeeded' : 'PASSED Â· no damage';
+      const outcomeClass = event.blocked ? 'green' : Number(event.damage || 0) > 0 ? 'red' : 'amber';
+      const impact = Number(event.damage || 0) > 0
+        ? `${Number(event.damage)} damage${event.record_exposed ? ' Â· record exposed' : ''}`
+        : 'No direct impact';
+      return `<tr><td>${String(event.round).padStart(2, '0')}</td><td><strong>${escapeHtml(event.attacker)}</strong><small>${escapeHtml(event.tactic || event.attack_type || 'Attack')}</small></td><td>${escapeHtml(event.target)}<small>${escapeHtml(event.target_role || '')}</small></td><td>${escapeHtml(event.assigned_defender || event.defender || 'None assigned')}<small>${event.defender ? 'Action executed' : 'Mapped specialist'}</small></td><td><strong>${utility}</strong><small>${escapeHtml(utilitySource)} Â· threshold ${threshold}</small>${proposalUtility !== utility ? `<small>Best matching proposal ${proposalUtility}</small>` : ''}</td><td>${escapeHtml(decision)}${proposals ? `<small>${proposals}</small>` : ''}</td><td><span class="pill ${outcomeClass}">${outcome}</span></td><td>${impact}</td><td class="history-rationale">${escapeHtml(event.rationale || 'No rationale recorded.')}</td></tr>`;
+    }).join('') : '<tr><td colspan="9" class="empty">No attacks yet. Run the simulation to create decision records.</td></tr>';
+    ['attack-table', 'live-attack-table'].forEach(id => {
+      const table = $(id);
+      if (table) table.innerHTML = markup;
+    });
+  }
 
-HOˆ[”Ú[][][ÛŠ
-JNÃBˆ	
-	İ™X]\İÜ	ÊK˜Y]™[\İ[™\Š	ØÛXÚÉËİÜÚ[][][ÛŠNÃBˆ	
-	Ü›İ[™\Ù[Xİ	ÊK˜Y]™[\İ[™\Š	Ú[œ]	Ë]™[OˆÃBˆ	
-	Ü›İ[™]˜[YIÊK^ÛÛ[H]™[\™Ù]˜[YNÃBˆ	
-	İ™X]\[‰ÊK^ÛÛ[H8¥­ˆ[ˆ	Ù]™[\™Ù]˜[Y_H›İ[™	Ó[X™\Š]™[\™Ù]˜[YJHOOHHÈ	ÉÈˆ	ÜÉßXÃBˆJNÃBˆ	
-	Ú[[œÚ]K\Ù[Xİ	ÊK˜Y]™[\İ[™\Š	Ú[œ]	Ë]™[OˆÃBˆ	
-	Ú[[œÚ]K]˜[YIÊK^ÛÛ[H	Ù]™[\™Ù]˜[Y_HÈLÃBˆJNÃBˆ	
-	Øİ\İÛY\‹X[\Y\ÛZ\ÜÉÊK˜Y]™[\İ[™\Š	ØÛXÚÉË
+  function renderReport() {
+    const metrics = sim?.metrics;
+    const counts = sim?.counts || {};
+    const reportStatus = $('report-live-status');
+    if (running) {
+      reportStatus.className = 'pill amber';
+      reportStatus.textContent = `UPDATING Â· ROUND ${sim?.round || 0}/${sim?.max_rounds || 20}`;
+    } else if (sim?.has_run) {
+      reportStatus.className = 'pill green';
+      reportStatus.textContent = sim.game_over
+        ? `COMPLETE Â· ${sim.round} ROUNDS`
+        : `CURRENT Â· ROUND ${sim.round}/${sim.max_rounds}`;
+    } else {
+      reportStatus.className = 'pill blue';
+      reportStatus.textContent = 'AWAITING SIMULATION';
+    }
+    $('report-block').textContent = metrics?.total_attacks ? `${metrics.block_rate.toFixed(1)}%` : 'â€”';
+    $('report-block-note').textContent = metrics?.total_attacks ? `${metrics.blocked} / ${metrics.total_attacks} attack events blocked` : 'No events yet';
+    $('report-data').textContent = metrics ? `${metrics.protection_rate.toFixed(3)}%` : 'â€”';
+    $('report-data-note').textContent = metrics ? `${fmt(metrics.protected)} / ${fmt(metrics.total_records)} records protected` : 'No records assessed';
+    $('report-response').textContent = sim?.has_run ? `${sim.latency_ms} ms` : 'â€”';
+    $('report-exposed').textContent = metrics ? fmt(metrics.compromised) : 'â€”';
+    $('report-damage').textContent = metrics ? `${metrics.damage_taken} HP` : 'â€”';
+    $('report-rounds').textContent = sim?.round || 0;
+    $('report-date').textContent = sim?.last_run_at ? new Date(sim.last_run_at).toLocaleString() : 'Not run';
+    $('report-summary').textContent = metrics
+      ? `The ${metrics.rounds}-round Cloud-D simulation processed ${metrics.total_attacks} attack events. Defender agents blocked ${metrics.blocked} events (${metrics.block_rate.toFixed(1)}%). The cloud contains ${fmt(metrics.total_records)} individual records; ${fmt(metrics.compromised)} were compromised (${metrics.protection_rate.toFixed(3)}% protected). Simulated node damage totaled ${metrics.damage_taken}. Uploaded file contents are not included in this report.`
+      : 'No simulation has been run yet. Start an exercise to populate this report.';
+    $('report-agent-table').innerHTML = vectors.map(vector => {
+      const count = counts[vector.id] || { scored: 0, blocked: 0, actions: 0, last: 0 };
+      const rate = count.scored ? `${(count.blocked / count.scored * 100).toFixed(1)}%` : 'â€”';
+      return `<tr><td><strong>${vector.defender}</strong></td><td>${vector.domain}</td><td>${count.scored}</td><td>${count.actions}</td><td>${rate}</td><td>${count.scored ? Number(count.last).toFixed(2) : 'â€”'}</td></tr>`;
+    }).join('');
+    const nodes = sim?.nodes || [];
+    $('node-table').innerHTML = nodes.length ? nodes.map(node => {
+      const statusClass = node.status === 'HEALTHY' ? 'green' : node.status === 'DAMAGED' ? 'amber' : node.status === 'COMPROMISED' ? 'red' : 'amber';
+      const observed = (sim.attack_log || []).filter(event => event.target === node.name).length;
+      const defended = (sim.attack_log || []).filter(event => event.target === node.name && event.blocked).length;
+      return `<tr><td><strong>${node.name}</strong><div class="node-meta">${node.role} Â· ${node.uploaded_records} uploaded</div></td><td><span class="pill ${statusClass}">${node.status}</span></td><td>${observed}</td><td>${defended}</td><td>${node.compromised_records} records exposed Â· ${node.health} HP</td></tr>`;
+    }).join('') : '<tr><td colspan="5" class="empty">Cloud nodes initialize when the Python simulation starts.</td></tr>';
+    const savedReports = sim?.saved_reports || [];
+    $('saved-report-list').innerHTML = savedReports.length ? savedReports.map(item => {
+      const report = item.payload || {};
+      const result = report.metrics || {};
+      return `<article class="saved-report-row"><div><strong>Run Â· ${escapeHtml(new Date(item.created_at).toLocaleString())}</strong><small>Updated ${escapeHtml(new Date(item.updated_at).toLocaleString())} Â· Round ${Number(report.round || 0)}/${Number(report.max_rounds || 20)} Â· ${Number(result.blocked || 0)} blocked Â· ${Number(result.protection_rate || 0).toFixed(2)}% protected</small></div><span class="pill green">AES-256-GCM</span></article>`;
+    }).join('') : '<div class="card empty">Saved encrypted reports will appear here after a simulation.</div>';
+  }
 
-HOˆ	
-	Øİ\İÛY\‹X[\YX[ÙÉÊK˜ÛÜÙJ
-JNÃBˆ	
-	Üš[\™\Ü	ÊK˜Y]™[\İ[™\Š	ØÛXÚÉË
+  function renderAll() {
+    renderOverview();
+    renderAttackTable();
+    $('agents-state').textContent = sim?.has_run ? `${sim.round} rounds Â· ${sim.metrics.blocked} blocks` : 'Awaiting simulation';
+    renderReport();
+    renderLiveSimulation();
+  }
 
-HOˆÚ[™İËœš[
+  function renderLiveSimulation() {
+    $('live-round-count').textContent = `${sim?.round || 0} / ${sim?.max_rounds || 20}`;
+    $('live-block-count').textContent = `${sim?.metrics?.blocked || 0} / ${sim?.metrics?.total_attacks || 0}`;
+    $('live-cloud-status').textContent = sim?.game_over ? 'Exercise complete' : sim?.round ? 'Protected' : 'Ready';
+    $('live-process-panel').hidden = !(running || sim?.has_run || (sim?.attack_log || []).length);
+    renderLiveProcesses();
+    renderAttackSummary();
+  }
 
-JNÃBˆ	
-	ÙİÛ›ØY\™\Ü	ÊK˜Y]™[\İ[™\Š	ØÛXÚÉË^ÜœÛÛŠNÃBˆ	
-	ÙİÛ›ØYXÜİ‰ÊK˜Y]™[\İ[™\Š	ØÛXÚÉË^ÜÜİŠNÃBˆ	
-	Ùš]™K[™]ËX]Û‰ÊK˜Y]™[\İ[™\Š	ØÛXÚÉË]™[OˆÃBˆ]™[œİÜ›ÜYØ][ÛŠ
-NÃBˆÛÛœİY[HH	
-	Ùš]™K[™]Ë[Y[IÊNÃBˆY[KšY[ˆH[Y[KšY[ÃBˆ]™[˜İ\œ™[\™Ù]œÙ]]šX]J	Ø\šXKY^[™Y	Ëİš[™Ê[Y[KšY[ŠJNÃBˆJNÃBˆØİ[Y[˜Y]™[\İ[™\Š	ØÛXÚÉË]™[OˆÃBˆYˆ
-Y]™[\™Ù]˜ÛÜÙ\İ
-	Ë™š]™K[™]ËY›ÜİÛ‰ÊJHÃBˆ	
-	Ùš]™K[™]Ë[Y[IÊKšY[ˆHYNÃBˆ	
-	Ùš]™K[™]ËX]Û‰ÊKœÙ]]šX]J	Ø\šXKY^[™Y	Ë	Ù˜[ÙIÊNÃBˆCBˆJNÃBˆ[˜İ[ÛˆÜ[•\ØYXÚÙ\Š
-HÃBˆÛÛœİš[\™Y›Û\ˆH	
-	ØÛİYY›Û\‹Yš[\‰ÊK˜[YNÃBˆÛÛœİ\ØY›Û\ˆH	
-	İ\ØYY›Û\‰ÊNÃBˆYˆ
-š[\™Y›Û\ˆOOH	Ø[	È	‰ˆË‹‹\ØY›Û\‹›Ü[Ûœ×KœÛÛYJÜ[ÛˆOˆÜ[Û‹˜[YHOOHš[\™Y›Û\ŠJHÃBˆ\ØY›Û\‹˜[YHHš[\™Y›Û\ÃBˆCBˆ	
-	İ\ØYYš[IÊK˜[YHH	ÉÎÃBˆ	
-	İ\ØYYš[IÊK˜ÛXÚÊ
-NÃBˆCBˆ	
-	Ùš]™K]\ØYXXİ[Û‰ÊK˜Y]™[\İ[™\Š	ØÛXÚÉË
+  function renderLiveProcesses() {
+    const round = Number(sim?.round || 0);
+    const selected = new Set(sim?.active_vectors || [...document.querySelectorAll('.vector-toggle:checked')].map(input => input.value));
+    const events = (sim?.attack_log || []).filter(event => Number(event.round) === round);
+    const byVector = new Map(events.map(event => {
+      const vector = vectors.find(item => item.attacker === event.attacker);
+      return vector ? [vector.id, event] : null;
+    }).filter(Boolean));
+    $('live-process-round').textContent = round ? `ROUND ${round} / ${sim?.max_rounds || 20}` : 'WAITING';
+    $('live-agent-processes').innerHTML = vectors.map(vector => {
+      const active = selected.has(vector.id);
+      const event = byVector.get(vector.id);
+      const defenderName = event?.defender || event?.assigned_defender || vector.defender;
+      const blocked = Boolean(event?.blocked);
+      const impacted = Boolean(event && !blocked && Number(event.damage || 0) > 0);
+      const state = !active ? 'NOT SELECTED' : !event ? (round ? 'NO EVENT' : 'READY') : blocked ? 'BLOCKED' : impacted ? 'IMPACTED' : 'INSPECTED';
+      const outcomeClass = blocked ? 'blocked' : impacted ? 'impacted' : '';
+      const threshold = Number(sim?.threshold ?? 0.4).toFixed(2);
+      const utility = event ? Number(event.utility || 0).toFixed(2) : 'â€”';
+      const attackResult = !event ? (active ? 'PENDING Â· run a round' : 'Agent paused') : blocked ? 'ATTACK FAILED Â· blocked' : impacted ? `ATTACK SUCCEEDED Â· ${event.damage} damage` : 'ATTACK PASSED Â· no damage';
+      const defenseResult = !event ? (active ? 'PENDING Â· run a round' : 'Agent paused') : blocked ? 'DEFENSE SUCCEEDED Â· contained' : 'DEFENSE FAILED Â· attack passed';
+      const attackerProcess = event ? `${event.tactic || event.attack_type} Â· ${event.target}` : active ? 'Waiting for next round' : 'Agent paused';
+      const defenderProcess = event ? (event.action || (blocked ? 'Threat blocked' : 'Inspection complete')) : active ? 'Waiting for assignment' : 'Agent paused';
+      const attackerResultClass = blocked ? 'failed' : impacted ? 'succeeded' : '';
+      const defenderResultClass = event ? (blocked ? 'succeeded' : 'failed') : '';
+      const detail = event
+        ? `Attack ${attackResult.toLowerCase()} Â· Defense ${defenseResult.toLowerCase()} Â· Utility ${utility} (threshold ${threshold})${event.rationale ? ` Â· ${event.rationale}` : ''}`
+        : active ? 'No simulation data yet. Attack and defense outcomes, utility, and rationale appear after each round.' : 'Enable this attacker in the controls to include its process in the next run.';
+      return `<article class="live-process-row${event ? ' has-event' : ''}" data-process-agent="${vector.id}"><div class="live-process-route" aria-label="${escapeHtml(vector.attacker)} to firewall to ${escapeHtml(defenderName)}"><div class="live-process-agent"><strong>${escapeHtml(vector.attacker)}</strong><small>${escapeHtml(attackerProcess)}</small><em class="live-process-result ${attackerResultClass}">${escapeHtml(attackResult)}</em></div><div class="live-process-link attack" aria-label="Attack to firewall"></div><div class="live-process-firewall"><b>â¬¡</b><small>Firewall</small></div><div class="live-process-link defense" aria-label="Firewall response to defender"></div><div class="live-process-agent"><strong>${escapeHtml(defenderName)}</strong><small>${escapeHtml(defenderProcess)}</small><em class="live-process-result ${defenderResultClass}">${escapeHtml(defenseResult)}</em></div></div><div class="live-process-summary"><span class="live-process-outcome ${outcomeClass}">${state}</span><div class="live-process-utility"><small>UTILITY</small><strong>${utility}</strong><small>${event ? 'Threshold' : 'Computed each round'} ${threshold}</small></div></div><small class="live-process-detail">${escapeHtml(detail)}</small></article>`;
+    }).join('');
+  }
 
-HOˆÃBˆ	
-	Ùš]™K[™]Ë[Y[IÊKšY[ˆHYNÃBˆ	
-	Ùš]™K[™]ËX]Û‰ÊKœÙ]]šX]J	Ø\šXKY^[™Y	Ë	Ù˜[ÙIÊNÃBˆYˆ
-I
-	ÜYÙKXÛİY	ÊK˜Û\ÜÓ\İ˜ÛÛZ[œÊ	ØXİ]™IÊJH˜]Š	ØÛİY	ÊNÃBˆÜ[•\ØYXÚÙ\Š
-NÃBˆJNÃBˆ	
-	Ùš]™KY›Û\‹XXİ[Û‰ÊK˜Y]™[\İ[™\Š	ØÛXÚÉË
+  function animatePacket(packetId) {
+    const packet = $(packetId);
+    if (!packet) return Promise.resolve();
+    packet.classList.remove('packet-visible');
+    packet.classList.add('packet-visible');
+    const motion = packet.querySelector('animateMotion');
+    const svg = packet.ownerSVGElement;
+    const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    path.setAttribute('d', motion?.getAttribute('path') || '');
+    try {
+      const length = path.getTotalLength();
+      if (!length) throw new Error('Packet route is empty');
+      const duration = 650;
+      const startedAt = performance.now();
+      return new Promise(resolve => {
+        const step = now => {
+          const progress = Math.min(1, (now - startedAt) / duration);
+          const point = path.getPointAtLength(length * progress);
+          packet.setAttribute('cx', point.x);
+          packet.setAttribute('cy', point.y);
+          if (progress < 1) requestAnimationFrame(step);
+          else resolve();
+        };
+        requestAnimationFrame(step);
+      });
+    } catch (_error) {
+      try {
+        if (svg && typeof packet.getBBox === 'function') void packet.getBBox();
+        if (motion?.beginElement) motion.beginElement();
+      } catch (_animationError) {
+        // Station highlights and the round process log remain visible if SVG motion is unavailable.
+      }
+      return new Promise(resolve => setTimeout(resolve, 650));
+    }
+  }
 
-HOˆÃBˆ	
-	Ùš]™K[™]Ë[Y[IÊKšY[ˆHYNÃBˆ	
-	Ùš]™K[™]ËX]Û‰ÊKœÙ]]šX]J	Ø\šXKY^[™Y	Ë	Ù˜[ÙIÊNÃBˆYˆ
-I
-	ÜYÙKXÛİY	ÊK˜Û\ÜÓ\İ˜ÛÛZ[œÊ	ØXİ]™IÊJH˜]Š	ØÛİY	ÊNÃBˆ	
-	Ù›Û\‹YX[ÙÉÊKœÚİÓ[Ù[
+  function updateNetworkRoutes() {
+    const lane = $('simulation-lane');
+    const svg = lane?.querySelector('.network-wires');
+    const firewall = $('firewall-center');
+    if (!lane || !svg || !firewall) return;
 
-NÃBˆ	
-	Ù›Û\‹[˜[YKZ[œ]	ÊK™›Øİ\Ê
-NÃBˆJNÃBˆØİ[Y[œ]Y\TÙ[XİÜ[
-	ÖÙ]KYš]™K]šY]×IÊK™›Ü‘XXÚ
-]ÛˆOˆÃBˆ]Û‹˜Y]™[\İ[™\Š	ØÛXÚÉË
+    const svgRect = svg.getBoundingClientRect();
+    if (!svgRect.width || !svgRect.height) return;
+    svg.setAttribute('viewBox', `0 0 ${svgRect.width} ${svgRect.height}`);
+    svg.setAttribute('preserveAspectRatio', 'none');
 
-HOˆİÚ]Úš]™UšY]Ê]Û‹™]\Ù]™š]™UšY]ÊJNÃBˆJNÃBˆ	
-	ØÛİY]\ØY\ÚÜİ]	ÊK˜Y]™[\İ[™\Š	ØÛXÚÉË
+    const point = (element, edge) => {
+      const rect = element.getBoundingClientRect();
+      return {
+        x: (edge === 'left' ? rect.left : edge === 'right' ? rect.right : rect.left + rect.width / 2) - svgRect.left,
+        y: rect.top + rect.height / 2 - svgRect.top
+      };
+    };
+    const route = (start, end) => {
+      const controlX = (start.x + end.x) / 2;
+      const controlY = start.y + (end.y - start.y) * 0.16;
+      return `M ${start.x} ${start.y} Q ${controlX} ${controlY} ${end.x} ${end.y}`;
+    };
+    const setRoute = (wire, packetId, path) => {
+      if (wire) wire.setAttribute('d', path);
+      const motion = $(packetId)?.querySelector('animateMotion');
+      if (motion) motion.setAttribute('path', path);
+    };
+    const firewallLeft = point(firewall, 'left');
+    const firewallRight = point(firewall, 'right');
+    const attackWires = svg.querySelectorAll('.attack-link');
+    const defenseWires = svg.querySelectorAll('.defense-link');
 
-HOˆÃBˆÜ[•\ØYXÚÙ\Š
-NÃBˆJNÃBˆ	
-	ØÛİYYš[K\ÙX\˜Ú	ÊK˜Y]™[\İ[™\Š	Ú[œ]	Ë™[™\‘š[\™YÛİYš[\ÊNÃBˆ	
-	ØÛİYY›Û\‹Yš[\‰ÊK˜Y]™[\İ[™\Š	ØÚ[™ÙIË
+    vectors.forEach((vector, index) => {
+      const attacker = document.querySelector(`[data-attacker-station="${vector.id}"]`);
+      const defender = document.querySelector(`[data-defender-station="${vector.id}"]`);
+      if (attacker) setRoute(attackWires[index], `attack-packet-${vector.id}`, route(point(attacker, 'right'), firewallLeft));
+      if (defender) {
+        setRoute(defenseWires[index], `defense-in-packet-${vector.id}`, route(point(defender, 'left'), firewallRight));
+        setRoute(null, `defense-packet-${vector.id}`, route(firewallRight, point(defender, 'left')));
+      }
+    });
+  }
 
-HOˆÃBˆYˆ
-	
-	ØÛİYY›Û\‹Yš[\‰ÊK˜[YHOOH	Ø[	ÊH	
-	İ\ØYY›Û\‰ÊK˜[YHH	
-	ØÛİYY›Û\‹Yš[\‰ÊK˜[YNÃBˆ™[™\‘›Û\Ø\™ÊË‹‹‰
-	ØÛİYY›Û\‹Yš[\‰ÊK›Ü[Ûœ×K™š[\ŠÜ[ÛˆOˆÜ[Û‹˜[YHOOH	Ø[	ÊK›X\
-Ü[ÛˆOˆ
-ÈYˆÜ[Û‹˜[YK˜[YNˆÜ[Û‹^ÛÛ[JJJNÃBˆ™[™\‘š[\™YÛİYš[\Ê
-NÃBˆJNÃBˆ[˜İ[ÛˆÙ[Xİ›Û\•[J[JHÃBˆYˆ
-I
-	ÜYÙKXÛİY	ÊK˜Û\ÜÓ\İ˜ÛÛZ[œÊ	ØXİ]™IÊJH˜]Š	ØÛİY	ÊNÃBˆİÚ]Úš]™UšY]Ê	Û^KYš]™IÊNÃBˆ	
-	ØÛİYY›Û\‹Yš[\‰ÊK˜[YHH[K™]\Ù]›Ü[‘›Û\ÃBˆ	
-	İ\ØYY›Û\‰ÊK˜[YHH[K™]\Ù]›Ü[‘›Û\ÃBˆØİ[Y[œ]Y\TÙ[XİÜ[
-	ÖÙ]K[Ü[‹Y›Û\—IÊK™›Ü‘XXÚ
-›Û\ˆOˆÃBˆÛÛœİÙ[XİYH›Û\‹™]\Ù]›Ü[‘›Û\ˆOOH[K™]\Ù]›Ü[‘›Û\ÃBˆ›Û\‹˜Û\ÜÓ\İÙÙÛJ	ÜÙ[XİY	ËÙ[XİY
-NÃBˆ›Û\‹œÙ]]šX]J	Ø\šXK\™\ÜÙY	Ëİš[™ÊÙ[XİY
-JNÃBˆJNÃBˆ™[™\‘š[\™YÛİYš[\Ê
-NÃBˆCBˆ	
-	Ù›Û\‹YÜšY	ÊK˜Y]™[\İ[™\Š	ØÛXÚÉË]™[OˆÃBˆÛÛœİ[HH]™[\™Ù]˜ÛÜÙ\İ
-	ÖÙ]K[Ü[‹Y›Û\—IÊNÃBˆYˆ
-[JHÙ[Xİ›Û\•[J[JNÃBˆJNÃBˆ	
-	Ù›Û\‹YÜšY	ÊK˜Y]™[\İ[™\Š	Ù›ÛXÚÉË]™[OˆÃBˆÛÛœİ[HH]™[\™Ù]˜ÛÜÙ\İ
-	ÖÙ]K[Ü[‹Y›Û\—IÊNÃBˆYˆ
-][JH™]\›ÃBˆÙ[Xİ›Û\•[J[JNÃBˆ	
-	İ\ØYY›Û\‰ÊK˜[YHH[K™]\Ù]›Ü[‘›Û\ÃBˆÚİÕØ\İ
-Ü[™Y	İ[Kœ]Y\TÙ[XİÜŠ	Üİ›Û™ÉÊK^ÛÛ[Kˆ™]È\ØYÈÚ[ÛÈ\™K˜
-NÃBˆJNÃBˆ	
-	ØÛİY]\KYš[\‰ÊK˜Y]™[\İ[™\Š	ØÚ[™ÙIË™[™\‘š[\™YÛİYš[\ÊNÃBˆ	
-	ØÛİYYš[\ËX›ÙIÊK˜Y]™[\İ[™\Š	ØÛXÚÉË[™PÛİYš[PXİ[ÛŠNÃBˆ	
-	İ™\œÚ[Û‹[\İ	ÊK˜Y]™[\İ[™\Š	ØÛXÚÉË[™PÛİYš[PXİ[ÛŠNÃBˆ	
-	ØÛÜÙK]™\œÚ[Û‹YX[ÙÉÊK˜Y]™[\İ[™\Š	ØÛXÚÉË
+  let networkRouteFrame = 0;
+  function scheduleNetworkRouteUpdate() {
+    if (networkRouteFrame) cancelAnimationFrame(networkRouteFrame);
+    networkRouteFrame = requestAnimationFrame(() => {
+      networkRouteFrame = 0;
+      updateNetworkRoutes();
+    });
+  }
+  window.addEventListener('resize', scheduleNetworkRouteUpdate, { passive: true });
 
-HOˆ	
-	İ™\œÚ[Û‹YX[ÙÉÊK˜ÛÜÙJ
-JNÃBˆ	
-	İ\ØYYš[IÊK˜Y]™[\İ[™\Š	ØÚ[™ÙIË
+  async function animateAttackTraffic(vectorIds, isPending) {
+    const activeVectors = vectors.filter(vector => vectorIds.includes(vector.id));
+    if (!activeVectors.length) return;
+    activeVectors.forEach(vector => {
+      document.querySelector(`[data-attacker-station="${vector.id}"]`)?.classList.add('is-active');
+      const row = document.querySelector(`[data-process-agent="${vector.id}"]`);
+      row?.classList.add('is-moving');
+      const process = row?.querySelector('.live-process-agent small');
+      if (process) process.textContent = 'Attack packet moving to firewall';
+      const outcome = row?.querySelector('.live-process-outcome');
+      if (outcome) outcome.textContent = 'IN TRANSIT';
+    });
+    while (isPending()) {
+      await Promise.all(activeVectors.map(vector => animatePacket(`attack-packet-${vector.id}`)));
+      if (isPending()) await new Promise(resolve => setTimeout(resolve, 120));
+    }
+  }
 
-HOˆÃBˆYˆ
-	
-	İ\ØYYš[IÊK™š[\Ë›[™İ
-H›ÚY\ØY]\Ù]
+  function animateRoundEvents(events) {
+    document.querySelectorAll('.network-station').forEach(station => station.classList.remove('is-active'));
+    document.querySelectorAll('.network-packet').forEach(packet => packet.classList.remove('packet-visible'));
+    if (!events.length) return new Promise(resolve => setTimeout(resolve, 500));
+    let responseCount = 0;
+    const responseMotions = [];
+    for (const event of events) {
+      const attacker = vectors.find(vector => vector.attacker === event.attacker);
+      if (!attacker) continue;
+      document.querySelector(`[data-attacker-station="${attacker.id}"]`)?.classList.add('is-active');
+      const defenderMotions = [];
+      const defender = vectors.find(vector => vector.defender === (event.defender || event.assigned_defender));
+      if (defender) {
+        document.querySelector(`[data-defender-station="${defender.id}"]`)?.classList.add('is-active');
+        defenderMotions.push((async () => {
+          await new Promise(resolve => setTimeout(resolve, 220));
+          await animatePacket(`defense-in-packet-${defender.id}`);
+          await animatePacket(`defense-packet-${defender.id}`);
+        })());
+        responseCount += 1;
+      }
+      responseMotions.push(...defenderMotions);
+    }
+    $('simulation-visual-status').textContent = `ROUND ${events[0].round} Â· ${responseCount} RESPONSE${responseCount === 1 ? '' : 'S'}`;
+    return Promise.all(responseMotions).then(() => new Promise(resolve => setTimeout(() => {
+      document.querySelectorAll('.network-station').forEach(station => station.classList.remove('is-active'));
+      document.querySelectorAll('.network-packet').forEach(packet => packet.classList.remove('packet-visible'));
+      resolve();
+    }, 100)));
+  }
 
-NÃBˆJNÃBˆ	
-	Ø]]Y›Ü›IÊK˜Y]™[\İ[™\Š	ÜİX›Z]	ËİX›Z]]]
-NÃBˆ	
-	Ü\ÜİÛÜ™]ÙÙÛIÊK˜Y]™[\İ[™\Š	ØÚ[™ÙIË]™[OˆÃBˆÙ]\ÜİÛÜ™š\ÚXš[]J]™[\™Ù]˜ÚXÚÙY
-NÃBˆJNÃBˆ	
-	Ø]][[ÙK[[šÉÊK˜Y]™[\İ[™\Š	ØÛXÚÉË]™[OˆÃBˆ]™[œ™]™[Y˜][
+  async function runSimulation() {
+    if (currentUser?.role !== 'staff') { showToast('Security simulations are available to staff accounts.', true); return; }
+    if (running) return;
+    const selected = config();
+    if (!selected.active_vectors.length) { showToast('Select at least one attack agent.', true); return; }
+    running = true;
+    stopRequested = false;
+    $('threat-stop').disabled = false;
+    $('threat-stop').textContent = 'â–  Stop';
+    const runButtons = [$('threat-run')].filter(Boolean);
+    const originalLabels = runButtons.map(button => button.textContent);
+    runButtons.forEach(button => {
+      button.disabled = true;
+      button.textContent = 'Running simulationâ€¦';
+      button.setAttribute('aria-busy', 'true');
+    });
+    try {
+      nav('live-simulation');
+      await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+      updateNetworkRoutes();
+      $('simulation-visual-status').textContent = 'CONNECTING TO SIMULATION ENGINE';
+      $('live-process-round').textContent = 'STARTING';
+      const rounds = Number($('round-select').value);
+      $('simulation-lane').classList.add('is-running');
+      let restartPending = true;
+      const restartTraffic = animateAttackTraffic(selected.active_vectors, () => restartPending && !stopRequested);
+      try {
+        sim = await request('/api/restart', { method: 'POST', body: JSON.stringify(selected), headers: { 'Content-Type': 'application/json' } });
+      } finally {
+        restartPending = false;
+        await restartTraffic;
+      }
+      renderLiveSimulation();
+      $('simulation-visual-status').textContent = 'ATTACK IN MOTION';
+      for (let index = 0; index < rounds; index++) {
+        if (stopRequested || sim.game_over || sim.round >= sim.max_rounds) break;
+        let roundPending = true;
+        const attackTraffic = animateAttackTraffic(selected.active_vectors, () => roundPending && !stopRequested);
+        try {
+          sim = await request('/api/round', { method: 'POST', body: JSON.stringify(selected), headers: { 'Content-Type': 'application/json' } });
+        } finally {
+          roundPending = false;
+          await attackTraffic;
+        }
+        renderLiveSimulation();
+        await animateRoundEvents((sim.attack_log || []).filter(event => Number(event.round) === Number(sim.round)));
+      }
+      renderLiveSimulation();
+      $('simulation-visual-status').textContent = stopRequested ? `STOPPED AFTER ROUND ${sim.round}` : 'DEFENSE COMPLETE';
+      $('simulation-lane').classList.remove('is-running');
+      showToast(stopRequested
+        ? `Simulation stopped after round ${sim.round}.`
+        : `Round ${sim.round} Â· ${sim.metrics.blocked} of ${sim.metrics.total_attacks} attacks blocked.`);
+    } catch (error) {
+      $('simulation-visual-status').textContent = 'SIMULATION COULD NOT START';
+      $('live-process-round').textContent = 'ERROR';
+      showToast(error.message, true);
+    } finally {
+      running = false;
+      runButtons.forEach((button, index) => {
+        button.disabled = false;
+        button.textContent = originalLabels[index];
+        button.removeAttribute('aria-busy');
+      });
+      $('simulation-lane').classList.remove('is-running');
+      document.querySelectorAll('.network-station.is-active').forEach(station => station.classList.remove('is-active'));
+      document.querySelectorAll('.network-packet.packet-visible').forEach(packet => packet.classList.remove('packet-visible'));
+      $('threat-stop').disabled = true;
+      $('threat-stop').textContent = 'â–  Stop';
+      document.querySelectorAll('.live-process-row.is-moving').forEach(row => row.classList.remove('is-moving'));
+      renderLiveSimulation();
+      try {
+        renderOverview();
+        renderAttackTable();
+        $('agents-state').textContent = sim?.has_run ? `${sim.round} rounds Â· ${sim.metrics.blocked} blocks` : 'Awaiting simulation';
+        renderReport();
+      } catch (renderError) {
+        console.error('Simulation completed, but a secondary dashboard panel could not refresh.', renderError);
+      }
+    }
+  }
 
-NÃBˆÙ]]][ÙJ]][ÙHOOH	ÛÙÚ[‰ÈÈ	ÜÚYÛ\	Èˆ	ÛÙÚ[‰ÊNÃBˆJNÃBˆ	
-	Ø]]\›ÛK\İÚ]Ú	ÊK˜Y]™[\İ[™\Š	ØÛXÚÉË]™[OˆÃBˆÛÛœİ]ÛˆH]™[\™Ù]˜ÛÜÙ\İ
-	ÖÙ]KX]]\›ÛWIÊNÃBˆYˆ
-X]ÛŠH™]\›ÃBˆXØÛİ[\HH]Û‹™]\Ù]˜]]›ÛNÃBˆ	
-	Ø]]\ØÜ™Y[‰ÊKœ]Y\TÙ[XİÜ[
-	ÖÙ]KX]]\›ÛWIÊK™›Ü‘XXÚ
-][HOˆ][K˜Û\ÜÓ\İÙÙÛJ	ØXİ]™IË][HOOH]ÛŠJNÃBˆ	
-	ÜİY™‹XÛÙKYšY[	ÊKšY[ˆH]][ÙHOOH	ÜÚYÛ\	ÈXØÛİ[\HOOH	ÜİY™‰ÎÃBˆ	
-	ÜİY™‹\™YÚ\İ˜][Û‹XÛÙIÊKœ™\]Z\™YH]][ÙHOOH	ÜÚYÛ\	È	‰ˆXØÛİ[\HOOH	ÜİY™‰ÎÃBˆ	
-	Ø]][Y\ÜØYÙIÊK^ÛÛ[H	ÉÎÃBˆ	
-	Ø]][Y\ÜØYÙIÊK˜Û\ÜÓ\İœ™[[İ™J	Ù\œ›Ü‰ÊNÃBˆJNÃBˆ	
-	İ™\šYKY[˜Ü\[Û‹X]Û‰ÊK˜Y]™[\İ[™\Š	ØÛXÚÉË]™[Oˆ[“›ÙPÜ\ĞXİ[ÛŠ‹	İ™\šYIË]™[˜İ\œ™[\™Ù]
-JNÃBˆ	
-	Ü™Y[˜Ü\X]Û‰ÊK˜Y]™[\İ[™\Š	ØÛXÚÉË]™[Oˆ[“›ÙPÜ\ĞXİ[ÛŠ‹	Ü™Y[˜Ü\	Ë]™[˜İ\œ™[\™Ù]
-JNÃBˆ	
-	ØXØÛİ[[Y[KX]Û‰ÊK˜Y]™[\İ[™\Š	ØÛXÚÉË]™[OˆÃBˆ]™[œİÜ›ÜYØ][ÛŠ
-NÃBˆÛÛœİÜİ™\ˆH	
-	ØXØÛİ[\Üİ™\‰ÊNÃBˆÜİ™\‹šY[ˆH\Üİ™\‹šY[ÃBˆ]™[˜İ\œ™[\™Ù]œÙ]]šX]J	Ø\šXKY^[™Y	Ëİš[™Ê\Üİ™\‹šY[ŠJNÃBˆJNÃBˆØİ[Y[˜Y]™[\İ[™\Š	ØÛXÚÉË]™[OˆÃBˆYˆ
-Y]™[\™Ù]˜ÛÜÙ\İ
-	Ë˜XØÛİ[[Y[IÊJHÃBˆ	
-	ØXØÛİ[\Üİ™\‰ÊKšY[ˆHYNÃBˆ	
-	ØXØÛİ[[Y[KX]Û‰ÊKœÙ]]šX]J	Ø\šXKY^[™Y	Ë	Ù˜[ÙIÊNÃBˆCBˆJNÃBˆ	
-	ØYXXØÛİ[X]Û‰ÊK˜Y]™[\İ[™\Š	ØÛXÚÉË
+  function stopSimulation() {
+    if (!running || stopRequested) return;
+    stopRequested = true;
+    $('threat-stop').disabled = true;
+    $('threat-stop').textContent = 'Stoppingâ€¦';
+    $('simulation-visual-status').textContent = `STOPPING AFTER ROUND ${sim?.round || 0}`;
+  }
 
-HOˆÚ[™ÙPXØÛİ[
-	ÜÚYÛ\	ÊJNÃBˆ	
-	ÜİÚ]ÚXXØÛİ[X]Û‰ÊK˜Y]™[\İ[™\Š	ØÛXÚÉË
+  async function uploadDataset(event) {
+    event?.preventDefault?.();
+    const files = [...$('upload-file').files];
+    if (!files.length) return;
+    const totalBytes = files.reduce((total, file) => total + file.size, 0);
+    if (totalBytes > 10 * 1024 * 1024) {
+      $('upload-form').reset();
+      showToast('Selected files must total 10 MB or less.', true);
+      return;
+    }
+    const selectedFolder = $('upload-folder').value;
+    if (!selectedFolder) {
+      $('upload-form').reset();
+      showToast('Choose a destination folder before uploading.', true);
+      return;
+    }
+    uploading = true;
+    const formData = new FormData($('upload-form'));
+    const folderName = $('upload-folder').selectedOptions[0]?.textContent || 'your folder';
+    showToast(`Uploading ${files.length} file${files.length === 1 ? '' : 's'} to ${folderName}â€¦`);
+    try {
+      let result;
+      try {
+        result = await uploadWithProgress(formData, () => {});
+      } catch (error) {
+        if (error.status !== 409 || !error.payload?.duplicates?.length) throw error;
+        const duplicateMode = await chooseDuplicateMode(error.payload.duplicates, files);
+        if (!duplicateMode) throw new Error('Upload cancelled. No files were changed.');
+        formData.set('duplicate_mode', duplicateMode);
+        result = await uploadWithProgress(formData, () => {});
+      }
+      setSimulation(result.state);
+      const updateSummary = (result.file_updates || []).map(file => `${file.filename} Â· v${file.version}`).join(', ');
+      $('upload-form').reset();
+      $('upload-folder').value = selectedFolder;
+      const names = files.length === 1 ? files[0].name : `${files.length} files`;
+      showToast(`${names} uploaded to ${result.folder}.${updateSummary ? ` Updated: ${updateSummary}.` : ''}`);
+    } catch (error) {
+      if (error.status === 401) showAuthScreen('Your session expired. Please sign in again.');
+      showToast(error.message, true);
+    } finally {
+      uploading = false;
+    }
+  }
 
-HOˆÚ[™ÙPXØÛİ[
-	ÛÙÚ[‰ÊJNÃBˆ	
-	ÛÙÛİ]XXØÛİ[X]Û‰ÊK˜Y]™[\İ[™\Š	ØÛXÚÉËÚYÛ“İ]
-NÃBˆ	
-	Ù›Û\‹Y›Ü›IÊK˜Y]™[\İ[™\Š	ÜİX›Z]	ËÜ™X]Q›Û\ŠNÃBˆ	
-	ØÛÜÙKY›Û\‹YX[ÙÉÊK˜Y]™[\İ[™\Š	ØÛXÚÉË
+  function uploadWithProgress(formData, onProgress) {
+    return new Promise((resolve, reject) => {
+      const xhr = new XMLHttpRequest();
+      xhr.open('POST', '/api/upload');
+      xhr.timeout = 120000;
+      xhr.withCredentials = true;
+      xhr.upload.addEventListener('progress', event => {
+        if (event.lengthComputable) onProgress(Math.round(event.loaded / event.total * 100));
+      });
+      xhr.addEventListener('load', () => {
+        let payload = {};
+        try { payload = JSON.parse(xhr.responseText || '{}'); } catch (_error) { /* report status below */ }
+        if (xhr.status < 200 || xhr.status >= 300) {
+          const error = new Error(payload.error || `Upload failed (${xhr.status}).`);
+          error.status = xhr.status;
+          error.payload = payload;
+          reject(error);
+          return;
+        }
+        resolve(payload);
+      });
+      xhr.addEventListener('error', () => reject(new Error('The cloud connection ended during upload. Check the connection and retry.')));
+      xhr.addEventListener('timeout', () => reject(new Error('Upload timed out. Try a smaller batch of files.')));
+      xhr.addEventListener('abort', () => reject(new Error('Upload was cancelled.')));
+      xhr.send(formData);
+    });
+  }
 
-HOˆ	
-	Ù›Û\‹YX[ÙÉÊK˜ÛÜÙJ
-JNÃBˆ	
-	ØØ[˜Ù[Y›Û\‹YX[ÙÉÊK˜Y]™[\İ[™\Š	ØÛXÚÉË
+  function chooseDuplicateMode(duplicates, selectedFiles) {
+    const dialog = $('duplicate-dialog');
+    $('duplicate-file-list').innerHTML = duplicates.map(item => {
+      const incoming = selectedFiles.find(file => file.name.toLocaleLowerCase() === String(item.filename).toLocaleLowerCase());
+      const savedWhen = item.created_at ? new Date(item.created_at).toLocaleString() : 'Saved in your cloud';
+      return `<li><strong class="duplicate-name">${escapeHtml(item.filename)}</strong><div class="duplicate-compare"><div><span class="duplicate-label">CURRENT FILE</span><strong>Version ${Number(item.version) || 1} Â· ${formatBytes(Number(item.size_bytes || 0))}</strong><small>Saved ${escapeHtml(savedWhen)}</small></div><div><span class="duplicate-label">NEW UPLOAD</span><strong>${formatBytes(Number(incoming?.size || 0))}</strong><small>${incoming ? `File modified ${new Date(incoming.lastModified).toLocaleString()}` : 'Selected upload'}</small></div></div></li>`;
+    }).join('');
+    return new Promise(resolve => {
+      dialog.returnValue = '';
+      const onClose = () => resolve(dialog.returnValue === 'new_version' || dialog.returnValue === 'replace' ? dialog.returnValue : null);
+      dialog.addEventListener('close', onClose, { once: true });
+      dialog.showModal();
+    });
+  }
 
-HOˆ	
-	Ù›Û\‹YX[ÙÉÊK˜ÛÜÙJ
-JNÃBƒBˆ\Ş[˜È[˜İ[Ûˆ›Ûİİ˜\Ù\ÜÚ[ÛŠ
-HÃBˆ™[™\“]™T›ØÙ\ÜÙ\Ê
-NÃBˆ]ØZ]İ[UÛÜšÙ\ÛX[\ÃBˆHÃBˆÛÛœİ™\ÜÛœÙHH]ØZ]]]Üš^™Y™]Ú
-	ËØ\KØ]]ÛYIÊNÃBˆÛÛœİ™\İ[H]ØZ]™\ÜÛœÙKšœÛÛŠ
-K˜Ø]Ú
+  async function openVersionHistory(logicalId, filename) {
+    const dialog = $('version-dialog');
+    $('version-dialog-title').textContent = `Version history Â· ${filename}`;
+    $('version-list').innerHTML = '<div class="empty">Loading versionsâ€¦</div>';
+    dialog.showModal();
+    try {
+      const result = await request(`/api/file-groups/${encodeURIComponent(logicalId)}/versions`);
+      $('version-list').innerHTML = result.versions.map(version => {
+        const savedAt = new Date(version.created_at).toLocaleString();
+        const status = version.current ? '<span class="pill green">CURRENT</span>' : '<span class="pill blue">HISTORY</span>';
+        return `<div class="version-row"><div class="version-main"><div><strong>Version ${Number(version.version)}</strong> ${status}</div><small>${escapeHtml(savedAt)} Â· ${formatBytes(Number(version.size_bytes || 0))} Â· ${fmt(version.record_count)} record${Number(version.record_count) === 1 ? '' : 's'}</small></div><button class="btn" type="button" data-download-file="${escapeHtml(version.id)}" data-filename="${escapeHtml(filename)}">Download</button></div>`;
+      }).join('') || '<div class="empty">No saved versions were found.</div>';
+    } catch (error) {
+      $('version-list').innerHTML = `<div class="empty">${escapeHtml(error.message)}</div>`;
+    }
+  }
 
+  function handleCloudFileAction(event) {
+    const starButton = event.target.closest('[data-star-file]');
+    if (starButton) {
+      const fileKey = starButton.dataset.starFile;
+      updateDriveEntry(fileKey, starredFileIds.has(fileKey) ? 'unstar' : 'star', starButton);
+      return;
+    }
+    const trashButton = event.target.closest('[data-trash-file]');
+    if (trashButton) {
+      updateDriveEntry(trashButton.dataset.trashFile, 'trash', trashButton);
+      return;
+    }
+    const restoreTrashButton = event.target.closest('[data-restore-trash]');
+    if (restoreTrashButton) {
+      updateDriveEntry(restoreTrashButton.dataset.restoreTrash, 'restore', restoreTrashButton);
+      return;
+    }
+    const restoreButton = event.target.closest('[data-restore-file]');
+    if (restoreButton) {
+      restoreBackedUpFile(restoreButton.dataset.restoreFile, restoreButton);
+      return;
+    }
+    const versionButton = event.target.closest('[data-view-versions]');
+    if (versionButton) {
+      openVersionHistory(versionButton.dataset.viewVersions, versionButton.dataset.filename);
+      return;
+    }
+    const downloadButton = event.target.closest('[data-download-file]');
+    if (downloadButton) {
+      downloadCloudFile(downloadButton.dataset.downloadFile, downloadButton.dataset.filename)
+        .catch(error => showToast(error.message, true));
+    }
+  }
 
-HOˆ
-ßJJNÃBˆYˆ
-™\İ[\Ù\ŠH]ØZ][\•ÛÜšÜÜXÙJ™\İ[\Ù\ŠNÃBˆ[ÙHÚİĞ]]ØÜ™Y[Š
-NÃBˆHØ]Ú
-Ù\œ›ÜŠHÃBˆÚİĞ]]ØÜ™Y[Š	Ôİ\HÛİYQ]ÛˆÙ\šXÙK[ˆ™Yœ™\Ú\ÈYÙK‰ÊNÃBˆCBˆCBˆ›Ûİİ˜\Ù\ÜÚ[ÛŠ
-NÃBˆÙ][\˜[
-Ş[˜ĞÛİYÛÜšÜÜXÙKŒ
-NÃBˆØİ[Y[˜Y]™[\İ[™\Š	İš\ÚXš[]XÚ[™ÙIË
+  async function restoreBackedUpFile(fileId, button) {
+    button.disabled = true;
+    const oldText = button.textContent;
+    button.textContent = 'Restoringâ€¦';
+    try {
+      const result = await request(`/api/files/${encodeURIComponent(fileId)}/restore`, { method: 'POST' });
+      setSimulation(result.state);
+      showToast(`${result.filename} restored from the encrypted backup.`);
+      addCloudActivity('File restored from backup', result.filename, 'secure');
+    } catch (error) {
+      showToast(error.message, true);
+    } finally {
+      button.disabled = false;
+      button.textContent = oldText;
+    }
+  }
 
-HOˆÃBˆYˆ
-Øİ[Y[š\ÚXš[]Tİ]HOOH	İš\ÚX›IÊHŞ[˜ĞÛİYÛÜšÜÜXÙJ
-NÃBˆJNÃBŸJJ
-NÃB
+  function exportJson() {
+    if (!sim) { showToast('Connect to the Python simulation before exporting.', true); return; }
+    const report = {
+      project: 'Cloud-D â€” A Multi-Agent Decision System for Enterprise Cloud Security',
+      author: 'Nithish M Â· 24X064', simulation_only: true,
+      generated_at: sim.last_run_at,
+      configuration: { round: sim.round, threshold: sim.threshold, intensity: sim.intensity, active_vectors: sim.active_vectors },
+      algorithms: { credential_bot: 'Minimax depth 2', query_shield: 'Expectimax with chance nodes', others: 'Rule and utility heuristics' },
+      metrics: sim.metrics,
+      counts: sim.counts,
+      nodes: sim.nodes,
+      attack_log: sim.attack_log,
+      events: sim.events
+    };
+    downloadFile('cloud-d-defense-report.json', JSON.stringify(report, null, 2), 'application/json');
+  }
+
+  function exportCsv() {
+    if (!sim) { showToast('Connect to the Python simulation before exporting.', true); return; }
+    const rows = [['round','attacker','attack_type','target_node','utility','defender','action','outcome','damage','record_id','payload']];
+    for (const event of sim.attack_log) rows.push([event.round,event.attacker,event.attack_type,event.target,event.utility,event.defender,event.action,event.blocked ? 'blocked' : event.damage ? 'impact' : 'no_damage',event.damage,event.record_id,event.payload]);
+    const csv = rows.map(row => row.map(value => `"${String(value ?? '').replaceAll('"','""')}"`).join(',')).join('\n');
+    downloadFile('cloud-d-events.csv', csv, 'text/csv');
+  }
+
+  function downloadFile(name, content, type) {
+    saveBlob(name, new Blob([content], { type }));
+  }
+
+  function saveBlob(name, blob) {
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = name;
+    link.click();
+    setTimeout(() => URL.revokeObjectURL(url), 500);
+    showToast(`${name} downloaded.`);
+  }
+
+  async function downloadCloudFile(fileId, filename) {
+    const response = await authorizedFetch(`/api/files/${encodeURIComponent(fileId)}/download`);
+    if (response.status === 401) showAuthScreen('Your session expired. Please sign in again.');
+    if (!response.ok) {
+      const payload = await response.json().catch(() => ({}));
+      throw new Error(payload.error || `Download failed (${response.status}).`);
+    }
+    saveBlob(filename, await response.blob());
+    addCloudActivity('File decrypted and downloaded', filename, 'download');
+  }
+
+  async function runNodeCryptoAction(nodeId, action, button) {
+    const originalText = button.textContent;
+    button.disabled = true;
+    button.textContent = action === 'verify' ? 'Checkingâ€¦' : 'Updatingâ€¦';
+    try {
+      const result = await request('/api/node-crypto', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ node_id: Number(nodeId), action })
+      });
+      if (action === 'verify') {
+        showToast(`${result.node}: ${fmt(result.verified)} encrypted file${result.verified === 1 ? '' : 's'} decrypted and verified. Plaintext stayed on the server.`);
+        addCloudActivity('Decryption verified', `${result.node} Â· ${fmt(result.verified)} encrypted files authenticated`, 'secure');
+      } else {
+        showToast(`${result.node}: re-encrypted ${fmt(result.reencrypted)} file${result.reencrypted === 1 ? '' : 's'}.`);
+        addCloudActivity('Node data re-encrypted', `${result.node} Â· ${fmt(result.reencrypted)} encrypted files updated`, 'secure');
+      }
+    } catch (error) {
+      showToast(error.message, true);
+    } finally {
+      button.disabled = false;
+      button.textContent = originalText;
+    }
+  }
+
+  document.querySelectorAll('.nav button').forEach(button => button.addEventListener('click', () => nav(button.dataset.page)));
+  $('page-live-simulation').querySelector('[data-page="threats"]').addEventListener('click', () => nav('threats'));
+  $('threshold-lab').addEventListener('input', event => {
+    $('threshold').value = event.target.value;
+    $('threshold-label').textContent = $('threshold-lab-label').textContent = Number(event.target.value).toFixed(2);
+    $('engine-threshold').textContent = Number(event.target.value).toFixed(2);
+  });
+  $('threat-run').addEventListener('click', () => runSimulation());
+  $('threat-stop').addEventListener('click', stopSimulation);
+  $('round-select').addEventListener('input', event => {
+    $('round-value').textContent = event.target.value;
+    $('threat-run').textContent = `â–¶ Run ${event.target.value} round${Number(event.target.value) === 1 ? '' : 's'}`;
+  });
+  $('intensity-select').addEventListener('input', event => {
+    $('intensity-value').textContent = `${event.target.value} / 10`;
+  });
+  $('customer-alert-dismiss').addEventListener('click', () => $('customer-alert-dialog').close());
+  $('print-report').addEventListener('click', () => window.print());
+  $('download-report').addEventListener('click', exportJson);
+  $('download-csv').addEventListener('click', exportCsv);
+  $('drive-new-button').addEventListener('click', event => {
+    event.stopPropagation();
+    const menu = $('drive-new-menu');
+    menu.hidden = !menu.hidden;
+    event.currentTarget.setAttribute('aria-expanded', String(!menu.hidden));
+  });
+  document.addEventListener('click', event => {
+    if (!event.target.closest('.drive-new-dropdown')) {
+      $('drive-new-menu').hidden = true;
+      $('drive-new-button').setAttribute('aria-expanded', 'false');
+    }
+  });
+  function openUploadPicker() {
+    const filteredFolder = $('cloud-folder-filter').value;
+    const uploadFolder = $('upload-folder');
+    if (filteredFolder !== 'all' && [...uploadFolder.options].some(option => option.value === filteredFolder)) {
+      uploadFolder.value = filteredFolder;
+    }
+    $('upload-file').value = '';
+    $('upload-file').click();
+  }
+  $('drive-upload-action').addEventListener('click', () => {
+    $('drive-new-menu').hidden = true;
+    $('drive-new-button').setAttribute('aria-expanded', 'false');
+    if (!$('page-cloud').classList.contains('active')) nav('cloud');
+    openUploadPicker();
+  });
+  $('drive-folder-action').addEventListener('click', () => {
+    $('drive-new-menu').hidden = true;
+    $('drive-new-button').setAttribute('aria-expanded', 'false');
+    if (!$('page-cloud').classList.contains('active')) nav('cloud');
+    $('folder-dialog').showModal();
+    $('folder-name-input').focus();
+  });
+  document.querySelectorAll('[data-drive-view]').forEach(button => {
+    button.addEventListener('click', () => switchDriveView(button.dataset.driveView));
+  });
+  $('cloud-upload-shortcut').addEventListener('click', () => {
+    openUploadPicker();
+  });
+  $('cloud-file-search').addEventListener('input', renderFilteredCloudFiles);
+  $('cloud-folder-filter').addEventListener('change', () => {
+    if ($('cloud-folder-filter').value !== 'all') $('upload-folder').value = $('cloud-folder-filter').value;
+    syncFolderLocationLabel();
+    renderFolderCards([...$('cloud-folder-filter').options].filter(option => option.value !== 'all').map(option => ({ id: option.value, name: option.textContent })));
+    renderFilteredCloudFiles();
+  });
+  function selectFolderTile(tile) {
+    if (!$('page-cloud').classList.contains('active')) nav('cloud');
+    switchDriveView('my-drive');
+    $('cloud-folder-filter').value = tile.dataset.openFolder;
+    $('upload-folder').value = tile.dataset.openFolder;
+    syncFolderLocationLabel();
+    document.querySelectorAll('[data-open-folder]').forEach(folder => {
+      const selected = folder.dataset.openFolder === tile.dataset.openFolder;
+      folder.classList.toggle('selected', selected);
+      folder.setAttribute('aria-pressed', String(selected));
+    });
+    renderFilteredCloudFiles();
+  }
+  $('folder-grid').addEventListener('click', event => {
+    const tile = event.target.closest('[data-open-folder]');
+    if (!tile) return;
+    selectFolderTile(tile);
+    showToast(`Opened ${tile.querySelector('strong').textContent}. New uploads will go here.`);
+  });
+  $('cloud-type-filter').addEventListener('change', renderFilteredCloudFiles);
+  $('cloud-files-body').addEventListener('click', handleCloudFileAction);
+  $('version-list').addEventListener('click', handleCloudFileAction);
+  $('close-version-dialog').addEventListener('click', () => $('version-dialog').close());
+  $('upload-file').addEventListener('change', () => {
+    if ($('upload-file').files.length) void uploadDataset();
+  });
+  $('auth-form').addEventListener('submit', submitAuth);
+  $('password-toggle').addEventListener('change', event => {
+    setPasswordVisibility(event.target.checked);
+  });
+  $('auth-mode-link').addEventListener('click', event => {
+    event.preventDefault();
+    setAuthMode(authMode === 'login' ? 'signup' : 'login');
+  });
+  $('auth-role-switch').addEventListener('click', event => {
+    const button = event.target.closest('[data-auth-role]');
+    if (!button) return;
+    accountType = button.dataset.authRole;
+    $('auth-screen').querySelectorAll('[data-auth-role]').forEach(item => item.classList.toggle('active', item === button));
+    $('staff-code-field').hidden = authMode !== 'signup' || accountType !== 'staff';
+    $('staff-registration-code').required = authMode === 'signup' && accountType === 'staff';
+    $('auth-message').textContent = '';
+    $('auth-message').classList.remove('error');
+  });
+  $('verify-encryption-button').addEventListener('click', event => runNodeCryptoAction(2, 'verify', event.currentTarget));
+  $('reencrypt-button').addEventListener('click', event => runNodeCryptoAction(2, 'reencrypt', event.currentTarget));
+  $('account-menu-button').addEventListener('click', event => {
+    event.stopPropagation();
+    const popover = $('account-popover');
+    popover.hidden = !popover.hidden;
+    event.currentTarget.setAttribute('aria-expanded', String(!popover.hidden));
+  });
+  document.addEventListener('click', event => {
+    if (!event.target.closest('.account-menu')) {
+      $('account-popover').hidden = true;
+      $('account-menu-button').setAttribute('aria-expanded', 'false');
+    }
+  });
+  $('add-account-button').addEventListener('click', () => changeAccount('signup'));
+  $('switch-account-button').addEventListener('click', () => changeAccount('login'));
+  $('logout-account-button').addEventListener('click', signOut);
+  $('folder-form').addEventListener('submit', createFolder);
+  $('close-folder-dialog').addEventListener('click', () => $('folder-dialog').close());
+  $('cancel-folder-dialog').addEventListener('click', () => $('folder-dialog').close());
+
+  async function bootstrapSession() {
+    renderLiveProcesses();
+    await staleWorkerCleanup;
+    try {
+      const response = await authorizedFetch('/api/auth/me');
+      const result = await response.json().catch(() => ({}));
+      if (result.user) await enterWorkspace(result.user);
+      else showAuthScreen();
+    } catch (_error) {
+      showAuthScreen('Start the Cloud-D Python service, then refresh this page.');
+    }
+  }
+  bootstrapSession();
+  setInterval(syncCloudWorkspace, 6000);
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'visible') syncCloudWorkspace();
+  });
+})();
