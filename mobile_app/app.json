@@ -1,0 +1,29 @@
+{
+  "expo": {
+    "name": "Cloud-D",
+    "slug": "cloud-d",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#f8fafd"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.cloudd.enterprise"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#f8fafd"
+      },
+      "package": "com.cloudd.enterprise"
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    }
+  }
+}

@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: cloud-d
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: python -m cloud_d.main --host 0.0.0.0 --port $PORT --no-browser
+    healthCheckPath: /api/health
+    autoDeploy: true
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.9
+      - key: CLOUD_D_STAFF_REGISTRATION_CODE
+        sync: false
