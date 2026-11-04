@@ -40,6 +40,9 @@
   let activeDriveView = 'my-drive';
   let starredFileIds = new Set();
   let trashedFileIds = new Set();
+  let fileViewerObjectUrl = null;
+  let fileViewerBlob = null;
+  let fileViewerToken = 0;
   let currentUser = null;
   let customerNoticeId = null;
   let customerNoticePrimed = false;
@@ -180,7 +183,16 @@
     const folderName = [...uploadSelect.options].find(option => option.value === folderId)?.textContent || 'My Files';
     const label = $('folder-location-label');
     if (!label) return;
-    label.textContent = filterSelect.value !== 'all'
+    const folderOpen = filterSelect.value !== 'all';
+    const folderButton = $('folder-back-button');
+    const folderTitle = $('folder-section-title');
+    const folderGrid = $('folder-grid');
+    if (folderButton) folderButton.hidden = !folderOpen;
+    if (folderGrid) folderGrid.hidden = folderOpen;
+    if (folderTitle) folderTitle.textContent = folderOpen ? `Files in ${folderName}` : 'Folders';
+    const cardTitle = document.querySelector('.cloud-files-card .card-title');
+    if (cardTitle && activeDriveView === 'my-drive') cardTitle.textContent = folderOpen ? folderName : 'Your cloud folders and files';
+    label.textContent = folderOpen
       ? `${folderName} is open · new uploads will go here.`
       : `All folders shown · new uploads will go to ${folderName}.`;
   }
@@ -570,12 +582,13 @@
         ? `<button class="btn" type="button" data-restore-trash="${fileKey}">Restore</button>`
         : `<button class="btn" type="button" data-trash-file="${fileKey}">Move to trash</button>`;
       const starAction = activeDriveView === 'trash' ? '' : `<button class="btn" type="button" data-star-file="${fileKey}" aria-label="${starredFileIds.has(file.logical_id || file.id) ? 'Remove from' : 'Add to'} Starred">${starredFileIds.has(file.logical_id || file.id) ? '★' : '☆'}</button>`;
-      const fileActions = activeDriveView === 'trash' ? trashAction : `${starAction}${trashAction}${restoreButton}<button class="btn" type="button" data-download-file="${escapeHtml(file.id)}" data-filename="${name}">Download</button><button class="btn" type="button" data-view-versions="${escapeHtml(file.logical_id)}" data-filename="${name}">Versions · ${versions}</button>`;
+      const fileAttrs = `data-file-id="${escapeHtml(file.id)}" data-filename="${name}" data-folder-name="${escapeHtml(file.folder_name || 'My Drive')}" data-folder-id="${escapeHtml(file.folder_id || '')}"`;
+      const fileActions = activeDriveView === 'trash' ? trashAction : `<button class="btn primary" type="button" data-open-file ${fileAttrs}>Open</button>${starAction}${trashAction}${restoreButton}<button class="btn" type="button" data-download-file="${escapeHtml(file.id)}" data-filename="${name}">Download</button><button class="btn" type="button" data-view-versions="${escapeHtml(file.logical_id)}" data-filename="${name}">Versions · ${versions}</button>`;
       const trashInfo = activeDriveView === 'trash' && file.trashed_at
         ? `In Trash · auto-deletes in ${Math.max(0, 90 - Math.floor((Date.now() - new Date(file.trashed_at).getTime()) / 86400000))} days`
         : activeDriveView === 'recent' ? `Uploaded ${escapeHtml(savedAt)} · Version ${version}` : `Version ${version} · Uploaded ${escapeHtml(savedAt)}`;
-      return `<tr><td><div class="file-entry"><span class="file-icon ${file.kind === 'data' ? 'structured' : ''}">${icon}</span><span class="file-entry-text"><strong>${name}</strong><small>${trashInfo}</small></span></div></td><td>${escapeHtml(file.folder_name)}</td><td>${formatBytes(Number(file.size_bytes || 0))}</td><td>${kind}</td><td>${fmt(file.record_count)}</td><td>${backupStatus}</td><td><div class="file-actions">${fileActions}</div></td></tr>`;
-    }).join('') : `<tr><td colspan="7" class="empty">${activeDriveView === 'starred' ? 'No starred files yet. Use ☆ beside a file to save it here.' : activeDriveView === 'trash' ? 'Trash is empty.' : cloudFileCache.length ? 'No matching files. Change the search or filters.' : 'Your cloud is ready. Choose New to upload a file.'}</td></tr>`;
+      return `<tr><td><div class="file-entry"><span class="file-icon ${file.kind === 'data' ? 'structured' : ''}">${icon}</span><span class="file-entry-text"><button class="file-open-link" type="button" data-open-file ${fileAttrs}>${name}</button><small>${trashInfo}</small></span></div></td><td>${escapeHtml(file.folder_name)}</td><td>${formatBytes(Number(file.size_bytes || 0))}</td><td>${kind}</td><td>${fmt(file.record_count)}</td><td>${backupStatus}</td><td><div class="file-actions">${fileActions}</div></td></tr>`;
+    }).join('') : `<tr><td colspan="7" class="empty">${activeDriveView === 'starred' ? 'No starred files yet. Use ☆ beside a file to save it here.' : activeDriveView === 'trash' ? 'Trash is empty.' : selectedFolder !== 'all' ? 'This folder is empty. Choose Upload files to add a file here.' : cloudFileCache.length ? 'No matching files. Change the search or filters.' : 'Your cloud is ready. Choose New to upload a file.'}</td></tr>`;
   }
 
   async function updateDriveEntry(logicalId, action, button) {
@@ -1048,7 +1061,7 @@
     const dialog = $('version-dialog');
     $('version-dialog-title').textContent = `Version history · ${filename}`;
     $('version-list').innerHTML = '<div class="empty">Loading versions…</div>';
-    dialog.showModal();
+    if (!dialog.open) dialog.showModal();
     try {
       const result = await request(`/api/file-groups/${encodeURIComponent(logicalId)}/versions`);
       $('version-list').innerHTML = result.versions.map(version => {
@@ -1061,7 +1074,86 @@
     }
   }
 
+  function clearFileViewer() {
+    fileViewerToken += 1;
+    fileViewerBlob = null;
+    if (fileViewerObjectUrl) URL.revokeObjectURL(fileViewerObjectUrl);
+    fileViewerObjectUrl = null;
+  }
+
+  async function openCloudFile(fileId, filename, folderName = 'My Drive', folderId = '') {
+    const dialog = $('file-viewer-dialog');
+    const body = $('file-viewer-body');
+    const token = ++fileViewerToken;
+    if (fileViewerObjectUrl) URL.revokeObjectURL(fileViewerObjectUrl);
+    fileViewerObjectUrl = null;
+    fileViewerBlob = null;
+    $('file-viewer-title').textContent = filename;
+    $('file-viewer-filename').textContent = filename;
+    $('file-viewer-folder-link').textContent = folderName;
+    $('file-viewer-folder-link').dataset.folderId = folderId;
+    $('file-viewer-meta').textContent = `${folderName} · Loading encrypted file…`;
+    body.replaceChildren(Object.assign(document.createElement('p'), { textContent: 'Opening file from your Cloud-D drive…' }));
+    if (!dialog.open) dialog.showModal();
+
+    try {
+      const response = await authorizedFetch(`/api/files/${encodeURIComponent(fileId)}/download`);
+      if (response.status === 401) {
+        dialog.close();
+        showAuthScreen('Your session expired. Please sign in again.');
+        return;
+      }
+      if (!response.ok) {
+        const payload = await response.json().catch(() => ({}));
+        throw new Error(payload.error || `Could not open this file (${response.status}).`);
+      }
+      const blob = await response.blob();
+      if (token !== fileViewerToken || !dialog.open) return;
+      fileViewerBlob = blob;
+      $('file-viewer-meta').textContent = `${folderName} · ${formatBytes(blob.size)} · ${blob.type || 'File'}`;
+      const extension = filename.split('.').pop().toLowerCase();
+      const imageTypes = { png:'image/png', jpg:'image/jpeg', jpeg:'image/jpeg', gif:'image/gif', webp:'image/webp', avif:'image/avif' };
+      if (imageTypes[extension]) {
+        fileViewerObjectUrl = URL.createObjectURL(new Blob([blob], { type: imageTypes[extension] }));
+        const image = document.createElement('img');
+        image.className = 'file-viewer-preview-image';
+        image.alt = filename;
+        image.src = fileViewerObjectUrl;
+        body.replaceChildren(image);
+      } else if (extension === 'pdf') {
+        fileViewerObjectUrl = URL.createObjectURL(new Blob([blob], { type: 'application/pdf' }));
+        const frame = document.createElement('iframe');
+        frame.className = 'file-viewer-preview-frame';
+        frame.title = filename;
+        frame.setAttribute('sandbox', 'allow-scripts');
+        frame.src = fileViewerObjectUrl;
+        body.replaceChildren(frame);
+      } else if (['txt','csv','tsv','json','jsonl','ndjson','md','log','xml','yaml','yml'].includes(extension)) {
+        const preview = document.createElement('pre');
+        preview.className = 'file-viewer-preview-text';
+        preview.textContent = await blob.text();
+        body.replaceChildren(preview);
+      } else {
+        const message = document.createElement('p');
+        message.textContent = 'This file type cannot be previewed in the browser. Use Download below to open it with an app on your device.';
+        body.replaceChildren(message);
+      }
+      addCloudActivity('File opened in Cloud-D', filename, 'download');
+    } catch (error) {
+      if (token !== fileViewerToken) return;
+      const message = document.createElement('p');
+      message.textContent = error.message || 'The file could not be opened. Check your cloud connection and try again.';
+      body.replaceChildren(message);
+    }
+  }
+
   function handleCloudFileAction(event) {
+    const openButton = event.target.closest('[data-open-file]');
+    if (openButton) {
+      openCloudFile(openButton.dataset.fileId, openButton.dataset.filename, openButton.dataset.folderName, openButton.dataset.folderId)
+        .catch(error => showToast(error.message, true));
+      return;
+    }
     const starButton = event.target.closest('[data-star-file]');
     if (starButton) {
       const fileKey = starButton.dataset.starFile;
@@ -1254,6 +1346,18 @@
     renderFolderCards([...$('cloud-folder-filter').options].filter(option => option.value !== 'all').map(option => ({ id: option.value, name: option.textContent })));
     renderFilteredCloudFiles();
   });
+  function navigateDriveFolder(folderId = 'all') {
+    const filter = $('cloud-folder-filter');
+    const upload = $('upload-folder');
+    const validFolder = folderId !== 'all' && [...upload.options].some(option => option.value === folderId);
+    switchDriveView('my-drive');
+    filter.value = validFolder ? folderId : 'all';
+    if (validFolder) upload.value = folderId;
+    syncFolderLocationLabel();
+    renderFolderCards([...filter.options].filter(option => option.value !== 'all').map(option => ({ id: option.value, name: option.textContent })));
+    renderFilteredCloudFiles();
+  }
+  $('folder-back-button').addEventListener('click', () => navigateDriveFolder('all'));
   function selectFolderTile(tile) {
     if (!$('page-cloud').classList.contains('active')) nav('cloud');
     switchDriveView('my-drive');
@@ -1277,6 +1381,19 @@
   $('cloud-files-body').addEventListener('click', handleCloudFileAction);
   $('version-list').addEventListener('click', handleCloudFileAction);
   $('close-version-dialog').addEventListener('click', () => $('version-dialog').close());
+  $('file-viewer-close').addEventListener('click', () => $('file-viewer-dialog').close());
+  $('file-viewer-dialog').addEventListener('close', () => {
+    clearFileViewer();
+    $('file-viewer-body').replaceChildren();
+  });
+  $('file-viewer-download').addEventListener('click', () => {
+    if (!fileViewerBlob) return;
+    const filename = $('file-viewer-filename').textContent || 'cloud-d-file';
+    saveBlob(filename, fileViewerBlob);
+    addCloudActivity('File downloaded from Cloud-D', filename, 'download');
+  });
+  $('file-viewer-drive-link').addEventListener('click', () => navigateDriveFolder('all'));
+  $('file-viewer-folder-link').addEventListener('click', event => navigateDriveFolder(event.currentTarget.dataset.folderId || 'all'));
   $('upload-file').addEventListener('change', () => {
     if ($('upload-file').files.length) void uploadDataset();
   });

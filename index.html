@@ -162,6 +162,8 @@
     .folder-inline { padding:0 18px 13px; margin-bottom:12px; border-bottom:1px solid #e5dcef; }
     .folder-inline-title { display:flex; align-items:center; justify-content:space-between; gap:10px; margin:0 0 8px; color:#786d89; font-size:12px; font-weight:750; letter-spacing:.02em; }
     .folder-inline-title small { color:#786d89; font-size:10px; font-weight:500; letter-spacing:0; text-align:right; }
+    .folder-back-button { border:0; padding:0; background:transparent; color:#6947bd; cursor:pointer; font-size:10px; font-weight:700; }
+    #folder-grid[hidden],#folder-back-button[hidden] { display:none !important; }
     .folder-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(180px,1fr)); gap:10px; }
     .folder-tile { display:flex; align-items:center; gap:11px; min-width:0; min-height:62px; padding:10px 12px; border:1px solid #d8c9e9; border-radius:13px; color:#302545; background:linear-gradient(120deg,#fffaff,#f0f8f5); text-align:left; cursor:pointer; }
     .folder-tile:hover,.folder-tile.selected { border-color:#8c6bd7; box-shadow:0 0 0 2px #8c6bd71c; }
@@ -182,6 +184,8 @@
     .file-icon.structured { border-color:#365b55; background:#18312f; color:#89dfb8; }
     .file-entry-text { min-width:0; }
     .file-entry-text strong { display:block; max-width:190px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+    .file-open-link { display:block; max-width:190px; overflow:hidden; border:0; padding:0; background:transparent; color:inherit; cursor:pointer; font:inherit; font-weight:700; text-align:left; text-overflow:ellipsis; white-space:nowrap; }
+    .file-open-link:hover { color:#6947bd; text-decoration:underline; }
     .file-entry-text small { display:block; margin-top:3px; color:#71829a; font-size:8px; }
     .cloud-activity-card { min-height:260px; }
     .activity-live { display:inline-flex; align-items:center; gap:6px; color:#82ddb1; font-size:8px; font-weight:750; letter-spacing:.06em; }
@@ -207,6 +211,16 @@
     .dialog-header { display:flex; align-items:flex-start; justify-content:space-between; gap:14px; }
     .dialog-header h2 { margin:4px 0 0; font-size:17px; }
     .dialog-copy { color:#91a1b7; font-size:10px; line-height:1.6; margin:12px 0; }
+    .file-viewer-dialog { width:min(1040px,calc(100% - 28px)); max-height:min(90vh,900px); }
+    .file-viewer-breadcrumb { display:flex; align-items:center; gap:7px; min-width:0; margin:0 0 12px; color:#81758f; font-size:11px; overflow-wrap:anywhere; }
+    .file-viewer-breadcrumb strong { color:#302545; }
+    .file-viewer-meta { margin:8px 0 12px; color:#776d8b; font-size:10px; }
+    .file-viewer-body { min-height:160px; max-height:65vh; overflow:auto; display:grid; place-items:center; border:1px solid #d9cdea; border-radius:12px; background:#fff; }
+    .file-viewer-body > p { padding:20px; color:#665c73; font-size:12px; line-height:1.6; text-align:center; }
+    .file-viewer-preview-image { display:block; max-width:100%; max-height:64vh; object-fit:contain; }
+    .file-viewer-preview-frame { display:block; width:100%; height:65vh; border:0; background:#fff; }
+    .file-viewer-preview-text { width:100%; max-height:64vh; overflow:auto; margin:0; padding:16px; color:#272236; font:12px/1.55 ui-monospace,SFMono-Regular,Consolas,monospace; white-space:pre-wrap; overflow-wrap:anywhere; }
+    .file-viewer-preview-media { display:block; max-width:100%; max-height:64vh; }
     .duplicate-list { display:grid; gap:6px; padding:0; margin:12px 0 16px; list-style:none; }
     .duplicate-list li { display:grid; gap:9px; padding:12px; border:1px solid #4a4031; border-radius:11px; background:#191814; font-size:10px; }
     .duplicate-list span { color:#8899b0; text-align:right; }
@@ -1044,7 +1058,7 @@
           </div>
           <div class="card storage-card section-gap"><div class="card-head"><div><div class="card-title">Primary storage and encrypted recovery copies</div><div class="card-desc">Cloud-D routes your files to the database assigned to your account and mirrors encrypted file data to the recovery database.</div></div><span class="pill green" id="database-status-pill">FILE CONTENTS ENCRYPTED</span></div><div class="storage-console"><div class="storage-intro"><span class="storage-lock">♢</span><div><strong id="database-heading">Encrypted file storage is ready</strong><p>Uploaded file contents are encrypted before saving. An encrypted recovery copy is stored separately and can be restored if a primary copy is missing.</p></div></div><div class="storage-stats"><div class="storage-stat"><span>Primary database</span><strong id="database-engine">SQLite</strong></div><div class="storage-stat"><span>File encryption</span><strong id="database-encryption">AES-256-GCM</strong></div><div class="storage-stat"><span>Backup file copies</span><strong id="database-files">0</strong></div><div class="storage-stat"><span>Backup database</span><strong id="database-size">SQLite</strong></div></div><div class="storage-note" id="database-note">File contents are encrypted in both SQLite databases. Account and folder metadata is stored separately.</div><div class="crypto-demo staff-only"><div class="crypto-demo-copy"><strong>Cryptographic demonstration · Primary DB</strong>Verify decrypts and authenticates encrypted file copies without exposing plaintext in the browser. Re-encrypt writes fresh AES-GCM ciphertext for the primary node.</div><div class="crypto-demo-actions"><button class="btn" id="verify-encryption-button" type="button">Verify encrypted copies</button><button class="btn" id="reencrypt-button" type="button">Re-encrypt primary</button></div></div></div></div>
           <div class="cloud-workspace section-gap">
-            <div class="card table-card cloud-files-card"><div class="card-head"><div><div class="card-title">Your cloud folders and files</div><div class="card-desc" id="stored-files-description">Files are scoped to your account type and assigned folders.</div></div><span class="pill blue" id="stored-files-pill">0 FILES</span></div><div class="folder-inline"><div class="folder-inline-title"><span>Folders</span><small id="folder-location-label" aria-live="polite">Choose a folder to browse; uploads go to My Files.</small></div><div class="folder-grid" id="folder-grid"><div class="folder-empty">Loading folders…</div></div></div><div class="cloud-tools"><label class="cloud-search"><span>⌕</span><input id="cloud-file-search" type="search" placeholder="Search files or folders…" aria-label="Search stored cloud files"></label><select id="cloud-folder-filter" aria-label="Filter by folder"><option value="all">All folders</option></select><select id="cloud-type-filter" aria-label="Filter by file type"><option value="all">All file types</option><option value="data">Structured data</option><option value="document">Documents</option></select></div><div class="table-wrap"><table><thead><tr><th>FILE</th><th>FOLDER</th><th>SIZE</th><th>TYPE</th><th>RECORDS</th><th>BACKUP</th><th>ACTION</th></tr></thead><tbody id="cloud-files-body"><tr><td colspan="7" class="empty">No files yet. Upload a document above to add it to your cloud.</td></tr></tbody></table></div></div>
+            <div class="card table-card cloud-files-card"><div class="card-head"><div><div class="card-title">Your cloud folders and files</div><div class="card-desc" id="stored-files-description">Files are scoped to your account type and assigned folders.</div></div><span class="pill blue" id="stored-files-pill">0 FILES</span></div><div class="folder-inline"><div class="folder-inline-title"><span id="folder-section-title">Folders</span><button class="folder-back-button" id="folder-back-button" type="button" hidden>← All folders</button><small id="folder-location-label" aria-live="polite">Choose a folder to browse; uploads go to My Files.</small></div><div class="folder-grid" id="folder-grid"><div class="folder-empty">Loading folders…</div></div></div><div class="cloud-tools"><label class="cloud-search"><span>⌕</span><input id="cloud-file-search" type="search" placeholder="Search files or folders…" aria-label="Search stored cloud files"></label><select id="cloud-folder-filter" aria-label="Filter by folder"><option value="all">All folders</option></select><select id="cloud-type-filter" aria-label="Filter by file type"><option value="all">All file types</option><option value="data">Structured data</option><option value="document">Documents</option></select></div><div class="table-wrap"><table><thead><tr><th>FILE</th><th>FOLDER</th><th>SIZE</th><th>TYPE</th><th>RECORDS</th><th>BACKUP</th><th>ACTION</th></tr></thead><tbody id="cloud-files-body"><tr><td colspan="7" class="empty">No files yet. Upload a document above to add it to your cloud.</td></tr></tbody></table></div></div>
             <aside class="card cloud-activity-card"><div class="card-head"><div><div class="card-title">Live cloud activity</div><div class="card-desc">Recent actions in this browser session</div></div><span class="activity-live"><i></i>LIVE</span></div><div class="activity-list" id="cloud-activity-list"><div class="empty">Connecting to the cloud workspace…</div></div></aside>
           </div>
           <div class="footer-note" id="storage-footer-note">Cloud-D simulation · primary files are encrypted and mirrored into a separate recovery database.</div>
@@ -1211,11 +1225,18 @@
       <button class="btn danger" value="replace">Replace</button>
     </form>
   </dialog>
+  <dialog class="cloud-dialog file-viewer-dialog" id="file-viewer-dialog" aria-labelledby="file-viewer-title">
+    <nav class="file-viewer-breadcrumb" aria-label="File location"><span>Cloud-D</span><span>/</span><button class="folder-back-button" id="file-viewer-drive-link" type="button">My Drive</button><span>/</span><button class="folder-back-button" id="file-viewer-folder-link" type="button">Folder</button><span>/</span><strong id="file-viewer-filename">File</strong></nav>
+    <div class="dialog-header"><div><div class="eyebrow">Cloud-D drive file</div><h2 id="file-viewer-title">File</h2></div><button class="btn" id="file-viewer-close" type="button">Close</button></div>
+    <p class="file-viewer-meta" id="file-viewer-meta">Loading file…</p>
+    <div class="file-viewer-body" id="file-viewer-body" aria-live="polite"><p>Opening file from your Cloud-D drive…</p></div>
+    <div class="dialog-actions"><button class="btn primary" id="file-viewer-download" type="button">Download file</button></div>
+  </dialog>
   <dialog class="cloud-dialog" id="version-dialog" aria-labelledby="version-dialog-title">
     <div class="dialog-header"><div><div class="eyebrow">Encrypted file history</div><h2 id="version-dialog-title">Version history</h2></div><button class="btn" id="close-version-dialog" type="button">Close</button></div>
     <div class="version-list" id="version-list"></div>
   </dialog>
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
-  <script src="./cloud-d.js?v=hide-empty-process-23"></script>
+  <script src="./cloud-d.js?v=file-viewer-24"></script>
 </body>
 </html>
