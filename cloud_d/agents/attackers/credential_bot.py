@@ -54,7 +54,8 @@ class CredentialBot(BaseAgent):
         attack = {key: value for key, value in chosen.items() if key != "defender_replies"}
         attack["confidence"] = round(confidence, 2)
         attack["damage"] = attack["damage"] if self.rng.random() < confidence else 0
-        attack["record_id"] = self.cloud.random_record(attack["target"])
+        record = self.cloud.random_record(attack["target"])
+        attack["record_id"] = record.id if record else None
         attack["search"] = {"algorithm": "Minimax", "depth": 2, "nodes": self.search_nodes, "predicted_damage": round(value, 2)}
         attack["attacker"] = self.name
         return attack

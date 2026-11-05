@@ -158,6 +158,8 @@
     } catch (error) {
       setCloudConnection('offline');
     }
+    const requestedPage = window.location.hash.slice(1);
+    if (requestedPage) nav(requestedPage, false);
   }
 
   async function refreshFolders(selectedId = '') {
@@ -432,14 +434,20 @@
     })[character]);
   }
 
-  function nav(page) {
+  function nav(page, updateAddress = true) {
     const permitted = currentUser?.role === 'staff'
       ? ['cloud', 'architecture', 'overview', 'threats', 'live-simulation', 'report']
       : ['cloud', 'architecture', 'report'];
     if (!permitted.includes(page)) return;
     document.querySelectorAll('.page').forEach(item => item.classList.toggle('active', item.id === `page-${page}`));
-    document.querySelectorAll('.nav button').forEach(button => button.classList.toggle('active', button.dataset.page === page));
+    document.querySelectorAll('.nav button').forEach(button => {
+      const selected = button.dataset.page === page;
+      button.classList.toggle('active', selected);
+      if (selected) button.setAttribute('aria-current', 'page');
+      else button.removeAttribute('aria-current');
+    });
     $('crumb-current').textContent = ({ cloud: 'Cloud', architecture: 'Cloud Architecture', overview: 'Security Overview', threats: 'Attack & Defense Simulation Details', 'live-simulation': 'Live Simulation', report: 'Defense Report' })[page] || 'Cloud';
+    if (updateAddress && window.location.hash !== `#${page}`) history.replaceState(null, '', `#${page}`);
     window.scrollTo(0, 0);
     if (page === 'live-simulation') requestAnimationFrame(() => requestAnimationFrame(updateNetworkRoutes));
     if (page === 'cloud') syncCloudWorkspace();
@@ -1305,7 +1313,14 @@
     }
   }
 
-  document.querySelectorAll('.nav button').forEach(button => button.addEventListener('click', () => nav(button.dataset.page)));
+  $('.nav').addEventListener('click', event => {
+    const button = event.target.closest('button[data-page]');
+    if (button) nav(button.dataset.page);
+  });
+  window.addEventListener('hashchange', () => {
+    const page = window.location.hash.slice(1);
+    if (page) nav(page, false);
+  });
   $('page-live-simulation').querySelector('[data-page="threats"]').addEventListener('click', () => nav('threats'));
   $('threshold-lab').addEventListener('input', event => {
     $('threshold').value = event.target.value;
