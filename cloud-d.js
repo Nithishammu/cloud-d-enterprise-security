@@ -1313,7 +1313,7 @@
     }
   }
 
-  $('.nav').addEventListener('click', event => {
+  document.querySelector('.nav').addEventListener('click', event => {
     const button = event.target.closest('button[data-page]');
     if (button) nav(button.dataset.page);
   });
