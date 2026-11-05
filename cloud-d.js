@@ -46,6 +46,7 @@
   let currentUser = null;
   let customerNoticeId = null;
   let customerNoticePrimed = false;
+  let simulationSettingsTimer = null;
   let authMode = 'login';
   let accountType = 'customer';
   function updateDeploymentCopy() {
@@ -320,6 +321,27 @@
     };
   }
 
+  async function saveSimulationSettings() {
+    if (currentUser?.role !== 'staff') return;
+    try {
+      const updated = await request('/api/config', {
+        method: 'POST',
+        body: JSON.stringify(config()),
+        headers: { 'Content-Type': 'application/json' }
+      });
+      setSimulation(updated);
+      $('simulation-visual-status').textContent = 'SETTINGS SAVED';
+    } catch (error) {
+      $('simulation-visual-status').textContent = 'SETTINGS NOT SAVED';
+      showToast(`Could not save simulation settings: ${error.message}`, true);
+    }
+  }
+
+  function scheduleSimulationSettingsSave() {
+    clearTimeout(simulationSettingsTimer);
+    simulationSettingsTimer = setTimeout(saveSimulationSettings, 250);
+  }
+
   function setSimulation(value) {
     const previousIds = lastCloudFileIds;
     const currentFiles = value.files || [];
@@ -412,7 +434,7 @@
 
   function nav(page) {
     const permitted = currentUser?.role === 'staff'
-      ? ['cloud', 'overview', 'threats', 'live-simulation', 'report']
+      ? ['cloud', 'architecture', 'overview', 'threats', 'live-simulation', 'report']
       : ['cloud', 'architecture', 'report'];
     if (!permitted.includes(page)) return;
     document.querySelectorAll('.page').forEach(item => item.classList.toggle('active', item.id === `page-${page}`));
@@ -915,10 +937,14 @@
       $('simulation-visual-status').textContent = 'ATTACK IN MOTION';
       for (let index = 0; index < rounds; index++) {
         if (stopRequested || sim.game_over || sim.round >= sim.max_rounds) break;
+        const roundConfig = config();
+        selected.active_vectors = roundConfig.active_vectors;
         let roundPending = true;
-        const attackTraffic = animateAttackTraffic(selected.active_vectors, () => roundPending && !stopRequested);
+        const attackTraffic = animateAttackTraffic(roundConfig.active_vectors, () => roundPending && !stopRequested);
         try {
-          sim = await request('/api/round', { method: 'POST', body: JSON.stringify(selected), headers: { 'Content-Type': 'application/json' } });
+          // Read the controls for each round so changes during playback apply
+          // to the next round and the packet animation stays in sync.
+          sim = await request('/api/round', { method: 'POST', body: JSON.stringify(roundConfig), headers: { 'Content-Type': 'application/json' } });
         } finally {
           roundPending = false;
           await attackTraffic;
@@ -1285,6 +1311,8 @@
     $('threshold').value = event.target.value;
     $('threshold-label').textContent = $('threshold-lab-label').textContent = Number(event.target.value).toFixed(2);
     $('engine-threshold').textContent = Number(event.target.value).toFixed(2);
+    $('simulation-visual-status').textContent = `UTILITY THRESHOLD ${Number(event.target.value).toFixed(2)}`;
+    scheduleSimulationSettingsSave();
   });
   $('threat-run').addEventListener('click', () => runSimulation());
   $('threat-stop').addEventListener('click', stopSimulation);
@@ -1294,7 +1322,10 @@
   });
   $('intensity-select').addEventListener('input', event => {
     $('intensity-value').textContent = `${event.target.value} / 10`;
+    $('simulation-visual-status').textContent = `ATTACK INTENSITY ${event.target.value} / 10`;
+    scheduleSimulationSettingsSave();
   });
+  document.querySelectorAll('.vector-toggle').forEach(input => input.addEventListener('change', scheduleSimulationSettingsSave));
   $('customer-alert-dismiss').addEventListener('click', () => $('customer-alert-dialog').close());
   $('print-report').addEventListener('click', () => window.print());
   $('download-report').addEventListener('click', exportJson);

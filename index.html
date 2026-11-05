@@ -1035,7 +1035,7 @@
         <button class="staff-only" data-page="overview" title="Security Overview"><span class="nav-icon" aria-hidden="true">◫</span><span class="nav-label-text">Security Overview</span></button>
         <button class="staff-only" data-page="threats" title="Attack &amp; Defense Simulation Details"><span class="nav-icon" aria-hidden="true">⌁</span><span class="nav-label-text">Attack &amp; Defense Simulation Details</span></button>
         <button class="staff-only" data-page="live-simulation" title="Live attack and defense"><span class="nav-icon" aria-hidden="true">◉</span><span class="nav-label-text">Live simulation</span></button>
-        <button class="customer-only" data-page="architecture" title="Cloud Architecture" hidden><span class="nav-icon" aria-hidden="true">⌘</span><span class="nav-label-text">Cloud Architecture</span></button>
+        <button data-page="architecture" title="Cloud Architecture"><span class="nav-icon" aria-hidden="true">⌘</span><span class="nav-label-text">Cloud Architecture</span></button>
         <button data-page="report" title="Defense report"><span class="nav-icon" aria-hidden="true">▤</span><span class="nav-label-text">Defense report</span></button>
       </nav>
       <div class="side-spacer"></div>
@@ -1065,17 +1065,17 @@
         </section>
 
         <section class="page" id="page-architecture">
-          <div class="page-head"><div><div class="eyebrow">Customer workspace · Read only</div><h1>Cloud Architecture</h1><p class="subtitle">A simple view of how your account reaches its storage and how uploaded files are protected.</p></div></div>
+          <div class="page-head"><div><div class="eyebrow">Cloud-D platform · Read only</div><h1>Cloud Architecture</h1><p class="subtitle">How Cloud-D routes files, protects stored data, and delivers status messages.</p></div></div>
           <div class="card architecture-flow">
             <div class="architecture-step"><span class="architecture-icon">◉</span><strong>Your account</strong><small>Verified sign-in</small></div><span class="architecture-arrow">→</span>
-            <div class="architecture-step"><span class="architecture-icon">⇄</span><strong>Cloud-D API</strong><small>Routes authorized requests</small></div><span class="architecture-arrow">→</span>
-            <div class="architecture-step"><span class="architecture-icon">▤</span><strong>Customer DB</strong><small>Your private file area</small></div><span class="architecture-arrow">→</span>
+            <div class="architecture-step"><span class="architecture-icon">⇄</span><strong>Cloud-D API</strong><small>Authorizes and routes requests</small></div><span class="architecture-arrow">→</span>
+            <div class="architecture-step"><span class="architecture-icon">▤</span><strong>Assigned database</strong><small>Files, folders, and versions</small></div><span class="architecture-arrow">→</span>
             <div class="architecture-step recovery"><span class="architecture-icon">♢</span><strong>Recovery DB</strong><small>Encrypted recovery copy</small></div>
           </div>
           <div class="architecture-facts">
-            <article class="card architecture-fact"><span class="pill green">ACCESS</span><h2>Assigned to your account</h2><p>Cloud-D routes your file requests to your customer storage area and checks account ownership before returning files.</p></article>
-            <article class="card architecture-fact"><span class="pill blue">DATABASE</span><h2>SQLite primary and recovery</h2><p>File, folder, and version records are stored in the primary SQLite database and mirrored to a separate recovery database.</p></article>
-            <article class="card architecture-fact"><span class="pill amber">ENCRYPTION</span><h2>AES-256-GCM file protection</h2><p>Uploaded file contents and saved report snapshots are encrypted before storage. Passwords are stored as salted scrypt hashes.</p></article>
+            <article class="card architecture-fact"><span class="pill green">CLOUD FUNCTIONS</span><h2>Account-scoped workspace</h2><p>Sign-in identifies the account. The API then allows that account to create folders, upload files, download files, keep versions, and move items to Trash.</p></article>
+            <article class="card architecture-fact"><span class="pill blue">DATA AT REST</span><h2>AES-256-GCM encryption</h2><p>Uploaded file contents, profile pictures, and saved simulation reports are encrypted with AES-256-GCM before they are written to the primary SQLite database and its recovery copy. Passwords are stored as salted scrypt hashes.</p></article>
+            <article class="card architecture-fact"><span class="pill amber">MESSAGES IN TRANSIT</span><h2>Protected delivery path</h2><p>Cloud-D status messages and API responses are sent only through its same-origin API. On Render or Tailscale Serve, HTTPS uses TLS in transit. On 127.0.0.1, traffic stays on the same device. Messages are not saved as a separate chat archive.</p></article>
           </div>
           <div class="card architecture-notice"><span class="architecture-status-dot"></span><div><strong id="customer-security-status">Your cloud is protected</strong><p id="customer-security-detail">When a simulated security event is detected, Cloud-D will show its current status here.</p></div></div>
         </section>
@@ -1138,10 +1138,10 @@
           <div class="simulation-workspace">
           <div class="simulation-settings">
           <h2 class="section-title" style="margin:0">Decision threshold</h2>
-          <div class="card threshold-card"><div class="threshold-copy"><div class="threshold-title">Minimum utility to execute</div><div class="threshold-help">The decision engine ranks proposals and selects actions above this threshold.</div></div><div class="threshold-slider"><input id="threshold-lab" type="range" min="0.10" max="0.90" step="0.01" value="0.40"><div class="slider-row"><span>More responsive · 0.10</span><span>More selective · 0.90</span></div></div><div class="threshold-value" id="threshold-lab-label">0.40</div></div>
+          <div class="card threshold-card"><div class="threshold-copy"><div class="threshold-title">Minimum utility to execute</div><div class="threshold-help">The decision engine ranks proposals and selects actions above this threshold. Changes apply from the next round.</div></div><div class="threshold-slider"><input id="threshold-lab" type="range" min="0.10" max="0.90" step="0.01" value="0.40"><div class="slider-row"><span>More responsive · 0.10</span><span>More selective · 0.90</span></div></div><div class="threshold-value" id="threshold-lab-label">0.40</div></div>
           <div class="card sim-control-card"><div class="card-head"><div><div class="card-title">Choose attacker agents</div><div class="card-desc">Attack destinations and automatic defender assignments are configured in the Python engine.</div></div><span class="pill amber">LOCAL MODEL</span></div><div class="controls">
             <div class="control range-control"><label for="round-select">Simulation rounds <strong id="round-value">20</strong></label><input id="round-select" type="range" min="1" max="20" step="1" value="20"><div class="slider-row"><span>1 round</span><span>20 rounds</span></div></div>
-            <div class="control range-control"><label for="intensity-select">Attack intensity <strong id="intensity-value">5 / 10</strong></label><input id="intensity-select" type="range" min="1" max="10" step="1" value="5"><div class="slider-row"><span>Low</span><span>High</span></div></div>
+            <div class="control range-control"><label for="intensity-select">Attack intensity <strong id="intensity-value">5 / 10</strong></label><input id="intensity-select" type="range" min="1" max="10" step="1" value="5"><div class="slider-row"><span>Low</span><span>High · changes apply from the next round</span></div></div>
             <div class="control"><label>Attackers to include</label><div class="toggle-list"><label class="toggle"><input class="vector-toggle" type="checkbox" value="auth" checked> Credential-Bot</label><label class="toggle"><input class="vector-toggle" type="checkbox" value="flow" checked> FloodSwarm</label><label class="toggle"><input class="vector-toggle" type="checkbox" value="query" checked> Injector-X</label><label class="toggle"><input class="vector-toggle" type="checkbox" value="behavior" checked> GhostUser</label></div><div class="card-desc" style="margin-top:9px">AuthSentinel, FlowGuardian, QueryShield, and BehaviorWatch respond automatically to the selected attack types.</div></div>
           </div><div class="sim-control-actions"><button class="btn primary" id="threat-run" type="button">▶ Run 20 rounds</button><button class="btn danger" id="threat-stop" type="button" disabled title="Available while a simulation is running">■ Stop</button></div></div>
           </div>
